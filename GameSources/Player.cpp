@@ -40,16 +40,16 @@ namespace basecross{
 			float moveSize = moveVec.length();
 			moveSize *= ElapsedTime * 5.0f;
 
-			//Player‚ÌŒü‚«
-			float MoveDirectionX = fThumbLX;
-			float MoveDirectionY = fThumbLY;
+			////Player‚ÌŒü‚«
+			//float MoveDirectionX = fThumbLX;
+			//float MoveDirectionY = fThumbLY;
 
-			auto transComp = GetComponent<Transform>();
-			auto quat = transComp->GetQuaternion();
-			auto rot = quat.toRotVec(); //Ž²‚²‚Æ‚Ì‰ñ“]‚É‚·‚é
+			//auto transComp = GetComponent<Transform>();
+			//auto quat = transComp->GetQuaternion();
+			//auto rot = quat.toRotVec(); //Ž²‚²‚Æ‚Ì‰ñ“]‚É‚·‚é
 
-			rot.y = atan2f(-MoveDirectionY, MoveDirectionX) + XM_PIDIV2; 
-			transComp->SetRotation(0, rot.y, 0);
+			//rot.y = atan2f(-MoveDirectionY, MoveDirectionX) + XM_PIDIV2; 
+			//transComp->SetRotation(0, rot.y, 0);
 
 			//Šp“x
 			float cntlAngle = atan2(moveZ, moveX);
@@ -79,6 +79,13 @@ namespace basecross{
 		pos += m_Speed;
 
 		transComp->SetPosition(pos); // XV‚µ‚½À•W‚ðTransform‚ÉÝ’è
+
+		//Player‚ÌŒü‚«
+		if (m_Speed.length() > 0.0f) {
+			auto utilPtr = GetBehavior<UtilBehavior>();
+			utilPtr->RotToHead(m_Speed, 1.0f);
+		}
+
 
 	}
 
