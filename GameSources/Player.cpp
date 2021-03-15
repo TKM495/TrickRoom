@@ -11,6 +11,10 @@ namespace basecross{
 	{
 		auto drawComp = AddComponent<BcPNTStaticDraw>();
 		drawComp->SetMeshResource(L"DEFAULT_CUBE");
+
+		auto transComp = GetComponent<Transform>(); // トランスフォーム(行列変換)コンポーネントを取得
+		transComp->SetRotation(0, XMConvertToRadians(0), 0);
+
 	}
 
 	void Player::SetSpeed()
@@ -35,6 +39,18 @@ namespace basecross{
 			Vec2 moveVec(moveZ, moveX);
 			float moveSize = moveVec.length();
 			moveSize *= ElapsedTime * 5.0f;
+
+			//Playerの向き
+			float MoveDirectionX = fThumbLX;
+			float MoveDirectionY = fThumbLY;
+
+			auto transComp = GetComponent<Transform>();
+			auto quat = transComp->GetQuaternion();
+			auto rot = quat.toRotVec(); //軸ごとの回転にする
+
+			rot.y = atan2f(-MoveDirectionY, MoveDirectionX) + XM_PIDIV2; 
+			transComp->SetRotation(0, rot.y, 0);
+
 			//角度
 			float cntlAngle = atan2(moveZ, moveX);
 			//ベクトル作成
@@ -50,7 +66,6 @@ namespace basecross{
 		else
 		{
 			m_Speed = Vec3(0.0f);
-
 		}
 
 	}
@@ -62,6 +77,7 @@ namespace basecross{
 		auto transComp = GetComponent<Transform>();
 		auto pos = transComp->GetPosition();
 		pos += m_Speed;
+
 		transComp->SetPosition(pos); // 更新した座標をTransformに設定
 
 	}
