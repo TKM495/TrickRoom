@@ -15,6 +15,8 @@ namespace basecross{
 		auto transComp = GetComponent<Transform>(); // トランスフォーム(行列変換)コンポーネントを取得
 		transComp->SetRotation(0, XMConvertToRadians(0), 0);
 
+
+		AddComponent<Gravity>();
 	}
 
 	void Player::SetSpeed()
@@ -81,12 +83,21 @@ namespace basecross{
 		transComp->SetPosition(pos); // 更新した座標をTransformに設定
 
 		//Playerの向き
-		if (m_Speed.length() > 0.0f) {
+		if (m_Speed.length() > 0.0f)
+		{
 			auto utilPtr = GetBehavior<UtilBehavior>();
 			utilPtr->RotToHead(m_Speed, 1.0f);
 		}
 
+		m_InputHandler.PushHandle(GetThis<Player>());
 
+	}
+
+	void Player::OnPushA()
+	{
+		auto GravityComp = GetComponent<Gravity>();
+		GravityComp->SetGravityVerocity(Vec3(0,10,0));
+		
 	}
 
 }
