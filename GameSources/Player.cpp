@@ -17,6 +17,7 @@ namespace basecross{
 
 
 		AddComponent<Gravity>();
+		AddComponent<CollisionObb>();
 	}
 
 	void Player::SetSpeed()
@@ -89,16 +90,32 @@ namespace basecross{
 			utilPtr->RotToHead(m_Speed, 1.0f);
 		}
 
-		m_InputHandler.PushHandle(GetThis<Player>());
+		//m_InputHandler.PushHandle(GetThis<Player>());
 
 	}
 
-	void Player::OnPushA()
-	{
-		auto GravityComp = GetComponent<Gravity>();
-		GravityComp->SetGravityVerocity(Vec3(0,10,0));
-		
-	}
+	//void Player::OnPushA()
+	//{
+
+
+	//	//SetGravityVerocityを取得して、SetGravityVerocityのSpeedが0になったら地面と接触していると見なして、フラグを倒す
+	//	if (bJump == false)
+	//	{
+	//		bJump = true;
+	//		auto GravityComp = GetComponent<Gravity>();
+	//		GravityComp->SetGravityVerocity(Vec3(0, 5, 0));
+
+	//	}
+
+	//	if ()
+	//	{
+	//		auto GravityComp = GetComponent<Gravity>();
+	//		GravityComp->GetGravityVelocity();
+
+	//	}
+
+	//}
+
 
 }
 //end basecross
