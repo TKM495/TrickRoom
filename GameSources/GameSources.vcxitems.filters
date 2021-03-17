@@ -13,6 +13,18 @@
     <Filter Include="StageObject">
       <UniqueIdentifier>{34b63fb1-6319-40cd-9cd4-9b3811cfca45}</UniqueIdentifier>
     </Filter>
+    <Filter Include="StageLoad">
+      <UniqueIdentifier>{cc3944fa-c3d3-4bc1-b0f8-1dbb01f61cae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu">
+      <UniqueIdentifier>{cbf9e890-5ef3-4131-b958-dfbaffa41655}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu\TitleMenu">
+      <UniqueIdentifier>{d7f62b4f-71ba-47e4-b60c-6eb88ad60460}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu\BaseMenu">
+      <UniqueIdentifier>{915c2130-c6fa-43e2-b2ab-93ff4937c4b5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h">
@@ -42,6 +54,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)StageObject.h">
       <Filter>StageObject</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageLoad.h">
+      <Filter>StageLoad</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\media\ドキュメント\日本ゲーム大賞\TrickRoom\GameSources\BaseMenu.h">
+      <Filter>Menu\BaseMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleMenu.h">
+      <Filter>Menu\TitleMenu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp">
@@ -67,6 +88,15 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)StageObject.cpp">
       <Filter>StageObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageLoad.cpp">
+      <Filter>StageLoad</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\media\ドキュメント\日本ゲーム大賞\TrickRoom\GameSources\BaseMenu.cpp">
+      <Filter>Menu\BaseMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleMenu.cpp">
+      <Filter>Menu\TitleMenu</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
