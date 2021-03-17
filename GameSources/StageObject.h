@@ -15,6 +15,11 @@ namespace basecross {
 		StageObject(const shared_ptr<Stage>& stage)
 			:GameObject(stage)
 		{}
+
+		virtual void OnCreate()override {}
+		virtual void OnUpdate()override {}
+		virtual void OnDraw()override {}
+
 	};
 
 }
