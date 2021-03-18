@@ -81,6 +81,8 @@ namespace basecross{
 		auto pos = transComp->GetPosition();
 		pos += m_Speed;
 
+		auto stage = GetStage(); // ステージを取得
+
 		transComp->SetPosition(pos); // 更新した座標をTransformに設定
 
 		//Playerの向き
