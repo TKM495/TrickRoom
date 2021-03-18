@@ -13,13 +13,20 @@ namespace basecross{
 		//InputHandler<Player> m_InputHandler;
 
 		Vec3 m_Speed;//ˆÚ“®
-		Vec3 jumpVelocity;
+		int m_HP;//HP(‰Šú’l‚T)
 
-	private: bool bJump = false;
+		void SetHP(int HP);
+
+		int GetHP();
+
+		
+		//Vec3 jumpVelocity;
+
+	//private: bool bJump = false;
 
 	public:
 		Player(const std::shared_ptr<Stage>& stage) 
-			: GameObject(stage)
+			: GameObject(stage),m_HP(5)
 		{
 
 		}
@@ -27,6 +34,7 @@ namespace basecross{
 		void OnCreate() override;
 		void OnUpdate() override;
 		void SetSpeed();
+
 
 		//void OnPushA();
 		//void OnPushB(){}

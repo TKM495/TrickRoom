@@ -117,6 +117,18 @@ namespace basecross{
 	//}
 
 
+	void Player::SetHP(int HP)
+	{
+		m_HP = HP;
+	}
+
+	int Player::GetHP()
+	{
+		return m_HP;
+	}
+
+
+
 }
 //end basecross
 
