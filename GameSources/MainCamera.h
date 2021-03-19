@@ -25,7 +25,7 @@ namespace basecross {
 		void OnCreate() override;
 		void OnUpdate() override;
 
-		void OnPushA();
+		void OnPushA() {}
 		void OnPushB();
 		void OnPushX() {}
 		void OnPushY() {}
