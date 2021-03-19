@@ -1,6 +1,6 @@
 /*!
 @file StageObject.h
-@brief ステージに配置するオブジェクトの親クラス
+@brief ステージに配置するオブジェクトの基底クラス
 */
 
 #pragma once
@@ -17,8 +17,8 @@ namespace basecross {
 		{}
 
 		virtual void OnCreate()override {}
-		virtual void OnUpdate()override {}
-		virtual void OnDraw()override {}
+		//virtual void OnUpdate()override {}
+		//virtual void OnDraw()override {}
 
 	};
 

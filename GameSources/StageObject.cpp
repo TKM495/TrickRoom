@@ -1,6 +1,6 @@
 /*!
 @file StageObject.cpp
-@brief ステージに配置するオブジェクトの親クラスの実体
+@brief ステージに配置するオブジェクトの基底クラスの実体
 */
 
 #include "stdafx.h"
