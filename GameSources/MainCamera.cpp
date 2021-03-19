@@ -42,6 +42,16 @@ namespace basecross {
 
 		SetAt(at);
 
+		if (bSetPers == false)
+		{
+			SetEye(at + m_offset);
+		}
+
+		if (bSetPers == true)
+		{
+			SetEye(at + m_Angle);
+		}
+
 
 		m_InputHandler.PushHandle(GetThis<MainCamera>());
 
@@ -54,6 +64,7 @@ namespace basecross {
 
 	void MainCamera::OnPushB()
 	{
+		bSetPers = true;
 		auto& app = App::GetApp(); // アプリケーションオブジェクトを取得
 		auto scene = app->GetScene<Scene>(); // アプリケーションオブジェクトからシーンを取得
 		auto stage = scene->GetActiveStage(); // シーンからステージを取得する
@@ -75,9 +86,7 @@ namespace basecross {
 		SetAt(at);
 
 
-		SetEye(at + m_offset);
 
-		//SetEye(at + m_Angle);
 	}
 	
 
