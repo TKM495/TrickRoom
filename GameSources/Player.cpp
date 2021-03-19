@@ -17,6 +17,7 @@ namespace basecross{
 
 
 		AddComponent<Gravity>();
+		AddComponent<CollisionObb>();
 	}
 
 	void Player::SetSpeed()
@@ -80,6 +81,8 @@ namespace basecross{
 		auto pos = transComp->GetPosition();
 		pos += m_Speed;
 
+		auto stage = GetStage(); // ステージを取得
+
 		transComp->SetPosition(pos); // 更新した座標をTransformに設定
 
 		//Playerの向き
@@ -89,16 +92,44 @@ namespace basecross{
 			utilPtr->RotToHead(m_Speed, 1.0f);
 		}
 
-		m_InputHandler.PushHandle(GetThis<Player>());
+		//m_InputHandler.PushHandle(GetThis<Player>());
 
 	}
 
-	void Player::OnPushA()
+	//void Player::OnPushA()
+	//{
+
+
+	//	//SetGravityVerocityを取得して、SetGravityVerocityのSpeedが0になったら地面と接触していると見なして、フラグを倒す
+	//	if (bJump == false)
+	//	{
+	//		bJump = true;
+	//		auto GravityComp = GetComponent<Gravity>();
+	//		GravityComp->SetGravityVerocity(Vec3(0, 5, 0));
+
+	//	}
+
+	//	if ()
+	//	{
+	//		auto GravityComp = GetComponent<Gravity>();
+	//		GravityComp->GetGravityVelocity();
+
+	//	}
+
+	//}
+
+
+	void Player::SetHP(int HP)
 	{
-		auto GravityComp = GetComponent<Gravity>();
-		GravityComp->SetGravityVerocity(Vec3(0,10,0));
-		
+		m_HP = HP;
 	}
+
+	int Player::GetHP()
+	{
+		return m_HP;
+	}
+
+
 
 }
 //end basecross
