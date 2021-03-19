@@ -14,7 +14,10 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)BaseMenu.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CSVLoad.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Cursor.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Numbers.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
@@ -24,12 +27,20 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)InputHandler.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Score.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)StageObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Timer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SpikesArt.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageLoad.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)StringSprite2.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleMenu.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtBase.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)BaseMenu.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CSVLoad.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Cursor.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Numbers.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp" />
@@ -37,9 +48,14 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Score.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)StageObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Timer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)SpikesArt.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageLoad.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)StringSprite2.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleMenu.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtBase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
   </ItemGroup>
 </Project>

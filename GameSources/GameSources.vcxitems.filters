@@ -13,6 +13,36 @@
     <Filter Include="StageObject">
       <UniqueIdentifier>{34b63fb1-6319-40cd-9cd4-9b3811cfca45}</UniqueIdentifier>
     </Filter>
+    <Filter Include="StageLoad">
+      <UniqueIdentifier>{cc3944fa-c3d3-4bc1-b0f8-1dbb01f61cae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu">
+      <UniqueIdentifier>{cbf9e890-5ef3-4131-b958-dfbaffa41655}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu\TitleMenu">
+      <UniqueIdentifier>{d7f62b4f-71ba-47e4-b60c-6eb88ad60460}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu\BaseMenu">
+      <UniqueIdentifier>{915c2130-c6fa-43e2-b2ab-93ff4937c4b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StringSprite2">
+      <UniqueIdentifier>{192fd485-5ad4-49f4-8059-07b8f8b0be38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CSVLoad">
+      <UniqueIdentifier>{2bd400f6-12d1-4594-acb6-e3e46e2f38e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TrickArt">
+      <UniqueIdentifier>{fc12909b-d8a6-45a7-a137-64e2cefb773a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TrickArt\Base">
+      <UniqueIdentifier>{4bf99a2c-2c0b-4e22-a936-649602cafabc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TrickArt\Spikes">
+      <UniqueIdentifier>{69644c46-6ee7-4f7c-94fd-e5fa7ef9c870}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Cursor">
+      <UniqueIdentifier>{7f95d546-1433-4764-9220-19f505deedeb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h">
@@ -44,6 +74,29 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h">
       <Filter>Headers</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageLoad.h">
+      <Filter>StageLoad</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleMenu.h">
+      <Filter>Menu\TitleMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StringSprite2.h">
+      <Filter>StringSprite2</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)BaseMenu.h">
+      <Filter>Menu\BaseMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtBase.h">
+      <Filter>TrickArt\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CSVLoad.h">
+      <Filter>CSVLoad</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SpikesArt.h">
+      <Filter>TrickArt\Spikes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Cursor.h">
+      <Filter>Cursor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +126,29 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp">
       <Filter>Sources</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageLoad.cpp">
+      <Filter>StageLoad</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleMenu.cpp">
+      <Filter>Menu\TitleMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)BaseMenu.cpp">
+      <Filter>Menu\BaseMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtBase.cpp">
+      <Filter>TrickArt\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StringSprite2.cpp">
+      <Filter>StringSprite2</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CSVLoad.cpp">
+      <Filter>CSVLoad</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SpikesArt.cpp">
+      <Filter>TrickArt\Spikes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Cursor.cpp">
+      <Filter>Cursor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

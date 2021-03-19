@@ -1,6 +1,6 @@
 /*!
-@file StageObject.cpp
-@brief ステージに配置するオブジェクトの基底クラスの実体
+@file BaseMenu.cpp
+@brief メニューの制御クラスの実体
 */
 
 #include "stdafx.h"

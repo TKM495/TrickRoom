@@ -21,9 +21,10 @@ namespace basecross {
 			GAMEOVER
 		};
 	private:
+		//現在のステート
 		GameState m_state;
+		//死亡ライン
 		float m_deathPosY;
-
 		//ビューの作成
 		void CreateViewLight();
 	public:
@@ -37,8 +38,14 @@ namespace basecross {
 		//初期化
 		virtual void OnCreate()override;
 
-		GameState GetState();
-		float GetDeathPosY();
+		//現在のステートを取得
+		GameState GetState() {
+			return m_state;
+		}
+		//死亡ラインを取得(この座標より下回ったら死亡判定)
+		float GetDeathPosY() {
+			return m_deathPosY;
+		}
 	};
 
 
