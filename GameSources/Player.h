@@ -24,6 +24,7 @@ namespace basecross{
 
 	//private: bool bJump = false;
 
+
 	public:
 		Player(const std::shared_ptr<Stage>& stage) 
 			: GameObject(stage),m_HP(5)
