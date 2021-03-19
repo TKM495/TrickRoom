@@ -1,0 +1,7 @@
+name,originX,originY,SizeX,SizeY
+Title,0,0,1024,200
+number,0,200,99,100
+GameStart,0,300,450,100
+Exit,450,300,160,100
+:,610,300,40,100
+Start,0,300,285,100

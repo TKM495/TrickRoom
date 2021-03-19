@@ -8,7 +8,7 @@
 
 namespace basecross {
 	class TitleMenu :public BaseMenu {
-		std::wstringstream wss; //デバッグ用文字列
+		//std::wstringstream wss; //デバッグ用文字列
 
 	public:
 		TitleMenu(const shared_ptr<Stage>& stage)
