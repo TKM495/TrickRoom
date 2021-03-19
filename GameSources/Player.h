@@ -15,6 +15,7 @@ namespace basecross{
 		Vec3 m_Speed;//ˆÚ“®
 
 
+
 	public:
 		Player(const std::shared_ptr<Stage>& stage) 
 			: GameObject(stage)

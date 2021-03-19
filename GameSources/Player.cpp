@@ -10,7 +10,15 @@ namespace basecross{
 	void Player::OnCreate()
 	{
 		auto drawComp = AddComponent<BcPNTStaticDraw>();
-		drawComp->SetMeshResource(L"DEFAULT_CUBE");
+		// drawComp->SetMeshResource(L"DEFAULT_CUBE");
+
+		// デバッグ用の文字列を表示するためのコンポーネントを追加
+		auto ssComp = AddComponent<StringSprite>();
+		ssComp->SetBackColor(Col4(0.0f, 0.0f, 0.0f, 0.5f)); // 文字列の表示領域の背景色を変更する
+		ssComp->SetTextRect(Rect2D<float>(10, 10, 300 + 10, 200 + 10)); // 文字列表示領域のサイズを変更する
+		ssComp->SetText(L"HP 3\nCRYSTAL 10");
+
+
 
 		auto transComp = GetComponent<Transform>(); // トランスフォーム(行列変換)コンポーネントを取得
 		transComp->SetRotation(0, XMConvertToRadians(0), 0);
@@ -92,6 +100,8 @@ namespace basecross{
 		m_InputHandler.PushHandle(GetThis<Player>());
 
 	}
+
+
 
 	void Player::OnPushA()
 	{
