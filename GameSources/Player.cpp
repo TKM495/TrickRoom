@@ -129,6 +129,10 @@ namespace basecross{
 		return m_HP;
 	}
 
+	float Player::GetCrystal()
+	{
+		return m_crystal;
+	}
 
 
 }

@@ -14,10 +14,14 @@ namespace basecross{
 
 		Vec3 m_Speed;//ˆÚ“®
 		int m_HP;//HP(‰Šú’l‚T)
+		float m_crystal;
 
+		//HP
 		void SetHP(int HP);
-
 		int GetHP();
+		//Crystal
+		float GetCrystal();
+
 
 		
 		//Vec3 jumpVelocity;
@@ -26,7 +30,7 @@ namespace basecross{
 
 	public:
 		Player(const std::shared_ptr<Stage>& stage) 
-			: GameObject(stage),m_HP(5)
+			: GameObject(stage),m_HP(5),m_crystal(0)
 		{
 
 		}
