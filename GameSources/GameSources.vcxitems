@@ -15,10 +15,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)BaseMenu.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)block.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CSVLoad.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Cursor.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Numbers.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
@@ -28,7 +30,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)InputHandler.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Score.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Timer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SpikesArt.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageLoad.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageObject.h" />
@@ -38,10 +39,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)BaseMenu.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)block.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CSVLoad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Cursor.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Numbers.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />
@@ -49,7 +52,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Score.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Timer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SpikesArt.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageLoad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageObject.cpp" />

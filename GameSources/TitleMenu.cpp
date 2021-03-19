@@ -10,7 +10,7 @@ namespace basecross {
 	void TitleMenu::OnCreate() {
 		MenuElement titleMenu[]{
 			{Vec2(0.0f,0.0f),L"GameStart",L"ToGameStage"},
-			{Vec2(0.0f,-100.0f),L"Exit",L"test"},
+			{Vec2(0.0f,-100.0f),L"Exit",L"ToExit"},
 		};
 
 		for (auto element : titleMenu) {
@@ -54,7 +54,7 @@ namespace basecross {
 
 		if (pad.wPressedButtons & XINPUT_GAMEPAD_A) {
 			//メッセージを送る(実装待ち)
-			//PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), element.sendMsg);
+			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), element.sendMsg);
 		}
 	}
 }

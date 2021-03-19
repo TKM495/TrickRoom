@@ -8,6 +8,13 @@
 
 namespace basecross {
 	void CSVLoad::OnCreate() {
+		if (m_spriteFileData.size() == 0) {
+			throw BaseException(
+				L"データがありません",
+				L"Size : " + to_wstring(m_spriteFileData.size()),
+				L"CSVLoad::OnCreate()"
+			);
+		}
 		//0番目(1行目は見出しなので除外)
 		for (size_t i = 1; i < m_spriteFileData.size(); i++) {
 			//トークン（カラム）の配列

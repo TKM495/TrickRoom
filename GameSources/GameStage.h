@@ -23,6 +23,8 @@ namespace basecross {
 	private:
 		//現在のステート
 		GameState m_state;
+		//スプライト用CSV
+		CsvFile m_spriteCsv;
 		//死亡ライン
 		float m_deathPosY;
 		//ビューの作成

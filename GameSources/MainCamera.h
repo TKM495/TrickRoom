@@ -15,8 +15,8 @@ namespace basecross {
 		Vec3 m_offset;
 		Vec3 m_Angle;
 		bool bSetPers;
-		float SetWidth;
-		float SetHeight;
+		float m_width;
+		float m_height;
 		Vec3 GetAngle();
 
 	public:

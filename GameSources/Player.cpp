@@ -10,7 +10,7 @@ namespace basecross{
 	void Player::OnCreate()
 	{
 		auto drawComp = AddComponent<BcPNTStaticDraw>();
-		// drawComp->SetMeshResource(L"DEFAULT_CUBE");
+		 drawComp->SetMeshResource(L"DEFAULT_CUBE");
 
 		// �f�o�b�O�p�̕������\�����邽�߂̃R���|�[�l���g��ǉ�
 		auto ssComp = AddComponent<StringSprite>();
@@ -59,7 +59,7 @@ namespace basecross{
 			//auto quat = transComp->GetQuaternion();
 			//auto rot = quat.toRotVec(); //�����Ƃ̉�]�ɂ���
 
-			//rot.y = atan2f(-MoveDirectionY, MoveDirectionX) + XM_PIDIV2; 
+			//rot.y = atan2f(-MoveDirectionY, MoveDirectionX) + XM_PIDIV2;
 			//transComp->SetRotation(0, rot.y, 0);
 
 			//�p�x
@@ -133,12 +133,6 @@ namespace basecross{
 	}
 
 	int Player::GetHP(){
-		return m_HP;
-	}
-
-
-	void Player::OnPushA()
-	{
 		return m_HP;
 	}
 

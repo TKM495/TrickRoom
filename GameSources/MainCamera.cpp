@@ -9,42 +9,44 @@
 namespace basecross {
 
 	MainCamera::MainCamera()
-		:m_offset(10.0f, 10.0f, -10.0f),m_Angle(10.0f, -90.0f, -10.0f),bSetPers(false),SetWidth(20.0f),SetHeight(12.5f)
+		:m_offset(10.0f, 10.0f, -10.0f),m_Angle(10.0f, -90.0f, -10.0f),bSetPers(false), m_width(20.0f), m_height(12.5f)
 	{
 
 	}
 
 	void MainCamera::OnCreate()
 	{
-
+		SetPers(bSetPers);
+		SetWidth(m_width);
+		SetHeight(m_height);
 	}
 
 	void MainCamera::OnUpdate()
 	{
-		//auto& app = App::GetApp(); // アプリケーションオブジェクトを取得
-		//auto scene = app->GetScene<Scene>(); // アプリケーションオブジェクトからシーンを取得
-		//auto stage = scene->GetActiveStage(); // シーンからステージを取得する
-		//auto gameObjects = stage->GetGameObjectVec();
-		//std::shared_ptr<Player> player;
+		auto& app = App::GetApp(); // アプリケーションオブジェクトを取得
+		auto scene = app->GetScene<Scene>(); // アプリケーションオブジェクトからシーンを取得
+		auto stage = scene->GetActiveStage(); // シーンからステージを取得する
+		auto gameObjects = stage->GetGameObjectVec();
+		std::shared_ptr<Player> player;
 
-		//for (auto gameObject : gameObjects)
-		//{
-		//	player = dynamic_pointer_cast<Player>(gameObject);
-		//	if (player)
-		//	{
-		//		break;
-		//	}
-		//}
+		for (auto gameObject : gameObjects)
+		{
+			player = dynamic_pointer_cast<Player>(gameObject);
+			if (player)
+			{
+				break;
+			}
+		}
 
 
-		//auto TransComp = player->GetComponent<Transform>();
-		//auto at = TransComp->GetPosition();
+		auto TransComp = player->GetComponent<Transform>();
+		auto at = TransComp->GetPosition();
 
-		//SetAt(at);
+		SetAt(at);
 
-		//SetEye(at + m_offset);
+		SetEye(at + m_offset);
 
-		
+
 
 		m_InputHandler.PushHandle(GetThis<MainCamera>());
 
@@ -79,7 +81,7 @@ namespace basecross {
 
 		SetEye(at + m_offset);
 	}
-	
+
 	void MainCamera::OnPushA()
 	{
 		auto& app = App::GetApp(); // アプリケーションオブジェクトを取得

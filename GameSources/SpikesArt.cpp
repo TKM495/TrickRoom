@@ -8,7 +8,7 @@
 
 namespace basecross {
 	void SpikesArt::OnCreate() {
-		m_position = Vec3(0.0f);
+		m_position = Vec3(0.0f,-0.49f,0.0f);
 		m_scale = Vec3(1.0f);
 
 		auto halfSize = m_artSize / 2.0f;

@@ -1,154 +1,181 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Headers">
-      <UniqueIdentifier>{4b0a624a-610d-4bc6-b311-2b02a781cdf9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sources">
-      <UniqueIdentifier>{96692d2a-8790-41a9-bfac-6c5662d4ad61}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="InputHandler">
-      <UniqueIdentifier>{d0101749-f2f8-4a5f-90ac-a19f55280e57}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="StageObject">
-      <UniqueIdentifier>{34b63fb1-6319-40cd-9cd4-9b3811cfca45}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="StageLoad">
-      <UniqueIdentifier>{cc3944fa-c3d3-4bc1-b0f8-1dbb01f61cae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Menu">
-      <UniqueIdentifier>{cbf9e890-5ef3-4131-b958-dfbaffa41655}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Menu\TitleMenu">
-      <UniqueIdentifier>{d7f62b4f-71ba-47e4-b60c-6eb88ad60460}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Menu\BaseMenu">
-      <UniqueIdentifier>{915c2130-c6fa-43e2-b2ab-93ff4937c4b5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="StringSprite2">
-      <UniqueIdentifier>{192fd485-5ad4-49f4-8059-07b8f8b0be38}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="CSVLoad">
-      <UniqueIdentifier>{2bd400f6-12d1-4594-acb6-e3e46e2f38e8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="TrickArt">
-      <UniqueIdentifier>{fc12909b-d8a6-45a7-a137-64e2cefb773a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="TrickArt\Base">
-      <UniqueIdentifier>{4bf99a2c-2c0b-4e22-a936-649602cafabc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="TrickArt\Spikes">
-      <UniqueIdentifier>{69644c46-6ee7-4f7c-94fd-e5fa7ef9c870}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Cursor">
-      <UniqueIdentifier>{7f95d546-1433-4764-9220-19f505deedeb}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Character.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Player.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Project.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)InputHandler.h">
-      <Filter>InputHandler</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)StageObject.h">
-      <Filter>StageObject</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h">
-      <Filter>Headers</Filter>
-    <ClInclude Include="$(MSBuildThisFileDirectory)StageLoad.h">
-      <Filter>StageLoad</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)TitleMenu.h">
-      <Filter>Menu\TitleMenu</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)StringSprite2.h">
-      <Filter>StringSprite2</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)BaseMenu.h">
-      <Filter>Menu\BaseMenu</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtBase.h">
-      <Filter>TrickArt\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)CSVLoad.h">
-      <Filter>CSVLoad</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)SpikesArt.h">
-      <Filter>TrickArt\Spikes</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Cursor.h">
-      <Filter>Cursor</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)StageObject.cpp">
-      <Filter>StageObject</Filter>
-    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageLoad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp">
-      <Filter>Sources</Filter>
-    <ClCompile Include="$(MSBuildThisFileDirectory)StageLoad.cpp">
-      <Filter>StageLoad</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TitleMenu.cpp">
-      <Filter>Menu\TitleMenu</Filter>
+      <Filter>Stage\Title</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)BaseMenu.cpp">
-      <Filter>Menu\BaseMenu</Filter>
+      <Filter>Menu\Base</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtBase.cpp">
-      <Filter>TrickArt\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)StringSprite2.cpp">
-      <Filter>StringSprite2</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleMenu.cpp">
+      <Filter>Menu\Title</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)CSVLoad.cpp">
       <Filter>CSVLoad</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)SpikesArt.cpp">
-      <Filter>TrickArt\Spikes</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp">
+      <Filter>Stage\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp">
+      <Filter>MainCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageObject.cpp">
+      <Filter>StageObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)block.cpp">
+      <Filter>StageObject\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp">
+      <Filter>Others</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp">
+      <Filter>Others</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp">
+      <Filter>Others</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp">
+      <Filter>Others</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Cursor.cpp">
-      <Filter>Cursor</Filter>
+      <Filter>Menu</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Numbers.cpp">
+      <Filter>Numbers</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SpikesArt.cpp">
+      <Filter>TrickArt</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtBase.cpp">
+      <Filter>TrickArt</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StringSprite2.cpp">
+      <Filter>StringSprite2</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Score.cpp">
+      <Filter>Score</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)InputHandler.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageLoad.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h">
+      <Filter>Stage\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)BaseMenu.h">
+      <Filter>Menu\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleMenu.h">
+      <Filter>Menu\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CSVLoad.h">
+      <Filter>CSVLoad</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h">
+      <Filter>Stage\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h">
+      <Filter>MainCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageObject.h">
+      <Filter>StageObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)block.h">
+      <Filter>StageObject\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Character.h">
+      <Filter>Others</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h">
+      <Filter>Others</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h">
+      <Filter>Others</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Cursor.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Numbers.h">
+      <Filter>Numbers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SpikesArt.h">
+      <Filter>TrickArt</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtBase.h">
+      <Filter>TrickArt</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StringSprite2.h">
+      <Filter>StringSprite2</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Score.h">
+      <Filter>Score</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Menu">
+      <UniqueIdentifier>{34c89af8-53f6-4d3d-bc61-e6e3348a5ad0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stage">
+      <UniqueIdentifier>{9af9580b-409b-4116-9e04-e3caf1b10d71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stage\Title">
+      <UniqueIdentifier>{ed974480-9356-4c15-8d3e-8bf6d713abd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu\Base">
+      <UniqueIdentifier>{5a4a3632-8b81-4f46-8a48-2fda5aa38d44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu\Title">
+      <UniqueIdentifier>{dfca9f62-d1d3-4b0a-a054-bc1e8f5e44d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CSVLoad">
+      <UniqueIdentifier>{1ddc1224-3b67-4b92-8f66-22cb15ccd8de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stage\Game">
+      <UniqueIdentifier>{7f8d7d4f-ca46-4627-ba63-8dd0170b29ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainCamera">
+      <UniqueIdentifier>{fd4aef28-3891-462a-9267-c902ba59aea5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject">
+      <UniqueIdentifier>{a97031a4-833e-494b-a185-e66a485634d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Block">
+      <UniqueIdentifier>{4273b867-bc0b-43ec-a02d-5539642b77c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Others">
+      <UniqueIdentifier>{dcbd2ca3-6770-42e2-9101-d518422e41ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Numbers">
+      <UniqueIdentifier>{6cd4b4f2-d794-4a97-969f-0f410d9a2920}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{d2164d2a-d9d1-4b32-8a45-08d1c40fa3fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TrickArt">
+      <UniqueIdentifier>{e525854f-80cd-4a4d-b07d-d03184b7ceb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StringSprite2">
+      <UniqueIdentifier>{2ccdd530-0b81-4521-a066-e8ab1b7d378d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{fa796446-a655-492d-b2a6-40959787c5cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Score">
+      <UniqueIdentifier>{7d984e76-5141-43db-b2ae-deecf136978b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
