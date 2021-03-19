@@ -9,9 +9,9 @@
 namespace basecross {
 	class TitleStage : public Stage {
 		// ビューの作成
-		void CreateView();
+		void CreateViewLight();
 		// スプライトの作成
-		void CreateSprite();
+		//void CreateSprite();
 		// 入力ハンドラー
 		InputHandler<TitleStage> m_Inputhandler;
 
