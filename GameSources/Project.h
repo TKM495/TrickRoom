@@ -5,24 +5,28 @@
 
 #pragma once
 
-#include "BaseMenu.h"
-#include "block.h"
-#include "CSVLoad.h"
-#include "Cursor.h"
-#include "GameStage.h"
-
-#include "MainCamera.h"
-#include "Numbers.h"
-#include "Player.h"
-
-
+//メイン
 #include "Scene.h"
-#include "SpikesArt.h"
-#include "StringSprite2.h"
-#include "TitleMenu.h"
+#include "MainCamera.h"
+#include "Player.h"
+#include "CSVLoad.h"
+//ステージ関係
 #include "TitleStage.h"
-
-#include "StageObject.h"
+#include "SelectStage.h"
+#include "GameStage.h"
+//メニュー
+#include "StringSprite2.h"
+#include "BaseMenu.h"
+#include "TitleMenu.h"
+#include "PauceMenu.h"
+#include "Cursor.h"
+//UI関係
 #include "Numbers.h"
 #include "Score.h"
+//ステージオブジェクト
+#include "StageObject.h"
+#include "block.h"
+#include "Plane.h"
+//トリックアートオブジェクト
 #include "TrickArtBase.h"
+#include "SpikesArt.h"

@@ -60,7 +60,16 @@
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Score.cpp">
-      <Filter>Score</Filter>
+      <Filter>UI\Score</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SelectStage.cpp">
+      <Filter>Stage\StageSelect</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PauceMenu.cpp">
+      <Filter>Menu\Pauce</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Plane.cpp">
+      <Filter>StageObject\Plane</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -122,7 +131,16 @@
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Score.h">
-      <Filter>Score</Filter>
+      <Filter>UI\Score</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SelectStage.h">
+      <Filter>Stage\StageSelect</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PauceMenu.h">
+      <Filter>Menu\Pauce</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Plane.h">
+      <Filter>StageObject\Plane</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -174,8 +192,20 @@
     <Filter Include="Scene">
       <UniqueIdentifier>{fa796446-a655-492d-b2a6-40959787c5cc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Score">
+    <Filter Include="Stage\StageSelect">
+      <UniqueIdentifier>{31774cb2-2c6a-43f3-b43f-3ec4791d38aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu\Pauce">
+      <UniqueIdentifier>{49ec9838-a100-461c-a2d7-1bd8ddf6a16f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{66909802-4bbf-4472-ad1f-30d85cc88e7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Score">
       <UniqueIdentifier>{7d984e76-5141-43db-b2ae-deecf136978b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Plane">
+      <UniqueIdentifier>{386660d9-b501-4dff-98f6-c412f8eb45b6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

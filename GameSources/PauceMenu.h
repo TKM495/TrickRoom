@@ -1,15 +1,15 @@
 /*!
-@file TitleMenu.h
-@brief タイトルのメニュー管理クラス
+@file PauceMenu.h
+@brief ポーズ画面のメニュー管理クラス
 */
 
 #pragma once
 #include "stdafx.h"
 
 namespace basecross {
-	class TitleMenu :public BaseMenu {
+	class PauceMenu :public BaseMenu {
 	public:
-		TitleMenu(const shared_ptr<Stage>& stage)
+		PauceMenu(const shared_ptr<Stage>& stage)
 			:BaseMenu(stage)
 		{}
 

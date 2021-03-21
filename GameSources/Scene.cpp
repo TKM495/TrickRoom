@@ -42,18 +42,20 @@ namespace basecross{
 		}
 	}
 
-	Scene::~Scene() {
-	}
-
 	void Scene::OnEvent(const shared_ptr<Event>& event) {
+		//タイトルステージ
 		if (event->m_MsgStr == L"ToTitleStage") {
-			//最初のアクティブステージの設定
 			ResetActiveStage<TitleStage>();
 		}
+		//セレクトステージ(ステージセレクト)
+		if (event->m_MsgStr == L"ToSelectStage") {
+			//ResetActiveStage<SelectStage>();
+		}
+		//ゲームステージ
 		if (event->m_MsgStr == L"ToGameStage") {
-			//最初のアクティブステージの設定
 			ResetActiveStage<GameStage>();
 		}
+		//ゲーム終了
 		if (event->m_MsgStr == L"ToExit") {
 			exit(0);
 		}

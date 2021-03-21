@@ -26,7 +26,7 @@ namespace basecross {
         //今選択しているメニュー
         int m_nowMenuNum;
         //カーソルオブジェクト
-        shared_ptr<Cursor> m_cursor;
+        weak_ptr<Cursor> m_cursor;
     public:
         BaseMenu(const shared_ptr<Stage>& stage)
             :GameObject(stage),
@@ -35,7 +35,8 @@ namespace basecross {
         {}
 
         virtual void OnCreate()override {}
-        virtual void OnUpdate()override {}
+        virtual void OnUpdate()override;
+        void SetUpMenu();
     };
 }
 //end basecross

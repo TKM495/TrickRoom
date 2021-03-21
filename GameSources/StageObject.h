@@ -16,11 +16,9 @@ namespace basecross {
 			:GameObject(stage)
 		{}
 
-		virtual void OnCreate()override {}
+		//virtual void OnCreate()override {}
 		//virtual void OnUpdate()override {}
 		//virtual void OnDraw()override {}
-
 	};
-
 }
 //end basecross
