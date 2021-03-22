@@ -9,23 +9,25 @@
 namespace basecross {
 
 	MainCamera::MainCamera()
-		:m_offset(10.0f, 10.0f, -10.0f),m_Angle(-15.0f, 10.0f, -10.0f),bSetPers(false),SetWidth(20.0f),SetHeight(12.5f)
+		:m_offset(10.0f, 10.0f, -10.0f),m_Angle(-10.0f, 10.0f, -10.0f),bSetPers(false),SetWidth(20.0f),SetHeight(12.5f),m_CameraState(state::Right)
 	{
 
 	}
 
 	void MainCamera::OnCreate()
 	{
-		SetPers(bSetPers);
-		SetWidth(m_width);
-		SetHeight(m_height);
+
 	}
 
 	void MainCamera::OnUpdate()
 	{
-		auto& app = App::GetApp(); // �A�v���P�[�V�����I�u�W�F�N�g���擾
-		auto scene = app->GetScene<Scene>(); // �A�v���P�[�V�����I�u�W�F�N�g����V�[�����擾
-		auto stage = scene->GetActiveStage(); // �V�[������X�e�[�W���擾����
+		auto& app = App::GetApp();
+		float delta = app->GetElapsedTime();
+		auto device = app->GetInputDevice();
+		const auto& pad = device.GetControlerVec()[0];
+
+		auto scene = app->GetScene<Scene>(); 
+		auto stage = scene->GetActiveStage(); 
 		auto gameObjects = stage->GetGameObjectVec();
 		std::shared_ptr<Player> player;
 
@@ -38,58 +40,39 @@ namespace basecross {
 			}
 		}
 
-
+		//カメラ処理
 		auto TransComp = player->GetComponent<Transform>();
 		auto at = TransComp->GetPosition();
 
 		SetAt(at);
 
-		if (bSetPers == false)
+		if (pad.wPressedButtons & XINPUT_GAMEPAD_RIGHT_SHOULDER)//RB
 		{
+			m_CameraState = state::Right;
+		}
+
+		if (pad.wPressedButtons & XINPUT_GAMEPAD_LEFT_SHOULDER)//LB
+		{
+			m_CameraState = state::Left;
+		}
+
+		switch (m_CameraState)
+		{
+		case state::Right:
 			SetEye(at + m_offset);
-		}
-
-		if (bSetPers == true)
-		{
+			break;
+		case state::Left:
 			SetEye(at + m_Angle);
+			break;
+		default:
+			break;
 		}
-
-
-		m_InputHandler.PushHandle(GetThis<MainCamera>());
 
 	}
 
 	Vec3 MainCamera::GetAngle()
 	{
 		return m_Angle;
-	}
-
-	void MainCamera::OnPushB()
-	{
-		bSetPers = true;
-		auto& app = App::GetApp(); // �A�v���P�[�V�����I�u�W�F�N�g���擾
-		auto scene = app->GetScene<Scene>(); // �A�v���P�[�V�����I�u�W�F�N�g����V�[�����擾
-		auto stage = scene->GetActiveStage(); // �V�[������X�e�[�W���擾����
-		auto gameObjects = stage->GetGameObjectVec();
-		std::shared_ptr<Player> player;
-
-		for (auto gameObject : gameObjects)
-		{
-			player = dynamic_pointer_cast<Player>(gameObject);
-			if (player)
-			{
-				break;
-			}
-		}
-
-		auto TransComp = player->GetComponent<Transform>();
-		auto at = TransComp->GetPosition();
-
-		SetAt(at);
-
-
-
-	}
-	
+	}	
 
 }
