@@ -24,6 +24,7 @@
 #include "Numbers.h"
 #include "Score.h"
 //ステージオブジェクト
+#include "StageLoad.h"
 #include "StageObject.h"
 #include "block.h"
 #include "Plane.h"

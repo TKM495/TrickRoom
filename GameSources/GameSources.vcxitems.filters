@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)StageLoad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp">
       <Filter>Stage\Title</Filter>
     </ClCompile>
@@ -50,9 +49,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)SpikesArt.cpp">
       <Filter>TrickArt</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtBase.cpp">
-      <Filter>TrickArt</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)StringSprite2.cpp">
       <Filter>StringSprite2</Filter>
     </ClCompile>
@@ -71,11 +67,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Plane.cpp">
       <Filter>StageObject\Plane</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtBase.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageLoad.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)InputHandler.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)StageLoad.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h">
       <Filter>Stage\Title</Filter>
     </ClInclude>
@@ -121,9 +118,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)SpikesArt.h">
       <Filter>TrickArt</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtBase.h">
-      <Filter>TrickArt</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)StringSprite2.h">
       <Filter>StringSprite2</Filter>
     </ClInclude>
@@ -142,6 +136,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Plane.h">
       <Filter>StageObject\Plane</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageLoad.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Menu">
