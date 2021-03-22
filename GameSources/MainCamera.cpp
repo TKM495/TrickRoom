@@ -1,6 +1,6 @@
 /*!
 @file MainCamera.cpp
-@brief ƒƒCƒ“ƒJƒƒ‰‚È‚ÇŽÀ‘Ì
+@brief ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½È‚ÇŽï¿½ï¿½ï¿½
 */
 
 #include "stdafx.h"
@@ -16,14 +16,16 @@ namespace basecross {
 
 	void MainCamera::OnCreate()
 	{
-
+		SetPers(bSetPers);
+		SetWidth(m_width);
+		SetHeight(m_height);
 	}
 
 	void MainCamera::OnUpdate()
 	{
-		auto& app = App::GetApp(); // ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒIƒuƒWƒFƒNƒg‚ðŽæ“¾
-		auto scene = app->GetScene<Scene>(); // ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒIƒuƒWƒFƒNƒg‚©‚çƒV[ƒ“‚ðŽæ“¾
-		auto stage = scene->GetActiveStage(); // ƒV[ƒ“‚©‚çƒXƒe[ƒW‚ðŽæ“¾‚·‚é
+		auto& app = App::GetApp(); // ï¿½Aï¿½vï¿½ï¿½ï¿½Pï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½æ“¾
+		auto scene = app->GetScene<Scene>(); // ï¿½Aï¿½vï¿½ï¿½ï¿½Pï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½Vï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½æ“¾
+		auto stage = scene->GetActiveStage(); // ï¿½Vï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½Wï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
 		auto gameObjects = stage->GetGameObjectVec();
 		std::shared_ptr<Player> player;
 
@@ -65,9 +67,9 @@ namespace basecross {
 	void MainCamera::OnPushB()
 	{
 		bSetPers = true;
-		auto& app = App::GetApp(); // ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒIƒuƒWƒFƒNƒg‚ðŽæ“¾
-		auto scene = app->GetScene<Scene>(); // ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒIƒuƒWƒFƒNƒg‚©‚çƒV[ƒ“‚ðŽæ“¾
-		auto stage = scene->GetActiveStage(); // ƒV[ƒ“‚©‚çƒXƒe[ƒW‚ðŽæ“¾‚·‚é
+		auto& app = App::GetApp(); // ï¿½Aï¿½vï¿½ï¿½ï¿½Pï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½æ“¾
+		auto scene = app->GetScene<Scene>(); // ï¿½Aï¿½vï¿½ï¿½ï¿½Pï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½Vï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½æ“¾
+		auto stage = scene->GetActiveStage(); // ï¿½Vï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½Wï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½
 		auto gameObjects = stage->GetGameObjectVec();
 		std::shared_ptr<Player> player;
 

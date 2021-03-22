@@ -31,22 +31,22 @@ namespace basecross {
 				if (pad.wPressedButtons & XINPUT_GAMEPAD_B) {
 					Obj->OnPushB();
 				}
-				//Xボタン
-				if (pad.wPressedButtons & XINPUT_GAMEPAD_X) {
-					Obj->OnPushX();
-				}
-				//Yボタン
-				if (pad.wPressedButtons & XINPUT_GAMEPAD_Y) {
-					Obj->OnPushY();
-				}
+				////Xボタン
+				//if (pad.wPressedButtons & XINPUT_GAMEPAD_X) {
+				//	Obj->OnPushX();
+				//}
+				////Yボタン
+				//if (pad.wPressedButtons & XINPUT_GAMEPAD_Y) {
+				//	Obj->OnPushY();
+				//}
 				//スタートボタン
 				if (pad.wPressedButtons & XINPUT_GAMEPAD_START) {
 					Obj->OnPushStart();
 				}
-				//バックボタン
-				if (pad.wPressedButtons & XINPUT_GAMEPAD_BACK) {
-					Obj->OnPushBack();
-				}
+				////バックボタン
+				//if (pad.wPressedButtons & XINPUT_GAMEPAD_BACK) {
+				//	Obj->OnPushBack();
+				//}
 			}
 		}
 		Vec3 StickHandle() {
