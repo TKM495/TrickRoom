@@ -12,15 +12,14 @@ namespace basecross{
 		auto drawComp = AddComponent<BcPNTStaticDraw>();
 		 drawComp->SetMeshResource(L"DEFAULT_CUBE");
 
-		// �f�o�b�O�p�̕������\�����邽�߂̃R���|�[�l���g��ǉ�
 		auto ssComp = AddComponent<StringSprite>();
-		ssComp->SetBackColor(Col4(0.0f, 0.0f, 0.0f, 0.5f)); // ������̕\���̈�̔w�i�F��ύX����
-		ssComp->SetTextRect(Rect2D<float>(10, 10, 300 + 10, 200 + 10)); // ������\���̈�̃T�C�Y��ύX����
+		ssComp->SetBackColor(Col4(0.0f, 0.0f, 0.0f, 0.5f));
+		ssComp->SetTextRect(Rect2D<float>(10, 10, 300 + 10, 200 + 10));
 		ssComp->SetText(L"HP 3\nCRYSTAL 10");
 
 
 
-		auto transComp = GetComponent<Transform>(); // �g�����X�t�H�[��(�s��ϊ�)�R���|�[�l���g���擾
+		auto transComp = GetComponent<Transform>();
 		transComp->SetRotation(0, XMConvertToRadians(0), 0);
 
 
@@ -30,9 +29,20 @@ namespace basecross{
 
 	void Player::SetSpeed()
 	{
+		auto stage = GetStage();
+
+		auto camera = stage->GetView()->GetTargetCamera();
+		auto mainCamera = dynamic_pointer_cast<MainCamera>(camera);
+
+		auto transComp = GetComponent<Transform>();
+		auto pos = transComp->GetPosition();
+		auto cameraDir = pos - camera->GetEye();
+		cameraDir.y - 0.0f;
+		cameraDir.normalize();
+
 		auto& app = App::GetApp();
 		float ElapsedTime = app->GetElapsedTime();
-		auto cntlPad = app->GetInputDevice().GetControlerVec();//�R���g���[���[�̎擾
+		auto cntlPad = app->GetInputDevice().GetControlerVec();
 
 		float fThumbLY = 0.0f;
 		float fThumbLX = 0.0f;
@@ -44,34 +54,15 @@ namespace basecross{
 
 		if (fThumbLX != 0 || fThumbLY != 0)
 		{
-			//�R���g���[���̌���
-			float moveX = fThumbLX;
-			float moveZ = fThumbLY;
-			Vec2 moveVec(moveZ, moveX);
-			float moveSize = moveVec.length();
-			moveSize *= ElapsedTime * 5.0f;
 
-			////Player�̌���
-			//float MoveDirectionX = fThumbLX;
-			//float MoveDirectionY = fThumbLY;
+			Vec3 Horizontal(cameraDir);
+			Vec3 Vertical(Horizontal.z, 0, -Horizontal.x);
 
-			//auto transComp = GetComponent<Transform>();
-			//auto quat = transComp->GetQuaternion();
-			//auto rot = quat.toRotVec(); //�����Ƃ̉�]�ɂ���
+			Vec3 moveH = Vec3(Horizontal * fThumbLY);
+			Vec3 moveV = Vec3(Vertical * fThumbLX);
+			Vec3 moveVec = moveH + moveV;
+			m_Speed = moveVec * m_moveSpeed * ElapsedTime;
 
-			//rot.y = atan2f(-MoveDirectionY, MoveDirectionX) + XM_PIDIV2;
-			//transComp->SetRotation(0, rot.y, 0);
-
-			//�p�x
-			float cntlAngle = atan2(moveZ, moveX);
-			//�x�N�g���쐬
-			m_Speed = Vec3(cos(cntlAngle), 0, sin(cntlAngle));
-			//���K������
-			m_Speed.normalize();
-			//�ړ��T�C�Y��ݒ�
-			m_Speed *= moveSize;
-
-			m_Speed.y = 0;
 		}
 
 		else
@@ -140,7 +131,6 @@ namespace basecross{
 	{
 		return m_crystal;
 	}
-
 
 }
 //end basecross

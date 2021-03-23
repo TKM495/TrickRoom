@@ -13,6 +13,7 @@ namespace basecross{
 		//InputHandler<Player> m_InputHandler;
 
 		Vec3 m_Speed;//ˆÚ“®
+		float m_moveSpeed;
 		int m_HP;//HP(‰Šú’l‚T)
 		float m_crystal;
 
@@ -31,7 +32,7 @@ namespace basecross{
 
 	public:
 		Player(const std::shared_ptr<Stage>& stage) 
-			: GameObject(stage),m_HP(5),m_crystal(0)
+			: GameObject(stage),m_moveSpeed(5),m_HP(5),m_crystal(0)
 		{
 
 		}
@@ -39,7 +40,6 @@ namespace basecross{
 		void OnCreate() override;
 		void OnUpdate() override;
 		void SetSpeed();
-
 
 		//void OnPushA();
 		//void OnPushB(){}

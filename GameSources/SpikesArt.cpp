@@ -40,6 +40,11 @@ namespace basecross {
 
 		SetAlphaActive(true); //透明をサポートする&両面描画になる
 
+
+
+			auto obbComp = AddComponent<CollisionObb>();
+			obbComp->SetFixed(true);
+
 		auto transComp = GetComponent<Transform>();
 		transComp->SetPosition(m_position);
 		transComp->SetScale(m_scale);
