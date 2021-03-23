@@ -132,6 +132,19 @@ namespace basecross{
 		return m_crystal;
 	}
 
+	void Player::OnCollisionEnter(std::shared_ptr<GameObject>& other)
+	{
+		auto bDamegeTag = other->FindTag(L"damege");
+
+		if (bDamegeTag)
+		{
+			m_HP += -1;
+
+			auto transComponent = GetComponent<Transform>();
+			transComponent->SetPosition(5.0f, 0.0f, 0.0f);
+		}
+	}
+
 }
 //end basecross
 

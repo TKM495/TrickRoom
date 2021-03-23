@@ -40,6 +40,7 @@ namespace basecross{
 		void OnCreate() override;
 		void OnUpdate() override;
 		void SetSpeed();
+		void OnCollisionEnter(std::shared_ptr<GameObject>& other) override;
 
 		//void OnPushA();
 		//void OnPushB(){}
