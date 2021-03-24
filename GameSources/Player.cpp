@@ -12,12 +12,13 @@ namespace basecross{
 		auto drawComp = AddComponent<BcPNTStaticDraw>();
 		 drawComp->SetMeshResource(L"DEFAULT_CUBE");
 
+		 auto transComponent = GetComponent<Transform>();
+		 transComponent->SetPosition(5.0f, 0.0f, 0.0f);
+
 		auto ssComp = AddComponent<StringSprite>();
 		ssComp->SetBackColor(Col4(0.0f, 0.0f, 0.0f, 0.5f));
 		ssComp->SetTextRect(Rect2D<float>(10, 10, 300 + 10, 200 + 10));
 		ssComp->SetText(L"HP 3\nCRYSTAL 10");
-
-
 
 		auto transComp = GetComponent<Transform>();
 		transComp->SetRotation(0, XMConvertToRadians(0), 0);
@@ -74,21 +75,14 @@ namespace basecross{
 
 	void Player::OnUpdate()
 	{
-		SetSpeed();
-
-		auto transComp = GetComponent<Transform>();
-		auto pos = transComp->GetPosition();
-		pos += m_Speed;
-
-		auto stage = GetStage(); // �X�e�[�W���擾
-
-		transComp->SetPosition(pos); // �X�V�������W��Transform�ɐݒ�
-
-		//Player�̌���
-		if (m_Speed.length() > 0.0f)
+		if (!bRespawn)
 		{
-			auto utilPtr = GetBehavior<UtilBehavior>();
-			utilPtr->RotToHead(m_Speed, 1.0f);
+			Move();
+		}
+
+		else
+		{
+			Respawn();
 		}
 
 		//m_InputHandler.PushHandle(GetThis<Player>());
@@ -117,7 +111,50 @@ namespace basecross{
 
 	//}
 
+	void Player::Move()
+	{
+		auto stage = GetStage();
 
+		auto camera = stage->GetView()->GetTargetCamera();
+		auto mainCamera = dynamic_pointer_cast<MainCamera>(camera);
+
+		auto transComp = GetComponent<Transform>();
+		auto pos = transComp->GetPosition();
+		auto cameraDir = pos - camera->GetEye();
+		cameraDir.y = 0.0f;
+
+		SetSpeed();
+
+		pos += m_Speed;
+
+		transComp->SetPosition(pos);
+
+		if (m_Speed.length() > 0.0f)
+		{
+			auto utilPtr = GetBehavior<UtilBehavior>();
+			utilPtr->RotToHead(m_Speed, 1.0f);
+		}
+
+	}
+
+	void Player::Respawn()
+	{
+		auto& app = App::GetApp();
+		float ElapsedTime = app->GetElapsedTime();
+
+		m_count += ElapsedTime;
+
+		if (m_count > m_RespawnTime)
+		{
+			SetDrawActive(true);
+			bRespawn = false;
+
+			auto transComponent = GetComponent<Transform>();
+			transComponent->SetPosition(5.0f, 0.0f, 0.0f);
+
+			m_count = 0;
+		}
+	}
 	void Player::SetHP(int HP)
 	{
 		m_HP = HP;
@@ -134,14 +171,18 @@ namespace basecross{
 
 	void Player::OnCollisionEnter(std::shared_ptr<GameObject>& other)
 	{
-		auto bDamegeTag = other->FindTag(L"damege");
-
-		if (bDamegeTag)
+		if (!bRespawn)
 		{
-			m_HP += -1;
+			auto bDamegeTag = other->FindTag(L"damege");
 
-			auto transComponent = GetComponent<Transform>();
-			transComponent->SetPosition(5.0f, 0.0f, 0.0f);
+			if (bDamegeTag)
+			{
+				m_HP += -1;
+				bRespawn = true;
+
+				SetDrawActive(false);
+			}
+
 		}
 	}
 

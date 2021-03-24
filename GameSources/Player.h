@@ -17,6 +17,14 @@ namespace basecross{
 		int m_HP;//HP(‰Šú’l‚T)
 		float m_crystal;
 
+		float m_count;
+		float m_RespawnTime;
+		bool bRespawn;
+
+		void Respawn();
+		void Move();
+
+	public:
 		//HP
 		void SetHP(int HP);
 		int GetHP();
@@ -32,7 +40,7 @@ namespace basecross{
 
 	public:
 		Player(const std::shared_ptr<Stage>& stage) 
-			: GameObject(stage),m_moveSpeed(5),m_HP(5),m_crystal(0)
+			: GameObject(stage),m_moveSpeed(5),m_HP(5),m_crystal(0),m_count(0),m_RespawnTime(2),bRespawn(false)
 		{
 
 		}
