@@ -1,6 +1,6 @@
 /*!
 @file Enemy.h
-@brief “G
+@brief ï¿½G
 */
 
 #pragma once
@@ -8,6 +8,7 @@
 
 namespace basecross {
 	class Enemy :public StageObject {
+		float m_TotalTime;
 	public:
 		Enemy(const shared_ptr<Stage>& stage,
 			const wstring& line);
@@ -15,6 +16,5 @@ namespace basecross {
 		virtual void OnCreate()override;
 		virtual void OnUpdate()override;
 	};
-
 }
 //end basecross

@@ -1,6 +1,6 @@
 /*!
 @file Enemy.cpp
-@brief “GÀ‘Ì
+@brief ï¿½Gï¿½ï¿½ï¿½ï¿½
 */
 
 #include "stdafx.h"
@@ -11,10 +11,10 @@ namespace basecross {
 		const wstring& line)
 		:StageObject(stage)
 	{
-		//ƒg[ƒNƒ“iƒJƒ‰ƒ€j‚Ì”z—ñ
+		//ï¿½gï¿½[ï¿½Nï¿½ï¿½ï¿½iï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½jï¿½Ì”zï¿½ï¿½
 		vector<wstring> tokens;
 		Util::WStrToTokenVector(tokens, line, L',');
-		//Šeƒg[ƒNƒ“iƒJƒ‰ƒ€j‚ğƒXƒP[ƒ‹A‰ñ“]AˆÊ’u‚É“Ç‚İ‚Ş
+		//ï¿½eï¿½gï¿½[ï¿½Nï¿½ï¿½ï¿½iï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½jï¿½ï¿½ï¿½Xï¿½Pï¿½[ï¿½ï¿½ï¿½Aï¿½ï¿½]ï¿½Aï¿½Ê’uï¿½É“Ç‚İï¿½ï¿½ï¿½
 		m_position = Vec3(
 			(float)_wtof(tokens[1].c_str()),
 			(float)_wtof(tokens[2].c_str()),
@@ -50,7 +50,18 @@ namespace basecross {
 	}
 
 	void Enemy::OnUpdate() {
+		float elapsedTime = App::GetApp()->GetElapsedTime();
+		m_TotalTime += elapsedTime;
+		if (m_TotalTime >= XM_2PI)
+		{
+			m_TotalTime = 0.0f;
+		}
 
+		auto ptrTrans = GetComponent<Transform>();
+		float posX = sin(m_TotalTime) + m_Position.x;
+		auto pos = ptrTrans->GetPosition();
+		pos.x = posX;
+		ptrTrans->SetPosition(pos);
 	}
 }
 //end basecross
