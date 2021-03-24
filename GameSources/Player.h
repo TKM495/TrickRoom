@@ -1,6 +1,6 @@
 /*!
 @file Player.h
-@brief ƒvƒŒƒCƒ„[‚È‚Ç
+@brief ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½È‚ï¿½
 */
 
 #pragma once
@@ -13,10 +13,27 @@ namespace basecross{
 
 		//InputHandler<Player> m_InputHandler;
 
-		Vec3 m_Speed;//ˆÚ“®
-		int m_HP;//HP(‰Šú’l‚T)
+		Vec3 m_Speed;//ï¿½Ú“ï¿½
+		float m_moveSpeed;
+		int m_HP;//HP(ï¿½ï¿½ï¿½ï¿½ï¿½lï¿½T)
 		float m_crystal;
 
+		float m_count;
+		float m_RespawnTime;
+		bool bRespawn;
+
+		void Respawn();
+		void Move();
+
+	public:
+		//HP
+		void SetHP(int HP);
+		int GetHP();
+		//Crystal
+		float GetCrystal();
+
+
+		
 		//Vec3 jumpVelocity;
 		//private: bool bJump = false;
 	public:
@@ -32,6 +49,7 @@ namespace basecross{
 		int GetHP();
 		//Crystal
 		float GetCrystal();
+		void OnCollisionEnter(std::shared_ptr<GameObject>& other) override;
 
 		//void OnPushA();
 		//void OnPushB(){}

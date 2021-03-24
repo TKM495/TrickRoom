@@ -1,6 +1,6 @@
 /*!
 @file MainCamera.h
-@brief ƒƒCƒ“ƒJƒƒ‰‚È‚Ç
+@brief ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½
 */
 
 #pragma once

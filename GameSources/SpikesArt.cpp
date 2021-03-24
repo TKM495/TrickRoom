@@ -1,6 +1,6 @@
 /*!
 @file SpikesArt.cpp
-@brief ƒgƒŠƒbƒNƒA[ƒg‚Ìž™ƒNƒ‰ƒX‚ÌŽÀ‘Ì
+@brief ï¿½gï¿½ï¿½ï¿½bï¿½Nï¿½Aï¿½[ï¿½gï¿½Ìžï¿½ï¿½Nï¿½ï¿½ï¿½Xï¿½ÌŽï¿½ï¿½ï¿½
 */
 
 #include "stdafx.h"
@@ -11,10 +11,10 @@ namespace basecross {
 		const wstring& line)
 		:TrickArtBase(stage)
 	{
-		//ƒg[ƒNƒ“iƒJƒ‰ƒ€j‚Ì”z—ñ
+		//ï¿½gï¿½[ï¿½Nï¿½ï¿½ï¿½iï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½jï¿½Ì”zï¿½ï¿½
 		vector<wstring> tokens;
 		Util::WStrToTokenVector(tokens, line, L',');
-		//Šeƒg[ƒNƒ“iƒJƒ‰ƒ€j‚ðƒXƒP[ƒ‹A‰ñ“]AˆÊ’u‚É“Ç‚Ýž‚Þ
+		//ï¿½eï¿½gï¿½[ï¿½Nï¿½ï¿½ï¿½iï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½jï¿½ï¿½ï¿½Xï¿½Pï¿½[ï¿½ï¿½ï¿½Aï¿½ï¿½]ï¿½Aï¿½Ê’uï¿½É“Ç‚Ýï¿½ï¿½ï¿½
 		m_position = Vec3(
 			(float)_wtof(tokens[1].c_str()),
 			(float)_wtof(tokens[2].c_str()),
@@ -35,19 +35,19 @@ namespace basecross {
 	}
 
 	void SpikesArt::OnCreate() {
-		//F‚Ìƒf[ƒ^(R,G,B,A)
+		//ï¿½Fï¿½Ìƒfï¿½[ï¿½^(R,G,B,A)
 		Col4 color(1.0f, 1.0f, 1.0f, 1.0f);
-		//’¸“_‚Ìƒf[ƒ^ (”Ô†‚Í¶ã‚©‚ç‰E‰º‚Ü‚Å)
+		//ï¿½ï¿½ï¿½_ï¿½Ìƒfï¿½[ï¿½^ (ï¿½Ôï¿½ï¿½Íï¿½ï¿½ã‚©ï¿½ï¿½Eï¿½ï¿½ï¿½Ü‚ï¿½)
 		m_vertices = {
 			{Vec3(-1.0f, 0.0f,+1.0f),color,Vec2(0.0f,0.4f)}, //0
 			{Vec3(+1.0f, 0.0f,+1.0f),color,Vec2(1.0f,0.4f)}, //1
 			{Vec3(-1.0f, 0.0f,-1.0f),color,Vec2(0.0f,1.0f)}, //2
 			{Vec3(+1.0f, 0.0f,-1.0f),color,Vec2(1.0f,1.0f)}  //3
 		};
-		//’¸“_ƒCƒ“ƒfƒbƒNƒX(’¸“_‚ð‚Â‚È‚°‚é‡”Ô)
+		//ï¿½ï¿½ï¿½_ï¿½Cï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½X(ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½Â‚È‚ï¿½ï¿½é‡ï¿½ï¿½)
 		m_indices = {
-			0, 1, 2, //ã‚ÌŽOŠpŒ`
-			2, 1, 3  //‰º‚ÌŽOŠpŒ`
+			0, 1, 2, //ï¿½ï¿½ÌŽOï¿½pï¿½`
+			2, 1, 3  //ï¿½ï¿½ï¿½ÌŽOï¿½pï¿½`
 		};
 
 		TrickArtBase::OnCreate();
@@ -56,8 +56,8 @@ namespace basecross {
 		obbComp->SetFixed(true);
 		obbComp->SetDrawActive(true);
 
-		//“–‚½‚è”»’è‚ÌØ‚è‘Ö‚¦‚Åƒ_ƒ[ƒW‚Ì”»’è‚ðs‚¤‚½‚ß
-		//í‚É‚±‚Ìƒ^ƒO‚ðŽ‚Â
+		//ï¿½ï¿½ï¿½ï¿½ï¿½è”»ï¿½ï¿½ÌØ‚ï¿½Ö‚ï¿½ï¿½Åƒ_ï¿½ï¿½ï¿½[ï¿½Wï¿½Ì”ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		//ï¿½ï¿½É‚ï¿½ï¿½Ìƒ^ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		AddTag(L"damege");
 	}
 
