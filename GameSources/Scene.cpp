@@ -30,6 +30,11 @@ namespace basecross{
 			app->RegisterTexture(L"EnemyArt", path + L"Enemy.png");
 			app->RegisterTexture(L"StairsArt", path + L"saka.png");
 			app->RegisterTexture(L"Cursor", path + L"Cursor.png");
+			app->RegisterTexture(L"time", path + L"Cursor.png");
+			app->RegisterTexture(L"heart", path + L"Cursor.png");
+			app->RegisterTexture(L"crystal", path + L"Cursor.png");
+			app->RegisterTexture(L"point", path + L"Cursor.png");
+
 
 			path = dir + L"Models/";
 			auto modelMesh = MeshResource::CreateStaticModelMesh(path + L"Enemy/", L"teki.bmf");
@@ -43,7 +48,7 @@ namespace basecross{
 
 			//クリアする色を設定
 			Col4 Col;
-			Col.set(31.0f / 255.0f, 30.0f / 255.0f, 71.0f / 255.0f, 255.0f / 255.0f);
+			Col.set(0.5f, 0.5f, 0.7f, 1.0f);
 			SetClearColor(Col);
 			//自分自身にイベントを送る
 			//これにより各ステージやオブジェクトがCreate時にシーンにアクセスできる

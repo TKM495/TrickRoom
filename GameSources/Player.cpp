@@ -9,7 +9,13 @@
 namespace basecross{
 	Player::Player(const std::shared_ptr<Stage>& stage,
 		const wstring& line)
-			: StageObject(stage),m_moveSpeed(5),m_HP(5),m_crystal(0),m_count(0),m_RespawnTime(2),bRespawn(false)
+			: StageObject(stage),
+		m_moveSpeed(3.5f),
+		m_HP(5),
+		m_crystal(0),
+		m_count(0),
+		m_RespawnTime(2),
+		bRespawn(false)
 	{
 		//トークン（カラム）の配列
 		vector<wstring> tokens;
