@@ -1,13 +1,13 @@
 /*!
-@file SpikesArt.cpp
-@brief トリックアートの棘クラスの実体
+@file BlockArt.cpp
+@brief ブロックトリックアート実体
 */
 
 #include "stdafx.h"
 #include "Project.h"
 
 namespace basecross {
-	SpikesArt::SpikesArt(const shared_ptr<Stage>& stage,
+	BlockArt::BlockArt(const shared_ptr<Stage>& stage,
 		const wstring& line)
 		:TrickArtBase(stage)
 	{
@@ -34,15 +34,18 @@ namespace basecross {
 		m_texStr = tokens[11].c_str();
 	}
 
-	void SpikesArt::OnCreate() {
+
+	void BlockArt::OnCreate() {
+		auto halfSize = 5.0f / 2.0f;
+
 		//色のデータ(R,G,B,A)
 		Col4 color(1.0f, 1.0f, 1.0f, 1.0f);
 		//頂点のデータ (番号は左上から右下まで)
 		m_vertices = {
-			{Vec3(-1.0f, 0.0f,+1.0f),color,Vec2(0.0f,0.4f)}, //0
-			{Vec3(+1.0f, 0.0f,+1.0f),color,Vec2(1.0f,0.4f)}, //1
-			{Vec3(-1.0f, 0.0f,-1.0f),color,Vec2(0.0f,1.0f)}, //2
-			{Vec3(+1.0f, 0.0f,-1.0f),color,Vec2(1.0f,1.0f)}  //3
+			{Vec3(-halfSize, 0.0f,+halfSize),color,Vec2(0.0f,0.1f)}, //0
+			{Vec3(+halfSize, 0.0f,+halfSize),color,Vec2(1.0f,0.1f)}, //1
+			{Vec3(-halfSize, 0.0f,-halfSize),color,Vec2(0.0f,0.9f)}, //2
+			{Vec3(+halfSize, 0.0f,-halfSize),color,Vec2(1.0f,0.9f)}  //3
 		};
 		//頂点インデックス(頂点をつなげる順番)
 		m_indices = {
@@ -52,25 +55,28 @@ namespace basecross {
 
 		TrickArtBase::OnCreate();
 
-		auto obbComp = AddComponent<CollisionObb>();
-		obbComp->SetFixed(true);
-		obbComp->SetDrawActive(true);
-
-		//当たり判定の切り替えでダメージの判定を行うため
-		//常にこのタグを持つ
-		AddTag(L"damege");
+		auto stage = GetStage();
+		auto coll = stage->AddGameObject<AdvCollision>(GetThis<BlockArt>(),
+			Vec3(0.0f, 0.5f, -0.7f),
+			Vec3(1.0f, 1.0f, 4.0f),
+			Vec3(0.0f, XMConvertToRadians(45.0f), 0.0f),
+			AdvCollision::Shape::Obb);
+		m_myCols.push_back(coll);
 	}
 
-	void SpikesArt::OnUpdate() {
+	void BlockArt::OnUpdate() {
 		auto camera = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
 		state nowState = camera->GetCamState();
 		if (nowState == m_activeState) {
-			GetComponent<CollisionObb>()->SetUpdateActive(true);
+			for (auto& coll : m_myCols) {
+				coll->SetActive(true);
+			}
 		}
 		else {
-			GetComponent<CollisionObb>()->SetUpdateActive(false);
+			for (auto& coll : m_myCols) {
+				coll->SetActive(false);
+			}
 		}
-
 	}
 }
 //end basecross

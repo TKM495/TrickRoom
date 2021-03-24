@@ -32,6 +32,7 @@ namespace basecross {
 		CreateViewLight();
 
 		auto csvLoad = AddGameObject<CSVLoad>(App::GetApp()->GetScene<Scene>()->GetSpriteData());
+		csvLoad->SpriteDataExtraction();
 		SetSharedGameObject(L"CSVLoad", csvLoad);
 		AddGameObject<TitleMenu>();
 	}

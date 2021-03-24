@@ -10,6 +10,8 @@
 #include "MainCamera.h"
 #include "Player.h"
 #include "CSVLoad.h"
+#include "Debug.h"
+#include "AdvCollision.h"
 //ステージ関係
 #include "TitleStage.h"
 #include "SelectStage.h"
@@ -27,7 +29,14 @@
 #include "StageLoad.h"
 #include "StageObject.h"
 #include "block.h"
+#include "Block2.h"
 #include "Plane.h"
+#include "Spikes.h"
+#include "Enemy.h"
+#include "Stairs.h"
 //トリックアートオブジェクト
 #include "TrickArtBase.h"
 #include "SpikesArt.h"
+#include "BlockArt.h"
+#include "EnemyArt.h"
+#include "StairsArt.h"

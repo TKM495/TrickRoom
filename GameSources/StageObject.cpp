@@ -7,7 +7,12 @@
 #include "Project.h"
 
 namespace basecross {
-
+	void StageObject::OnCreate() {
+		auto transComp = GetComponent<Transform>();
+		transComp->SetPosition(m_position);
+		transComp->SetScale(m_scale);
+		transComp->SetRotation(m_rotation);
+	}
 
 }
 //end basecross

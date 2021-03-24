@@ -22,17 +22,33 @@ namespace basecross {
 		PtrMultiLight->SetDefaultLighting();
 	}
 
-
-
 	void GameStage::OnCreate() {
 		try {
 			//ビューとライトの作成
 			CreateViewLight();
+			//auto debug = AddGameObject<Debug>();
+			//SetSharedGameObject(L"Debug", debug);
+			//debug->SetDrawLayer(10);
 
-			//AddGameObject<FixedBox>(Vec3(20.0f,1.0f,20.0f), Vec3(0.0f), Vec3(0.0f,-1.0f,0.0f));
-			AddGameObject<Player>();
-			AddGameObject<SpikesArt>(5.0f);
-			AddGameObject<Plane>(Vec3(0.0f,-1.0f,0.0f), Vec3(10.0f,1.0f,10.0f));
+			//ゲームオブジェクトビルダー
+			GameObjecttCSVBuilder builder;
+			//ゲームオブジェクトの登録
+			builder.Register<Player>(L"Player");
+			builder.Register<Plane>(L"Plane");
+			builder.Register<Block>(L"Block");
+			builder.Register<BlockArt>(L"BlockArt");
+			builder.Register<Enemy>(L"Enemy");
+			builder.Register<EnemyArt>(L"EnemyArt");
+			builder.Register<Spikes>(L"Spikes");
+			builder.Register<SpikesArt>(L"SpikesArt");
+			builder.Register<Stairs>(L"Stairs");
+			builder.Register<StairsArt>(L"StairsArt");
+
+			auto& app = App::GetApp();
+			auto dir = app->GetDataDirWString();
+			auto path = dir + L"Csv/Object.csv";
+
+			builder.Build(GetThis<Stage>(), path);
 		}
 		catch (...) {
 			throw;

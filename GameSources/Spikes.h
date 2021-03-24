@@ -1,18 +1,19 @@
 /*!
-@file Plane.h
-@brief 板オブジェクト
+@file Spikes.h
+@brief 棘
 */
 
 #pragma once
 #include "stdafx.h"
 
 namespace basecross {
-	class Plane :public StageObject {
+	class Spikes :public StageObject {
 	public:
-		Plane(shared_ptr<Stage>& stage,
+		Spikes(const shared_ptr<Stage>& stage,
 			const wstring& line);
 
 		virtual void OnCreate()override;
 	};
+
 }
 //end basecross

@@ -7,7 +7,6 @@
 #include "stdafx.h"
 
 namespace basecross {
-
 	//--------------------------------------------------------------------------------------
 	//	ゲームステージクラス
 	//--------------------------------------------------------------------------------------
@@ -23,8 +22,6 @@ namespace basecross {
 	private:
 		//現在のステート
 		GameState m_state;
-		//スプライト用CSV
-		CsvFile m_spriteCsv;
 		//死亡ライン
 		float m_deathPosY;
 		//ビューの作成
@@ -33,7 +30,7 @@ namespace basecross {
 		//構築と破棄
 		GameStage()
 			:Stage(),
-			m_state(GameState::STAY),
+			m_state(GameState::PLAYING),
 			m_deathPosY(-5.0f)
 		{}
 		virtual ~GameStage() {}

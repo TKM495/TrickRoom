@@ -46,9 +46,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp">
       <Filter>Player</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)SpikesArt.cpp">
-      <Filter>TrickArt</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)StringSprite2.cpp">
       <Filter>StringSprite2</Filter>
     </ClCompile>
@@ -67,8 +64,40 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Plane.cpp">
       <Filter>StageObject\Plane</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtBase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageLoad.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Debug.cpp">
+      <Filter>Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)AdvCollision.cpp">
+      <Filter>AdvCollision</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Block2.cpp">
+      <Filter>StageObject\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SpikesArt.cpp">
+      <Filter>TrickArt\SpikesArt</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)BlockArt.cpp">
+      <Filter>TrickArt\BlockArt</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtBase.cpp">
+      <Filter>TrickArt</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp">
+      <Filter>StageObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EnemyArt.cpp">
+      <Filter>TrickArt\EnemyArt</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Spikes.cpp">
+      <Filter>StageObject\Spikes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Stairs.cpp">
+      <Filter>StageObject\Stairs</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StairsArt.cpp">
+      <Filter>TrickArt\StairsArt</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
@@ -115,9 +144,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h">
       <Filter>Player</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)SpikesArt.h">
-      <Filter>TrickArt</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)StringSprite2.h">
       <Filter>StringSprite2</Filter>
     </ClInclude>
@@ -136,8 +162,40 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Plane.h">
       <Filter>StageObject\Plane</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtBase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageLoad.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Debug.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)AdvCollision.h">
+      <Filter>AdvCollision</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Block2.h">
+      <Filter>StageObject\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SpikesArt.h">
+      <Filter>TrickArt\SpikesArt</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)BlockArt.h">
+      <Filter>TrickArt\BlockArt</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtBase.h">
+      <Filter>TrickArt</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h">
+      <Filter>StageObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EnemyArt.h">
+      <Filter>TrickArt\EnemyArt</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Spikes.h">
+      <Filter>StageObject\Spikes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Stairs.h">
+      <Filter>StageObject\Stairs</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StairsArt.h">
+      <Filter>TrickArt\StairsArt</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Menu">
@@ -202,6 +260,33 @@
     </Filter>
     <Filter Include="StageObject\Plane">
       <UniqueIdentifier>{386660d9-b501-4dff-98f6-c412f8eb45b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AdvCollision">
+      <UniqueIdentifier>{90b65f16-86bc-4892-b205-fec30b8c7182}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TrickArt\SpikesArt">
+      <UniqueIdentifier>{6e7361d4-45f9-4f88-81d6-7de7369502ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TrickArt\BlockArt">
+      <UniqueIdentifier>{c5e02e68-389c-408a-99a5-328058d6744e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Enemy">
+      <UniqueIdentifier>{586a5dab-c961-40fd-aa4f-e4e209fe7433}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Spikes">
+      <UniqueIdentifier>{18f7986c-460f-490a-89c3-a4026f2fc3dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TrickArt\EnemyArt">
+      <UniqueIdentifier>{caae5ccc-006d-40fc-88dc-a7b5741f883a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Stairs">
+      <UniqueIdentifier>{f5c04e3e-653c-4468-b91b-9a3779dffcae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TrickArt\StairsArt">
+      <UniqueIdentifier>{fce8a45c-60e5-4304-aa78-33f9dbe04bbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{b10393ed-2132-483b-93a3-591e01fa6454}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

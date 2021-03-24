@@ -12,8 +12,10 @@ namespace basecross{
 	///	ゲームシーン
 	//--------------------------------------------------------------------------------------
 	class Scene : public SceneBase{
-		//スプライト用CSV
+		//スプライト用CSVデータ
 		vector<wstring> m_spriteWData;
+		//オブジェクト用CSVデータ
+		vector<wstring> m_objectWData;
 
 	public:
 		Scene() :SceneBase(){}
@@ -23,6 +25,9 @@ namespace basecross{
 
 		vector<wstring>& GetSpriteData() {
 			return m_spriteWData;
+		}
+		vector<wstring>& GetObjectData() {
+			return m_objectWData;
 		}
 	};
 

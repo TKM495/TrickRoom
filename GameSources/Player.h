@@ -5,10 +5,11 @@
 
 #pragma once
 #include "stdafx.h"
+#include "StageObject.h"
 //#include "InputHandler.h"
 
 namespace basecross{
-	class Player : public GameObject {
+	class Player : public StageObject {
 
 		//InputHandler<Player> m_InputHandler;
 
@@ -16,30 +17,21 @@ namespace basecross{
 		int m_HP;//HP(èâä˙ílÇT)
 		float m_crystal;
 
-		//HP
-		void SetHP(int HP);
-		int GetHP();
-		//Crystal
-		float GetCrystal();
-
-
-		
 		//Vec3 jumpVelocity;
-
-	//private: bool bJump = false;
-
-
+		//private: bool bJump = false;
 	public:
-		Player(const std::shared_ptr<Stage>& stage) 
-			: GameObject(stage),m_HP(5),m_crystal(0)
-		{
-
-		}
+		Player(const std::shared_ptr<Stage>& stage,
+			const wstring& line);
 
 		void OnCreate() override;
 		void OnUpdate() override;
 		void SetSpeed();
 
+		//HP
+		void SetHP(int HP);
+		int GetHP();
+		//Crystal
+		float GetCrystal();
 
 		//void OnPushA();
 		//void OnPushB(){}

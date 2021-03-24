@@ -1,0 +1,17 @@
+name,PosX,PosY,PosZ,ScaleX,ScaleY,ScaleZ,RotX,RotY,RotZ,,
+Player,0,0.5,0,1,1,1,0,0,0,,
+Plane,0,0,0,30,10,1,90,0,0,,
+Plane,0,5,5,30,10,1,0,0,0,,
+Plane,-15,5,0,10,10,1,0,-90,0,,
+Plane,0,5,-5,30,10,1,180,0,0,,
+Plane,15,5,0,10,10,1,0,90,0,,
+Block,-3,0.5,4,1,1,4,0,0,0,,
+Block,-3,3,3,3,0.2,3,0,0,0,,
+Block,-10,0.5,0,5,1,10,0,0,0,,
+BlockArt,-2.9,0.01,-2,1,1,1.3,0,-45,0,Right,BlockArt
+Enemy,0,0.5,3,1,1,1,0,0,0,,
+EnemyArt,3,0.01,3,1,1,1.6,0,-45,0,Right,EnemyArt
+Spikes,0,0,-3,1,1,1,0,0,0,,
+SpikesArt,0,0.01,0,1,1,1,0,-45,0,Right,SpikesArt
+Stairs,-7,0,0,5,1,1,0,-90,0,,
+StairsArt,3,0.01,0,1,1,1,0,-45,0,Right,StairsArt

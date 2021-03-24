@@ -1,17 +1,15 @@
 /*!
-@file SpikesArt.h
-@brief トリックアートの棘クラス
+@file Enemy.h
+@brief 敵
 */
 
 #pragma once
 #include "stdafx.h"
-#include "TrickArtBase.h"
-#include "MainCamera.h"
 
 namespace basecross {
-	class SpikesArt :public TrickArtBase {
+	class Enemy :public StageObject {
 	public:
-		SpikesArt(const shared_ptr<Stage>& stage,
+		Enemy(const shared_ptr<Stage>& stage,
 			const wstring& line);
 
 		virtual void OnCreate()override;

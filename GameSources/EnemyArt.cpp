@@ -1,13 +1,13 @@
 /*!
-@file SpikesArt.cpp
-@brief トリックアートの棘クラスの実体
+@file EnemyArt.cpp
+@brief トリックアートの敵クラス実体
 */
 
 #include "stdafx.h"
 #include "Project.h"
 
 namespace basecross {
-	SpikesArt::SpikesArt(const shared_ptr<Stage>& stage,
+	EnemyArt::EnemyArt(const shared_ptr<Stage>& stage,
 		const wstring& line)
 		:TrickArtBase(stage)
 	{
@@ -34,13 +34,13 @@ namespace basecross {
 		m_texStr = tokens[11].c_str();
 	}
 
-	void SpikesArt::OnCreate() {
+	void EnemyArt::OnCreate() {
 		//色のデータ(R,G,B,A)
 		Col4 color(1.0f, 1.0f, 1.0f, 1.0f);
 		//頂点のデータ (番号は左上から右下まで)
 		m_vertices = {
-			{Vec3(-1.0f, 0.0f,+1.0f),color,Vec2(0.0f,0.4f)}, //0
-			{Vec3(+1.0f, 0.0f,+1.0f),color,Vec2(1.0f,0.4f)}, //1
+			{Vec3(-1.0f, 0.0f,+1.0f),color,Vec2(0.0f,0.0f)}, //0
+			{Vec3(+1.0f, 0.0f,+1.0f),color,Vec2(1.0f,0.0f)}, //1
 			{Vec3(-1.0f, 0.0f,-1.0f),color,Vec2(0.0f,1.0f)}, //2
 			{Vec3(+1.0f, 0.0f,-1.0f),color,Vec2(1.0f,1.0f)}  //3
 		};
@@ -53,15 +53,16 @@ namespace basecross {
 		TrickArtBase::OnCreate();
 
 		auto obbComp = AddComponent<CollisionObb>();
-		obbComp->SetFixed(true);
+		//obbComp->SetFixed(true);
 		obbComp->SetDrawActive(true);
+		//obbComp->SetAfterCollision(AfterCollision::None);
 
 		//当たり判定の切り替えでダメージの判定を行うため
 		//常にこのタグを持つ
 		AddTag(L"damege");
 	}
 
-	void SpikesArt::OnUpdate() {
+	void EnemyArt::OnUpdate() {
 		auto camera = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
 		state nowState = camera->GetCamState();
 		if (nowState == m_activeState) {
