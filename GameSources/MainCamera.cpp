@@ -9,9 +9,9 @@
 namespace basecross {
 
 	MainCamera::MainCamera()
-		:m_offset(10.0f, 10.0f, -10.0f), m_Angle(-10.0f, 10.0f, -10.0f), bSetPers(false), SetWidth(20.0f), SetHeight(12.5f), m_CameraState(state::Right)
+		:m_offset(10.0f, 10.0f, -10.0f),m_Angle(-10.0f, 10.0f, -10.0f),bSetPers(false),SetWidth(20.0f),SetHeight(12.5f),m_CameraState(state::Right),bLeapFlg(false),m_LeapTime(0),m_LeapSpeed(1)
 	{
-
+		isFirst = true;
 	}
 
 	void MainCamera::OnCreate()
@@ -48,27 +48,50 @@ namespace basecross {
 
 		SetAt(at);
 
-		if (pad.wPressedButtons & XINPUT_GAMEPAD_RIGHT_SHOULDER)//RB
+		if (isFirst)
 		{
-			m_CameraState = state::Right;
-		}
-
-		if (pad.wPressedButtons & XINPUT_GAMEPAD_LEFT_SHOULDER)//LB
-		{
-			m_CameraState = state::Left;
-		}
-
-		switch (m_CameraState)
-		{
-		case state::Right:
 			SetEye(at + m_offset);
-			break;
-		case state::Left:
-			SetEye(at + m_Angle);
-			break;
-		default:
-			break;
+			isFirst = false;
 		}
+
+		if (!bLeapFlg)
+		{
+			if (pad.wPressedButtons & XINPUT_GAMEPAD_RIGHT_SHOULDER)//RB
+			{
+				m_CameraState = state::Right;
+				bLeapFlg = true;
+				m_Eye = GetEye();
+				m_LeapOffset = m_offset;
+
+			}
+
+			if (pad.wPressedButtons & XINPUT_GAMEPAD_LEFT_SHOULDER)//LB
+			{
+				m_CameraState = state::Left;
+				bLeapFlg = true;
+				m_Eye = GetEye();
+				m_LeapOffset = m_Angle;
+			}
+
+		}
+
+		else
+		{
+			auto& app = App::GetApp();
+			float delta = app->GetElapsedTime();
+
+			m_LeapTime += m_LeapSpeed * delta;
+
+			Vec3 LeapEye = MyMath::Leap(m_Eye, Vec3(at + m_LeapOffset), m_LeapTime);
+			SetEye(LeapEye);
+
+			if (m_LeapTime >= 1)
+			{
+				bLeapFlg = false;
+				m_LeapTime = 0;
+			}
+		}
+
 
 	}
 

@@ -1,34 +1,35 @@
 /*!
 @file Project.h
-@brief ƒRƒ“ƒeƒ“ƒc—p‚Ìƒwƒbƒ_‚ğ‚Ü‚Æ‚ß‚é
+@brief ã‚³ãƒ³ãƒ†ãƒ³ãƒ„ç”¨ã®ãƒ˜ãƒƒãƒ€ã‚’ã¾ã¨ã‚ã‚‹
 */
 
 #pragma once
 
-//ƒƒCƒ“
+//ãƒ¡ã‚¤ãƒ³
 #include "Scene.h"
 #include "MainCamera.h"
 #include "Player.h"
 #include "CSVLoad.h"
 #include "Debug.h"
 #include "AdvCollision.h"
-//ƒXƒe[ƒWŠÖŒW
+#include "MyMath.h"
+//ã‚¹ãƒ†ãƒ¼ã‚¸é–¢ä¿‚
 #include "TitleStage.h"
 #include "SelectStage.h"
 #include "GameStage.h"
-//ƒƒjƒ…[
+//ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 #include "StringSprite2.h"
 #include "BaseMenu.h"
 #include "TitleMenu.h"
 #include "PauceMenu.h"
 #include "Cursor.h"
-//UIŠÖŒW
+//UIé–¢ä¿‚
 #include "Numbers.h"
 #include "Score.h"
 #include "Timer.h"
 #include "HP.h"
 #include "Crystal.h"
-//ƒXƒe[ƒWƒIƒuƒWƒFƒNƒg
+//ã‚¹ãƒ†ãƒ¼ã‚¸ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 #include "StageLoad.h"
 #include "StageObject.h"
 #include "block.h"
@@ -37,7 +38,7 @@
 #include "Spikes.h"
 #include "Enemy.h"
 #include "Stairs.h"
-//ƒgƒŠƒbƒNƒA[ƒgƒIƒuƒWƒFƒNƒg
+//ãƒˆãƒªãƒƒã‚¯ã‚¢ãƒ¼ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 #include "TrickArtBase.h"
 #include "SpikesArt.h"
 #include "BlockArt.h"
