@@ -29,6 +29,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)HP.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Numbers.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PauceMenu.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Plane.h" />
@@ -68,6 +69,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)HP.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyMath.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Numbers.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PauceMenu.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Plane.cpp" />

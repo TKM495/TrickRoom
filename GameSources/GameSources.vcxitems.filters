@@ -107,6 +107,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Timer.cpp">
       <Filter>UI\Timer</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyMath.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
@@ -214,6 +215,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Timer.h">
       <Filter>UI\Timer</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyMath.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Menu">

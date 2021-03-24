@@ -42,9 +42,7 @@ namespace basecross {
 			collComp->SetDrawActive(true);
 		}
 
-		auto transComp = GetComponent<Transform>();
-		transComp->SetPosition(m_position);
-		transComp->SetScale(m_scale);
+		StageObject::OnCreate();
 
 		AddTag(L"damage");
 	}
@@ -58,7 +56,7 @@ namespace basecross {
 		}
 
 		auto ptrTrans = GetComponent<Transform>();
-		float posX = sin(m_TotalTime) + m_Position.x;
+		float posX = sin(m_TotalTime) + m_position.x;
 		auto pos = ptrTrans->GetPosition();
 		pos.x = posX;
 		ptrTrans->SetPosition(pos);

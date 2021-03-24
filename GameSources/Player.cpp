@@ -38,12 +38,12 @@ namespace basecross{
 		);
 		m_respawnPos = m_position;
 
-	//	GetStage()->SetSharedGameObject(L"Player", GetThis<Player>());
 	}
 
 	void Player::OnCreate()
 	{
 		StageObject::OnCreate();
+		GetStage()->SetSharedGameObject(L"Player", GetThis<Player>());
 
 		auto drawComp = AddComponent<BcPNTStaticDraw>();
 		 drawComp->SetMeshResource(L"DEFAULT_CUBE");

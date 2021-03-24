@@ -23,7 +23,7 @@ namespace basecross
 		SetAlphaActive(true);
 
 		auto transComp = AddComponent<Transform>();
-		Vec3 pos(-640.0f, +400.0f, 0.0f);
+		Vec3 pos(380.0f, +400.0f, 0.0f);
 		transComp->SetScale(0.5f, 0.5f, 0.5f);
 		transComp->SetPosition(pos);
 

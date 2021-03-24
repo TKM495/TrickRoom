@@ -27,8 +27,8 @@
 #include "Numbers.h"
 #include "Score.h"
 #include "Timer.h"
-#include "HP.h"
-#include "Crystal.h"
+#include "UI_HP.h"
+#include "UI_Crystal.h"
 //ステージオブジェクト
 #include "StageLoad.h"
 #include "StageObject.h"
