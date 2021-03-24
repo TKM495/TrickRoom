@@ -30,10 +30,10 @@ namespace basecross{
 			app->RegisterTexture(L"EnemyArt", path + L"Enemy.png");
 			app->RegisterTexture(L"StairsArt", path + L"saka.png");
 			app->RegisterTexture(L"Cursor", path + L"Cursor.png");
-			app->RegisterTexture(L"time", path + L"Cursor.png");
-			app->RegisterTexture(L"heart", path + L"Cursor.png");
-			app->RegisterTexture(L"crystal", path + L"Cursor.png");
-			app->RegisterTexture(L"point", path + L"Cursor.png");
+			app->RegisterTexture(L"time", path + L"time.png");
+			app->RegisterTexture(L"heart", path + L"heart.png");
+			app->RegisterTexture(L"crystal", path + L"crystal.png");
+			app->RegisterTexture(L"point", path + L"point.png");
 
 
 			path = dir + L"Models/";

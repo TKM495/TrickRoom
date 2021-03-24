@@ -38,15 +38,12 @@ namespace basecross {
 
 	void HP::OnUpdate()
 	{
-		//int place = static_cast<int>(pow(10, numbers.size() - 1));
 		//for (auto& number : numbers)
 		//{
-		//	int value = hp / place % 10;
-		//	place /= 10;
-
+		//	auto player = GetStage()->GetSharedGameObject<Player>(L"Player");
+		//	int value = player->GetHP();
 		//	number->SetValue(value); // ”š‚ğXV
 		//}
-
 	}
 
 	void HP::OnDraw()

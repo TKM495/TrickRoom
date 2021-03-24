@@ -34,9 +34,9 @@ namespace basecross {
 				debug->SetDrawLayer(10);
 			}
 
-			//AddGameObject<Timer>();
-			//AddGameObject<HP>();
-			//AddGameObject<Crystal>();
+			AddGameObject<Timer>();
+			AddGameObject<HP>();
+			AddGameObject<Crystal>();
 
 			//ゲームオブジェクトビルダー
 			GameObjecttCSVBuilder builder;

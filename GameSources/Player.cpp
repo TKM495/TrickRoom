@@ -37,6 +37,8 @@ namespace basecross{
 			XMConvertToRadians((float)_wtof(tokens[9].c_str()))
 		);
 		m_respawnPos = m_position;
+
+	//	GetStage()->SetSharedGameObject(L"Player", GetThis<Player>());
 	}
 
 	void Player::OnCreate()
@@ -46,10 +48,10 @@ namespace basecross{
 		auto drawComp = AddComponent<BcPNTStaticDraw>();
 		 drawComp->SetMeshResource(L"DEFAULT_CUBE");
 
-		auto ssComp = AddComponent<StringSprite>();
-		ssComp->SetBackColor(Col4(0.0f, 0.0f, 0.0f, 0.5f));
-		ssComp->SetTextRect(Rect2D<float>(10, 10, 300 + 10, 200 + 10));
-		ssComp->SetText(L"HP 3\nCRYSTAL 10");
+		//auto ssComp = AddComponent<StringSprite>();
+		//ssComp->SetBackColor(Col4(0.0f, 0.0f, 0.0f, 0.5f));
+		//ssComp->SetTextRect(Rect2D<float>(10, 10, 300 + 10, 200 + 10));
+		//ssComp->SetText(L"HP 3\nCRYSTAL 10");
 
 		AddComponent<Gravity>();
 		AddComponent<CollisionObb>();
