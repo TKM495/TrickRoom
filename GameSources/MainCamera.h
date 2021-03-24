@@ -22,8 +22,16 @@ namespace basecross {
 		float SetWidth;
 		float SetHeight;
 		Vec3 GetAngle();
+		bool bLeapFlg;
+		float m_LeapTime;
+		float m_LeapSpeed;
+		Vec3 m_Eye;
+		Vec3 m_LeapOffset;
 
 		state m_CameraState;
+
+
+		bool isFirst;
 
 	public:
 		MainCamera();
