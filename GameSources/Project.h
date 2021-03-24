@@ -31,3 +31,5 @@
 //トリックアートオブジェクト
 #include "TrickArtBase.h"
 #include "SpikesArt.h"
+
+#include "MyMath.h"
