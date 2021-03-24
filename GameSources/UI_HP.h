@@ -2,7 +2,7 @@
 #include "stdafx.h"
 
 namespace basecross {
-	class HP : public GameObject
+	class UI_HP : public GameObject
 	{
 
 		int hp;
@@ -11,7 +11,7 @@ namespace basecross {
 		std::vector<std::shared_ptr<Numbers>> numbers;
 
 	public:
-		HP(const std::shared_ptr<Stage>& stage)
+		UI_HP(const std::shared_ptr<Stage>& stage)
 			: GameObject(stage), hp(5), count(0.0f)
 		{
 

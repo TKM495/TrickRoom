@@ -2,7 +2,7 @@
 #include "Project.h"
 
 namespace basecross {
-	void Crystal::OnCreate()
+	void UI_Crystal::OnCreate()
 	{
 		Col4 color(1.0f, 1.0f, 1.0f, 0.5f);
 		std::vector<VertexPositionColorTexture> vertices = {
@@ -38,7 +38,7 @@ namespace basecross {
 		}
 	}
 
-	void Crystal::OnUpdate()
+	void UI_Crystal::OnUpdate()
 	{
 		for (auto& number : numbers)
 		{
@@ -48,7 +48,7 @@ namespace basecross {
 		}
 	}
 
-	void Crystal::OnDraw()
+	void UI_Crystal::OnDraw()
 	{
 		GameObject::OnDraw();
 		for (auto& number : numbers) // ŠeŒ…‚Ì”š‚ğ•`‰æ‚·‚é

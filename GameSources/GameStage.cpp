@@ -35,8 +35,8 @@ namespace basecross {
 			}
 
 			AddGameObject<Timer>();
-			AddGameObject<HP>();
-			AddGameObject<Crystal>();
+			AddGameObject<UI_HP>();
+			AddGameObject<UI_Crystal>();
 
 			//ゲームオブジェクトビルダー
 			GameObjecttCSVBuilder builder;

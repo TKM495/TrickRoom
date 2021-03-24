@@ -98,16 +98,16 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)StairsArt.cpp">
       <Filter>TrickArt\StairsArt</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Crystal.cpp">
-      <Filter>UI\Crystal</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)HP.cpp">
-      <Filter>UI\HP</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Timer.cpp">
       <Filter>UI\Timer</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MyMath.cpp" />
+    <ClCompile Include="D:\media\ドキュメント\日本ゲーム大賞\TrickRoom\GameSources\UI_HP.cpp">
+      <Filter>UI\HP</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\media\ドキュメント\日本ゲーム大賞\TrickRoom\GameSources\UI_Crystal.cpp">
+      <Filter>UI\Crystal</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
@@ -206,16 +206,16 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)StairsArt.h">
       <Filter>TrickArt\StairsArt</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Crystal.h">
-      <Filter>UI\Crystal</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)HP.h">
-      <Filter>UI\HP</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Timer.h">
       <Filter>UI\Timer</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MyMath.h" />
+    <ClInclude Include="D:\media\ドキュメント\日本ゲーム大賞\TrickRoom\GameSources\UI_HP.h">
+      <Filter>UI\HP</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\media\ドキュメント\日本ゲーム大賞\TrickRoom\GameSources\UI_Crystal.h">
+      <Filter>UI\Crystal</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Menu">

@@ -2,7 +2,7 @@
 #include "stdafx.h"
 
 namespace basecross {
-	class Crystal : public GameObject
+	class UI_Crystal : public GameObject
 	{
 
 		int point;
@@ -10,7 +10,7 @@ namespace basecross {
 		std::vector<std::shared_ptr<Numbers>> numbers;
 
 	public:
-		Crystal(const std::shared_ptr<Stage>& stage)
+		UI_Crystal(const std::shared_ptr<Stage>& stage)
 			: GameObject(stage), point(0)
 		{
 

@@ -2,7 +2,7 @@
 #include "Project.h"
 
 namespace basecross {
-	void HP::OnCreate()
+	void UI_HP::OnCreate()
 	{
 		Col4 color(1.0f, 1.0f, 1.0f, 0.5f);
 		std::vector<VertexPositionColorTexture> vertices = {
@@ -38,7 +38,7 @@ namespace basecross {
 		}
 	}
 
-	void HP::OnUpdate()
+	void UI_HP::OnUpdate()
 	{
 		for (auto& number : numbers)
 		{
@@ -48,7 +48,7 @@ namespace basecross {
 		}
 	}
 
-	void HP::OnDraw()
+	void UI_HP::OnDraw()
 	{
 		GameObject::OnDraw();// (heart‚Ì•¶š‚ª•\¦‚³‚ê‚éj
 		for (auto& number : numbers) // ŠeŒ…‚Ì”š‚ğ•`‰æ‚·‚é
