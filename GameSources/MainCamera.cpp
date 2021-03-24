@@ -1,6 +1,6 @@
 /*!
 @file MainCamera.cpp
-@brief ���C���J�����Ȃǎ���
+@brief
 */
 
 #include "stdafx.h"

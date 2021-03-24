@@ -16,7 +16,7 @@ namespace basecross {
 			const wstring& line);
 
 		virtual void OnCreate()override;
-		virtual void OnUpdate()override {}
+		virtual void OnUpdate()override;
 	};
 
 

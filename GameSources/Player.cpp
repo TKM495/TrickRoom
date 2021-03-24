@@ -1,6 +1,6 @@
 /*!
 @file Player.cpp
-@brief �v���C���[�Ȃǎ���
+@brief
 */
 
 #include "stdafx.h"
@@ -9,7 +9,7 @@
 namespace basecross{
 	Player::Player(const std::shared_ptr<Stage>& stage,
 		const wstring& line)
-			: GameObject(stage),m_moveSpeed(5),m_HP(5),m_crystal(0),m_count(0),m_RespawnTime(2),bRespawn(false)
+			: StageObject(stage),m_moveSpeed(5),m_HP(5),m_crystal(0),m_count(0),m_RespawnTime(2),bRespawn(false)
 	{
 		//トークン（カラム）の配列
 		vector<wstring> tokens;
@@ -30,6 +30,7 @@ namespace basecross{
 			XMConvertToRadians((float)_wtof(tokens[8].c_str())),
 			XMConvertToRadians((float)_wtof(tokens[9].c_str()))
 		);
+		m_respawnPos = m_position;
 	}
 
 	void Player::OnCreate()
@@ -38,9 +39,6 @@ namespace basecross{
 
 		auto drawComp = AddComponent<BcPNTStaticDraw>();
 		 drawComp->SetMeshResource(L"DEFAULT_CUBE");
-
-		 auto transComponent = GetComponent<Transform>();
-		 transComponent->SetPosition(5.0f, 0.0f, 0.0f);
 
 		auto ssComp = AddComponent<StringSprite>();
 		ssComp->SetBackColor(Col4(0.0f, 0.0f, 0.0f, 0.5f));
@@ -61,7 +59,7 @@ namespace basecross{
 		auto transComp = GetComponent<Transform>();
 		auto pos = transComp->GetPosition();
 		auto cameraDir = pos - camera->GetEye();
-		cameraDir.y - 0.0f;
+		cameraDir.y = 0.0f;
 		cameraDir.normalize();
 
 		auto& app = App::GetApp();
@@ -86,7 +84,6 @@ namespace basecross{
 			Vec3 moveV = Vec3(Vertical * fThumbLX);
 			Vec3 moveVec = moveH + moveV;
 			m_Speed = moveVec * m_moveSpeed * ElapsedTime;
-
 		}
 
 		else
@@ -114,7 +111,6 @@ namespace basecross{
 
 	//void Player::OnPushA()
 	//{
-	//	//SetGravityVerocity���擾���āASetGravityVerocity��Speed��0�ɂȂ�����n�ʂƐڐG���Ă���ƌ��Ȃ��āA�t���O��|��
 	//	if (bJump == false)
 	//	{
 	//		bJump = true;
@@ -167,7 +163,7 @@ namespace basecross{
 			bRespawn = false;
 
 			auto transComponent = GetComponent<Transform>();
-			transComponent->SetPosition(5.0f, 0.0f, 0.0f);
+			transComponent->SetPosition(m_respawnPos);
 
 			m_count = 0;
 		}
@@ -190,7 +186,7 @@ namespace basecross{
 	{
 		if (!bRespawn)
 		{
-			auto bDamegeTag = other->FindTag(L"damege");
+			auto bDamegeTag = other->FindTag(L"damage");
 
 			if (bDamegeTag)
 			{

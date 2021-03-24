@@ -23,11 +23,6 @@ namespace basecross{
 			csvFile.ReadCsv();
 			m_spriteWData = csvFile.GetCsvVec();
 
-			csvFile.SetFileName(path + L"Object.csv");
-			csvFile.ReadCsv();
-			m_objectWData = csvFile.GetCsvVec();
-
-
 			path = dir + L"Textures/";
 			app->RegisterTexture(L"string", path + L"sprite.png");
 			app->RegisterTexture(L"SpikesArt", path + L"Spikes.png");

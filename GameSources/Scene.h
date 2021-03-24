@@ -7,6 +7,10 @@
 #include "stdafx.h"
 
 namespace basecross{
+	enum class DebugState {
+		None,
+		Debug
+	};
 
 	//--------------------------------------------------------------------------------------
 	///	ゲームシーン
@@ -14,11 +18,13 @@ namespace basecross{
 	class Scene : public SceneBase{
 		//スプライト用CSVデータ
 		vector<wstring> m_spriteWData;
-		//オブジェクト用CSVデータ
-		vector<wstring> m_objectWData;
+		//デバッグステート
+		DebugState m_debugState;
 
 	public:
-		Scene() :SceneBase(){}
+		Scene() :SceneBase(),
+			m_debugState(DebugState::None)
+		{}
 		virtual ~Scene() {}
 		virtual void OnCreate() override;
 		virtual void OnEvent(const shared_ptr<Event>& event) override;
@@ -26,9 +32,11 @@ namespace basecross{
 		vector<wstring>& GetSpriteData() {
 			return m_spriteWData;
 		}
-		vector<wstring>& GetObjectData() {
-			return m_objectWData;
+
+		DebugState GetDebugState() {
+			return m_debugState;
 		}
+
 	};
 
 }

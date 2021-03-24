@@ -54,12 +54,15 @@ namespace basecross {
 
 		auto obbComp = AddComponent<CollisionObb>();
 		//obbComp->SetFixed(true);
-		obbComp->SetDrawActive(true);
+		auto scene = App::GetApp()->GetScene<Scene>();
+		if (scene->GetDebugState() == DebugState::Debug) {
+			obbComp->SetDrawActive(true);
+		}
 		//obbComp->SetAfterCollision(AfterCollision::None);
 
 		//当たり判定の切り替えでダメージの判定を行うため
 		//常にこのタグを持つ
-		AddTag(L"damege");
+		AddTag(L"damage");
 	}
 
 	void EnemyArt::OnUpdate() {

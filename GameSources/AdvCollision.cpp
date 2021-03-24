@@ -32,7 +32,11 @@ namespace basecross {
 			break;
 		}
 		collComp->SetFixed(true);
-		collComp->SetDrawActive(true);
+
+		auto scene = App::GetApp()->GetScene<Scene>();
+		if (scene->GetDebugState() == DebugState::Debug) {
+			collComp->SetDrawActive(true);
+		}
 
 		auto parentTrans = m_parent->GetComponent<Transform>();
 		auto parentScale = parentTrans->GetScale();

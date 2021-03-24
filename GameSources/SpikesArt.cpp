@@ -1,6 +1,6 @@
 /*!
 @file SpikesArt.cpp
-@brief �g���b�N�A�[�g�̞��N���X�̎���
+@brief
 */
 
 #include "stdafx.h"
@@ -11,10 +11,8 @@ namespace basecross {
 		const wstring& line)
 		:TrickArtBase(stage)
 	{
-		//�g�[�N���i�J�����j�̔z��
 		vector<wstring> tokens;
 		Util::WStrToTokenVector(tokens, line, L',');
-		//�e�g�[�N���i�J�����j���X�P�[���A��]�A�ʒu�ɓǂݍ���
 		m_position = Vec3(
 			(float)_wtof(tokens[1].c_str()),
 			(float)_wtof(tokens[2].c_str()),
@@ -35,30 +33,29 @@ namespace basecross {
 	}
 
 	void SpikesArt::OnCreate() {
-		//�F�̃f�[�^(R,G,B,A)
 		Col4 color(1.0f, 1.0f, 1.0f, 1.0f);
-		//���_�̃f�[�^ (�ԍ��͍��ォ��E���܂�)
 		m_vertices = {
 			{Vec3(-1.0f, 0.0f,+1.0f),color,Vec2(0.0f,0.4f)}, //0
 			{Vec3(+1.0f, 0.0f,+1.0f),color,Vec2(1.0f,0.4f)}, //1
 			{Vec3(-1.0f, 0.0f,-1.0f),color,Vec2(0.0f,1.0f)}, //2
 			{Vec3(+1.0f, 0.0f,-1.0f),color,Vec2(1.0f,1.0f)}  //3
 		};
-		//���_�C���f�b�N�X(���_���Ȃ��鏇��)
 		m_indices = {
-			0, 1, 2, //��̎O�p�`
-			2, 1, 3  //���̎O�p�`
+			0, 1, 2,
+			2, 1, 3
 		};
 
 		TrickArtBase::OnCreate();
 
 		auto obbComp = AddComponent<CollisionObb>();
 		obbComp->SetFixed(true);
-		obbComp->SetDrawActive(true);
 
-		//�����蔻��̐؂�ւ��Ń_���[�W�̔�����s������
-		//��ɂ��̃^�O������
-		AddTag(L"damege");
+		auto scene = App::GetApp()->GetScene<Scene>();
+		if (scene->GetDebugState() == DebugState::Debug) {
+			obbComp->SetDrawActive(true);
+		}
+
+		AddTag(L"damage");
 	}
 
 	void SpikesArt::OnUpdate() {

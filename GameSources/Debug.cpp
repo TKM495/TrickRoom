@@ -15,4 +15,8 @@ namespace basecross {
 		wss << m_wstr << endl;
 		ssComp->SetText(wss.str());
 	}
+
+	void Debug::OnUpdate2() {
+		//m_wstr = L"";
+	}
 }

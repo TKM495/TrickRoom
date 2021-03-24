@@ -45,7 +45,11 @@ namespace basecross {
 		//OBB衝突j判定を付ける
 		auto ptrColl = AddComponent<CollisionObb>();
 		ptrColl->SetFixed(true);
-		ptrColl->SetDrawActive(true);
+
+		auto scene = App::GetApp()->GetScene<Scene>();
+		if (scene->GetDebugState() == DebugState::Debug) {
+			ptrColl->SetDrawActive(true);
+		}
 		//タグをつける
 		//AddTag(L"FixedBox");
 		//影をつける（シャドウマップを描画する）

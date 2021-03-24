@@ -20,12 +20,14 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Block2.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BlockArt.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Crystal.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CSVLoad.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Cursor.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Debug.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyArt.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HP.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Numbers.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PauceMenu.h" />
@@ -41,6 +43,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Spikes.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Stairs.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StairsArt.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Timer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SpikesArt.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageLoad.h" />
@@ -56,12 +59,14 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Block2.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BlockArt.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Crystal.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CSVLoad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Cursor.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Debug.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyArt.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)HP.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Numbers.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PauceMenu.cpp" />
@@ -75,6 +80,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Spikes.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Stairs.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StairsArt.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Timer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SpikesArt.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageLoad.cpp" />

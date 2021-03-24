@@ -39,10 +39,16 @@ namespace basecross {
 		//OBBÕ“Ëj”»’è‚ğ•t‚¯‚é
 		auto ptrColl = AddComponent<CollisionObb>();
 		ptrColl->SetFixed(true);
-		ptrColl->SetDrawActive(true);
+
+		auto scene = App::GetApp()->GetScene<Scene>();
+		if (scene->GetDebugState() == DebugState::Debug) {
+			ptrColl->SetDrawActive(true);
+		}
 
 		auto ptrDraw = AddComponent<PNTStaticDraw>();
 		ptrDraw->SetMeshResource(L"Spikes");
+
+		AddTag(L"damage");
 	}
 
 }

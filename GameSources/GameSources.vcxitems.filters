@@ -98,6 +98,15 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)StairsArt.cpp">
       <Filter>TrickArt\StairsArt</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Crystal.cpp">
+      <Filter>UI\Crystal</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HP.cpp">
+      <Filter>UI\HP</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Timer.cpp">
+      <Filter>UI\Timer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
@@ -196,6 +205,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)StairsArt.h">
       <Filter>TrickArt\StairsArt</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Crystal.h">
+      <Filter>UI\Crystal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HP.h">
+      <Filter>UI\HP</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Timer.h">
+      <Filter>UI\Timer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Menu">
@@ -287,6 +305,15 @@
     </Filter>
     <Filter Include="Debug">
       <UniqueIdentifier>{b10393ed-2132-483b-93a3-591e01fa6454}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Timer">
+      <UniqueIdentifier>{6608a8b6-31b6-4ba0-82ed-a4403f99efe3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Crystal">
+      <UniqueIdentifier>{84ac965e-a525-4696-af52-d9a13596bec9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\HP">
+      <UniqueIdentifier>{9b9ef253-f12e-4a6c-8ba4-9fc792b68b66}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

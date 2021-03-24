@@ -61,10 +61,7 @@ namespace basecross {
 		//drawComp->SetSamplerState(SamplerState::AnisotropicWrap); //テクスチャの繰り返し設定(Wrap)
 		//drawComp->SetDepthStencilState(DepthStencilState::Read);
 
-		auto transComp = GetComponent<Transform>();
-		transComp->SetPosition(m_position);
-		transComp->SetScale(m_scale);
-		transComp->SetRotation(m_rotation);
+		StageObject::OnCreate();
 	}
 }
 //end basecross

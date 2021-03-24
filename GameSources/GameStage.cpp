@@ -6,6 +6,7 @@
 #include "stdafx.h"
 #include "Project.h"
 
+
 namespace basecross {
 
 	//--------------------------------------------------------------------------------------
@@ -26,9 +27,16 @@ namespace basecross {
 		try {
 			//ビューとライトの作成
 			CreateViewLight();
-			//auto debug = AddGameObject<Debug>();
-			//SetSharedGameObject(L"Debug", debug);
-			//debug->SetDrawLayer(10);
+			auto scene = App::GetApp()->GetScene<Scene>();
+			if (scene->GetDebugState() == DebugState::Debug) {
+				auto debug = AddGameObject<Debug>();
+				SetSharedGameObject(L"Debug", debug);
+				debug->SetDrawLayer(10);
+			}
+
+			//AddGameObject<Timer>();
+			//AddGameObject<HP>();
+			//AddGameObject<Crystal>();
 
 			//ゲームオブジェクトビルダー
 			GameObjecttCSVBuilder builder;

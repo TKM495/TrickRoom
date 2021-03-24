@@ -36,13 +36,17 @@ namespace basecross {
 		drawComp->SetMeshResource(L"Enemy");
 
 		auto collComp = AddComponent<CollisionSphere>();
-		collComp->SetDrawActive(true);
+
+		auto scene = App::GetApp()->GetScene<Scene>();
+		if (scene->GetDebugState() == DebugState::Debug) {
+			collComp->SetDrawActive(true);
+		}
 
 		auto transComp = GetComponent<Transform>();
 		transComp->SetPosition(m_position);
 		transComp->SetScale(m_scale);
 
-		//WallAvoidanceSteering
+		AddTag(L"damage");
 	}
 
 	void Enemy::OnUpdate() {

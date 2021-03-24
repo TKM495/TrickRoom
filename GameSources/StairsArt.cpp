@@ -52,11 +52,36 @@ namespace basecross {
 
 		TrickArtBase::OnCreate();
 
-		auto obbComp = AddComponent<CollisionObb>();
-		obbComp->SetFixed(true);
-		obbComp->SetDrawActive(true);
-		//obbComp->SetAfterCollision(AfterCollision::None);
+		auto stage = GetStage();
+		//ŽÎ–Ê—p‚ÌƒRƒŠƒWƒ‡ƒ“
+		auto coll = stage->AddGameObject<AdvCollision>(GetThis<StairsArt>(),
+			Vec3(0.2f, 0.5f, 0.0f),
+			Vec3(1.0f, sqrtf(5.0f), 1.0f),
+			Vec3(XMConvertToRadians(90.0f - 26.56f), XMConvertToRadians(-45.0f), 0.0f),
+			AdvCollision::Shape::Rect);
+		m_myCols.push_back(coll);
+		coll = stage->AddGameObject<AdvCollision>(GetThis<StairsArt>(),
+			Vec3(-0.2f, 0.0f, -0.2f),
+			Vec3(1.0f, 0.25f, 1.0f),
+			Vec3(0.0f, XMConvertToRadians(-45.0f), 0.0f),
+			AdvCollision::Shape::Obb);
+		m_myCols.push_back(coll);
 	}
 
+	void StairsArt::OnUpdate() {
+		auto camera = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
+		state nowState = camera->GetCamState();
+		if (nowState == m_activeState) {
+			for (auto& coll : m_myCols) {
+				coll->SetActive(true);
+			}
+		}
+		else {
+			for (auto& coll : m_myCols) {
+				coll->SetActive(false);
+			}
+		}
+
+	}
 }
 //end basecross

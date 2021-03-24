@@ -13,6 +13,7 @@ namespace basecross {
 		}
 		void OnCreate()override;
 		void OnUpdate()override;
+		void OnUpdate2()override;
 		void SetString(wstring str) {
 			m_wstr += str;
 		}
