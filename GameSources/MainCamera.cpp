@@ -9,7 +9,8 @@
 namespace basecross {
 
 	MainCamera::MainCamera()
-		:m_offset(10.0f, 10.0f, -10.0f),m_Angle(-10.0f, 10.0f, -10.0f),bSetPers(false),SetWidth(20.0f),SetHeight(12.5f),m_CameraState(state::Right),bLeapFlg(false),m_LeapTime(0),m_LeapSpeed(1)
+		:m_offset(10.0f, 10.0f, -10.0f), m_Angle(-10.0f, 10.0f, -10.0f), bSetPers(false), SetWidth(20.0f), SetHeight(12.5f), m_CameraState(state::Right),
+		bLeapFlg(false), m_LeapTime(0), m_LeapSpeed(1), m_LeapOffset(m_offset)
 	{
 		isFirst = true;
 	}
@@ -56,6 +57,7 @@ namespace basecross {
 
 		if (!bLeapFlg)
 		{
+			SetEye(at + m_LeapOffset);
 			if (pad.wPressedButtons & XINPUT_GAMEPAD_RIGHT_SHOULDER)//RB
 			{
 				m_CameraState = state::Right;
@@ -63,6 +65,7 @@ namespace basecross {
 				m_Eye = GetEye();
 				m_LeapOffset = m_offset;
 
+				//SetEye(at + m_offset);
 			}
 
 			if (pad.wPressedButtons & XINPUT_GAMEPAD_LEFT_SHOULDER)//LB
@@ -71,7 +74,10 @@ namespace basecross {
 				bLeapFlg = true;
 				m_Eye = GetEye();
 				m_LeapOffset = m_Angle;
+
+				//SetEye(at + m_Angle);
 			}
+
 
 		}
 
@@ -91,8 +97,6 @@ namespace basecross {
 				m_LeapTime = 0;
 			}
 		}
-
-
 	}
 
 	Vec3 MainCamera::GetAngle()
