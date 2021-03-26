@@ -41,5 +41,6 @@ namespace basecross {
 		state GetCamState() {
 			return m_CameraState;
 		}
+		bool GetbLeapFlg();
 	};
 }

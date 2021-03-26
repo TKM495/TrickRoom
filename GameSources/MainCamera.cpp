@@ -104,4 +104,9 @@ namespace basecross {
 		return m_Angle;
 	}
 
+	bool MainCamera::GetbLeapFlg()
+	{
+		return bLeapFlg;
+	}
+
 }
