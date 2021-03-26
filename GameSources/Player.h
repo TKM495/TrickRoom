@@ -15,11 +15,14 @@ namespace basecross {
 		float m_moveSpeed;
 		int m_HP;//HP(èâä˙ílÇT)
 		float m_crystal;
-		float m_count;//Respawn
-		float m_RespawnTime;
-		bool bRespawn;
 
-		void Respawn();
+		//Respawn
+		//float m_count;
+		//float m_RespawnTime;
+		//bool bRespawn;
+
+		//void Respawn();
+
 		void Move();
 		Vec3 MoveVec();
 
@@ -38,7 +41,8 @@ namespace basecross {
 
 	public:
 		Player(const std::shared_ptr<Stage>& stage)
-			: GameObject(stage), m_moveSpeed(5), m_HP(5), m_crystal(0), m_count(0), m_RespawnTime(2), bRespawn(false)
+			: GameObject(stage), m_moveSpeed(5), m_HP(5), m_crystal(0)
+			/* m_count(0), m_RespawnTime(2), bRespawn(false)*/
 		{
 
 		}
@@ -46,6 +50,8 @@ namespace basecross {
 		void OnCreate() override;
 		void OnUpdate() override;
 		void OnCollisionEnter(std::shared_ptr<GameObject>& other) override;
+
+
 
 
 		//void OnPushA();

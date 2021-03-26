@@ -38,9 +38,9 @@ namespace basecross {
 		auto transComp = GetComponent<Transform>();
 		auto pos = transComp->GetPosition();
 
-		auto& app = App::GetApp();
+		const auto& app = App::GetApp();
 		float ElapsedTime = app->GetElapsedTime();
-		auto cntlPad = app->GetInputDevice().GetControlerVec()[0];
+		const auto& cntlPad = app->GetInputDevice().GetControlerVec()[0];
 
 		float fThumbLY = cntlPad.fThumbLY;
 
@@ -60,16 +60,6 @@ namespace basecross {
 		if (mainCamera->GetbLeapFlg())
 		{
 			return;
-		}
-
-		if (!bRespawn)
-		{
-			Move();
-		}
-
-		else
-		{
-			Respawn();
 		}
 
 		//m_InputHandler.PushHandle(GetThis<Player>());
@@ -94,25 +84,25 @@ namespace basecross {
 
 	}
 
-	void Player::Respawn()
-	{
-		auto& app = App::GetApp();
-		float ElapsedTime = app->GetElapsedTime();
+	//void Player::Respawn()
+	//{
+	//	auto& app = App::GetApp();
+	//	float ElapsedTime = app->GetElapsedTime();
 
-		m_count += ElapsedTime;
+	//	m_count += ElapsedTime;
 
-		if (m_count > m_RespawnTime)
-		{
-			SetDrawActive(true);
-			bRespawn = false;
+	//	if (m_count > m_RespawnTime)
+	//	{
+	//		SetDrawActive(true);
+	//		bRespawn = false;
 
-			auto transComponent = GetComponent<Transform>();
-			transComponent->SetPosition(5.0f, 0.0f, 0.0f);
+	//		auto transComponent = GetComponent<Transform>();
+	//		transComponent->SetPosition(5.0f, 0.0f, 0.0f);
 
 
-			m_count = 0;
-		}
-	}
+	//		m_count = 0;
+	//	}
+	//}
 
 	//void Player::OnPushA()
 	//{
@@ -154,20 +144,20 @@ namespace basecross {
 	//衝突判定
 	void Player::OnCollisionEnter(std::shared_ptr<GameObject>& other)
 	{
-		if (!bRespawn)
-		{
+		//if (!bRespawn)
+		//{
 			auto bDamegeTag = other->FindTag(L"damege");
 
 
 			if (bDamegeTag)
 			{
 				m_HP += -1;
-				bRespawn = true;
+				//bRespawn = true;
 
-				SetDrawActive(false);
+				//SetDrawActive(false);
 
 			}
-		}
+		//}
 
 	}
 
