@@ -6,19 +6,22 @@
 #include "stdafx.h"
 #include "Project.h"
 
-namespace basecross{
+namespace basecross {
+
 	void Player::OnCreate()
 	{
 		auto drawComp = AddComponent<BcPNTStaticDraw>();
-		 drawComp->SetMeshResource(L"DEFAULT_CUBE");
+		drawComp->SetMeshResource(L"DEFAULT_CUBE");
 
-		 auto transComponent = GetComponent<Transform>();
-		 transComponent->SetPosition(5.0f, 0.0f, 0.0f);
+		auto transComponent = GetComponent<Transform>();
+		transComponent->SetPosition(5.0f, 0.0f, 0.0f);
 
 		auto ssComp = AddComponent<StringSprite>();
 		ssComp->SetBackColor(Col4(0.0f, 0.0f, 0.0f, 0.5f));
 		ssComp->SetTextRect(Rect2D<float>(10, 10, 300 + 10, 200 + 10));
 		ssComp->SetText(L"HP 3\nCRYSTAL 10");
+
+
 
 		auto transComp = GetComponent<Transform>();
 		transComp->SetRotation(0, XMConvertToRadians(0), 0);
@@ -28,53 +31,37 @@ namespace basecross{
 		AddComponent<CollisionObb>();
 	}
 
-	void Player::SetSpeed()
+	Vec3 Player::MoveVec()
+	{
+		auto stage = GetStage();
+
+		auto transComp = GetComponent<Transform>();
+		auto pos = transComp->GetPosition();
+
+		auto& app = App::GetApp();
+		float ElapsedTime = app->GetElapsedTime();
+		auto cntlPad = app->GetInputDevice().GetControlerVec()[0];
+
+		float fThumbLY = cntlPad.fThumbLY;
+
+		Vec3 moveVec = Vec3(-1.0f, 0.0f, fThumbLY);
+		return moveVec * m_moveSpeed * ElapsedTime;
+
+
+	}
+
+	void Player::OnUpdate()
 	{
 		auto stage = GetStage();
 
 		auto camera = stage->GetView()->GetTargetCamera();
 		auto mainCamera = dynamic_pointer_cast<MainCamera>(camera);
 
-		auto transComp = GetComponent<Transform>();
-		auto pos = transComp->GetPosition();
-		auto cameraDir = pos - camera->GetEye();
-		cameraDir.y - 0.0f;
-		cameraDir.normalize();
-
-		auto& app = App::GetApp();
-		float ElapsedTime = app->GetElapsedTime();
-		auto cntlPad = app->GetInputDevice().GetControlerVec();
-
-		float fThumbLY = 0.0f;
-		float fThumbLX = 0.0f;
-		if (cntlPad[0].bConnected)
+		if (mainCamera->GetbLeapFlg())
 		{
-			fThumbLY = cntlPad[0].fThumbLY;
-			fThumbLX = cntlPad[0].fThumbLX;
+			return;
 		}
 
-		if (fThumbLX != 0 || fThumbLY != 0)
-		{
-
-			Vec3 Horizontal(cameraDir);
-			Vec3 Vertical(Horizontal.z, 0, -Horizontal.x);
-
-			Vec3 moveH = Vec3(Horizontal * fThumbLY);
-			Vec3 moveV = Vec3(Vertical * fThumbLX);
-			Vec3 moveVec = moveH + moveV;
-			m_Speed = moveVec * m_moveSpeed * ElapsedTime;
-
-		}
-
-		else
-		{
-			m_Speed = Vec3(0.0f);
-		}
-
-	}
-
-	void Player::OnUpdate()
-	{
 		if (!bRespawn)
 		{
 			Move();
@@ -86,7 +73,45 @@ namespace basecross{
 		}
 
 		//m_InputHandler.PushHandle(GetThis<Player>());
+	}
 
+	void Player::Move()
+	{
+		auto stage = GetStage();
+
+		auto transComp = GetComponent<Transform>();
+		auto pos = transComp->GetWorldPosition();
+
+		pos += MoveVec();
+
+		transComp->SetWorldPosition(pos);
+
+		if (MoveVec().length() > 0.0f)
+		{
+			auto utilPtr = GetBehavior<UtilBehavior>();
+			utilPtr->RotToHead(MoveVec(), 1.0f);
+		}
+
+	}
+
+	void Player::Respawn()
+	{
+		auto& app = App::GetApp();
+		float ElapsedTime = app->GetElapsedTime();
+
+		m_count += ElapsedTime;
+
+		if (m_count > m_RespawnTime)
+		{
+			SetDrawActive(true);
+			bRespawn = false;
+
+			auto transComponent = GetComponent<Transform>();
+			transComponent->SetPosition(5.0f, 0.0f, 0.0f);
+
+
+			m_count = 0;
+		}
 	}
 
 	//void Player::OnPushA()
@@ -111,69 +136,28 @@ namespace basecross{
 
 	//}
 
-	void Player::Move()
-	{
-		auto stage = GetStage();
 
-		auto camera = stage->GetView()->GetTargetCamera();
-		auto mainCamera = dynamic_pointer_cast<MainCamera>(camera);
-
-		auto transComp = GetComponent<Transform>();
-		auto pos = transComp->GetPosition();
-		auto cameraDir = pos - camera->GetEye();
-		cameraDir.y = 0.0f;
-
-		SetSpeed();
-
-		pos += m_Speed;
-
-		transComp->SetPosition(pos);
-
-		if (m_Speed.length() > 0.0f)
-		{
-			auto utilPtr = GetBehavior<UtilBehavior>();
-			utilPtr->RotToHead(m_Speed, 1.0f);
-		}
-
-	}
-
-	void Player::Respawn()
-	{
-		auto& app = App::GetApp();
-		float ElapsedTime = app->GetElapsedTime();
-
-		m_count += ElapsedTime;
-
-		if (m_count > m_RespawnTime)
-		{
-			SetDrawActive(true);
-			bRespawn = false;
-
-			auto transComponent = GetComponent<Transform>();
-			transComponent->SetPosition(5.0f, 0.0f, 0.0f);
-
-			m_count = 0;
-		}
-	}
 	void Player::SetHP(int HP)
 	{
 		m_HP = HP;
 	}
 
-	int Player::GetHP(){
+	int Player::GetHP() {
 		return m_HP;
 	}
 
-	float Player::GetCrystal()
+	int Player::GetCrystal()
 	{
 		return m_crystal;
 	}
 
+	//衝突判定
 	void Player::OnCollisionEnter(std::shared_ptr<GameObject>& other)
 	{
 		if (!bRespawn)
 		{
 			auto bDamegeTag = other->FindTag(L"damege");
+
 
 			if (bDamegeTag)
 			{
@@ -181,9 +165,10 @@ namespace basecross{
 				bRespawn = true;
 
 				SetDrawActive(false);
-			}
 
+			}
 		}
+
 	}
 
 }

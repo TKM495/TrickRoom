@@ -38,6 +38,6 @@ namespace basecross {
 
 		void OnCreate() override;
 		void OnUpdate() override;
-
+		bool GetbLeapFlg();
 	};
 }
