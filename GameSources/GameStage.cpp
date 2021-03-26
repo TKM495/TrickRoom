@@ -34,7 +34,7 @@ namespace basecross {
 				debug->SetDrawLayer(10);
 			}
 
-			AddGameObject<Timer>();
+			//AddGameObject<Timer>();
 			AddGameObject<UI_HP>();
 			AddGameObject<UI_Crystal>();
 
@@ -43,6 +43,7 @@ namespace basecross {
 			//ゲームオブジェクトの登録
 			builder.Register<Player>(L"Player");
 			builder.Register<Plane>(L"Plane");
+			builder.Register<Pillar>(L"Pillar");
 			builder.Register<Block>(L"Block");
 			builder.Register<BlockArt>(L"BlockArt");
 			builder.Register<Enemy>(L"Enemy");
@@ -51,10 +52,17 @@ namespace basecross {
 			builder.Register<SpikesArt>(L"SpikesArt");
 			builder.Register<Stairs>(L"Stairs");
 			builder.Register<StairsArt>(L"StairsArt");
+			builder.Register<FloorArt>(L"FloorArt");
+			builder.Register<PoleArt>(L"PoleArt");
 
 			auto& app = App::GetApp();
 			auto dir = app->GetDataDirWString();
 			auto path = dir + L"Csv/Object.csv";
+			/*			auto& app = App::GetApp();
+			auto dir = app->GetDataDirWString();
+			auto path = dir + L"Csv/Object";
+			path += scene->GetNum();
+			path += L".csv";*/
 
 			builder.Build(GetThis<Stage>(), path);
 		}

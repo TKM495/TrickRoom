@@ -37,7 +37,6 @@ namespace basecross {
 		//初期化
 		virtual void OnCreate()override;
 
-
 		//現在のステートを取得
 		GameState GetState() {
 			return m_state;

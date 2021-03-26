@@ -34,6 +34,8 @@ namespace basecross {
 		auto csvLoad = AddGameObject<CSVLoad>(App::GetApp()->GetScene<Scene>()->GetSpriteData());
 		csvLoad->SpriteDataExtraction();
 		SetSharedGameObject(L"CSVLoad", csvLoad);
+		auto title = AddGameObject<StringSprite2>(L"Title");
+		title->GetComponent<Transform>()->SetPosition(Vec3(0.0f, 200.0f, 0.0f));
 		AddGameObject<TitleMenu>();
 	}
 

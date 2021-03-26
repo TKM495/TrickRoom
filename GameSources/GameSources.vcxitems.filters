@@ -101,12 +101,24 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Timer.cpp">
       <Filter>UI\Timer</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MyMath.cpp" />
-    <ClCompile Include="D:\media\ドキュメント\日本ゲーム大賞\TrickRoom\GameSources\UI_HP.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)SinCurve.cpp">
+      <Filter>Behavior\SinCurve</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FloorArt.cpp">
+      <Filter>TrickArt\FloorArt</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)UI_HP.cpp">
       <Filter>UI\HP</Filter>
     </ClCompile>
-    <ClCompile Include="D:\media\ドキュメント\日本ゲーム大賞\TrickRoom\GameSources\UI_Crystal.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)UI_Crystal.cpp">
       <Filter>UI\Crystal</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyMath.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Pillar.cpp">
+      <Filter>StageObject\Pillar</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PoleArt.cpp">
+      <Filter>TrickArt\PoleArt</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -209,12 +221,24 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Timer.h">
       <Filter>UI\Timer</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MyMath.h" />
-    <ClInclude Include="D:\media\ドキュメント\日本ゲーム大賞\TrickRoom\GameSources\UI_HP.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)SinCurve.h">
+      <Filter>Behavior\SinCurve</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FloorArt.h">
+      <Filter>TrickArt\FloorArt</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)UI_HP.h">
       <Filter>UI\HP</Filter>
     </ClInclude>
-    <ClInclude Include="D:\media\ドキュメント\日本ゲーム大賞\TrickRoom\GameSources\UI_Crystal.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)UI_Crystal.h">
       <Filter>UI\Crystal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyMath.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Pillar.h">
+      <Filter>StageObject\Pillar</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PoleArt.h">
+      <Filter>TrickArt\PoleArt</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -316,6 +340,24 @@
     </Filter>
     <Filter Include="UI\Numbers">
       <UniqueIdentifier>{6cd4b4f2-d794-4a97-969f-0f410d9a2920}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Behavior">
+      <UniqueIdentifier>{029d18ec-c6d9-4efc-8229-b7e6b7ab88ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Behavior\SinCurve">
+      <UniqueIdentifier>{6a363bfc-c205-4af8-aadf-021f5ba1011f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TrickArt\FloorArt">
+      <UniqueIdentifier>{63ce31b7-2949-4894-b312-aeb1855b7045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Pillar">
+      <UniqueIdentifier>{31b09a3e-33ec-4b97-a602-13e09cc169c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Pole">
+      <UniqueIdentifier>{abd03567-b416-4408-999c-bc23e088820b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TrickArt\PoleArt">
+      <UniqueIdentifier>{c6295b8e-3bad-49bb-8b92-a8828bdea6c2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

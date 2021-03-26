@@ -29,12 +29,13 @@ namespace basecross{
 			app->RegisterTexture(L"BlockArt", path + L"block.png");
 			app->RegisterTexture(L"EnemyArt", path + L"Enemy.png");
 			app->RegisterTexture(L"StairsArt", path + L"saka.png");
+			app->RegisterTexture(L"FloorArt", path + L"RightPlane.png");
 			app->RegisterTexture(L"Cursor", path + L"Cursor.png");
 			app->RegisterTexture(L"time", path + L"time.png");
 			app->RegisterTexture(L"heart", path + L"heart.png");
 			app->RegisterTexture(L"crystal", path + L"crystal.png");
 			app->RegisterTexture(L"point", path + L"point.png");
-
+			app->RegisterTexture(L"PoleArt", path + L"Pole.png");
 
 			path = dir + L"Models/";
 			auto modelMesh = MeshResource::CreateStaticModelMesh(path + L"Enemy/", L"teki.bmf");
@@ -45,6 +46,10 @@ namespace basecross{
 			app->RegisterResource(L"TEST", modelMesh);
 			modelMesh = MeshResource::CreateStaticModelMesh(path+L"Stairs/", L"saka.bmf");
 			app->RegisterResource(L"Stairs", modelMesh);
+			modelMesh = MeshResource::CreateStaticModelMesh(path+L"Crystal/", L"Crystal.bmf");
+			app->RegisterResource(L"Crystal", modelMesh);
+			modelMesh = MeshResource::CreateStaticModelMesh(path+L"Pillar/", L"Pillar.bmf");
+			app->RegisterResource(L"Pillar", modelMesh);
 
 			//クリアする色を設定
 			Col4 Col;
@@ -52,7 +57,7 @@ namespace basecross{
 			SetClearColor(Col);
 			//自分自身にイベントを送る
 			//これにより各ステージやオブジェクトがCreate時にシーンにアクセスできる
-			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToGameStage");
+			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToTitleStage");
 		}
 		catch (...) {
 			throw;

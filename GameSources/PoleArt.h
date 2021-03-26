@@ -1,23 +1,20 @@
 /*!
-@file Enemy.h
-@brief ï¿½G
+@file PoleArt.h
+@brief ƒ|[ƒ‹‚ÌƒgƒŠƒbƒNƒA[ƒg
 */
 
 #pragma once
 #include "stdafx.h"
 
 namespace basecross {
-	class Enemy :public StageObject {
-		wstring m_behavior;
-		float m_cycle;
-		float m_speed;
-		float m_offset;
+	class PoleArt :public TrickArtBase {
 	public:
-		Enemy(const shared_ptr<Stage>& stage,
+		PoleArt(const shared_ptr<Stage>& stage,
 			const wstring& line);
 
 		virtual void OnCreate()override;
 		virtual void OnUpdate()override;
 	};
+
 }
 //end basecross

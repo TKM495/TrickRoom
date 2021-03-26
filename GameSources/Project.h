@@ -29,6 +29,8 @@
 #include "Timer.h"
 #include "UI_HP.h"
 #include "UI_Crystal.h"
+//行動
+#include "SinCurve.h"
 //ステージオブジェクト
 #include "StageLoad.h"
 #include "StageObject.h"
@@ -38,9 +40,13 @@
 #include "Spikes.h"
 #include "Enemy.h"
 #include "Stairs.h"
+#include "Pillar.h"
+#include "Pole.h"
 //トリックアートオブジェクト
 #include "TrickArtBase.h"
 #include "SpikesArt.h"
 #include "BlockArt.h"
 #include "EnemyArt.h"
 #include "StairsArt.h"
+#include "FloorArt.h"
+#include "PoleArt.h"

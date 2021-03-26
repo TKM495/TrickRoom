@@ -1,13 +1,13 @@
 /*!
-@file EnemyArt.cpp
-@brief トリックアートの敵クラス実体
+@file FloorArt.cpp
+@brief 床のトリックアート実体
 */
 
 #include "stdafx.h"
 #include "Project.h"
 
 namespace basecross {
-	EnemyArt::EnemyArt(const shared_ptr<Stage>& stage,
+	FloorArt::FloorArt(const shared_ptr<Stage>& stage,
 		const wstring& line)
 		:TrickArtBase(stage)
 	{
@@ -32,22 +32,17 @@ namespace basecross {
 		);
 		m_activeState = tokens[10] == L"Right" ? state::Right : state::Left;
 		m_texStr = tokens[11].c_str();
-
-		m_behavior = tokens[12];
-		m_cycle = (float)_wtof(tokens[13].c_str());
-		m_speed = (float)_wtof(tokens[14].c_str());
-		m_offset = (float)_wtof(tokens[15].c_str());
 	}
 
-	void EnemyArt::OnCreate() {
+	void FloorArt::OnCreate() {
 		//色のデータ(R,G,B,A)
 		Col4 color(1.0f, 1.0f, 1.0f, 1.0f);
 		//頂点のデータ (番号は左上から右下まで)
 		m_vertices = {
-			{Vec3(-1.0f, 0.0f,+1.0f),color,Vec2(0.0f,0.0f)}, //0
-			{Vec3(+1.0f, 0.0f,+1.0f),color,Vec2(1.0f,0.0f)}, //1
-			{Vec3(-1.0f, 0.0f,-1.0f),color,Vec2(0.0f,1.0f)}, //2
-			{Vec3(+1.0f, 0.0f,-1.0f),color,Vec2(1.0f,1.0f)}  //3
+			{Vec3(-2.61468,1.56666,0),color,Vec2(0.0f,0.0f)}, //0
+			{Vec3(2.52899,2.87567,0),color,Vec2(1.0f,0.0f)}, //1
+			{Vec3(-2.19189,-2.6186,0),color,Vec2(0.0f,1.0f)}, //2
+			{Vec3(2.43245,-1.44531,0),color,Vec2(1.0f,1.0f)}  //3
 		};
 		//頂点インデックス(頂点をつなげる順番)
 		m_indices = {
@@ -57,42 +52,28 @@ namespace basecross {
 
 		TrickArtBase::OnCreate();
 
-		auto obbComp = AddComponent<CollisionObb>();
-		//obbComp->SetFixed(true);
-		auto scene = App::GetApp()->GetScene<Scene>();
-		if (scene->GetDebugState() == DebugState::Debug) {
-			obbComp->SetDrawActive(true);
-		}
-		//obbComp->SetAfterCollision(AfterCollision::None);
-
-		if (m_behavior == L"SinCurve") {
-			GetBehavior<SinCurve>()->SetOffset(m_offset);
-		}
-		else {
-
-		}
-
-
-		//当たり判定の切り替えでダメージの判定を行うため
-		//常にこのタグを持つ
-		AddTag(L"damage");
+		auto stage = GetStage();
+		//斜面用のコリジョン
+		auto coll = stage->AddGameObject<AdvCollision>(GetThis<FloorArt>(),
+			Vec3(0.25f, 0.2f, -0.25f),
+			Vec3(3.5f, 0.5f, 0.8f),
+			Vec3(0.0f, 0.0f, XMConvertToRadians(-10.0f)),
+			AdvCollision::Shape::Obb);
+		m_myCols.push_back(coll);
 	}
 
-	void EnemyArt::OnUpdate() {
+	void FloorArt::OnUpdate() {
 		auto camera = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
 		state nowState = camera->GetCamState();
 		if (nowState == m_activeState) {
-			GetComponent<CollisionObb>()->SetUpdateActive(true);
+			for (auto& coll : m_myCols) {
+				coll->SetActive(true);
+			}
 		}
 		else {
-			GetComponent<CollisionObb>()->SetUpdateActive(false);
-		}
-
-		if (m_behavior == L"SinCurve") {
-			GetBehavior<SinCurve>()->Excute(m_cycle, m_speed);
-		}
-		else {
-
+			for (auto& coll : m_myCols) {
+				coll->SetActive(false);
+			}
 		}
 
 	}

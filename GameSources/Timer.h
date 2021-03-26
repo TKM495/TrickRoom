@@ -12,7 +12,7 @@ namespace basecross {
 
 	public:
 		Timer(const std::shared_ptr<Stage>& stage)
-			: GameObject(stage), timer(180), count(0.0f)
+			: GameObject(stage), timer(300), count(0.0f)
 		{
 
 		}

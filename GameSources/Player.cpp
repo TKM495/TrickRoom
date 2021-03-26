@@ -83,7 +83,7 @@ namespace basecross{
 		{
 			return;
 		}
-		//Move();
+		Move();
 		//m_InputHandler.PushHandle(GetThis<Player>());
 	}
 

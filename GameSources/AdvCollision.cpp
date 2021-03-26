@@ -46,10 +46,14 @@ namespace basecross {
 			m_scale.y * parentScale.y,
 			m_scale.z * parentScale.z
 		);
-
+		auto pos = Vec3(
+			m_offset.x * parentScale.x,
+			m_offset.y * parentScale.y,
+			m_offset.z * parentScale.z
+		);
 		auto transComp = GetComponent<Transform>();
 		transComp->SetParent(m_parent);
-		transComp->SetPosition(m_offset);
+		transComp->SetPosition(pos);
 		transComp->SetScale(scale);
 		transComp->SetRotation(m_rotation);
 	}

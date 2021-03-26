@@ -1,20 +1,18 @@
 /*!
-@file EnemyArt.cpp
-@brief トリックアートの敵クラス実体
+@file PoleArt.cpp
+@brief ポールのトリックアート実体
 */
 
 #include "stdafx.h"
 #include "Project.h"
 
 namespace basecross {
-	EnemyArt::EnemyArt(const shared_ptr<Stage>& stage,
+	PoleArt::PoleArt(const shared_ptr<Stage>& stage,
 		const wstring& line)
 		:TrickArtBase(stage)
 	{
-		//トークン（カラム）の配列
 		vector<wstring> tokens;
 		Util::WStrToTokenVector(tokens, line, L',');
-		//各トークン（カラム）をスケール、回転、位置に読み込む
 		m_position = Vec3(
 			(float)_wtof(tokens[1].c_str()),
 			(float)_wtof(tokens[2].c_str()),
@@ -32,14 +30,9 @@ namespace basecross {
 		);
 		m_activeState = tokens[10] == L"Right" ? state::Right : state::Left;
 		m_texStr = tokens[11].c_str();
-
-		m_behavior = tokens[12];
-		m_cycle = (float)_wtof(tokens[13].c_str());
-		m_speed = (float)_wtof(tokens[14].c_str());
-		m_offset = (float)_wtof(tokens[15].c_str());
 	}
 
-	void EnemyArt::OnCreate() {
+	void PoleArt::OnCreate() {
 		//色のデータ(R,G,B,A)
 		Col4 color(1.0f, 1.0f, 1.0f, 1.0f);
 		//頂点のデータ (番号は左上から右下まで)
@@ -57,44 +50,23 @@ namespace basecross {
 
 		TrickArtBase::OnCreate();
 
-		auto obbComp = AddComponent<CollisionObb>();
-		//obbComp->SetFixed(true);
+		auto obbComp = AddComponent<CollisionCapsule>();
+		obbComp->SetFixed(true);
 		auto scene = App::GetApp()->GetScene<Scene>();
 		if (scene->GetDebugState() == DebugState::Debug) {
 			obbComp->SetDrawActive(true);
 		}
-		//obbComp->SetAfterCollision(AfterCollision::None);
-
-		if (m_behavior == L"SinCurve") {
-			GetBehavior<SinCurve>()->SetOffset(m_offset);
-		}
-		else {
-
-		}
-
-
-		//当たり判定の切り替えでダメージの判定を行うため
-		//常にこのタグを持つ
-		AddTag(L"damage");
 	}
 
-	void EnemyArt::OnUpdate() {
+	void PoleArt::OnUpdate() {
 		auto camera = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
 		state nowState = camera->GetCamState();
 		if (nowState == m_activeState) {
-			GetComponent<CollisionObb>()->SetUpdateActive(true);
+			GetComponent<CollisionCapsule>()->SetUpdateActive(true);
 		}
 		else {
-			GetComponent<CollisionObb>()->SetUpdateActive(false);
+			GetComponent<CollisionCapsule>()->SetUpdateActive(false);
 		}
-
-		if (m_behavior == L"SinCurve") {
-			GetBehavior<SinCurve>()->Excute(m_cycle, m_speed);
-		}
-		else {
-
-		}
-
 	}
 }
 //end basecross

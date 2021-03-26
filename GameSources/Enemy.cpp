@@ -30,6 +30,11 @@ namespace basecross {
 			XMConvertToRadians((float)_wtof(tokens[8].c_str())),
 			XMConvertToRadians((float)_wtof(tokens[9].c_str()))
 		);
+
+		m_behavior = tokens[10];
+		m_cycle = (float)_wtof(tokens[11].c_str());
+		m_speed = (float)_wtof(tokens[12].c_str());
+		m_offset = (float)_wtof(tokens[13].c_str());
 	}
 	void Enemy::OnCreate() {
 		auto drawComp = AddComponent<PNTStaticDraw>();
@@ -44,22 +49,25 @@ namespace basecross {
 
 		StageObject::OnCreate();
 
+		if (m_behavior == L"SinCurve") {
+			GetBehavior<SinCurve>()->SetOffset(m_offset);
+		}
+		else {
+
+		}
+
+
 		AddTag(L"damage");
 	}
 
 	void Enemy::OnUpdate() {
-		float elapsedTime = App::GetApp()->GetElapsedTime();
-		m_TotalTime += elapsedTime;
-		if (m_TotalTime >= XM_2PI)
-		{
-			m_TotalTime = 0.0f;
+		if (m_behavior == L"SinCurve") {
+			GetBehavior<SinCurve>()->Excute(m_cycle, m_speed);
+		}
+		else {
+
 		}
 
-		auto ptrTrans = GetComponent<Transform>();
-		float posX = sin(m_TotalTime) + m_position.x;
-		auto pos = ptrTrans->GetPosition();
-		pos.x = posX;
-		ptrTrans->SetPosition(pos);
 	}
 }
 //end basecross
