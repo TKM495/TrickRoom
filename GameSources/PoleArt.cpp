@@ -50,8 +50,9 @@ namespace basecross {
 
 		TrickArtBase::OnCreate();
 
-		auto obbComp = AddComponent<CollisionCapsule>();
+		auto obbComp = AddComponent<CollisionObb>();
 		obbComp->SetFixed(true);
+
 		auto scene = App::GetApp()->GetScene<Scene>();
 		if (scene->GetDebugState() == DebugState::Debug) {
 			obbComp->SetDrawActive(true);
@@ -62,10 +63,10 @@ namespace basecross {
 		auto camera = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
 		state nowState = camera->GetCamState();
 		if (nowState == m_activeState) {
-			GetComponent<CollisionCapsule>()->SetUpdateActive(true);
+			GetComponent<CollisionObb>()->SetUpdateActive(true);
 		}
 		else {
-			GetComponent<CollisionCapsule>()->SetUpdateActive(false);
+			GetComponent<CollisionObb>()->SetUpdateActive(false);
 		}
 	}
 }
