@@ -52,6 +52,8 @@ namespace basecross {
 
 	void Player::OnUpdate()
 	{
+		Move();
+
 		auto stage = GetStage();
 
 		auto camera = stage->GetView()->GetTargetCamera();
@@ -62,7 +64,15 @@ namespace basecross {
 			return;
 		}
 
-		//m_InputHandler.PushHandle(GetThis<Player>());
+		if (!bMutekiFlg)
+		{
+			Move();
+		}
+
+		else
+		{
+			Muteki();
+		}
 	}
 
 	void Player::Move()
@@ -104,28 +114,26 @@ namespace basecross {
 	//	}
 	//}
 
-	//void Player::OnPushA()
-	//{
+	void Player::Muteki()
+	{
+		auto& app = App::GetApp();
+		float ElapsedTime = app->GetElapsedTime();
+
+		auto ColComp = GetComponent<Collision>();
 
 
-	//	//SetGravityVerocity���擾���āASetGravityVerocity��Speed��0�ɂȂ�����n�ʂƐڐG���Ă���ƌ��Ȃ��āA�t���O��|��
-	//	if (bJump == false)
-	//	{
-	//		bJump = true;
-	//		auto GravityComp = GetComponent<Gravity>();
-	//		GravityComp->SetGravityVerocity(Vec3(0, 5, 0));
+		m_Mcount += ElapsedTime;
 
-	//	}
+		if (m_Mcount > m_MTime)
+		{
+			SetDrawActive(true);
+			bMutekiFlg = false;
+			ColComp->RemoveExcludeCollisionTag(L"damege");
 
-	//	if ()
-	//	{
-	//		auto GravityComp = GetComponent<Gravity>();
-	//		GravityComp->GetGravityVelocity();
+			m_Mcount = 0;
+		}
 
-	//	}
-
-	//}
-
+	}
 
 	void Player::SetHP(int HP)
 	{
@@ -146,17 +154,27 @@ namespace basecross {
 	{
 		//if (!bRespawn)
 		//{
+
+		if (!bMutekiFlg)
+		{
 			auto bDamegeTag = other->FindTag(L"damege");
 
 
 			if (bDamegeTag)
 			{
 				m_HP += -1;
-				//bRespawn = true;
 
-				//SetDrawActive(false);
+				//bRespawn = true;
+				bMutekiFlg = true;
+				auto ColComp = GetComponent<Collision>();
+
+				ColComp->AddExcludeCollisionTag(L"damege");
+
+				SetDrawActive(false);
 
 			}
+
+		}
 		//}
 
 	}

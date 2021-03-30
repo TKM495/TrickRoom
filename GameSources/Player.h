@@ -5,26 +5,24 @@
 
 #pragma once
 #include "stdafx.h"
-//#include "InputHandler.h"
 
 namespace basecross {
 	class Player : public GameObject {
 
-		//InputHandler<Player> m_InputHandler;
-
 		float m_moveSpeed;
 		int m_HP;//HP(èâä˙ílÇT)
 		float m_crystal;
-
-		//Respawn
-		//float m_count;
+		//float m_count;//Respawn
 		//float m_RespawnTime;
 		//bool bRespawn;
+		bool bMutekiFlg;
+		float m_Mcount;
+		float m_MTime;
 
 		//void Respawn();
-
 		void Move();
 		Vec3 MoveVec();
+		void Muteki();
 
 	public:
 		//HP
@@ -33,16 +31,10 @@ namespace basecross {
 		//Crystal
 		int GetCrystal();
 
-
-		//Vec3 jumpVelocity;
-
-	//private: bool bJump = false;
-
-
 	public:
 		Player(const std::shared_ptr<Stage>& stage)
-			: GameObject(stage), m_moveSpeed(5), m_HP(5), m_crystal(0)
-			/* m_count(0), m_RespawnTime(2), bRespawn(false)*/
+			: GameObject(stage), m_moveSpeed(3), m_HP(5), m_crystal(0), bMutekiFlg(false), m_Mcount(0), m_MTime(2)
+			/*,m_count(0),m_RespawnTime(2),bRespawn(false)*/
 		{
 
 		}
@@ -50,16 +42,6 @@ namespace basecross {
 		void OnCreate() override;
 		void OnUpdate() override;
 		void OnCollisionEnter(std::shared_ptr<GameObject>& other) override;
-
-
-
-
-		//void OnPushA();
-		//void OnPushB(){}
-		//void OnPushX() {}
-		//void OnPushY() {}
-		//void OnPushStart(){}
-		//void OnPushBack() {}
 
 	};
 }
