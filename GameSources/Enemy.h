@@ -1,6 +1,6 @@
 /*!
 @file Enemy.h
-@brief �G
+@brief
 */
 
 #pragma once
@@ -18,6 +18,8 @@ namespace basecross {
 
 		virtual void OnCreate()override;
 		virtual void OnUpdate()override;
+		void OnCollisionEnter(shared_ptr<GameObject>& other) override;
+
 	};
 }
 //end basecross

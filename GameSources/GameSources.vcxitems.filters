@@ -119,16 +119,23 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PoleArt.cpp">
       <Filter>TrickArt\PoleArt</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)StageParent.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)StageScroller.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Pole.cpp">
       <Filter>StageObject\Pole</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MyMath.cpp">
       <Filter>MyMath</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FloorGenerator.cpp">
+      <Filter>StageObject\FloorGenerator</Filter>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Crystal.cpp">
       <Filter>StageObject\Crystal</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageScroller.cpp">
+      <Filter>StageScroller</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageParent.cpp">
+      <Filter>StageParent</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -249,16 +256,23 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PoleArt.h">
       <Filter>TrickArt\PoleArt</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)StageParent.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)StageScroller.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Pole.h">
       <Filter>StageObject\Pole</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MyMath.h">
       <Filter>MyMath</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FloorGenerator.h">
+      <Filter>StageObject\FloorGenerator</Filter>
+    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Crystal.h">
       <Filter>StageObject\Crystal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageScroller.h">
+      <Filter>StageScroller</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageParent.h">
+      <Filter>StageParent</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -384,6 +398,15 @@
     </Filter>
     <Filter Include="StageObject\Crystal">
       <UniqueIdentifier>{d7d8c17a-ee2b-4a94-a3dd-5da53c44cd80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\FloorGenerator">
+      <UniqueIdentifier>{b6c2ec7a-13f5-4a7b-b20e-f317147f9a75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageScroller">
+      <UniqueIdentifier>{09eb2d1b-4456-4a32-962d-e19efba2dea3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageParent">
+      <UniqueIdentifier>{c6bdede5-c904-480e-9f8f-747c1225afe6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

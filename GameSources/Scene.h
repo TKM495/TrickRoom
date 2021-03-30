@@ -20,11 +20,10 @@ namespace basecross{
 		vector<wstring> m_spriteWData;
 		//デバッグステート
 		DebugState m_debugState;
-		int m_num;
+		Vec3 m_position;
 	public:
 		Scene() :SceneBase(),
-			m_debugState(DebugState::None),
-			m_num(1)
+			m_position(Vec3(48.0f, 0.5f, -4.0f))
 		{}
 		virtual ~Scene() {}
 		virtual void OnCreate() override;
@@ -38,12 +37,14 @@ namespace basecross{
 			return m_debugState;
 		}
 
-		void SetNum(int _num) {
-			m_num = _num;
+		Vec3 GetPos() {
+			return m_position;
 		}
-		int GetNum() {
-			return m_num;
+
+		void SetPos(Vec3 pos) {
+			m_position = pos;
 		}
+
 	};
 
 }

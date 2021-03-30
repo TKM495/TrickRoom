@@ -40,10 +40,13 @@ namespace basecross {
 
 	void UI_Crystal::OnUpdate()
 	{
+		int place = static_cast<int>(pow(10, numbers.size() - 1));
 		for (auto& number : numbers)
 		{
 			auto player = GetStage()->GetSharedGameObject<Player>(L"Player");
-			int value = player->GetCrystal();
+			auto crystal = player->GetCrystal();
+			int value = (crystal / place) % 10; //”CˆÓ‚ÌŒ…‚ğæ‚èo‚·
+			place /= 10;
 			number->SetValue(value); // ”š‚ğXV
 		}
 	}

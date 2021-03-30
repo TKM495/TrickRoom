@@ -9,10 +9,12 @@
 //#include "InputHandler.h"
 
 namespace basecross {
-	class Player : public StageObject {
+	class Player : public GameObject {
 
 		//InputHandler<Player> m_InputHandler;
-
+		Vec3 m_position;
+		Vec3 m_scale;
+		Vec3 m_rotation;
 		float m_moveSpeed;
 		int m_HP;
 		float m_crystal;

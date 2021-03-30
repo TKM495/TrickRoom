@@ -33,12 +33,11 @@ namespace basecross {
 	}
 
 	void Spikes::OnCreate() {
-		auto ptrTransform = GetComponent<Transform>();
-		ptrTransform->SetPosition(m_position);
-		ptrTransform->SetScale(m_scale);
-		//OBBÕ“Ëj”»’è‚ğ•t‚¯‚é
+		StageObject::OnCreate();
+		//OBBÕ“Ë”»’è‚ğ•t‚¯‚é
 		auto ptrColl = AddComponent<CollisionObb>();
 		ptrColl->SetFixed(true);
+		ptrColl->SetAfterCollision(AfterCollision::None);
 
 		auto scene = App::GetApp()->GetScene<Scene>();
 		if (scene->GetDebugState() == DebugState::Debug) {

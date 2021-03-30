@@ -38,7 +38,11 @@ namespace basecross{
 
 	void Player::OnCreate()
 	{
-		StageObject::OnCreate();
+		auto transComp = GetComponent<Transform>();
+		transComp->SetPosition(m_position);
+		transComp->SetScale(m_scale);
+		transComp->SetRotation(m_rotation);
+
 		GetStage()->SetSharedGameObject(L"Player", GetThis<Player>());
 
 		auto drawComp = AddComponent<BcPNTStaticDraw>();
@@ -48,6 +52,8 @@ namespace basecross{
 		//ssComp->SetBackColor(Col4(0.0f, 0.0f, 0.0f, 0.5f));
 		//ssComp->SetTextRect(Rect2D<float>(10, 10, 300 + 10, 200 + 10));
 		//ssComp->SetText(L"HP 3\nCRYSTAL 10");
+
+		 AddTag(L"Player");
 
 		AddComponent<Gravity>();
 		AddComponent<CollisionObb>();
@@ -208,6 +214,13 @@ namespace basecross{
 
 				SetDrawActive(false);
 
+			}
+
+			if (other->FindTag(L"Crystal")) {
+				m_crystal++;
+				other->SetDrawActive(false);
+				other->SetUpdateActive(false);
+				other->AddNumTag(-1);
 			}
 		//}
 

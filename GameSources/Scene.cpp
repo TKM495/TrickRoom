@@ -14,6 +14,7 @@ namespace basecross{
 	//--------------------------------------------------------------------------------------
 	void Scene::OnCreate(){
 		try {
+			m_debugState = DebugState::None;
 
 			auto& app = App::GetApp();
 			auto dir = app->GetDataDirWString();
@@ -37,6 +38,7 @@ namespace basecross{
 			app->RegisterTexture(L"point", path + L"point.png");
 			app->RegisterTexture(L"PoleArt", path + L"Pole.png");
 
+
 			path = dir + L"Models/";
 			auto modelMesh = MeshResource::CreateStaticModelMesh(path + L"Enemy/", L"teki.bmf");
 			app->RegisterResource(L"Enemy", modelMesh);
@@ -57,7 +59,7 @@ namespace basecross{
 			SetClearColor(Col);
 			//自分自身にイベントを送る
 			//これにより各ステージやオブジェクトがCreate時にシーンにアクセスできる
-			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToTitleStage");
+			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToGameStage");
 		}
 		catch (...) {
 			throw;

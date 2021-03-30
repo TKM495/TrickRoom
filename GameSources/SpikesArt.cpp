@@ -49,6 +49,8 @@ namespace basecross {
 
 		auto obbComp = AddComponent<CollisionObb>();
 		obbComp->SetFixed(true);
+		obbComp->SetAfterCollision(AfterCollision::None);
+
 
 		auto scene = App::GetApp()->GetScene<Scene>();
 		if (scene->GetDebugState() == DebugState::Debug) {

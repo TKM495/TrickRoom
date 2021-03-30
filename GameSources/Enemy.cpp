@@ -41,6 +41,7 @@ namespace basecross {
 		drawComp->SetMeshResource(L"Enemy");
 
 		auto collComp = AddComponent<CollisionSphere>();
+		collComp->SetAfterCollision(AfterCollision::None);
 
 		auto scene = App::GetApp()->GetScene<Scene>();
 		if (scene->GetDebugState() == DebugState::Debug) {
@@ -68,6 +69,21 @@ namespace basecross {
 
 		}
 
+	}
+
+	void Enemy::OnCollisionEnter(shared_ptr<GameObject>& other) {
+		//判定条件がdamageのタグがあればいいのでこの処理はコメントアウト
+		//auto player = dynamic_pointer_cast<Player>(other);
+		//if (player) {
+		//	return;
+		//}
+
+		//オブジェクトを消してもいいと思ったが、念のため
+		if (other->FindTag(L"damage")) {
+			SetDrawActive(false);
+			SetUpdateActive(false);
+			AddNumTag(-1);
+		}
 	}
 }
 //end basecross

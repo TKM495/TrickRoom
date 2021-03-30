@@ -46,6 +46,7 @@ namespace basecross {
 		auto ptrColl = AddComponent<CollisionObb>();
 		ptrColl->SetFixed(true);
 
+
 		auto scene = App::GetApp()->GetScene<Scene>();
 		if (scene->GetDebugState() == DebugState::Debug) {
 			ptrColl->SetDrawActive(true);

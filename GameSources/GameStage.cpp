@@ -6,7 +6,6 @@
 #include "stdafx.h"
 #include "Project.h"
 
-
 namespace basecross {
 
 	//--------------------------------------------------------------------------------------
@@ -27,12 +26,8 @@ namespace basecross {
 		try {
 			//ビューとライトの作成
 			CreateViewLight();
-			auto scene = App::GetApp()->GetScene<Scene>();
-			if (scene->GetDebugState() == DebugState::Debug) {
-				auto debug = AddGameObject<Debug>();
-				SetSharedGameObject(L"Debug", debug);
-				debug->SetDrawLayer(10);
-			}
+			AddGameObject<Debug>();
+
 
 			//AddGameObject<Timer>();
 			AddGameObject<UI_HP>();
@@ -54,20 +49,62 @@ namespace basecross {
 			builder.Register<StairsArt>(L"StairsArt");
 			builder.Register<FloorArt>(L"FloorArt");
 			builder.Register<PoleArt>(L"PoleArt");
+			builder.Register<Crystal>(L"Crystal");
+			//builder.Register<FloorGenerator>(L"FloorGenerator");
 
 			auto& app = App::GetApp();
 			auto dir = app->GetDataDirWString();
 			auto path = dir + L"Csv/Object.csv";
-			/*			auto& app = App::GetApp();
-			auto dir = app->GetDataDirWString();
-			auto path = dir + L"Csv/Object";
-			path += scene->GetNum();
-			path += L".csv";*/
+			//auto& app = App::GetApp();
+			//auto dir = app->GetDataDirWString();
+			//auto path = dir + L"Csv/Object";
+			//path += scene->GetNum();
+			//path += L".csv";
 
 			builder.Build(GetThis<Stage>(), path);
+
+			auto stagePar = AddGameObject<StageParent>();
+
+			vector<shared_ptr<GameObject>> stageObjs;
+			GetUsedTagObjectVec(L"StageObject", stageObjs);
+			for (auto& obj : stageObjs) {
+				obj->GetComponent<Transform>()->SetParent(stagePar);
+			}
 		}
 		catch (...) {
 			throw;
+		}
+	}
+
+	void GameStage::OnUpdate() {
+		auto delta = App::GetApp()->GetElapsedTime();
+		if (m_delta > 0.05f) {
+			ObjDraw();
+			m_delta = 0.0f;
+		}
+		m_delta += delta;
+	}
+
+	void GameStage::ObjDraw() {
+		vector<shared_ptr<GameObject>> stageObjs;
+		GetUsedTagObjectVec(L"StageObject", stageObjs);
+		auto camera = dynamic_pointer_cast<MainCamera>(GetView()->GetTargetCamera());
+		auto playerPos = camera->GetAt();
+		for (auto& obj : stageObjs) {
+			if (obj->FindTag(L"Plane") || obj->FindNumTag(-1)) {
+				continue;
+			}
+
+			auto pos = obj->GetComponent<Transform>()->GetPosition();
+			auto dir = playerPos - pos;
+			if (dir.lengthSqr() > m_renderDis * m_renderDis) {
+				obj->SetDrawActive(false);
+				obj->SetUpdateActive(false);
+			}
+			else {
+				obj->SetDrawActive(true);
+				obj->SetUpdateActive(true);
+			}
 		}
 	}
 

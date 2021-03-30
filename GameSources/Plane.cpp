@@ -32,11 +32,11 @@ namespace basecross {
 		);
 	}
 
-
 	void Plane::OnCreate() {
 		//色のデータ(R,G,B,A)
 		Col4 color(1.0f, 1.0f, 1.0f, 1.0f);
 		//頂点のデータ (番号は左上から右下まで)
+		//ZではなくYを使っているのは当たり判定の関係上
 		vector<VertexPositionColorTexture> vertices = {
 			{Vec3(-0.5f, +0.5f, 0.0f),color,Vec2(0.0f,0.0f)}, //0
 			{Vec3(+0.5f, +0.5f, 0.0f),color,Vec2(1.0f,0.0f)}, //1
@@ -48,8 +48,6 @@ namespace basecross {
 			0, 1, 2, //上の三角形
 			2, 1, 3  //下の三角形
 		};
-		auto collComp = AddComponent<CollisionRect>();
-		collComp->SetFixed(true);
 
 		auto drawComp = AddComponent<BcPNTStaticDraw>();
 		//頂点データと頂点インデックスをもとにメッシュ(ポリゴン)を生成する
@@ -58,10 +56,19 @@ namespace basecross {
 		drawComp->SetOriginalMeshUse(true);
 		//drawComp->SetTextureResource(L"SpikesArt");
 
+		StageObject::OnCreate();
+
+		auto collComp = AddComponent<CollisionRect>();
+		collComp->SetFixed(true);
+		auto scene = App::GetApp()->GetScene<Scene>();
+		if (scene->GetDebugState() == DebugState::Debug) {
+			collComp->SetDrawActive(true);
+		}
+
 		//drawComp->SetSamplerState(SamplerState::AnisotropicWrap); //テクスチャの繰り返し設定(Wrap)
 		//drawComp->SetDepthStencilState(DepthStencilState::Read);
 
-		StageObject::OnCreate();
+		AddTag(L"Plane");
 	}
 }
 //end basecross
