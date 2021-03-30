@@ -16,16 +16,17 @@ namespace basecross {
 		float m_moveSpeed;
 		int m_HP;
 		float m_crystal;
-
-		//Respawn
-		//float m_count;
+		//float m_count;//Respawn
 		//float m_RespawnTime;
 		//bool bRespawn;
+		bool bMutekiFlg;
+		float m_Mcount;
+		float m_MTime;
 
 		//void Respawn();
-
 		void Move();
 		Vec3 MoveVec();
+		void Muteki();
 
 	public:
 		//HP
@@ -33,12 +34,6 @@ namespace basecross {
 		int GetHP();
 		//Crystal
 		int GetCrystal();
-
-
-		//Vec3 jumpVelocity;
-
-	//private: bool bJump = false;
-
 
 		//Vec3 jumpVelocity;
 		//private: bool bJump = false;
@@ -49,16 +44,6 @@ namespace basecross {
 		void OnCreate() override;
 		void OnUpdate() override;
 		void OnCollisionEnter(std::shared_ptr<GameObject>& other) override;
-
-
-
-
-		//void OnPushA();
-		//void OnPushB(){}
-		//void OnPushX() {}
-		//void OnPushY() {}
-		//void OnPushStart(){}
-		//void OnPushBack() {}
 
 	};
 }

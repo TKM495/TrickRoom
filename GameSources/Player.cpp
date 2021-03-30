@@ -10,7 +10,8 @@ namespace basecross{
 	Player::Player(const std::shared_ptr<Stage>& stage,
 		const wstring& line)
 			: StageObject(stage),
-		m_moveSpeed(5), m_HP(5), m_crystal(0)
+		m_moveSpeed(5), m_HP(5), m_crystal(0),
+		bMutekiFlg(false), m_Mcount(0), m_MTime(2)
 	{
 		//トークン（カラム）の配列
 		vector<wstring> tokens;
@@ -69,11 +70,12 @@ namespace basecross{
 		return moveVec * m_moveSpeed * ElapsedTime;
 
 
-
 	}
 
 	void Player::OnUpdate()
 	{
+		Move();
+
 		auto stage = GetStage();
 
 		auto camera = stage->GetView()->GetTargetCamera();
@@ -83,8 +85,30 @@ namespace basecross{
 		{
 			return;
 		}
+
+		if (!bMutekiFlg)
+		{
+			return;
+		}
 		Move();
 		//m_InputHandler.PushHandle(GetThis<Player>());
+	}
+
+	void Player::Move()
+	{
+		auto stage = GetStage();
+
+		auto transComp = GetComponent<Transform>();
+		auto pos = transComp->GetWorldPosition();
+
+		pos += MoveVec();
+
+		transComp->SetWorldPosition(pos);
+
+		if (MoveVec().length() > 0.0f)
+		{
+			Muteki();
+		}
 	}
 
 	void Player::Move()
@@ -126,21 +150,26 @@ namespace basecross{
 	//	}
 	//}
 
-	//void Player::OnPushA()
-	//{
-	//	if (bJump == false)
-	//	{
-	//		bJump = true;
-	//		auto GravityComp = GetComponent<Gravity>();
-	//		GravityComp->SetGravityVerocity(Vec3(0, 5, 0));
-	//	}
-	//	if ()
-	//	{
-	//		auto GravityComp = GetComponent<Gravity>();
-	//		GravityComp->GetGravityVelocity();
-	//	}
-	//}
+	void Player::Muteki()
+	{
+		auto& app = App::GetApp();
+		float ElapsedTime = app->GetElapsedTime();
 
+		auto ColComp = GetComponent<Collision>();
+
+
+		m_Mcount += ElapsedTime;
+
+		if (m_Mcount > m_MTime)
+		{
+			SetDrawActive(true);
+			bMutekiFlg = false;
+			ColComp->RemoveExcludeCollisionTag(L"damege");
+
+			m_Mcount = 0;
+		}
+
+	}
 
 	void Player::SetHP(int HP)
 	{
@@ -161,17 +190,28 @@ namespace basecross{
 	{
 		//if (!bRespawn)
 		//{
+
+		if (!bMutekiFlg)
+		{
 			auto bDamegeTag = other->FindTag(L"damege");
 
 
 			if (bDamegeTag)
 			{
 				m_HP += -1;
-				//bRespawn = true;
 
-				//SetDrawActive(false);
+				//bRespawn = true;
+				bMutekiFlg = true;
+				auto ColComp = GetComponent<Collision>();
+
+				ColComp->AddExcludeCollisionTag(L"damege");
+
+				SetDrawActive(false);
 
 			}
+		//}
+
+		}
 		//}
 
 	}
