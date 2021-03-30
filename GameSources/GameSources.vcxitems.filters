@@ -113,12 +113,22 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)UI_Crystal.cpp">
       <Filter>UI\Crystal</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MyMath.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Pillar.cpp">
       <Filter>StageObject\Pillar</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PoleArt.cpp">
       <Filter>TrickArt\PoleArt</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageParent.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageScroller.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Pole.cpp">
+      <Filter>StageObject\Pole</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyMath.cpp">
+      <Filter>MyMath</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Crystal.cpp">
+      <Filter>StageObject\Crystal</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -233,12 +243,22 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)UI_Crystal.h">
       <Filter>UI\Crystal</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MyMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Pillar.h">
       <Filter>StageObject\Pillar</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PoleArt.h">
       <Filter>TrickArt\PoleArt</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageParent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageScroller.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Pole.h">
+      <Filter>StageObject\Pole</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyMath.h">
+      <Filter>MyMath</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Crystal.h">
+      <Filter>StageObject\Crystal</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -358,6 +378,12 @@
     </Filter>
     <Filter Include="TrickArt\PoleArt">
       <UniqueIdentifier>{c6295b8e-3bad-49bb-8b92-a8828bdea6c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyMath">
+      <UniqueIdentifier>{b7b40b40-b7ec-4403-949b-b7f6256977f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Crystal">
+      <UniqueIdentifier>{d7d8c17a-ee2b-4a94-a3dd-5da53c44cd80}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
