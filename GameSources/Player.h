@@ -9,7 +9,7 @@
 //#include "InputHandler.h"
 
 namespace basecross {
-	class Player : public GameObject {
+	class Player : public StageObject {
 
 		//InputHandler<Player> m_InputHandler;
 		Vec3 m_position;
