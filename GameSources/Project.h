@@ -28,6 +28,7 @@
 #include "Score.h"
 #include "UI_HP.h"
 #include "UI_Crystal.h"
+#include "Fade.h"
 //行動
 #include "SinCurve.h"
 //ステージオブジェクト

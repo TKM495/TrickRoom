@@ -28,7 +28,6 @@ namespace basecross {
 			CreateViewLight();
 			AddGameObject<Debug>();
 
-
 			//AddGameObject<Timer>();
 			AddGameObject<UI_HP>();
 			AddGameObject<UI_Crystal>();
@@ -63,13 +62,17 @@ namespace basecross {
 
 			builder.Build(GetThis<Stage>(), path);
 
+			//StageObjectのタグを持つオブジェクトをStageParentの子にする
 			auto stagePar = AddGameObject<StageParent>();
-
 			vector<shared_ptr<GameObject>> stageObjs;
 			GetUsedTagObjectVec(L"StageObject", stageObjs);
 			for (auto& obj : stageObjs) {
 				obj->GetComponent<Transform>()->SetParent(stagePar);
 			}
+			stagePar->GetComponent<Transform>()->
+				SetPosition(Vec3(-20.0f, 0.0f, 0.0f));
+
+			AddGameObject<Fade>()->FadeIn();
 		}
 		catch (...) {
 			throw;
@@ -78,14 +81,39 @@ namespace basecross {
 
 	void GameStage::OnUpdate() {
 		auto delta = App::GetApp()->GetElapsedTime();
-		if (m_delta > 0.05f) {
-			ObjDraw();
-			m_delta = 0.0f;
+		switch (m_state)
+		{
+		case GameState::STAY:
+
+
+			break;
+		case GameState::PLAYING:
+			break;
+		case GameState::PAUSE:
+			break;
+		case GameState::CLEAR:
+			break;
+		case GameState::GAMEOVER:
+			break;
+		default:
+			break;
 		}
-		m_delta += delta;
+
+		m_StateDelta += delta;
+		ObjDraw(0.1f);
 	}
 
-	void GameStage::ObjDraw() {
+	void GameStage::ObjDraw(float time) {
+		auto delta = App::GetApp()->GetElapsedTime();
+		m_drawDelta += delta;
+		if (m_drawDelta <= time) {
+			return;
+		}
+		m_drawDelta = 0.0f;
+
+		auto parent = GetSharedGameObject<StageParent>(L"StageParent");
+		auto parentPos = parent->GetComponent<Transform>()->GetPosition();
+
 		vector<shared_ptr<GameObject>> stageObjs;
 		GetUsedTagObjectVec(L"StageObject", stageObjs);
 		auto camera = dynamic_pointer_cast<MainCamera>(GetView()->GetTargetCamera());
@@ -96,6 +124,7 @@ namespace basecross {
 			}
 
 			auto pos = obj->GetComponent<Transform>()->GetPosition();
+			pos += parentPos;
 			auto dir = playerPos - pos;
 			if (dir.lengthSqr() > m_renderDis * m_renderDis) {
 				obj->SetDrawActive(false);

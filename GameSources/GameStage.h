@@ -26,17 +26,20 @@ namespace basecross {
 		float m_deathPosY;
 		//描画距離
 		float m_renderDis;
-		//時間計測用
-		float m_delta;
+		//ObjDraw用時間計測用
+		float m_drawDelta;
+		//State時間計測用
+		float m_StateDelta;
 		//ビューの作成
 		void CreateViewLight();
 	public:
 		//構築と破棄
 		GameStage()
 			:Stage(),
-			m_state(GameState::PLAYING),
+			m_state(GameState::STAY),
 			m_deathPosY(-5.0f),
-			m_delta(0.0f),
+			m_drawDelta(0.0f),
+			m_StateDelta(0.0f),
 			m_renderDis(25.0f)
 		{}
 		virtual ~GameStage() {}
@@ -44,7 +47,7 @@ namespace basecross {
 		virtual void OnCreate()override;
 		virtual void OnUpdate()override;
 
-		void ObjDraw();
+		void ObjDraw(float time);
 
 		//現在のステートを取得
 		GameState GetState() {

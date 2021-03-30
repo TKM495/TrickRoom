@@ -137,6 +137,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)StageParent.cpp">
       <Filter>StageParent</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Fade.cpp">
+      <Filter>UI\Fade</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
@@ -274,6 +277,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)StageParent.h">
       <Filter>StageParent</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Fade.h">
+      <Filter>UI\Fade</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Menu">
@@ -407,6 +413,9 @@
     </Filter>
     <Filter Include="StageParent">
       <UniqueIdentifier>{c6bdede5-c904-480e-9f8f-747c1225afe6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Fade">
+      <UniqueIdentifier>{63e49346-0b6d-46ab-a008-648b6f2244db}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

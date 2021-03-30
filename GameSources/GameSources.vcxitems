@@ -21,6 +21,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)BlockArt.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Crystal.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Fade.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FloorArt.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FloorGenerator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Pillar.h" />
@@ -70,6 +71,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)BlockArt.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Crystal.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Fade.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FloorArt.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FloorGenerator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Pillar.cpp" />
