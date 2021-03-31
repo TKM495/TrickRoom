@@ -1,6 +1,6 @@
 /*!
 @file Player.cpp
-@brief ƒvƒŒƒCƒ„[‚È‚ÇÀ‘Ì
+@brief ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½È‚Çï¿½ï¿½ï¿½
 */
 
 #include "stdafx.h"
@@ -10,20 +10,29 @@ namespace basecross{
 	void Player::OnCreate()
 	{
 		auto drawComp = AddComponent<BcPNTStaticDraw>();
-		drawComp->SetMeshResource(L"DEFAULT_CUBE");
+		 drawComp->SetMeshResource(L"DEFAULT_CUBE");
 
-		auto transComp = GetComponent<Transform>(); // ƒgƒ‰ƒ“ƒXƒtƒH[ƒ€(s—ñ•ÏŠ·)ƒRƒ“ƒ|[ƒlƒ“ƒg‚ğæ“¾
+		// ï¿½fï¿½oï¿½bï¿½Oï¿½pï¿½Ì•ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½é‚½ï¿½ß‚ÌƒRï¿½ï¿½ï¿½|ï¿½[ï¿½lï¿½ï¿½ï¿½gï¿½ï¿½Ç‰ï¿½
+		auto ssComp = AddComponent<StringSprite>();
+		ssComp->SetBackColor(Col4(0.0f, 0.0f, 0.0f, 0.5f)); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì•\ï¿½ï¿½ï¿½Ìˆï¿½Ì”wï¿½iï¿½Fï¿½ï¿½ÏXï¿½ï¿½ï¿½ï¿½
+		ssComp->SetTextRect(Rect2D<float>(10, 10, 300 + 10, 200 + 10)); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½Ìˆï¿½ÌƒTï¿½Cï¿½Yï¿½ï¿½ÏXï¿½ï¿½ï¿½ï¿½
+		ssComp->SetText(L"HP 3\nCRYSTAL 10");
+
+
+
+		auto transComp = GetComponent<Transform>(); // ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½tï¿½Hï¿½[ï¿½ï¿½(ï¿½sï¿½ï¿½ÏŠï¿½)ï¿½Rï¿½ï¿½ï¿½|ï¿½[ï¿½lï¿½ï¿½ï¿½gï¿½ï¿½ï¿½æ“¾
 		transComp->SetRotation(0, XMConvertToRadians(0), 0);
 
 
 		AddComponent<Gravity>();
+		AddComponent<CollisionObb>();
 	}
 
 	void Player::SetSpeed()
 	{
 		auto& app = App::GetApp();
 		float ElapsedTime = app->GetElapsedTime();
-		auto cntlPad = app->GetInputDevice().GetControlerVec();//ƒRƒ“ƒgƒ[ƒ‰[‚Ìæ“¾
+		auto cntlPad = app->GetInputDevice().GetControlerVec();//ï¿½Rï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½[ï¿½Ìæ“¾
 
 		float fThumbLY = 0.0f;
 		float fThumbLX = 0.0f;
@@ -35,31 +44,31 @@ namespace basecross{
 
 		if (fThumbLX != 0 || fThumbLY != 0)
 		{
-			//ƒRƒ“ƒgƒ[ƒ‰‚ÌŒü‚«
+			//ï¿½Rï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ÌŒï¿½ï¿½ï¿½
 			float moveX = fThumbLX;
 			float moveZ = fThumbLY;
 			Vec2 moveVec(moveZ, moveX);
 			float moveSize = moveVec.length();
 			moveSize *= ElapsedTime * 5.0f;
 
-			////Player‚ÌŒü‚«
+			////Playerï¿½ÌŒï¿½ï¿½ï¿½
 			//float MoveDirectionX = fThumbLX;
 			//float MoveDirectionY = fThumbLY;
 
 			//auto transComp = GetComponent<Transform>();
 			//auto quat = transComp->GetQuaternion();
-			//auto rot = quat.toRotVec(); //²‚²‚Æ‚Ì‰ñ“]‚É‚·‚é
+			//auto rot = quat.toRotVec(); //ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚Ì‰ï¿½]ï¿½É‚ï¿½ï¿½ï¿½
 
-			//rot.y = atan2f(-MoveDirectionY, MoveDirectionX) + XM_PIDIV2; 
+			//rot.y = atan2f(-MoveDirectionY, MoveDirectionX) + XM_PIDIV2;
 			//transComp->SetRotation(0, rot.y, 0);
 
-			//Šp“x
+			//ï¿½pï¿½x
 			float cntlAngle = atan2(moveZ, moveX);
-			//ƒxƒNƒgƒ‹ì¬
+			//ï¿½xï¿½Nï¿½gï¿½ï¿½ï¿½ì¬
 			m_Speed = Vec3(cos(cntlAngle), 0, sin(cntlAngle));
-			//³‹K‰»‚·‚é
+			//ï¿½ï¿½ï¿½Kï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			m_Speed.normalize();
-			//ˆÚ“®ƒTƒCƒY‚ğİ’è
+			//ï¿½Ú“ï¿½ï¿½Tï¿½Cï¿½Yï¿½ï¿½İ’ï¿½
 			m_Speed *= moveSize;
 
 			m_Speed.y = 0;
@@ -80,25 +89,58 @@ namespace basecross{
 		auto pos = transComp->GetPosition();
 		pos += m_Speed;
 
-		transComp->SetPosition(pos); // XV‚µ‚½À•W‚ğTransform‚Éİ’è
+		auto stage = GetStage(); // ï¿½Xï¿½eï¿½[ï¿½Wï¿½ï¿½ï¿½æ“¾
 
-		//Player‚ÌŒü‚«
+		transComp->SetPosition(pos); // ï¿½Xï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Wï¿½ï¿½Transformï¿½Éİ’ï¿½
+
+		//Playerï¿½ÌŒï¿½ï¿½ï¿½
 		if (m_Speed.length() > 0.0f)
 		{
 			auto utilPtr = GetBehavior<UtilBehavior>();
 			utilPtr->RotToHead(m_Speed, 1.0f);
 		}
 
-		m_InputHandler.PushHandle(GetThis<Player>());
+		//m_InputHandler.PushHandle(GetThis<Player>());
 
 	}
 
-	void Player::OnPushA()
+	//void Player::OnPushA()
+	//{
+
+
+	//	//SetGravityVerocityï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ÄASetGravityVerocityï¿½ï¿½Speedï¿½ï¿½0ï¿½É‚È‚ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½Ê‚ÆÚGï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ÆŒï¿½ï¿½È‚ï¿½ï¿½ÄAï¿½tï¿½ï¿½ï¿½Oï¿½ï¿½|ï¿½ï¿½
+	//	if (bJump == false)
+	//	{
+	//		bJump = true;
+	//		auto GravityComp = GetComponent<Gravity>();
+	//		GravityComp->SetGravityVerocity(Vec3(0, 5, 0));
+
+	//	}
+
+	//	if ()
+	//	{
+	//		auto GravityComp = GetComponent<Gravity>();
+	//		GravityComp->GetGravityVelocity();
+
+	//	}
+
+	//}
+
+
+	void Player::SetHP(int HP)
 	{
-		auto GravityComp = GetComponent<Gravity>();
-		GravityComp->SetGravityVerocity(Vec3(0,10,0));
-		
+		m_HP = HP;
 	}
+
+	int Player::GetHP(){
+		return m_HP;
+	}
+
+	float Player::GetCrystal()
+	{
+		return m_crystal;
+	}
+
 
 }
 //end basecross
