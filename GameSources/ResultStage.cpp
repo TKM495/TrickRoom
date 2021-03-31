@@ -1,15 +1,13 @@
 /*!
-@file TitleStage.cpp
-@brief タイトルステージ実体
+@file ResultStage.cpp
+@brief 結果画面実体
 */
 
 #include "stdafx.h"
 #include "Project.h"
-#include "TitleStage.h"
 
 namespace basecross {
-
-	void TitleStage::CreateViewLight() {
+	void ResultStage::CreateViewLight() {
 		const Vec3 eye(0.0f, 0.0f, -10.0f);
 		const Vec3 at(0.0f);
 		auto PtrView = CreateView<SingleView>();
@@ -24,26 +22,29 @@ namespace basecross {
 		PtrMultiLight->SetDefaultLighting();
 	}
 
-	//void TitleStage::CreateSprite() {
-
-	//}
-
-	void TitleStage::OnCreate() {
+	void ResultStage::OnCreate() {
 		CreateViewLight();
 
 		auto csvLoad = AddGameObject<CSVLoad>();
 		csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetSpriteData());
-		auto title = AddGameObject<StringSprite2>(L"Title");
-		title->GetComponent<Transform>()->SetPosition(Vec3(0.0f, 200.0f, 0.0f));
-		AddGameObject<TitleMenu>();
+
+		auto scoreData = App::GetApp()->GetScene<Scene>()->GetScoreData();
+		scoreData.state = GameStage::GameState::CLEAR;
+		scoreData.HP = 10;
+		scoreData.RCrystal = 12;
+		scoreData.BCrystal = 34;
+		scoreData.Distance = 57;
+
+		AddGameObject<Result>(scoreData);
+
+		AddGameObject<ResultMenu>();
+		AddGameObject<Fade>()->FadeIn();
 	}
 
-	void TitleStage::OnUpdate() {
+	void ResultStage::OnUpdate() {
 		//コントローラチェックして入力があればコマンド呼び出し
 		//m_Inputhandler.PushHandle(GetThis<TitleStage>());
 	}
 
-	//void TitleStage::PushB() {
-	//	PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
-	//}
 }
+//end basecross

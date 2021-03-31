@@ -11,6 +11,10 @@ namespace basecross {
 	public:
 		// ビューの作成
 		void CreateViewLight();
+
+		TitleStage()
+			:Stage()
+		{}
 		// スプライトの作成
 		//void CreateSprite();
 		// 入力ハンドラー

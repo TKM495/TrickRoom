@@ -10,7 +10,7 @@ namespace basecross {
 	void Fade::OnCreate() {
 		GetStage()->SetSharedGameObject(L"Fade", GetThis<Fade>());
 
-		auto viewport = GetTypeStage<GameStage>()->GetView()->GetTargetViewport();
+		auto viewport = GetStage()->GetView()->GetTargetViewport();
 		auto halfWidth = viewport.Width / 2.0f;
 		auto halfHeight = viewport.Height / 2.0f;
 

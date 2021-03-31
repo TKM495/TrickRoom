@@ -140,6 +140,15 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Fade.cpp">
       <Filter>UI\Fade</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ResultStage.cpp">
+      <Filter>Stage\ResultStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Result.cpp">
+      <Filter>UI\Result</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ResultMenu.cpp">
+      <Filter>Menu\Result</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
@@ -280,6 +289,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Fade.h">
       <Filter>UI\Fade</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ResultStage.h">
+      <Filter>Stage\ResultStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Result.h">
+      <Filter>UI\Result</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ResultMenu.h">
+      <Filter>Menu\Result</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Menu">
@@ -416,6 +434,15 @@
     </Filter>
     <Filter Include="UI\Fade">
       <UniqueIdentifier>{63e49346-0b6d-46ab-a008-648b6f2244db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stage\ResultStage">
+      <UniqueIdentifier>{ea1b75dd-1898-4936-80f5-e1f00fad3fd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Result">
+      <UniqueIdentifier>{9802d1b2-22c4-4185-91d7-1531e579d9dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu\Result">
+      <UniqueIdentifier>{1e54f5fa-b822-4fb2-8ad7-b8ae86786df0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

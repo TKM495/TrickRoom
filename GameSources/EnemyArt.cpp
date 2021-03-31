@@ -90,11 +90,23 @@ namespace basecross {
 			GetComponent<CollisionObb>()->SetUpdateActive(false);
 		}
 
-		if (m_behavior == L"SinCurve") {
-			GetBehavior<SinCurve>()->Excute(m_cycle, m_speed);
-		}
-		else {
+		auto state = dynamic_pointer_cast<GameStage>(GetStage())->GetState();
+		switch (state)
+		{
+		case basecross::GameStage::GameState::PLAYING:
+			if (camera->GetbLeapFlg()) {
+				return;
+			}
 
+			if (m_behavior == L"SinCurve") {
+				GetBehavior<SinCurve>()->Excute(m_cycle, m_speed);
+			}
+			else {
+
+			}
+			break;
+		case basecross::GameStage::GameState::PAUSE:
+			break;
 		}
 
 	}

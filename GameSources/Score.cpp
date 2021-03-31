@@ -34,21 +34,21 @@ namespace basecross {
 			numberTrans->SetPosition(pos + offset); // SCOREラベルの隣に並ぶ数字
 			offset += Vec3(50.0f, 0, 0); // 数字の幅の文
 		}
+
+		int place = static_cast<int>(pow(10, numbers.size() - 1)); // 10の累乗を使って、桁(位)を求める
+		for (auto& number : numbers)
+		{
+			int value = score / place % 10; // 対象の桁を切り出す
+			place /= 10; // 桁(位)を下げる
+
+			number->SetValue(value); // 数字を更新する
+		}
 	}
 
-	void Score::OnUpdate()
-	{
-		//score += 1;
+	//void Score::OnUpdate()
+	//{
 
-		//int place = static_cast<int>(pow(10, numbers.size() - 1)); // 10の累乗を使って、桁(位)を求める
-		//for (auto& number : numbers)
-		//{
-		//	int value = score / place % 10; // 対象の桁を切り出す
-		//	place /= 10; // 桁(位)を下げる
-		 
-		//	number->SetValue(value); // 数字を更新する
-		//}
-	}
+	//}
 
 	void Score::OnDraw()
 	{

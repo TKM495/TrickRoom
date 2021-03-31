@@ -25,6 +25,10 @@ namespace basecross {
 	};
 
 	class StringSprite2 :public GameObject {
+		//時間計測用
+		float m_delta;
+		//非アクティブになるまでの時間
+		float m_deActiveTime;
 		//自分のデータ
 		SpriteDataFormat m_data;
 		//表示する文字の名前
@@ -49,10 +53,18 @@ namespace basecross {
 		{}
 
 		virtual void OnCreate()override;
+		virtual void OnUpdate()override;
 
 		//各種配置設定関数
 		void SetAlignHorizontal(Align::Horizontal hor);
 		void SetAlignVertical(Align::Vertical ver);
+		void Deactive(float time) {
+			m_deActiveTime = time;
+			SetUpdateActive(true);
+		}
+		void Deactive() {
+			Deactive(0.0f);
+		}
 	};
 
 }

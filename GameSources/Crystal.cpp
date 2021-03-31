@@ -48,6 +48,7 @@ namespace basecross {
 		else {
 			color = Col4(1.0f);
 		}
+		AddTag(token);
 		m_color = color;
 	}
 

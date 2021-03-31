@@ -29,7 +29,7 @@ namespace basecross {
 		//ObjDraw用時間計測用
 		float m_drawDelta;
 		//State時間計測用
-		float m_StateDelta;
+		float m_stateDelta;
 		//ビューの作成
 		void CreateViewLight();
 	public:
@@ -39,7 +39,7 @@ namespace basecross {
 			m_state(GameState::STAY),
 			m_deathPosY(-5.0f),
 			m_drawDelta(0.0f),
-			m_StateDelta(0.0f),
+			m_stateDelta(0.0f),
 			m_renderDis(25.0f)
 		{}
 		virtual ~GameStage() {}
@@ -53,10 +53,19 @@ namespace basecross {
 		GameState GetState() {
 			return m_state;
 		}
+		//ステートの設定
+		void SetState(GameState state) {
+			if (state == GameState::CLEAR || state == GameState::GAMEOVER) {
+				SetSceneTransition();
+			}
+			m_state = state;
+		}
 		//死亡ラインを取得(この座標より下回ったら死亡判定)
 		float GetDeathPosY() {
 			return m_deathPosY;
 		}
+
+		void SetSceneTransition();
 	};
 
 

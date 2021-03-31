@@ -62,13 +62,25 @@ namespace basecross {
 	}
 
 	void Enemy::OnUpdate() {
-		if (m_behavior == L"SinCurve") {
-			GetBehavior<SinCurve>()->Excute(m_cycle, m_speed);
-		}
-		else {
+		auto state = dynamic_pointer_cast<GameStage>(GetStage())->GetState();
+		auto camera = dynamic_pointer_cast<MainCamera>(GetStage()->GetView()->GetTargetCamera());
+		switch (state)
+		{
+		case basecross::GameStage::GameState::PLAYING:
+			if (camera->GetbLeapFlg()) {
+				return;
+			}
 
-		}
+			if (m_behavior == L"SinCurve") {
+				GetBehavior<SinCurve>()->Excute(m_cycle, m_speed);
+			}
+			else {
 
+			}
+			break;
+		case basecross::GameStage::GameState::PAUSE:
+			break;
+		}
 	}
 
 	void Enemy::OnCollisionEnter(shared_ptr<GameObject>& other) {

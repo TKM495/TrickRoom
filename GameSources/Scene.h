@@ -5,6 +5,7 @@
 #pragma once
 
 #include "stdafx.h"
+#include "Result.h"
 
 namespace basecross{
 	enum class DebugState {
@@ -18,12 +19,12 @@ namespace basecross{
 	class Scene : public SceneBase{
 		//スプライト用CSVデータ
 		vector<wstring> m_spriteWData;
+		//スコアデータ
+		ScoreData m_scoreData;
 		//デバッグステート
 		DebugState m_debugState;
-		Vec3 m_position;
 	public:
-		Scene() :SceneBase(),
-			m_position(Vec3(48.0f, 0.5f, -4.0f))
+		Scene() :SceneBase()
 		{}
 		virtual ~Scene() {}
 		virtual void OnCreate() override;
@@ -37,14 +38,13 @@ namespace basecross{
 			return m_debugState;
 		}
 
-		Vec3 GetPos() {
-			return m_position;
+		void SetScoreData(ScoreData data) {
+			m_scoreData = data;
 		}
 
-		void SetPos(Vec3 pos) {
-			m_position = pos;
+		ScoreData GetScoreData() {
+			return m_scoreData;
 		}
-
 	};
 
 }

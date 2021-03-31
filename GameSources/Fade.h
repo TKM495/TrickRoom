@@ -37,6 +37,11 @@ namespace basecross {
 		void SetFadeTime(float time) {
 			m_fadeTime = time;
 		}
+
+		//“®ì‚µ‚Ä‚¢‚é‚©‚Ìƒtƒ‰ƒO
+		bool GetFadeActive() {
+			return m_state == FadeState::Active ? true : false;
+		}
 	};
 
 }

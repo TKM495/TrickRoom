@@ -7,21 +7,25 @@
 #include "Project.h"
 
 namespace basecross {
-	void CSVLoad::SpriteDataExtraction() {
-		if (m_fileData.size() == 0) {
+	void CSVLoad::OnCreate() {
+		GetStage()->SetSharedGameObject(L"CSVLoad", GetThis<CSVLoad>());
+	}
+
+	void CSVLoad::SpriteDataExtraction(vector<wstring> fileData) {
+		if (fileData.size() == 0) {
 			throw BaseException(
 				L"データがありません",
-				L"Size : " + to_wstring(m_fileData.size()),
+				L"Size : " + to_wstring(fileData.size()),
 				L"CSVLoad::OnCreate()"
 			);
 		}
 		//0番目(1行目は見出しなので除外)
-		for (size_t i = 1; i < m_fileData.size(); i++) {
+		for (size_t i = 1; i < fileData.size(); i++) {
 			//トークン（カラム）の配列
 			vector<wstring> tokens;
 
 			//トークン（カラム）単位で文字列を抽出(L','をデリミタとして区分け)
-			Util::WStrToTokenVector(tokens, m_fileData[i], L',');
+			Util::WStrToTokenVector(tokens, fileData[i], L',');
 
 			SpriteDataFormat data;
 			data.name = tokens[0];
@@ -38,21 +42,21 @@ namespace basecross {
 		}
 	}
 
-	void CSVLoad::ObjectDataExtraction() {
-		if (m_fileData.size() == 0) {
+	void CSVLoad::ObjectDataExtraction(vector<wstring> fileData) {
+		if (fileData.size() == 0) {
 			throw BaseException(
 				L"データがありません",
-				L"Size : " + to_wstring(m_fileData.size()),
+				L"Size : " + to_wstring(fileData.size()),
 				L"CSVLoad::OnCreate()"
 			);
 		}
 		//0番目(1行目は見出しなので除外)
-		for (size_t i = 1; i < m_fileData.size(); i++) {
+		for (size_t i = 1; i < fileData.size(); i++) {
 			//トークン（カラム）の配列
 			vector<wstring> tokens;
 
 			//トークン（カラム）単位で文字列を抽出(L','をデリミタとして区分け)
-			Util::WStrToTokenVector(tokens, m_fileData[i], L',');
+			Util::WStrToTokenVector(tokens, fileData[i], L',');
 
 			ObjectDataFormat data;
 			data.name = tokens[0];

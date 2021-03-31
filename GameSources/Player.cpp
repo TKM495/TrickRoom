@@ -10,7 +10,7 @@ namespace basecross{
 	Player::Player(const std::shared_ptr<Stage>& stage,
 		const wstring& line)
 			: StageObject(stage),
-		m_moveSpeed(6), m_HP(5), m_crystal(0),
+		m_moveSpeed(6), m_HP(3), m_crystal(0),
 		bMutekiFlg(false), m_Mcount(0), m_MTime(2)
 	{
 		//トークン（カラム）の配列
@@ -95,6 +95,16 @@ namespace basecross{
 		if (m_HP <= 0) {
 			SetDrawActive(false);
 			SetUpdateActive(false);
+			ScoreData data{
+				GameStage::GameState::GAMEOVER,
+				m_HP,
+				m_crystal,
+				m_crystal,
+				100
+			};
+			App::GetApp()->GetScene<Scene>()->SetScoreData(data);
+			//この時点でstateはGameOverになっている
+			dynamic_pointer_cast<GameStage>(stage)->SetState(data.state);
 		}
 	}
 

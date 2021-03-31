@@ -11,7 +11,9 @@ namespace basecross {
 	public:
 		TitleMenu(const shared_ptr<Stage>& stage)
 			:BaseMenu(stage)
-		{}
+		{
+			m_dir = MenuDirection::Vertical;
+		}
 
 		virtual void OnCreate()override;
 	};

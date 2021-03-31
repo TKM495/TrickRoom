@@ -24,16 +24,15 @@ namespace basecross {
 	class CSVLoad :public GameObject{
 		vector<SpriteDataFormat> m_spriteData;
 		vector<ObjectDataFormat> m_objectData;
-		vector<wstring>& m_fileData;
 	public:
-		CSVLoad(const shared_ptr<Stage>& stage,
-			vector<wstring>& fileData)
-			:GameObject(stage),
-			m_fileData(fileData)
+		CSVLoad(const shared_ptr<Stage>& stage)
+			:GameObject(stage)
 		{}
 
-		void SpriteDataExtraction();
-		void ObjectDataExtraction();
+		virtual void OnCreate()override;
+
+		void SpriteDataExtraction(vector<wstring> fileData);
+		void ObjectDataExtraction(vector<wstring> fileData);
 
 		vector<SpriteDataFormat>& GetSpriteData(){
 			return m_spriteData;

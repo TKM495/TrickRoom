@@ -17,11 +17,13 @@
 #include "TitleStage.h"
 #include "SelectStage.h"
 #include "GameStage.h"
+#include "ResultStage.h"
 //メニュー
 #include "StringSprite2.h"
 #include "BaseMenu.h"
 #include "TitleMenu.h"
 #include "PauceMenu.h"
+#include "ResultMenu.h"
 #include "Cursor.h"
 //UI関係
 #include "Numbers.h"
@@ -29,6 +31,7 @@
 #include "UI_HP.h"
 #include "UI_Crystal.h"
 #include "Fade.h"
+#include "Result.h"
 //行動
 #include "SinCurve.h"
 //ステージオブジェクト

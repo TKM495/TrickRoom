@@ -28,6 +28,9 @@ namespace basecross {
 			CreateViewLight();
 			AddGameObject<Debug>();
 
+			auto csvLoad = AddGameObject<CSVLoad>();
+			csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetSpriteData());
+
 			//AddGameObject<Timer>();
 			AddGameObject<UI_HP>();
 			AddGameObject<UI_Crystal>();
@@ -70,7 +73,7 @@ namespace basecross {
 				obj->GetComponent<Transform>()->SetParent(stagePar);
 			}
 			stagePar->GetComponent<Transform>()->
-				SetPosition(Vec3(-20.0f, 0.0f, 0.0f));
+				SetPosition(Vec3(-15.0f, 0.0f, 0.0f));
 
 			AddGameObject<Fade>()->FadeIn();
 		}
@@ -80,27 +83,43 @@ namespace basecross {
 	}
 
 	void GameStage::OnUpdate() {
-		auto delta = App::GetApp()->GetElapsedTime();
+		auto& app = App::GetApp();
+		auto delta = app->GetElapsedTime();
+		auto fade = GetSharedGameObject<Fade>(L"Fade");
+
 		switch (m_state)
 		{
 		case GameState::STAY:
-
-
+			if (!fade->GetFadeActive()) {
+				auto str = AddGameObject<StringSprite2>(L"Start");
+				str->Deactive(1.0f);
+				m_state = GameState::PLAYING;
+			}
 			break;
 		case GameState::PLAYING:
 			break;
 		case GameState::PAUSE:
 			break;
 		case GameState::CLEAR:
+			if (!fade->GetFadeActive()) {
+				PostEvent(0.0f, GetThis<ObjectInterface>(), app->GetScene<Scene>(), L"ToResultStage");
+			}
 			break;
 		case GameState::GAMEOVER:
+			if (!fade->GetFadeActive()) {
+				PostEvent(0.0f, GetThis<ObjectInterface>(), app->GetScene<Scene>(), L"ToResultStage");
+			}
 			break;
 		default:
 			break;
 		}
 
-		m_StateDelta += delta;
+		m_stateDelta += delta;
 		ObjDraw(0.1f);
+	}
+
+	void GameStage::SetSceneTransition() {
+		GetSharedGameObject<Fade>(L"Fade")->FadeOut();
 	}
 
 	void GameStage::ObjDraw(float time) {

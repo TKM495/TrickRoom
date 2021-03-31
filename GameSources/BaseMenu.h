@@ -18,8 +18,14 @@ namespace basecross {
 
     class BaseMenu :public GameObject {
     protected:
+        enum class MenuDirection {
+            Vertical,   //垂直方向
+            Horizontal  //水平方向
+        };
+
         //メニュー要素のベクター配列
         vector<MenuElement> m_menuElement;
+        //メニューの文字
         vector<shared_ptr<StringSprite2>> m_spriteMenu;
         //メニューの要素数
         int m_menuNum;
@@ -27,11 +33,14 @@ namespace basecross {
         int m_nowMenuNum;
         //カーソルオブジェクト
         weak_ptr<Cursor> m_cursor;
+        //方向
+        MenuDirection m_dir;
     public:
         BaseMenu(const shared_ptr<Stage>& stage)
             :GameObject(stage),
             m_menuNum(0),
-            m_nowMenuNum(0)
+            m_nowMenuNum(0),
+            m_dir(MenuDirection::Vertical)
         {}
 
         virtual void OnCreate()override {}

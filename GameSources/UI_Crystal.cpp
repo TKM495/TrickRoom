@@ -21,20 +21,20 @@ namespace basecross {
 		SetAlphaActive(true);
 
 		auto transComp = AddComponent<Transform>();
-		Vec3 pos(-640.0f, +325.0f, 0.0f);
+		Vec3 pos(420.0f, +325.0f, 0.0f);
 		transComp->SetPosition(pos);
 		transComp->SetScale(Vec3(0.75f));
 
 		// ”š•”•ª‚Ì‰Šú‰»
 		numbers.resize(2);
-		Vec3 offset(120.0f, 0, 0);
+		Vec3 offset(140.0f, -40.0f, 0);
 		for (auto& number : numbers)
 		{
 			number = ObjectFactory::Create<Numbers>(GetStage(), 0);
 			auto numberTrans = number->GetComponent<Transform>();
 			numberTrans->SetPosition(pos + offset); // —×‚É•À‚Ô”š
 			numberTrans->SetScale(Vec3(0.75f));
-			offset += Vec3(35.0f, 0, 0); // ”š‚Ì•‚Ì•¶
+			offset += Vec3(45.0f, 0, 0); // ”š‚Ì•‚Ì•¶
 		}
 	}
 
