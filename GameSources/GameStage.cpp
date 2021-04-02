@@ -33,6 +33,8 @@ namespace basecross {
 			AddGameObject<Player>();
 			AddGameObject<SpikesArt>(5.0f);
 			AddGameObject<Plane>(Vec3(0.0f,-1.0f,0.0f), Vec3(10.0f,1.0f,10.0f));
+			auto effect = AddGameObject<Effect>();
+			SetSharedGameObject(L"Effect", effect);
 		}
 		catch (...) {
 			throw;

@@ -172,6 +172,9 @@ namespace basecross {
 
 				SetDrawActive(false);
 
+				auto effect = GetStage()->GetSharedGameObject<Effect>(L"Effect");
+				effect->InsertEffect(other->GetComponent<Transform>()->GetPosition());
+
 			}
 
 		}
