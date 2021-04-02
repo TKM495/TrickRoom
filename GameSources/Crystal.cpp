@@ -1,6 +1,6 @@
 /*!
 @file Crystal.cpp
-@brief ƒNƒŠƒXƒ^ƒ‹ŽÀ‘Ì
+@brief ï¿½Nï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 */
 
 #include "stdafx.h"
@@ -53,11 +53,17 @@ namespace basecross {
 	}
 
 	void Crystal::OnCreate() {
-		auto drawComp = AddComponent<BcPNTStaticDraw>();
-		drawComp->SetMeshResource(L"Crystal");
-		drawComp->SetDiffuse(m_color);
+		auto ptrDraw = AddComponent<BcPNTStaticDraw>();
+		ptrDraw->SetMeshResource(L"Crystal");
+		ptrDraw->SetDiffuse(m_color);
+		ptrDraw->SetFogEnabled(true);
+		ptrDraw->SetOwnShadowActive(true);
 
-		auto collComp = AddComponent<CollisionSphere>();
+		auto shadowPtr = AddComponent<Shadowmap>();
+		shadowPtr->SetMeshResource(L"Crystal");
+
+		auto ptrColl = AddComponent<CollisionSphere>();
+		ptrColl->SetFixed(true);
 		collComp->SetAfterCollision(AfterCollision::None);
 
 		auto scene = App::GetApp()->GetScene<Scene>();
