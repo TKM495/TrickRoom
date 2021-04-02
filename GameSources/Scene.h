@@ -5,24 +5,45 @@
 #pragma once
 
 #include "stdafx.h"
+#include "Result.h"
 
 namespace basecross{
+	enum class DebugState {
+		None,
+		Debug
+	};
 
 	//--------------------------------------------------------------------------------------
 	///	ゲームシーン
 	//--------------------------------------------------------------------------------------
 	class Scene : public SceneBase{
-		//スプライト用CSV
+		//スプライト用CSVデータ
 		vector<wstring> m_spriteWData;
-
+		//スコアデータ
+		ScoreData m_scoreData;
+		//デバッグステート
+		DebugState m_debugState;
 	public:
-		Scene() :SceneBase(){}
+		Scene() :SceneBase()
+		{}
 		virtual ~Scene() {}
 		virtual void OnCreate() override;
 		virtual void OnEvent(const shared_ptr<Event>& event) override;
 
 		vector<wstring>& GetSpriteData() {
 			return m_spriteWData;
+		}
+
+		DebugState GetDebugState() {
+			return m_debugState;
+		}
+
+		void SetScoreData(ScoreData data) {
+			m_scoreData = data;
+		}
+
+		ScoreData GetScoreData() {
+			return m_scoreData;
 		}
 	};
 

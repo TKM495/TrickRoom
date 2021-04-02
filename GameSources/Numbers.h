@@ -1,10 +1,13 @@
 #pragma once
 #include "stdafx.h"
+#include "StringSprite2.h"
 
 namespace basecross {
 	class Numbers : public GameObject
 	{
 		int number;
+		Vec2 m_origin;
+		Vec2 m_size;
 		std::vector<VertexPositionColorTexture> vertices;
 
 	public:
@@ -18,12 +21,16 @@ namespace basecross {
 		{
 			number = value;
 			float fNumber = static_cast<float>(number);
-			vertices[0].textureCoordinate = Vec2((fNumber + 0) * 50.0f / 512.0f, 100.0f / 512.0f);
-			vertices[1].textureCoordinate = Vec2((fNumber + 1) * 50.0f / 512.0f, 100.0f / 512.0f);
-			vertices[2].textureCoordinate = Vec2((fNumber + 0) * 50.0f / 512.0f, 200.0f / 512.0f);
-			vertices[3].textureCoordinate = Vec2((fNumber + 1) * 50.0f / 512.0f, 200.0f / 512.0f);
+			auto origin = m_origin;
+			origin.x += number * m_size.x;
+			vertices[0].textureCoordinate = Vec2((origin) / 1024.0f);
+			vertices[1].textureCoordinate = Vec2((origin + Vec2(m_size.x, 0.0f)) / 1024.0f);
+			vertices[2].textureCoordinate = Vec2((origin + Vec2(0.0f, m_size.y)) / 1024.0f);
+			vertices[3].textureCoordinate = Vec2((origin + m_size) / 1024.0f);
 			auto drawComp = GetComponent<PCTSpriteDraw>();
 			drawComp->UpdateVertices(vertices);
 		}
+
+		int Numbers::SearchDataIndex(vector<SpriteDataFormat>& data);
 	};
 }

@@ -1,6 +1,6 @@
 /*!
 @file MainCamera.h
-@brief ƒƒCƒ“ƒJƒƒ‰‚È‚Ç
+@brief
 */
 
 #pragma once
@@ -38,6 +38,9 @@ namespace basecross {
 
 		void OnCreate() override;
 		void OnUpdate() override;
+		state GetCamState() {
+			return m_CameraState;
+		}
 		bool GetbLeapFlg();
 	};
 }

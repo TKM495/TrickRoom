@@ -1,6 +1,6 @@
 /*!
 @file MainCamera.cpp
-@brief ���C���J�����Ȃǎ���
+@brief
 */
 
 #include "stdafx.h"
@@ -17,7 +17,9 @@ namespace basecross {
 
 	void MainCamera::OnCreate()
 	{
-
+		SetPers(false);
+		Camera::SetWidth(SetWidth);
+		Camera::SetHeight(SetHeight);
 	}
 
 	void MainCamera::OnUpdate()

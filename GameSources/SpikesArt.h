@@ -5,19 +5,17 @@
 
 #pragma once
 #include "stdafx.h"
-#include "StageObject.h"
+#include "TrickArtBase.h"
+#include "MainCamera.h"
 
 namespace basecross {
-	class SpikesArt :public StageObject {
-		float m_artSize;
+	class SpikesArt :public TrickArtBase {
 	public:
 		SpikesArt(const shared_ptr<Stage>& stage,
-			float artSize)
-			:StageObject(stage),
-			m_artSize(artSize)
-		{}
+			const wstring& line);
 
 		virtual void OnCreate()override;
+		virtual void OnUpdate()override;
 	};
 
 }

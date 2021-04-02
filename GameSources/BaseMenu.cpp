@@ -25,12 +25,24 @@ namespace basecross {
 	void BaseMenu::OnUpdate() {
 		//ƒRƒ“ƒgƒ[ƒ‰‚ÌŽæ“¾
 		const auto& pad = App::GetApp()->GetInputDevice().GetControlerVec()[0];
-		if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_UP &&
-			m_nowMenuNum > 0) {
+		bool positive = false;	//+•ûŒü
+		bool negative = false;	//-•ûŒü
+		switch (m_dir)
+		{
+		case MenuDirection::Vertical:
+			positive = pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_DOWN;
+			negative = pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_UP;
+			break;
+		case MenuDirection::Horizontal:
+			positive = pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_LEFT;
+			negative = pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_RIGHT;
+			break;
+		}
+
+		if (positive &&	m_nowMenuNum > 0) {
 			m_nowMenuNum--;
 		}
-		if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_DOWN &&
-			m_nowMenuNum < m_menuNum) {
+		if (negative &&	m_nowMenuNum < m_menuNum) {
 			m_nowMenuNum++;
 		}
 

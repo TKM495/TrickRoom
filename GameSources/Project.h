@@ -1,35 +1,61 @@
 /*!
 @file Project.h
-@brief ƒRƒ“ƒeƒ“ƒc—p‚Ìƒwƒbƒ_‚ğ‚Ü‚Æ‚ß‚é
+@brief ã‚³ãƒ³ãƒ†ãƒ³ãƒ„ç”¨ã®ãƒ˜ãƒƒãƒ€ã‚’ã¾ã¨ã‚ã‚‹
 */
 
 #pragma once
 
-//ƒƒCƒ“
+//ãƒ¡ã‚¤ãƒ³
 #include "Scene.h"
 #include "MainCamera.h"
 #include "Player.h"
 #include "CSVLoad.h"
-//ƒXƒe[ƒWŠÖŒW
+#include "Debug.h"
+#include "AdvCollision.h"
+#include "MyMath.h"
+//ã‚¹ãƒ†ãƒ¼ã‚¸é–¢ä¿‚
 #include "TitleStage.h"
 #include "SelectStage.h"
 #include "GameStage.h"
-//ƒƒjƒ…[
+#include "ResultStage.h"
+//ãƒ¡ãƒ‹ãƒ¥ãƒ¼
 #include "StringSprite2.h"
 #include "BaseMenu.h"
 #include "TitleMenu.h"
 #include "PauceMenu.h"
+#include "ResultMenu.h"
 #include "Cursor.h"
-//UIŠÖŒW
+//UIé–¢ä¿‚
 #include "Numbers.h"
 #include "Score.h"
-//ƒXƒe[ƒWƒIƒuƒWƒFƒNƒg
-#include "StageLoad.h"
+#include "UI_HP.h"
+#include "UI_Crystal.h"
+#include "Fade.h"
+#include "Result.h"
+//è¡Œå‹•
+#include "SinCurve.h"
+//ã‚¹ãƒ†ãƒ¼ã‚¸ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 #include "StageObject.h"
+#include "StageParent.h"
 #include "block.h"
+#include "Block2.h"
 #include "Plane.h"
-//ƒgƒŠƒbƒNƒA[ƒgƒIƒuƒWƒFƒNƒg
+#include "Spikes.h"
+#include "Enemy.h"
+#include "Stairs.h"
+#include "Pillar.h"
+#include "Pole.h"
+#include "Crystal.h"
+//ãƒˆãƒªãƒƒã‚¯ã‚¢ãƒ¼ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 #include "TrickArtBase.h"
 #include "SpikesArt.h"
+#include "BlockArt.h"
+#include "EnemyArt.h"
+#include "StairsArt.h"
+#include "FloorArt.h"
+#include "PoleArt.h"
 
-#include "MyMath.h"
+//æœªä½¿ç”¨
+#include "FloorGenerator.h"
+#include "Timer.h"
+#include "StageLoad.h"
