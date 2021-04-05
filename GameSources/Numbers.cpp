@@ -44,7 +44,26 @@ namespace basecross {
 
 		SetAlphaActive(true);
 
-		AddComponent<FadeComponent>()->SetFadeColor(m_color);
+		AddComponent<FadeComponent>();
+		GetFadeComp()->SetFadeColor(m_color);
+		SetUpdateActive(false);
+	}
+
+	void Numbers::OnUpdate() {
+		auto delta = App::GetApp()->GetElapsedTime();
+		auto fade = GetComponent<FadeComponent>();
+		if (m_delta > m_deActiveTime && !m_bDeactive) {
+			fade->FadeOut();
+			m_bDeactive = true;
+		}
+
+		if (!fade->IsFadeActive() && m_bDeactive) {
+			m_delta = 0.0f;
+			m_bDeactive = false;
+			SetDrawActive(false);
+			SetUpdateActive(false);
+		}
+		m_delta += delta;
 	}
 
 	int Numbers::SearchDataIndex(vector<SpriteDataFormat>& data) {

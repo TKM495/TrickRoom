@@ -38,6 +38,7 @@ namespace basecross {
 		drawComp->SetMeshResource(L"DEFAULT_CUBE");
 		drawComp->SetDiffuse(Col4(0.0f, 0.0f, 0.0f, 0.6f));
 
+		m_position.x += dynamic_pointer_cast<GameStage>(GetStage())->GetStartOffset();
 		auto transComponent = GetComponent<Transform>();
 		transComponent->SetPosition(m_position);
 		transComponent->SetScale(m_scale);

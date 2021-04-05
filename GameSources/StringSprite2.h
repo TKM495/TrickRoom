@@ -57,6 +57,7 @@ namespace basecross {
 			m_horizontal(horizontal),
 			m_vertical(vertical),
 			m_color(color),
+			m_delta(0.0f),
 			m_bDeactive(false)
 		{}
 

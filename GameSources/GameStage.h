@@ -32,6 +32,8 @@ namespace basecross {
 		float m_drawDelta;
 		//State時間計測用
 		float m_stateDelta;
+		//ひとつ前の値
+		int m_beforeValue;
 		//ビューの作成
 		void CreateViewLight();
 	public:
@@ -42,7 +44,8 @@ namespace basecross {
 			m_drawDelta(0.0f),
 			m_stateDelta(0.0f),
 			m_renderDis(25.0f),
-			m_startOffset(15.0f)
+			m_startOffset(15.0f),
+			m_beforeValue(0.0f)
 		{}
 		virtual ~GameStage() {}
 		//初期化
@@ -69,9 +72,10 @@ namespace basecross {
 		}
 
 		void SetSceneTransition();
+
+		//スタート時のカウントダウン(動作終了するとtrueが返る)
+		bool StartCountdown();
 	};
-
-
 }
 //end basecross
 

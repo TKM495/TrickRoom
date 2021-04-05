@@ -38,6 +38,8 @@ namespace basecross{
 
 	void Player::OnCreate()
 	{
+		m_position.x += dynamic_pointer_cast<GameStage>(GetStage())->GetStartOffset();
+
 		auto transComp = GetComponent<Transform>();
 		transComp->SetPosition(m_position);
 		transComp->SetScale(m_scale);

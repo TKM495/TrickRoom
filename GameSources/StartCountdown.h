@@ -8,8 +8,10 @@
 
 namespace basecross {
 	class StartCountdown :public GameObject {
-		//ゲームオブジェクト配列(4なのは1～3とスタート)
-		shared_ptr<GameObject> m_objs[4];
+		//数字オブジェクト
+		shared_ptr<Numbers> m_numObjs[3];
+		//文字オブジェクト
+		shared_ptr<StringSprite2> m_strObj;
 		//時間計測用
 		float m_delta;
 		//ひとつ前の値
@@ -26,10 +28,6 @@ namespace basecross {
 		void OnCreate()override;
 		void OnUpdate()override;
 
-		//カウントスタート
-		void Start() {
-			SetUpdateActive(true);
-		}
 	};
 
 }

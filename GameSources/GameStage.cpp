@@ -26,7 +26,7 @@ namespace basecross {
 		try {
 			//�r���[�ƃ��C�g�̍쐬
 			CreateViewLight();
-			//AddGameObject<Debug>();
+			AddGameObject<Debug>();
 
 			auto& app = App::GetApp();
 			auto scene = app->GetScene<Scene>();
@@ -107,21 +107,14 @@ namespace basecross {
 		case GameState::FADEIN:
 			if (!fade->GetFadeActive()) {
 				m_state = GameState::STAY;
+				m_stateDelta = 0.0f;
 			}
 			break;
 		case GameState::STAY:
-		{ //文全体をかっこに入れるとエラーがでない
-			auto str = AddGameObject<StringSprite2>(L"Start",
-				Align::Horizontal::Center,
-				Align::Vertical::Center,
-				Col4(1.0f));
-			str->SetSize(1.5f);
-			str->GetFadeComp()->SetFadeTime(0.1f);
-			str->GetFadeComp()->FadeIn();
-			str->Deactive(1.0f);
-			//AddGameObject<StartCountdown>()->Start();
-			m_state = GameState::PLAYING;
-		}
+			if (StartCountdown()) {
+				m_state = GameState::PLAYING;
+				m_stateDelta = 0.0f;
+			}
 			break;
 		case GameState::PLAYING:
 			break;
@@ -153,6 +146,35 @@ namespace basecross {
 
 	void GameStage::SetSceneTransition() {
 		GetSharedGameObject<Fade>(L"Fade")->FadeOut();
+	}
+
+	bool GameStage::StartCountdown() {
+		auto delta = App::GetApp()->GetElapsedTime();
+		auto deltaTime = 4.0f - m_stateDelta;
+		bool flg = false;
+		//数字の時
+		if (deltaTime > 1.0f) {
+			auto num = (int)deltaTime;
+			if (m_beforeValue != num) {
+				auto obj = AddGameObject<Numbers>(num);
+				obj->SetSize(1.5f);
+				obj->GetFadeComp()->SetFadeTime(0.1f);
+				obj->GetFadeComp()->FadeIn();
+				obj->Deactive(0.7f);
+			}
+		}
+		else {
+			auto str = AddGameObject<StringSprite2>(L"Start",
+				Align::Horizontal::Center,
+				Align::Vertical::Center);
+			str->SetSize(1.5f);
+			str->GetFadeComp()->SetFadeTime(0.1f);
+			str->GetFadeComp()->FadeIn();
+			str->Deactive(1.0f);
+			flg = true;
+		}
+		m_beforeValue = (int)deltaTime;
+		return flg;
 	}
 
 	void GameStage::ObjDraw(float time) {
