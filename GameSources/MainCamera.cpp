@@ -56,7 +56,7 @@ namespace basecross {
 		if (!bLeapFlg)
 		{
 			SetEye(at + m_LeapOffset);
-			if (pad.wPressedButtons & XINPUT_GAMEPAD_RIGHT_SHOULDER)//RB
+			if (pad.wPressedButtons & XINPUT_GAMEPAD_RIGHT_SHOULDER && m_CameraState != state::Right)//RB
 			{
 				m_CameraState = state::Right;
 				bLeapFlg = true;
@@ -66,7 +66,7 @@ namespace basecross {
 				//SetEye(at + m_offset);
 			}
 
-			if (pad.wPressedButtons & XINPUT_GAMEPAD_LEFT_SHOULDER)//LB
+			if (pad.wPressedButtons & XINPUT_GAMEPAD_LEFT_SHOULDER && m_CameraState != state::Left)//LB
 			{
 				m_CameraState = state::Left;
 				bLeapFlg = true;
@@ -106,5 +106,4 @@ namespace basecross {
 	{
 		return bLeapFlg;
 	}
-
 }
