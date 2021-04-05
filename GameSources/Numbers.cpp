@@ -28,13 +28,12 @@ namespace basecross {
 		float fNumber = static_cast<float>(number);
 		auto origin = m_origin;
 		origin.x += number * m_size.x;
-		Col4 color(1.0f, 1.0f, 1.0f, 1.0f);
 		vertices = {
-			{Vec3(-pos.left,+pos.top,0.0f),color,(origin) / 1024.0f}, //0
-			{Vec3(+pos.right,+pos.top,0.0f),color,(origin + Vec2(m_size.x,0.0f)) / 1024.0f}, //1
+			{Vec3(-pos.left,+pos.top,0.0f),m_color,(origin) / 1024.0f}, //0
+			{Vec3(+pos.right,+pos.top,0.0f),m_color,(origin + Vec2(m_size.x,0.0f)) / 1024.0f}, //1
 
-			{Vec3(-pos.left,-pos.bottom,0.0f),color,(origin + Vec2(0.0f,m_size.y)) / 1024.0f}, //2
-			{Vec3(+pos.right,-pos.bottom,0.0f),color,(origin + m_size) / 1024.0f}  //3
+			{Vec3(-pos.left,-pos.bottom,0.0f),m_color,(origin + Vec2(0.0f,m_size.y)) / 1024.0f}, //2
+			{Vec3(+pos.right,-pos.bottom,0.0f),m_color,(origin + m_size) / 1024.0f}  //3
 		};
 		std::vector<uint16_t> indices = {
 			0,1,2,
@@ -45,6 +44,7 @@ namespace basecross {
 
 		SetAlphaActive(true);
 
+		AddComponent<FadeComponent>()->SetFadeColor(m_color);
 	}
 
 	int Numbers::SearchDataIndex(vector<SpriteDataFormat>& data) {

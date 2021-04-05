@@ -16,6 +16,7 @@ namespace basecross {
 		}
 
 		virtual void OnCreate()override;
+		virtual void OnPushButton()override;
 	};
 }
 //end basecross

@@ -29,7 +29,9 @@ namespace basecross {
 		auto drawComp = AddComponent<PCSpriteDraw>(vertices, indices);
 		drawComp->SetDiffuse(Col4(0.0f));
 		SetAlphaActive(true);
-		SetDrawLayer(5);
+
+		//フェードは画面全体に影響するため最も手前に表示する
+		SetDrawLayer(10);
 	}
 
 	void Fade::OnUpdate() {
@@ -40,7 +42,7 @@ namespace basecross {
 		{
 		case FadeState::Active:
 			m_delta += delta * m_key;
-			if (m_delta >= 0) {
+			if (m_delta >= 0 && m_delta <= m_fadeTime) {
 				auto alpha = (m_delta / m_fadeTime);
 				pcSprite->SetDiffuse(Col4(0.0f, 0.0f, 0.0f, alpha));
 			}

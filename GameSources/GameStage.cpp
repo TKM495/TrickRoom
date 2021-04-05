@@ -1,6 +1,6 @@
 /*!
 @file GameStage.cpp
-@brief ƒQ[ƒ€ƒXƒe[ƒWÀ‘Ì
+@brief ï¿½Qï¿½[ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½
 */
 
 #include "stdafx.h"
@@ -9,36 +9,36 @@
 namespace basecross {
 
 	//--------------------------------------------------------------------------------------
-	//	ƒQ[ƒ€ƒXƒe[ƒWƒNƒ‰ƒXÀ‘Ì
+	//	ï¿½Qï¿½[ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½Wï¿½Nï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½
 	//--------------------------------------------------------------------------------------
 	void GameStage::CreateViewLight() {
 		auto PtrView = CreateView<SingleView>();
-		//ƒrƒ…[‚ÌƒJƒƒ‰‚Ìİ’è
+		//ï¿½rï¿½ï¿½ï¿½[ï¿½ÌƒJï¿½ï¿½ï¿½ï¿½ï¿½Ìİ’ï¿½
 		auto PtrCamera = ObjectFactory::Create<MainCamera>();
 		PtrView->SetCamera(PtrCamera);
-		//ƒ}ƒ‹ƒ`ƒ‰ƒCƒg‚Ìì¬
+		//ï¿½}ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½Cï¿½gï¿½Ìì¬
 		auto PtrMultiLight = CreateLight<MultiLight>();
-		//ƒfƒtƒHƒ‹ƒg‚Ìƒ‰ƒCƒeƒBƒ“ƒO‚ğw’è
+		//ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½Ìƒï¿½ï¿½Cï¿½eï¿½Bï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½wï¿½ï¿½
 		PtrMultiLight->SetDefaultLighting();
 	}
 
 	void GameStage::OnCreate() {
 		try {
-			//ƒrƒ…[‚Æƒ‰ƒCƒg‚Ìì¬
+			//ï¿½rï¿½ï¿½ï¿½[ï¿½Æƒï¿½ï¿½Cï¿½gï¿½Ìì¬
 			CreateViewLight();
-			AddGameObject<Debug>();
+			//AddGameObject<Debug>();
 
+			auto& app = App::GetApp();
+			auto scene = app->GetScene<Scene>();
 			auto csvLoad = AddGameObject<CSVLoad>();
-			csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetSpriteData());
+			csvLoad->SpriteDataExtraction(scene->GetSpriteData());
+			csvLoad->PictureDataExtraction(scene->GetPictureData());
 
-			//AddGameObject<Timer>();
-			AddGameObject<UI_HP>();
-			AddGameObject<UI_Crystal>();
-
-			//ƒQ[ƒ€ƒIƒuƒWƒFƒNƒgƒrƒ‹ƒ_[
+			//ï¿½Qï¿½[ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½rï¿½ï¿½ï¿½_ï¿½[
 			GameObjecttCSVBuilder builder;
-			//ƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚Ì“o˜^
+			//ï¿½Qï¿½[ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Ì“oï¿½^
 			builder.Register<Player>(L"Player");
+			builder.Register<Goal>(L"Goal");
 			builder.Register<Plane>(L"Plane");
 			builder.Register<Pillar>(L"Pillar");
 			builder.Register<Block>(L"Block");
@@ -52,9 +52,9 @@ namespace basecross {
 			builder.Register<FloorArt>(L"FloorArt");
 			builder.Register<PoleArt>(L"PoleArt");
 			builder.Register<Crystal>(L"Crystal");
-			//builder.Register<FloorGenerator>(L"FloorGenerator");
+			builder.Register<Picture>(L"Picture");
+			builder.Register<Pursuer>(L"Pursuer");
 
-			auto& app = App::GetApp();
 			auto dir = app->GetDataDirWString();
 			auto path = dir + L"Csv/Object.csv";
 			//auto& app = App::GetApp();
@@ -65,7 +65,7 @@ namespace basecross {
 
 			builder.Build(GetThis<Stage>(), path);
 
-			//StageObject‚Ìƒ^ƒO‚ğ‚ÂƒIƒuƒWƒFƒNƒg‚ğStageParent‚Ìq‚É‚·‚é
+			//StageObjectï¿½Ìƒ^ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½ÂƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½StageParentï¿½Ìqï¿½É‚ï¿½ï¿½ï¿½
 			auto stagePar = AddGameObject<StageParent>();
 			vector<shared_ptr<GameObject>> stageObjs;
 			GetUsedTagObjectVec(L"StageObject", stageObjs);
@@ -75,8 +75,22 @@ namespace basecross {
 			stagePar->GetComponent<Transform>()->
 				SetPosition(Vec3(-15.0f, 0.0f, 0.0f));
 
+			auto effect = AddGameObject<Effect>(Vec3(-15.0f, 0.0f, 0.0f));
+			effect->GetComponent<Transform>()->SetParent(stagePar);
+			SetSharedGameObject(L"Effect", effect);
+
+			AddGameObject<UI_HP>();
+			AddGameObject<UI_Crystal>();
+			AddGameObject<UI_Goalgauge>();
+			AddGameObject<UI_Player>();
+			AddGameObject<UI_FPS>();
+			AddGameObject<UI_LR>();
+
 			AddGameObject<Fade>()->FadeIn();
 
+			//BGMï¿½ÌÄï¿½
+			auto audio = App::GetApp()->GetXAudio2Manager();
+			m_gameBGM = audio->Start(L"GameBGM", XAUDIO2_LOOP_INFINITE, 0.1f);
 		}
 		catch (...) {
 			throw;
@@ -90,12 +104,24 @@ namespace basecross {
 
 		switch (m_state)
 		{
-		case GameState::STAY:
+		case GameState::FADEIN:
 			if (!fade->GetFadeActive()) {
-				auto str = AddGameObject<StringSprite2>(L"Start");
-				str->Deactive(1.0f);
-				m_state = GameState::PLAYING;
+				m_state = GameState::STAY;
 			}
+			break;
+		case GameState::STAY:
+		{ //æ–‡å…¨ä½“ã‚’ã‹ã£ã“ã«å…¥ã‚Œã‚‹ã¨ã‚¨ãƒ©ãƒ¼ãŒã§ãªã„
+			auto str = AddGameObject<StringSprite2>(L"Start",
+				Align::Horizontal::Center,
+				Align::Vertical::Center,
+				Col4(1.0f));
+			str->SetSize(1.5f);
+			str->GetFadeComp()->SetFadeTime(0.1f);
+			str->GetFadeComp()->FadeIn();
+			str->Deactive(1.0f);
+			//AddGameObject<StartCountdown>()->Start();
+			m_state = GameState::PLAYING;
+		}
 			break;
 		case GameState::PLAYING:
 			break;
@@ -117,6 +143,12 @@ namespace basecross {
 
 		m_stateDelta += delta;
 		ObjDraw(0.1f);
+	}
+
+	void GameStage::OnDestroy(){
+		//BGMï¿½Ì’ï¿½~
+		auto audio = App::GetApp()->GetXAudio2Manager();
+		audio->Stop(m_gameBGM);
 	}
 
 	void GameStage::SetSceneTransition() {

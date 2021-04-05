@@ -10,9 +10,16 @@ namespace basecross
 {
 	class UI_Player : public GameObject
 	{
+		float m_startPosX;
+		float m_goalPosX;
+		float m_startObjPosX;
+		float m_goalObjPosX;
+		float m_startToGoalDir;
 	public:
 		UI_Player(const std::shared_ptr<Stage>& stage) :
-			GameObject(stage)
+			GameObject(stage),
+			m_startPosX(0.0f),
+			m_goalPosX(0.0f)
 		{}
 
 		void OnCreate() override;

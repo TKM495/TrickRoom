@@ -64,11 +64,11 @@ namespace basecross {
 
 		auto ptrColl = AddComponent<CollisionSphere>();
 		ptrColl->SetFixed(true);
-		collComp->SetAfterCollision(AfterCollision::None);
+		ptrColl->SetAfterCollision(AfterCollision::None);
 
 		auto scene = App::GetApp()->GetScene<Scene>();
 		if (scene->GetDebugState() == DebugState::Debug) {
-			collComp->SetDrawActive(true);
+			ptrColl->SetDrawActive(true);
 		}
 
 		StageObject::OnCreate();

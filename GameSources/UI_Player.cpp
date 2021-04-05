@@ -10,6 +10,9 @@ namespace basecross
 {
 	void UI_Player::OnCreate()
 	{
+		m_startPosX = 130.0f;
+		m_goalPosX = -130.0f;
+
 		float x = 25.0f;
 		float y = 25.0f;
 
@@ -31,10 +34,24 @@ namespace basecross
 		SetAlphaActive(true);
 
 		auto transComp = GetComponent<Transform>();
-		Vec3 pos(130.0f, 325.0f, 0.0f);
+		Vec3 pos(m_startPosX, 350.0f, 0.0f);
 		transComp->SetPosition(pos);
+
+		auto player = GetStage()->GetSharedGameObject<Player>(L"Player");
+		m_startObjPosX = player->GetComponent<Transform>()->GetPosition().x;
+		m_goalObjPosX = -100.0f;
+		m_startToGoalDir = m_goalObjPosX - m_startObjPosX;
 	}
 
 	void UI_Player::OnUpdate()
-	{}
+	{
+		auto player = GetStage()->GetSharedGameObject<Player>(L"Player");
+		auto playerPos = player->GetComponent<Transform>()->GetPosition();
+
+		auto transComp = GetComponent<Transform>();
+		auto pos = transComp->GetPosition();
+		pos.x = Lerp::CalculateLerp(m_startPosX, m_goalPosX, m_startObjPosX, m_goalObjPosX, playerPos.x, Lerp::rate::Linear);
+
+		transComp->SetPosition(pos);
+	}
 }

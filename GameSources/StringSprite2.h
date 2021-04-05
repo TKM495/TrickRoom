@@ -6,6 +6,7 @@
 #pragma once
 #include "stdafx.h"
 #include "CSVLoad.h"
+#include "FadeComponent.h"
 
 namespace basecross {
 	//揃え方
@@ -29,6 +30,10 @@ namespace basecross {
 		float m_delta;
 		//非アクティブになるまでの時間
 		float m_deActiveTime;
+		//非アクティブかどうか
+		bool m_bDeactive;
+		//色
+		Col4 m_color;
 		//自分のデータ
 		SpriteDataFormat m_data;
 		//表示する文字の名前
@@ -45,11 +50,14 @@ namespace basecross {
 		StringSprite2(const shared_ptr<Stage>& stage,
 			wstring name,
 			Align::Horizontal horizontal = Align::Horizontal::Center,
-			Align::Vertical vertical = Align::Vertical::Center)
+			Align::Vertical vertical = Align::Vertical::Center,
+			Col4 color = Col4(0.0f, 0.0f, 0.0f, 1.0f))
 			:GameObject(stage),
 			m_name(name),
 			m_horizontal(horizontal),
-			m_vertical(vertical)
+			m_vertical(vertical),
+			m_color(color),
+			m_bDeactive(false)
 		{}
 
 		virtual void OnCreate()override;
@@ -58,6 +66,17 @@ namespace basecross {
 		//各種配置設定関数
 		void SetAlignHorizontal(Align::Horizontal hor);
 		void SetAlignVertical(Align::Vertical ver);
+
+		void SetSize(float size);
+
+		shared_ptr<FadeComponent> GetFadeComp() {
+			return GetComponent<FadeComponent>();
+		}
+
+		Col4 GetColor() {
+			return m_color;
+		}
+
 		void Deactive(float time) {
 			m_deActiveTime = time;
 			SetUpdateActive(true);

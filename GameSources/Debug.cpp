@@ -19,6 +19,11 @@ namespace basecross {
 		auto transComp = player->GetComponent<Transform>();
 		auto pos = transComp->GetPosition();
 
+		auto pursuer = GetStage()->GetSharedGameObject<Pursuer>(L"Pursuer");
+
+		auto pursuerPos = pursuer->GetPos();
+		auto myPos = GetComponent<Transform>()->GetPosition();
+		auto dir = pursuerPos.x - myPos.x;
 		//オブジェクト数
 		auto ObjCount = GetStage()->GetGameObjectVec().size();
 		wstring OBJ_COUNT(L"OBJ_COUNT: ");
@@ -41,6 +46,8 @@ namespace basecross {
 		wss.str(L"");
 		wss << FPS;
 		wss << L"PlayerPos:" << pos.x << L"," << pos.y << L"," << pos.z << endl;
+		wss << L"Dir:" << dir << endl;
+		wss << L"Pursuer:" << pursuerPos.x << endl;
 		wss << ViewStr << OBJ_COUNT << endl;
 		auto ssComp = GetComponent<StringSprite>();
 		ssComp->SetText(wss.str());

@@ -19,6 +19,8 @@ namespace basecross{
 	class Scene : public SceneBase{
 		//スプライト用CSVデータ
 		vector<wstring> m_spriteWData;
+		//画像用CSVデータ
+		vector<wstring> m_pictureWData;
 		//スコアデータ
 		ScoreData m_scoreData;
 		//デバッグステート
@@ -32,6 +34,10 @@ namespace basecross{
 
 		vector<wstring>& GetSpriteData() {
 			return m_spriteWData;
+		}
+
+		vector<wstring>& GetPictureData() {
+			return m_pictureWData;
 		}
 
 		DebugState GetDebugState() {

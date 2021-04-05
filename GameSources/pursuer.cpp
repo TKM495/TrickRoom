@@ -7,16 +7,40 @@
 #include "Project.h"
 
 namespace basecross {
+	Pursuer::Pursuer(const std::shared_ptr<Stage>& stage,
+		const wstring& line)
+		: StageObject(stage), m_Speed(6)
+	{
+		vector<wstring> tokens;
+		Util::WStrToTokenVector(tokens, line, L',');
+		m_position = Vec3(
+			(float)_wtof(tokens[1].c_str()),
+			(float)_wtof(tokens[2].c_str()),
+			(float)_wtof(tokens[3].c_str())
+		);
+		auto scale = Vec3(
+			(float)_wtof(tokens[4].c_str()),
+			(float)_wtof(tokens[5].c_str()),
+			(float)_wtof(tokens[6].c_str())
+		);
+		m_scale = Vec3(
+			scale.x * 5.0f,
+			scale.y * 5.0f,
+			scale.z * 9.9f
+		);
+		m_rotation = Vec3(0.0f);
+	}
 	void Pursuer::OnCreate()
 	{
+		GetStage()->SetSharedGameObject(L"Pursuer", GetThis<Pursuer>());
 
-		auto drawComp = AddComponent<PNTStaticDraw>();
+		auto drawComp = AddComponent<PCTStaticDraw>();
 		drawComp->SetMeshResource(L"DEFAULT_CUBE");
-		drawComp->SetDiffuse(Col4(0.0f, 0.0f, 0.0f, 0.8f));
+		drawComp->SetDiffuse(Col4(0.0f, 0.0f, 0.0f, 0.6f));
 
 		auto transComponent = GetComponent<Transform>();
-		transComponent->SetPosition(10.0f, 3.0f, 0.0f);
-		transComponent->SetScale(1, 10, 10);
+		transComponent->SetPosition(m_position);
+		transComponent->SetScale(m_scale);
 
 		SetAlphaActive(true);
 	}
@@ -40,7 +64,10 @@ namespace basecross {
 
 	void Pursuer::OnUpdate()
 	{
-		Move();
+		auto camera = dynamic_pointer_cast<MainCamera>(GetStage()->GetView()->GetTargetCamera());
+		if (!camera->GetbLeapFlg()) {
+			Move();
+		}
 	}
 
 	void Pursuer::Move()
@@ -58,4 +85,13 @@ namespace basecross {
 		transComp->SetWorldPosition(pos);
 
 	}
+
+	Vec3 Pursuer::GetPos() {
+		auto transComp = GetComponent<Transform>();
+		auto pos = transComp->GetPosition();
+		auto scale = transComp->GetScale();
+		pos.x += -scale.x;
+		return pos;
+	}
+
 }

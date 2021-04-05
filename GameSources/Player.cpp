@@ -10,7 +10,7 @@ namespace basecross{
 	Player::Player(const std::shared_ptr<Stage>& stage,
 		const wstring& line)
 			: StageObject(stage),
-		m_moveSpeed(6), m_HP(3), m_crystal(0),
+		m_moveSpeed(6), m_HP(3), m_Rcrystal(0),m_Bcrystal(0),
 		bMutekiFlg(false), m_Mcount(0), m_MTime(2)
 	{
 		//トークン（カラム）の配列
@@ -46,7 +46,10 @@ namespace basecross{
 		GetStage()->SetSharedGameObject(L"Player", GetThis<Player>());
 
 		auto drawComp = AddComponent<BcPNTStaticDraw>();
-		 drawComp->SetMeshResource(L"DEFAULT_CUBE");
+		drawComp->SetMeshResource(L"DEFAULT_CUBE");
+
+		auto shadow = AddComponent<Shadowmap>();
+		shadow->SetMeshResource(L"DEFAULT_CUBE");
 
 		 AddTag(L"Player");
 
@@ -76,6 +79,7 @@ namespace basecross{
 	void Player::OnUpdate()
 	{
 		auto stage = GetStage();
+		auto pursuer = stage->GetSharedGameObject<Pursuer>(L"Pursuer");
 
 		auto camera = stage->GetView()->GetTargetCamera();
 		auto mainCamera = dynamic_pointer_cast<MainCamera>(camera);
@@ -92,26 +96,25 @@ namespace basecross{
 			Muteki();
 		}
 
-		if (m_HP <= 0) {
-			SetDrawActive(false);
-			SetUpdateActive(false);
-			ScoreData data{
-				GameStage::GameState::GAMEOVER,
-				m_HP,
-				m_crystal,
-				m_crystal,
-				100
-			};
-			App::GetApp()->GetScene<Scene>()->SetScoreData(data);
-			//この時点でstateはGameOverになっている
-			dynamic_pointer_cast<GameStage>(stage)->SetState(data.state);
+		auto pursuerPos = pursuer->GetPos();
+		auto myPos = GetComponent<Transform>()->GetPosition();
+		auto dir = pursuerPos.x- myPos.x;
+
+		//HPが0になったらゲームオーバー
+		if (m_HP <= 0|| dir < 0.1f) {
+			ToGameOver();
+		}
+
+		if (myPos.x > 100.0f || myPos.x < -100.0f) {
+			GetComponent<Gravity>()->SetUpdateActive(false);
+		}
+		else {
+			GetComponent<Gravity>()->SetUpdateActive(true);
 		}
 	}
 
 	void Player::Move()
 	{
-		auto stage = GetStage();
-
 		auto transComp = GetComponent<Transform>();
 		auto pos = transComp->GetWorldPosition();
 
@@ -154,7 +157,42 @@ namespace basecross{
 
 	int Player::GetCrystal()
 	{
-		return m_crystal;
+		return m_Rcrystal + m_Bcrystal;
+	}
+
+	void Player::ToGameOver() {
+		SetDrawActive(false);
+		SetUpdateActive(false);
+
+		auto nowPos = GetComponent<Transform>()->GetPosition();
+
+		ScoreData data{
+			GameStage::GameState::GAMEOVER,
+			0, //ゲームオーバー時はHPは0
+			m_Rcrystal,
+			m_Bcrystal,
+			(int)Util::Round((double)m_position.x - nowPos.x,0)
+		};
+		App::GetApp()->GetScene<Scene>()->SetScoreData(data);
+		//この時点でstateはGameOverになっている
+		dynamic_pointer_cast<GameStage>(GetStage())->SetState(data.state);
+	}
+
+	void Player::ToClear() {
+		SetDrawActive(false);
+		SetUpdateActive(false);
+		auto nowPos = GetComponent<Transform>()->GetPosition();
+
+		ScoreData data{
+			GameStage::GameState::CLEAR,
+			m_HP,
+			m_Rcrystal,
+			m_Bcrystal,
+			(int)Util::Round((double)m_position.x - nowPos.x,0)
+		};
+		App::GetApp()->GetScene<Scene>()->SetScoreData(data);
+		//この時点でstateはClearになっている
+		dynamic_pointer_cast<GameStage>(GetStage())->SetState(data.state);
 	}
 
 	//衝突判定
@@ -166,16 +204,41 @@ namespace basecross{
 
 			if (bDamegeTag)
 			{
+				auto fx = GetStage()->GetSharedGameObject<Effect>(L"Effect");
+				fx->InsertEffect(other->GetComponent<Transform>()->GetPosition());
+
 				m_HP += -1;
 				bMutekiFlg = true;
-				auto ColComp = GetComponent<Collision>();
+				auto audio = App::GetApp()->GetXAudio2Manager();
+				audio->Start(L"DamageSE", 0, 0.1f);
 			}
 		}
 		if (other->FindTag(L"Crystal")) {
-			m_crystal++;
+			auto fx = GetStage()->GetSharedGameObject<Effect>(L"Effect");
+			fx->InsertEffect(other->GetComponent<Transform>()->GetPosition(), Col4(1.0f));
+			if (other->FindTag(L"Red")) {
+				m_Rcrystal++;
+			}
+			else if(other->FindTag(L"Blue")) {
+				m_Bcrystal++;
+			}
+			else {
+				throw BaseException(
+					L"タグが見つかりません",
+					L"FindTag() != Red or Blue",
+					L"Player::OnCollisionEnter()"
+				);
+			}
 			other->SetDrawActive(false);
 			other->SetUpdateActive(false);
 			other->AddNumTag(-1);
+
+			//SE
+			auto audio = App::GetApp()->GetXAudio2Manager();
+			audio->Start(L"CrystalSE", 0, 0.1f);
+		}
+		if (other->FindTag(L"Goal")) {
+			ToClear();
 		}
 	}
 }

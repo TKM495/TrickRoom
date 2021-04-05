@@ -23,8 +23,10 @@ namespace basecross {
 	}
 
 	void BaseMenu::OnUpdate() {
+		auto& app = App::GetApp();
+		auto delta = app->GetElapsedTime();
 		//コントローラの取得
-		const auto& pad = App::GetApp()->GetInputDevice().GetControlerVec()[0];
+		const auto& pad = app->GetInputDevice().GetControlerVec()[0];
 		bool positive = false;	//+方向
 		bool negative = false;	//-方向
 		switch (m_dir)
@@ -34,15 +36,15 @@ namespace basecross {
 			negative = pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_UP;
 			break;
 		case MenuDirection::Horizontal:
-			positive = pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_LEFT;
-			negative = pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_RIGHT;
+			positive = pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_RIGHT;
+			negative = pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_LEFT;
 			break;
 		}
 
-		if (positive &&	m_nowMenuNum > 0) {
+		if (negative &&	m_nowMenuNum > 0) {
 			m_nowMenuNum--;
 		}
-		if (negative &&	m_nowMenuNum < m_menuNum) {
+		if (positive &&	m_nowMenuNum < m_menuNum) {
 			m_nowMenuNum++;
 		}
 
@@ -52,10 +54,25 @@ namespace basecross {
 		transComp->SetPosition((Vec3)element.pos);
 
 
-		if (pad.wPressedButtons & XINPUT_GAMEPAD_A) {
-			//メッセージを送る
-			PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), element.sendMsg);
+		if (pad.wPressedButtons & XINPUT_GAMEPAD_A && !m_bChange) {
+			OnPushButton();
 		}
+
+		if (m_bChange) {
+			if (m_delta > m_delayTime) {
+				SendEvent(element.sendMsg);
+			}
+			m_delta += delta;
+		}
+	}
+
+	void BaseMenu::OnPushButton() {
+		m_bChange = true;
+	}
+
+	void BaseMenu::SendEvent(wstring mes) {
+		//メッセージを送る
+		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), mes);
 	}
 }
 //end basecross

@@ -35,8 +35,9 @@ namespace basecross {
 	void Stairs::OnCreate() {
 		StageObject::OnCreate();
 
-		auto drawComp = AddComponent<PNTStaticDraw>();
+		auto drawComp = AddComponent<PNTStaticModelDraw>();
 		drawComp->SetMeshResource(L"Stairs");
+		drawComp->SetOwnShadowActive(true);
 
 		auto stage = GetStage();
 		//ŽÎ–Ê—p‚ÌƒRƒŠƒWƒ‡ƒ“

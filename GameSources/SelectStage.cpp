@@ -24,6 +24,13 @@ namespace basecross {
 
 	void SelectStage::OnCreate() {
 		CreateViewLight();
+
+		AddGameObject<UI_FPS>();
+
+		auto csvLoad = AddGameObject<CSVLoad>();
+		csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetSpriteData());
+		AddGameObject<SelectStageMenu>();
+		AddGameObject<Fade>()->FadeIn();
 	}
 
 	void SelectStage::OnUpdate() {

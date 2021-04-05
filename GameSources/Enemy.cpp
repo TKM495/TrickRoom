@@ -1,6 +1,6 @@
 /*!
 @file Enemy.cpp
-@brief �G����
+@brief
 */
 
 #include "stdafx.h"
@@ -11,10 +11,8 @@ namespace basecross {
 		const wstring& line)
 		:StageObject(stage)
 	{
-		//�g�[�N���i�J�����j�̔z��
 		vector<wstring> tokens;
 		Util::WStrToTokenVector(tokens, line, L',');
-		//�e�g�[�N���i�J�����j���X�P�[���A��]�A�ʒu�ɓǂݍ���
 		m_position = Vec3(
 			(float)_wtof(tokens[1].c_str()),
 			(float)_wtof(tokens[2].c_str()),
@@ -37,8 +35,11 @@ namespace basecross {
 		m_offset = (float)_wtof(tokens[13].c_str());
 	}
 	void Enemy::OnCreate() {
-		auto drawComp = AddComponent<PNTStaticDraw>();
+		auto drawComp = AddComponent<PNTStaticModelDraw>();
 		drawComp->SetMeshResource(L"Enemy");
+
+		auto shadow = AddComponent<Shadowmap>();
+		shadow->SetMeshResource(L"Enemy");
 
 		auto collComp = AddComponent<CollisionSphere>();
 		collComp->SetAfterCollision(AfterCollision::None);

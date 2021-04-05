@@ -25,15 +25,18 @@ namespace basecross {
 	void ResultStage::OnCreate() {
 		CreateViewLight();
 
+		AddGameObject<UI_FPS>();
+
 		auto csvLoad = AddGameObject<CSVLoad>();
 		csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetSpriteData());
 
 		auto scoreData = App::GetApp()->GetScene<Scene>()->GetScoreData();
-		scoreData.state = GameStage::GameState::CLEAR;
-		scoreData.HP = 10;
-		scoreData.RCrystal = 12;
-		scoreData.BCrystal = 34;
-		scoreData.Distance = 57;
+		//テスト用データ
+		//scoreData.state = GameStage::GameState::CLEAR;
+		//scoreData.HP = 5;
+		//scoreData.BCrystal = 14;
+		//scoreData.RCrystal = 6;
+		//scoreData.Distance = 200;
 
 		AddGameObject<Result>(scoreData);
 

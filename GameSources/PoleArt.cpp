@@ -47,7 +47,7 @@ namespace basecross {
 			0, 1, 2, //上の三角形
 			2, 1, 3  //下の三角形
 		};
-
+		m_scale.y = 2.0f;
 		TrickArtBase::OnCreate();
 
 		auto obbComp = AddComponent<CollisionObb>();

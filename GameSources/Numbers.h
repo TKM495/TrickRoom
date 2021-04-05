@@ -8,11 +8,14 @@ namespace basecross {
 		int number;
 		Vec2 m_origin;
 		Vec2 m_size;
+		Col4 m_color;
 		std::vector<VertexPositionColorTexture> vertices;
 
 	public:
-		Numbers(const std::shared_ptr<Stage>& stage, int number)
-			:GameObject(stage), number(number)
+		Numbers(const std::shared_ptr<Stage>& stage, int number,
+			Col4 color = Col4(0.0f, 0.0f, 0.0f, 1.0f))
+			:GameObject(stage), number(number),
+			m_color(color)
 		{
 		}
 

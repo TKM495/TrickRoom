@@ -31,16 +31,29 @@ namespace basecross {
 	void TitleStage::OnCreate() {
 		CreateViewLight();
 
+		AddGameObject<UI_FPS>();
+
 		auto csvLoad = AddGameObject<CSVLoad>();
 		csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetSpriteData());
 		auto title = AddGameObject<StringSprite2>(L"Title");
 		title->GetComponent<Transform>()->SetPosition(Vec3(0.0f, 200.0f, 0.0f));
 		AddGameObject<TitleMenu>();
+		AddGameObject<Fade>()->FadeIn();
+
+		//BGMの再生
+		auto audio = App::GetApp()->GetXAudio2Manager();
+		m_titleBGM = audio->Start(L"TitleBGM", XAUDIO2_LOOP_INFINITE, 0.1f);
 	}
 
 	void TitleStage::OnUpdate() {
 		//コントローラチェックして入力があればコマンド呼び出し
 		//m_Inputhandler.PushHandle(GetThis<TitleStage>());
+	}
+
+	void TitleStage::OnDestroy() {
+		//BGMの停止
+		auto audio = App::GetApp()->GetXAudio2Manager();
+		audio->Stop(m_titleBGM);
 	}
 
 	//void TitleStage::PushB() {

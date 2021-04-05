@@ -22,9 +22,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)StageObject.cpp">
       <Filter>StageObject</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)block.cpp">
-      <Filter>StageObject\Block</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp">
       <Filter>Others</Filter>
     </ClCompile>
@@ -51,9 +48,6 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp">
       <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Score.cpp">
-      <Filter>UI\Score</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)SelectStage.cpp">
       <Filter>Stage\StageSelect</Filter>
@@ -125,9 +119,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MyMath.cpp">
       <Filter>MyMath</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)FloorGenerator.cpp">
-      <Filter>StageObject\FloorGenerator</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Crystal.cpp">
       <Filter>StageObject\Crystal</Filter>
     </ClCompile>
@@ -148,6 +139,51 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ResultMenu.cpp">
       <Filter>Menu\Result</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)pursuer.cpp">
+      <Filter>StageObject\pursuer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Picture.cpp">
+      <Filter>StageObject\Picture</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleModel.cpp">
+      <Filter>TitleModel</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Effect.cpp">
+      <Filter>FX</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)UI_Goalgauge.cpp">
+      <Filter>UI\DistanceGoal</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)UI_Player.cpp">
+      <Filter>UI\DistanceGoal</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)UI_FPS.cpp">
+      <Filter>UI\FPS</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Dot1x1.cpp">
+      <Filter>UI\Dot1x1</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Goal.cpp">
+      <Filter>StageObject\Goal</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Score.cpp">
+      <Filter>UI\Score</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)UI_Rank.cpp">
+      <Filter>UI\Rank</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)UI_LR.cpp">
+      <Filter>UI\UI_LR</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SelectStageMenu.cpp">
+      <Filter>Menu\Select</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FadeComponent.cpp">
+      <Filter>FadeComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StartCountdown.cpp">
+      <Filter>UI\StartCountdown</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -174,9 +210,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)StageObject.h">
       <Filter>StageObject</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)block.h">
-      <Filter>StageObject\Block</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h">
       <Filter>Others</Filter>
     </ClInclude>
@@ -200,9 +233,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h">
       <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Score.h">
-      <Filter>UI\Score</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)SelectStage.h">
       <Filter>Stage\StageSelect</Filter>
@@ -274,9 +304,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MyMath.h">
       <Filter>MyMath</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)FloorGenerator.h">
-      <Filter>StageObject\FloorGenerator</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Crystal.h">
       <Filter>StageObject\Crystal</Filter>
     </ClInclude>
@@ -297,6 +324,54 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ResultMenu.h">
       <Filter>Menu\Result</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)pursuer.h">
+      <Filter>StageObject\pursuer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Picture.h">
+      <Filter>StageObject\Picture</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Utility.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleModel.h">
+      <Filter>TitleModel</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Effect.h">
+      <Filter>FX</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)UI_Goalgauge.h">
+      <Filter>UI\DistanceGoal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)UI_Player.h">
+      <Filter>UI\DistanceGoal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)UI_FPS.h">
+      <Filter>UI\FPS</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Dot1x1.h">
+      <Filter>UI\Dot1x1</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Goal.h">
+      <Filter>StageObject\Goal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Score.h">
+      <Filter>UI\Score</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)UI_Rank.h">
+      <Filter>UI\Rank</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)UI_LR.h">
+      <Filter>UI\UI_LR</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SelectStageMenu.h">
+      <Filter>Menu\Select</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FadeComponent.h">
+      <Filter>FadeComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StartCountdown.h">
+      <Filter>UI\StartCountdown</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -423,9 +498,6 @@
     <Filter Include="StageObject\Crystal">
       <UniqueIdentifier>{d7d8c17a-ee2b-4a94-a3dd-5da53c44cd80}</UniqueIdentifier>
     </Filter>
-    <Filter Include="StageObject\FloorGenerator">
-      <UniqueIdentifier>{b6c2ec7a-13f5-4a7b-b20e-f317147f9a75}</UniqueIdentifier>
-    </Filter>
     <Filter Include="StageScroller">
       <UniqueIdentifier>{09eb2d1b-4456-4a32-962d-e19efba2dea3}</UniqueIdentifier>
     </Filter>
@@ -443,6 +515,48 @@
     </Filter>
     <Filter Include="Menu\Result">
       <UniqueIdentifier>{1e54f5fa-b822-4fb2-8ad7-b8ae86786df0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\pursuer">
+      <UniqueIdentifier>{df463799-a64b-4547-8077-e8bad91c610f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FX">
+      <UniqueIdentifier>{a83354de-66ea-4beb-9667-74e4a2abb734}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Picture">
+      <UniqueIdentifier>{599270dd-17fc-480f-bde2-2e3e27788d78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{5890688d-6a69-4010-a5c0-8cbe72dbb1b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TitleModel">
+      <UniqueIdentifier>{e4ddc7e7-9535-400e-a91c-0d25ff9507b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\DistanceGoal">
+      <UniqueIdentifier>{27de29d6-c08e-41ae-8a34-c7af843d0c6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\FPS">
+      <UniqueIdentifier>{f768a0e3-ce4b-4bbc-878e-5b25fe5df0d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Dot1x1">
+      <UniqueIdentifier>{45082e8a-70c6-4371-9561-036e355faf6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Goal">
+      <UniqueIdentifier>{7a4ab6e1-08ba-4847-b157-1471868697b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Rank">
+      <UniqueIdentifier>{3d2d4577-53b0-45ab-99ef-e56751c46c47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\UI_LR">
+      <UniqueIdentifier>{cb119eeb-31dd-4797-ae3c-0e6a99d841ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu\Select">
+      <UniqueIdentifier>{f0915af3-c10d-4fad-a86c-7f81eb19b479}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FadeComponent">
+      <UniqueIdentifier>{77c98bf1-fa80-4f0a-9695-3ce007cbacad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\StartCountdown">
+      <UniqueIdentifier>{db41c04d-a592-409f-83a4-6d10e0770f51}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

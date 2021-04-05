@@ -17,7 +17,8 @@ namespace basecross {
 		Vec3 m_rotation;
 		float m_moveSpeed;
 		int m_HP;
-		float m_crystal;
+		int m_Rcrystal;
+		int m_Bcrystal;
 		//float m_count;//Respawn
 		//float m_RespawnTime;
 		//bool bRespawn;
@@ -29,7 +30,8 @@ namespace basecross {
 		void Move();
 		Vec3 MoveVec();
 		void Muteki();
-
+		void ToGameOver();
+		void ToClear();
 	public:
 		//HP
 		void SetHP(int HP);

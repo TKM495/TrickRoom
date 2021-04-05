@@ -7,10 +7,14 @@
 #include "Project.h"
 
 namespace basecross {
-	void Effect::InsertEffect(const Vec3& Pos)
+	void Effect::InsertEffect(const Vec3& Pos) {
+		InsertEffect(Pos, Col4(1.0f, 0.0f, 0.0f, 1.0f));
+	}
+
+	void Effect::InsertEffect(const Vec3& Pos, Col4 color)
 	{
 		auto ParticlePtr = InsertParticle(4);
-		ParticlePtr->SetEmitterPos(Pos);
+		ParticlePtr->SetEmitterPos(Pos + m_offset);
 		ParticlePtr->SetTextureResource(L"Spark");
 		ParticlePtr->SetMaxTime(0.5f);
 		for (auto& rParticleSprite : ParticlePtr->GetParticleSpriteVec()) {
@@ -23,8 +27,10 @@ namespace basecross {
 				rParticleSprite.m_LocalPos.y * 25.0f,
 				rParticleSprite.m_LocalPos.z * 25.0f
 			);
+
+			rParticleSprite.m_LocalScale = Vec3(1.5f);
 			//êFÇÃéwíË
-			rParticleSprite.m_Color = Col4(1.0f, 0.0f, 0.0f, 1.0f);
+			rParticleSprite.m_Color = color;
 		}
 	}
 }

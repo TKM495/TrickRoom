@@ -9,7 +9,7 @@
 namespace basecross {
 
 	MainCamera::MainCamera()
-		:m_offset(10.0f, 10.0f, -10.0f), m_Angle(-10.0f, 10.0f, -10.0f), bSetPers(false), SetWidth(20.0f), SetHeight(12.5f), m_CameraState(state::Right),
+		:m_offset(10.0f, 10.0f, -10.0f), m_Angle(-10.0f, 10.0f, -10.0f), bSetPers(false), SetWidth(18.0f), SetHeight(0.0f), m_CameraState(state::Right),
 		bLeapFlg(false), m_LeapTime(0), m_LeapSpeed(1), m_LeapOffset(m_offset)
 	{
 		isFirst = true;
@@ -19,6 +19,7 @@ namespace basecross {
 	{
 		SetPers(false);
 		Camera::SetWidth(SetWidth);
+		SetHeight = SetWidth * 0.625f;
 		Camera::SetHeight(SetHeight);
 	}
 

@@ -62,15 +62,13 @@ namespace basecross {
 			//エラー
 			break;
 		}
-		//色のデータ(R,G,B,A)
-		Col4 color(1.0f, 1.0f, 1.0f, 1.0f);
 		//頂点のデータ (番号は左上から右下まで)
 		vertices = {
-			{Vec3(-pos.left,+pos.top,0.0f),color,(origin) / 1024.0f}, //0
-			{Vec3(+pos.right,+pos.top,0.0f),color,(origin + Vec2(size.x,0.0f)) / 1024.0f}, //1
+			{Vec3(-pos.left,+pos.top,0.0f),m_color,(origin) / 1024.0f}, //0
+			{Vec3(+pos.right,+pos.top,0.0f),m_color,(origin + Vec2(size.x,0.0f)) / 1024.0f}, //1
 
-			{Vec3(-pos.left,-pos.bottom,0.0f),color,(origin + Vec2(0.0f,size.y)) / 1024.0f}, //2
-			{Vec3(+pos.right,-pos.bottom,0.0f),color,(origin + size) / 1024.0f},  //3
+			{Vec3(-pos.left,-pos.bottom,0.0f),m_color,(origin + Vec2(0.0f,size.y)) / 1024.0f}, //2
+			{Vec3(+pos.right,-pos.bottom,0.0f),m_color,(origin + size) / 1024.0f},  //3
 		};
 		//頂点インデックス
 		vector<uint16_t> indices = {
@@ -83,6 +81,9 @@ namespace basecross {
 		drawComp->SetSamplerState(SamplerState::AnisotropicWrap); //テクスチャの繰り返し設定(Wrap)
 		drawComp->SetDepthStencilState(DepthStencilState::Read);
 
+		auto fade = AddComponent<FadeComponent>();
+		fade->SetFadeColor(m_color);
+
 		SetAlphaActive(true); //透明をサポートする&両面描画になる
 		//GetComponent<Transform>()->SetScale(Vec3(0.005f));
 
@@ -91,10 +92,16 @@ namespace basecross {
 
 	void StringSprite2::OnUpdate() {
 		auto delta = App::GetApp()->GetElapsedTime();
-		if (m_delta > m_deActiveTime) {
-			SetDrawActive(false);
-			SetUpdateActive(false);
+		auto fade = GetComponent<FadeComponent>();
+		if (m_delta > m_deActiveTime && !m_bDeactive) {
+			fade->FadeOut();
+			m_bDeactive = true;
+		}
+
+		if (!fade->IsFadeActive() && m_bDeactive) {
 			m_delta = 0.0f;
+			m_bDeactive = false;
+			SetDrawActive(false);
 			SetUpdateActive(false);
 		}
 		m_delta += delta;
@@ -166,6 +173,10 @@ namespace basecross {
 		vertices[0].position.y = vertices[1].position.y = +pos.top;
 		vertices[2].position.y = vertices[3].position.y = -pos.bottom;
 		GetComponent<PCTSpriteDraw>()->UpdateVertices(vertices);
+	}
+
+	void StringSprite2::SetSize(float size) {
+		GetComponent<Transform>()->SetScale(Vec3(size));
 	}
 }
 //end basecross

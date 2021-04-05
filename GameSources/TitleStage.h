@@ -8,6 +8,7 @@
 
 namespace basecross {
 	class TitleStage : public Stage {
+		shared_ptr<SoundItem> m_titleBGM;
 	public:
 		// ƒrƒ…[‚Ìì¬
 		void CreateViewLight();
@@ -22,7 +23,7 @@ namespace basecross {
 
 		void OnCreate() override;
 		void OnUpdate() override;
-
+		void OnDestroy()override;
 		//void PushB();
 	};
 }

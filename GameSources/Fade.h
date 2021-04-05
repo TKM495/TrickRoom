@@ -38,6 +38,10 @@ namespace basecross {
 			m_fadeTime = time;
 		}
 
+		float GetFadeTime() {
+			return m_fadeTime;
+		}
+
 		//“®ì‚µ‚Ä‚¢‚é‚©‚Ìƒtƒ‰ƒO
 		bool GetFadeActive() {
 			return m_state == FadeState::Active ? true : false;

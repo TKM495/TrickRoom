@@ -13,6 +13,7 @@ namespace basecross {
 	class GameStage : public Stage {
 	public:
 		enum class GameState {
+			FADEIN,
 			STAY,
 			PLAYING,
 			PAUSE,
@@ -20,10 +21,11 @@ namespace basecross {
 			GAMEOVER
 		};
 	private:
+		shared_ptr<SoundItem> m_gameBGM;
 		//現在のステート
 		GameState m_state;
-		//死亡ライン
-		float m_deathPosY;
+		//スタート地点のオフセット
+		float m_startOffset;
 		//描画距離
 		float m_renderDis;
 		//ObjDraw用時間計測用
@@ -36,16 +38,17 @@ namespace basecross {
 		//構築と破棄
 		GameStage()
 			:Stage(),
-			m_state(GameState::STAY),
-			m_deathPosY(-5.0f),
+			m_state(GameState::FADEIN),
 			m_drawDelta(0.0f),
 			m_stateDelta(0.0f),
-			m_renderDis(25.0f)
+			m_renderDis(25.0f),
+			m_startOffset(15.0f)
 		{}
 		virtual ~GameStage() {}
 		//初期化
 		virtual void OnCreate()override;
 		virtual void OnUpdate()override;
+		virtual void OnDestroy()override;
 
 		void ObjDraw(float time);
 
@@ -60,9 +63,9 @@ namespace basecross {
 			}
 			m_state = state;
 		}
-		//死亡ラインを取得(この座標より下回ったら死亡判定)
-		float GetDeathPosY() {
-			return m_deathPosY;
+
+		float GetStartOffset() {
+			return m_startOffset;
 		}
 
 		void SetSceneTransition();

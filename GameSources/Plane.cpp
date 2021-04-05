@@ -55,6 +55,7 @@ namespace basecross {
 		//自作したメッシュを使用する
 		drawComp->SetOriginalMeshUse(true);
 		//drawComp->SetTextureResource(L"SpikesArt");
+		drawComp->SetOwnShadowActive(true);
 
 		StageObject::OnCreate();
 

@@ -30,7 +30,7 @@ namespace basecross {
 		Vec3 offset(140.0f, -40.0f, 0);
 		for (auto& number : numbers)
 		{
-			number = ObjectFactory::Create<Numbers>(GetStage(), 0);
+			number = ObjectFactory::Create<Numbers>(GetStage(), 0, Col4(1.0f));
 			auto numberTrans = number->GetComponent<Transform>();
 			numberTrans->SetPosition(pos + offset); // —×‚É•À‚Ô”Žš
 			numberTrans->SetScale(Vec3(0.75f));

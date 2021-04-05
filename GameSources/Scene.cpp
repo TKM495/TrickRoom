@@ -1,7 +1,7 @@
 
 /*!
 @file Scene.cpp
-@brief ƒV[ƒ“À‘Ì
+@brief ï¿½Vï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 */
 
 #include "stdafx.h"
@@ -10,12 +10,13 @@
 namespace basecross{
 
 	//--------------------------------------------------------------------------------------
-	///	ƒQ[ƒ€ƒV[ƒ“
+	///	ï¿½Qï¿½[ï¿½ï¿½ï¿½Vï¿½[ï¿½ï¿½
 	//--------------------------------------------------------------------------------------
 	void Scene::OnCreate(){
 		try {
 			m_debugState = DebugState::None;
 
+			//CSVï¿½tï¿½@ï¿½Cï¿½ï¿½
 			auto& app = App::GetApp();
 			auto dir = app->GetDataDirWString();
 			auto path = dir + L"Csv/";
@@ -24,6 +25,11 @@ namespace basecross{
 			csvFile.ReadCsv();
 			m_spriteWData = csvFile.GetCsvVec();
 
+			csvFile.SetFileName(path + L"Picture.csv");
+			csvFile.ReadCsv();
+			m_pictureWData = csvFile.GetCsvVec();
+
+			//ï¿½eï¿½Nï¿½Xï¿½`ï¿½ï¿½
 			path = dir + L"Textures/";
 			app->RegisterTexture(L"string", path + L"sprite.png");
 			app->RegisterTexture(L"SpikesArt", path + L"Spikes.png");
@@ -37,9 +43,13 @@ namespace basecross{
 			app->RegisterTexture(L"crystal", path + L"crystal.png");
 			app->RegisterTexture(L"point", path + L"point.png");
 			app->RegisterTexture(L"PoleArt", path + L"Pole.png");
-
 			app->RegisterTexture(L"Spark", path + L"spark.png");
+			app->RegisterTexture(L"player", path + L"player.png");
+			app->RegisterTexture(L"gauge", path + L"gauge.png");
+			app->RegisterTexture(L"white", path + L"white.png");
+			app->RegisterTexture(L"LR", path + L"left_right.png");
 
+			//3Dï¿½ï¿½ï¿½fï¿½ï¿½
 			path = dir + L"Models/";
 			auto modelMesh = MeshResource::CreateStaticModelMesh(path + L"Enemy/", L"teki.bmf");
 			app->RegisterResource(L"Enemy", modelMesh);
@@ -53,14 +63,31 @@ namespace basecross{
 			app->RegisterResource(L"Crystal", modelMesh);
 			modelMesh = MeshResource::CreateStaticModelMesh(path+L"Pillar/", L"Pillar.bmf");
 			app->RegisterResource(L"Pillar", modelMesh);
+			modelMesh = MeshResource::CreateStaticModelMesh(path+L"Title/", L"title.bmf");
+			app->RegisterResource(L"Title", modelMesh);
 
-			//ƒNƒŠƒA‚·‚éF‚ğİ’è
+			//BGM
+			path = dir + L"Sound/BGM/";
+			auto soundPath = path + L"TitleBGM.wav";
+			app->RegisterWav(L"TitleBGM", soundPath);
+			soundPath = path + L"GameBGM.wav";
+			app->RegisterWav(L"GameBGM", soundPath);
+
+			//SE
+			path = dir + L"Sound/SE/";
+			soundPath = path + L"Crystal2.wav";
+			app->RegisterWav(L"CrystalSE", soundPath);
+			soundPath = path + L"Damage2.wav";
+			app->RegisterWav(L"DamageSE", soundPath);
+
+
+			//ï¿½Nï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½Fï¿½ï¿½İ’ï¿½
 			Col4 Col;
 			Col.set(0.5f, 0.5f, 0.7f, 1.0f);
 			SetClearColor(Col);
-			//©•ª©g‚ÉƒCƒxƒ“ƒg‚ğ‘—‚é
-			//‚±‚ê‚É‚æ‚èŠeƒXƒe[ƒW‚âƒIƒuƒWƒFƒNƒg‚ªCreate‚ÉƒV[ƒ“‚ÉƒAƒNƒZƒX‚Å‚«‚é
-			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToResultStage");
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½gï¿½ÉƒCï¿½xï¿½ï¿½ï¿½gï¿½ğ‘—‚ï¿½
+			//ï¿½ï¿½ï¿½ï¿½É‚ï¿½ï¿½eï¿½Xï¿½eï¿½[ï¿½Wï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½Createï¿½ï¿½ï¿½ÉƒVï¿½[ï¿½ï¿½ï¿½ÉƒAï¿½Nï¿½Zï¿½Xï¿½Å‚ï¿½ï¿½ï¿½
+			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToGameStage");
 		}
 		catch (...) {
 			throw;
@@ -68,22 +95,22 @@ namespace basecross{
 	}
 
 	void Scene::OnEvent(const shared_ptr<Event>& event) {
-		//ƒ^ƒCƒgƒ‹ƒXƒe[ƒW
+		//ï¿½^ï¿½Cï¿½gï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½W
 		if (event->m_MsgStr == L"ToTitleStage") {
 			ResetActiveStage<TitleStage>();
 		}
-		//ƒZƒŒƒNƒgƒXƒe[ƒW(ƒXƒe[ƒWƒZƒŒƒNƒg)
+		//ï¿½Zï¿½ï¿½ï¿½Nï¿½gï¿½Xï¿½eï¿½[ï¿½W(ï¿½Xï¿½eï¿½[ï¿½Wï¿½Zï¿½ï¿½ï¿½Nï¿½g)
 		if (event->m_MsgStr == L"ToSelectStage") {
-			//ResetActiveStage<SelectStage>();
+			ResetActiveStage<SelectStage>();
 		}
-		//ƒQ[ƒ€ƒXƒe[ƒW
+		//ï¿½Qï¿½[ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½W
 		if (event->m_MsgStr == L"ToGameStage") {
 			ResetActiveStage<GameStage>();
 		}
 		if (event->m_MsgStr == L"ToResultStage") {
 			ResetActiveStage<ResultStage>();
 		}
-		//ƒQ[ƒ€I—¹
+		//ï¿½Qï¿½[ï¿½ï¿½ï¿½Iï¿½ï¿½
 		if (event->m_MsgStr == L"ToExit") {
 			exit(0);
 		}

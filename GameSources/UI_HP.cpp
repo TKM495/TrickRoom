@@ -30,7 +30,7 @@ namespace basecross {
 		Vec3 offset(140.0f, -40.0f, 0);
 		for (auto& number : numbers)
 		{
-			number = ObjectFactory::Create<Numbers>(GetStage(), 0); // 新しいオブジェクトを生成する。ただし、ステージには追加しない。
+			number = ObjectFactory::Create<Numbers>(GetStage(), 0, Col4(1.0f)); // 新しいオブジェクトを生成する。ただし、ステージには追加しない。
 			auto numberTrans = number->GetComponent<Transform>();
 			numberTrans->SetPosition(pos + offset); // SCOREラベルの隣に並ぶ数字
 			numberTrans->SetScale(Vec3(0.75f));

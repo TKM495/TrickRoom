@@ -18,6 +18,29 @@ namespace basecross {
 		int Distance;				//スタートからの距離
 	};
 
+	struct ScorePoints {
+		int HP;			//HP
+		int RCrystal;	//赤色のクリスタル
+		int BCrystal;	//青色のクリスタル
+		int Distance;	//スタートからの距離
+		int ClearBonus;	//クリアボーナス
+		int Total;		//合計
+		void CountTotal() {
+			Total = HP + RCrystal + BCrystal + Distance + ClearBonus;
+		}
+
+		ScorePoints operator*(const ScorePoints& _score)const {
+			ScorePoints score;
+			score.HP = this->HP * _score.HP;
+			score.RCrystal = this->RCrystal * _score.RCrystal;
+			score.BCrystal = this->BCrystal * _score.BCrystal;
+			score.Distance = this->Distance * _score.Distance;
+			score.ClearBonus = this->ClearBonus * _score.ClearBonus;
+			score.Total = this->Total * _score.Total;
+			return score;
+		}
+	};
+
 	enum class SpriteType {
 		String,
 		Image,

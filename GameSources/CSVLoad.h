@@ -21,9 +21,16 @@ namespace basecross {
 		Vec3 rotation;	//回転
 	};
 
+	struct PictureDataFormat {
+		wstring name;		//名称(タグみたいなの)
+		Vec2 size;			//サイズ
+		wstring fileName;	//ファイルの名前(拡張子含める)
+	};
+
 	class CSVLoad :public GameObject{
 		vector<SpriteDataFormat> m_spriteData;
 		vector<ObjectDataFormat> m_objectData;
+		vector<PictureDataFormat> m_pictureData;
 	public:
 		CSVLoad(const shared_ptr<Stage>& stage)
 			:GameObject(stage)
@@ -33,6 +40,7 @@ namespace basecross {
 
 		void SpriteDataExtraction(vector<wstring> fileData);
 		void ObjectDataExtraction(vector<wstring> fileData);
+		void PictureDataExtraction(vector<wstring> fileData);
 
 		vector<SpriteDataFormat>& GetSpriteData(){
 			return m_spriteData;
@@ -40,6 +48,17 @@ namespace basecross {
 
 		vector<ObjectDataFormat>& GetObjectData(){
 			return m_objectData;
+		}
+
+		vector<PictureDataFormat>& GetPictureData(){
+			if (m_pictureData.size() == 0) {
+				throw BaseException(
+					L"データが存在しないにもかかわらず、\n取得しようとしました。",
+					L"Size : " + to_wstring(m_pictureData.size()),
+					L"CSVLoad::GetPictureData()"
+				);
+			}
+			return m_pictureData;
 		}
 	};
 }

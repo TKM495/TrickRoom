@@ -14,25 +14,35 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Dot1x1.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)AdvCollision.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BaseMenu.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)block.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Block2.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BlockArt.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Crystal.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Effect.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Fade.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FadeComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FloorArt.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)FloorGenerator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Goal.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Picture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Pillar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Pole.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PoleArt.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)pursuer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SelectStageMenu.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)StartCountdown.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UI_LR.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UI_Rank.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Result.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ResultMenu.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ResultStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Score.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SinCurve.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageParent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StageScroller.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleModel.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UI_Crystal.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CSVLoad.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Cursor.h" />
@@ -40,6 +50,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EnemyArt.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UI_FPS.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UI_Goalgauge.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UI_HP.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MyMath.h" />
@@ -52,7 +64,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)InputHandler.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Score.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SelectStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Spikes.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Stairs.h" />
@@ -65,27 +76,39 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)StringSprite2.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleMenu.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UI_Player.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Utility.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Dot1x1.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)AdvCollision.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BaseMenu.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)block.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Block2.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BlockArt.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Crystal.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Effect.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Fade.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FadeComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FloorArt.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)FloorGenerator.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Goal.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Picture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Pillar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Pole.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PoleArt.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)pursuer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)SelectStageMenu.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)StartCountdown.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UI_LR.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UI_Rank.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Result.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ResultMenu.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ResultStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Score.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SinCurve.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageParent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StageScroller.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleModel.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UI_Crystal.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CSVLoad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Cursor.cpp" />
@@ -93,6 +116,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EnemyArt.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UI_FPS.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UI_Goalgauge.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UI_HP.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MyMath.cpp" />
@@ -103,7 +128,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Score.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SelectStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Spikes.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Stairs.cpp" />
@@ -116,6 +140,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)StringSprite2.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleMenu.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtBase.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UI_Player.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
   </ItemGroup>
 </Project>
