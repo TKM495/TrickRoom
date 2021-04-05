@@ -204,13 +204,18 @@ namespace basecross{
 
 			if (bDamegeTag)
 			{
-				auto fx = GetStage()->GetSharedGameObject<Effect>(L"Effect");
-				fx->InsertEffect(other->GetComponent<Transform>()->GetPosition());
-
 				m_HP += -1;
 				bMutekiFlg = true;
 				auto audio = App::GetApp()->GetXAudio2Manager();
 				audio->Start(L"DamageSE", 0, 0.1f);
+				auto ColComp = GetComponent<Collision>();
+
+				ColComp->AddExcludeCollisionTag(L"damege");
+
+				SetDrawActive(false);
+
+				auto effect = GetStage()->GetSharedGameObject<Effect>(L"Effect");
+				effect->InsertEffect(other->GetComponent<Transform>()->GetPosition());
 			}
 		}
 		if (other->FindTag(L"Crystal")) {

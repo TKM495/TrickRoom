@@ -10,7 +10,8 @@ namespace basecross {
 	enum class state
 	{
 		Right,
-		Left
+		Left,
+		moveflg
 	};
 
 	class MainCamera :public Camera
@@ -30,7 +31,6 @@ namespace basecross {
 
 		state m_CameraState;
 
-
 		bool isFirst;
 
 	public:
@@ -41,6 +41,7 @@ namespace basecross {
 		state GetCamState() {
 			return m_CameraState;
 		}
+
 		bool GetbLeapFlg();
 	};
 }
