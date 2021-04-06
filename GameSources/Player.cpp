@@ -93,6 +93,7 @@ namespace basecross {
 			utilPtr->RotToHead(MoveVec(), 1.0f);
 		}
 
+		SetDrawActive(true);
 	}
 
 	//void Player::Respawn()
@@ -189,7 +190,7 @@ namespace basecross {
 
 				ColComp->AddExcludeCollisionTag(L"damege");
 
-				SetDrawActive(false);
+				//SetDrawActive(false);
 
 				auto effect = GetStage()->GetSharedGameObject<Effect>(L"Effect");
 				effect->InsertEffect(other->GetComponent<Transform>()->GetPosition());
