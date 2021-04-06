@@ -7,12 +7,12 @@ namespace basecross {
 
 		int hp;
 		float count;
-
+		bool bActive;
 		std::vector<std::shared_ptr<Numbers>> numbers;
 
 	public:
 		UI_HP(const std::shared_ptr<Stage>& stage)
-			: GameObject(stage), hp(5), count(0.0f)
+			: GameObject(stage), hp(5), count(0.0f), bActive(false)
 		{
 
 		}
@@ -20,5 +20,7 @@ namespace basecross {
 		void OnCreate() override;
 		void OnUpdate() override;
 		void OnDraw() override;
+
+		void FadeIn();
 	};
 }

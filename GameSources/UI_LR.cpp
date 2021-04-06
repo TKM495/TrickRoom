@@ -8,7 +8,7 @@
 
 namespace basecross {
 	void UI_LR::OnCreate() {
-		Col4 color(1.0f, 1.0f, 1.0f, 0.5f);
+		Col4 color(1.0f, 1.0f, 1.0f, 1.0f);
 		auto halfSize = 512.0f;
 
 		vertices = {
@@ -31,9 +31,28 @@ namespace basecross {
 		transComp->SetScale(Vec3(0.2f));
 		transComp->SetPosition(pos);
 		m_posX = pos.x;
+
+		auto fade = AddComponent<FadeComponent>();
+		fade->SetFadeTime(0.1f);
+		fade->SetFadeColor(color);
+		SetDrawActive(false);
 	}
 
 	void UI_LR::OnUpdate() {
+		auto stage = dynamic_pointer_cast<GameStage>(GetStage());
+		switch (stage->GetState())
+		{
+		case GameStage::GameState::PLAYING:
+			if (!bActive) {
+				FadeIn();
+				bActive = true;
+			}
+			break;
+		default:
+			return;
+			break;
+		}
+
 		auto camera = dynamic_pointer_cast<MainCamera>(GetStage()->GetView()->GetTargetCamera());
 		if (!camera->GetbLeapFlg()) {
 			SetDrawActive(true);
@@ -72,6 +91,12 @@ namespace basecross {
 				break;
 			}
 		}
+	}
+
+	void UI_LR::FadeIn() {
+		SetDrawActive(true);
+		auto fade = GetComponent<FadeComponent>();
+		fade->FadeIn();
 	}
 }
 //end basecross

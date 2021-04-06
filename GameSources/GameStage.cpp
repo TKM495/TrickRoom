@@ -26,7 +26,7 @@ namespace basecross {
 		try {
 			//�r���[�ƃ��C�g�̍쐬
 			CreateViewLight();
-			AddGameObject<Debug>();
+			//AddGameObject<Debug>();
 
 			auto& app = App::GetApp();
 			auto scene = app->GetScene<Scene>();
@@ -117,6 +117,7 @@ namespace basecross {
 			}
 			break;
 		case GameState::PLAYING:
+			//SetState(GameState::CLEAR);
 			break;
 		case GameState::PAUSE:
 			break;
@@ -142,6 +143,16 @@ namespace basecross {
 		//BGM�̒�~
 		auto audio = App::GetApp()->GetXAudio2Manager();
 		audio->Stop(m_gameBGM);
+	}
+
+	void GameStage::SetState(GameState state) {
+		if (state == GameState::CLEAR || state == GameState::GAMEOVER) {
+			SetSceneTransition();
+			if (state == GameState::GAMEOVER) {
+				GetSharedGameObject<Fade>(L"Fade")->SetFadeTime(2.0f);
+			}
+		}
+		m_state = state;
 	}
 
 	void GameStage::SetSceneTransition() {

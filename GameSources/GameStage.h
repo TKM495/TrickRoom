@@ -44,7 +44,7 @@ namespace basecross {
 			m_drawDelta(0.0f),
 			m_stateDelta(0.0f),
 			m_renderDis(25.0f),
-			m_startOffset(15.0f),
+			m_startOffset(20.0f),
 			m_beforeValue(0.0f)
 		{}
 		virtual ~GameStage() {}
@@ -60,12 +60,7 @@ namespace basecross {
 			return m_state;
 		}
 		//ステートの設定
-		void SetState(GameState state) {
-			if (state == GameState::CLEAR || state == GameState::GAMEOVER) {
-				SetSceneTransition();
-			}
-			m_state = state;
-		}
+		void SetState(GameState state);
 
 		float GetStartOffset() {
 			return m_startOffset;

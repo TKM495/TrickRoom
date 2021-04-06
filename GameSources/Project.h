@@ -49,6 +49,7 @@
 //ステージオブジェクト
 #include "StageObject.h"
 #include "StageParent.h"
+#include "EmptyObject.h"
 #include "pursuer.h"
 #include "Picture.h"
 #include "Block2.h"

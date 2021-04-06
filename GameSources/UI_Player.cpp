@@ -42,10 +42,28 @@ namespace basecross
 		m_startObjPosX = player->GetComponent<Transform>()->GetPosition().x - gameStage->GetStartOffset();
 		m_goalObjPosX = -100.0f;
 		m_startToGoalDir = m_goalObjPosX - m_startObjPosX;
+
+		auto fade = AddComponent<FadeComponent>();
+		fade->SetFadeTime(0.1f);
+		fade->SetFadeColor(color);
+		SetDrawActive(false);
 	}
 
 	void UI_Player::OnUpdate()
 	{
+		auto stage = dynamic_pointer_cast<GameStage>(GetStage());
+		switch (stage->GetState())
+		{
+		case GameStage::GameState::PLAYING:
+			if (!bActive) {
+				FadeIn();
+				bActive = true;
+			}
+			break;
+		default:
+			break;
+		}
+
 		auto player = GetStage()->GetSharedGameObject<Player>(L"Player");
 		auto playerPos = player->GetComponent<Transform>()->GetPosition();
 
@@ -54,5 +72,11 @@ namespace basecross
 		pos.x = Lerp::CalculateLerp(m_startPosX, m_goalPosX, m_startObjPosX, m_goalObjPosX, playerPos.x, Lerp::rate::Linear);
 
 		transComp->SetPosition(pos);
+	}
+
+	void UI_Player::FadeIn() {
+		SetDrawActive(true);
+		auto fade = GetComponent<FadeComponent>();
+		fade->FadeIn();
 	}
 }

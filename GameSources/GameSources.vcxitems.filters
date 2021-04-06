@@ -185,6 +185,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)StartCountdown.cpp">
       <Filter>UI\StartCountdown</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EmptyObject.cpp">
+      <Filter>EmptyObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
@@ -373,6 +376,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)StartCountdown.h">
       <Filter>UI\StartCountdown</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EmptyObject.h">
+      <Filter>EmptyObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Menu">
@@ -557,6 +563,9 @@
     </Filter>
     <Filter Include="UI\StartCountdown">
       <UniqueIdentifier>{db41c04d-a592-409f-83a4-6d10e0770f51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EmptyObject">
+      <UniqueIdentifier>{185e88d2-8c56-45c6-b3f6-53559db1bcec}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

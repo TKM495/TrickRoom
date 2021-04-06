@@ -31,15 +31,34 @@ namespace basecross {
 		for (auto& number : numbers)
 		{
 			number = ObjectFactory::Create<Numbers>(GetStage(), 0, Col4(1.0f));
+			number->SetDrawActive(false);
 			auto numberTrans = number->GetComponent<Transform>();
 			numberTrans->SetPosition(pos + offset); // —×‚É•À‚Ô”š
 			numberTrans->SetScale(Vec3(0.75f));
 			offset += Vec3(45.0f, 0, 0); // ”š‚Ì•‚Ì•¶
 		}
+
+		auto fade = AddComponent<FadeComponent>();
+		fade->SetFadeTime(0.1f);
+		fade->SetFadeColor(color);
+		SetDrawActive(false);
 	}
 
 	void UI_Crystal::OnUpdate()
 	{
+		auto stage = dynamic_pointer_cast<GameStage>(GetStage());
+		switch (stage->GetState())
+		{
+		case GameStage::GameState::PLAYING:
+			if (!bActive) {
+				FadeIn();
+				bActive = true;
+			}
+			break;
+		default:
+			break;
+		}
+
 		int place = static_cast<int>(pow(10, numbers.size() - 1));
 		for (auto& number : numbers)
 		{
@@ -58,5 +77,16 @@ namespace basecross {
 		{
 			number->OnDraw();
 		}
+	}
+
+	void UI_Crystal::FadeIn() {
+		for (auto& number : numbers)
+		{
+			number->SetDrawActive(true);
+			number->GetFadeComp()->FadeIn();
+		}
+		SetDrawActive(true);
+		auto fade = GetComponent<FadeComponent>();
+		fade->FadeIn();
 	}
 }

@@ -6,16 +6,19 @@
 #pragma once
 #include "stdafx.h"
 
-namespace basecross 
+namespace basecross
 {
 	class UI_Goalgauge : public GameObject
 	{
+		bool bActive;
 	public:
 		UI_Goalgauge(const std::shared_ptr<Stage>& stage) :
-			GameObject(stage)
+			GameObject(stage), bActive(false)
 		{}
 
 		void OnCreate() override;
 		void OnUpdate() override;
+
+		void FadeIn();
 	};
 }

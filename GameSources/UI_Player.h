@@ -15,14 +15,18 @@ namespace basecross
 		float m_startObjPosX;
 		float m_goalObjPosX;
 		float m_startToGoalDir;
+		bool bActive;
 	public:
 		UI_Player(const std::shared_ptr<Stage>& stage) :
 			GameObject(stage),
 			m_startPosX(0.0f),
-			m_goalPosX(0.0f)
+			m_goalPosX(0.0f),
+			bActive(false)
 		{}
 
 		void OnCreate() override;
 		void OnUpdate() override;
+
+		void FadeIn();
 	};
 }

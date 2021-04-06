@@ -34,8 +34,32 @@ namespace basecross
 		auto transComp = GetComponent<Transform>();
 		Vec3 pos(0.0f, 350.0f, 0.0f);
 		transComp->SetPosition(pos);
+
+		auto fade = AddComponent<FadeComponent>();
+		fade->SetFadeTime(0.1f);
+		fade->SetFadeColor(color);
+		SetDrawActive(false);
 	}
 
 	void UI_Goalgauge::OnUpdate()
-	{}
+	{
+		auto stage = dynamic_pointer_cast<GameStage>(GetStage());
+		switch (stage->GetState())
+		{
+		case GameStage::GameState::PLAYING:
+			if (!bActive) {
+				FadeIn();
+				bActive = true;
+			}
+			break;
+		default:
+			break;
+		}
+	}
+
+	void UI_Goalgauge::FadeIn() {
+		SetDrawActive(true);
+		auto fade = GetComponent<FadeComponent>();
+		fade->FadeIn();
+	}
 }

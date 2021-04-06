@@ -6,12 +6,13 @@ namespace basecross {
 	{
 
 		int point;
+		bool bActive;
 
 		std::vector<std::shared_ptr<Numbers>> numbers;
 
 	public:
 		UI_Crystal(const std::shared_ptr<Stage>& stage)
-			: GameObject(stage), point(0)
+			: GameObject(stage), point(0), bActive(false)
 		{
 
 		}
@@ -19,5 +20,7 @@ namespace basecross {
 		void OnCreate() override;
 		void OnUpdate() override;
 		void OnDraw() override;
+
+		void FadeIn();
 	};
 }
