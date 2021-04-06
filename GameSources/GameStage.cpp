@@ -72,12 +72,16 @@ namespace basecross {
 			for (auto& obj : stageObjs) {
 				obj->GetComponent<Transform>()->SetParent(stagePar);
 			}
-			stagePar->GetComponent<Transform>()->
-				SetPosition(Vec3(-15.0f, 0.0f, 0.0f));
-
 			auto effect = AddGameObject<Effect>(Vec3(-15.0f, 0.0f, 0.0f));
 			effect->GetComponent<Transform>()->SetParent(stagePar);
 			SetSharedGameObject(L"Effect", effect);
+			auto C_effect = AddGameObject<Effect>(Vec3(-15.0f, 0.0f, 0.0f));
+			C_effect->GetComponent<Transform>()->SetParent(stagePar);
+			SetSharedGameObject(L"C_Effect", C_effect);
+
+			stagePar->GetComponent<Transform>()->
+				SetPosition(Vec3(-15.0f, 0.0f, 0.0f));
+
 
 			AddGameObject<UI_HP>();
 			AddGameObject<UI_Crystal>();
@@ -93,6 +97,7 @@ namespace basecross {
 			//BGM�̍Đ�
 			auto audio = App::GetApp()->GetXAudio2Manager();
 			m_gameBGM = audio->Start(L"GameBGM", XAUDIO2_LOOP_INFINITE, 0.1f);
+
 		}
 		catch (...) {
 			throw;

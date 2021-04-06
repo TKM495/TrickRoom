@@ -217,6 +217,7 @@ namespace basecross{
 		{
 			auto bDamegeTag = other->FindTag(L"damage");
 
+
 			if (bDamegeTag)
 			{
 				m_HP += -1;
@@ -233,13 +234,20 @@ namespace basecross{
 				effect->InsertEffect(other->GetComponent<Transform>()->GetPosition());
 			}
 		}
-		if (other->FindTag(L"Crystal")) {
-			auto fx = GetStage()->GetSharedGameObject<Effect>(L"Effect");
-			fx->InsertEffect(other->GetComponent<Transform>()->GetPosition(), Col4(1.0f));
+
+		auto bCrystalTag = other->FindTag(L"Crystal");
+		if (bCrystalTag)
+		{
+			//auto ColComp = GetComponent<Collision>();
+
+			//ColComp->AddExcludeCollisionTag(L"crystal");
+
+			auto effect = GetStage()->GetSharedGameObject<Effect>(L"C_Effect");
+			effect->CrystalEffect(other->GetComponent<Transform>()->GetPosition());
 			if (other->FindTag(L"Red")) {
 				m_Rcrystal++;
 			}
-			else if(other->FindTag(L"Blue")) {
+			else if (other->FindTag(L"Blue")) {
 				m_Bcrystal++;
 			}
 			else {
@@ -257,6 +265,7 @@ namespace basecross{
 			auto audio = App::GetApp()->GetXAudio2Manager();
 			audio->Start(L"CrystalSE", 0, 0.1f);
 		}
+
 		if (other->FindTag(L"Goal")) {
 			ToClear();
 		}

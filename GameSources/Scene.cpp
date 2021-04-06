@@ -44,6 +44,7 @@ namespace basecross{
 			app->RegisterTexture(L"point", path + L"point.png");
 			app->RegisterTexture(L"PoleArt", path + L"Pole.png");
 			app->RegisterTexture(L"Spark", path + L"spark.png");
+			app->RegisterTexture(L"C_Spark", path + L"spark.png");
 			app->RegisterTexture(L"player", path + L"player.png");
 			app->RegisterTexture(L"gauge", path + L"gauge.png");
 			app->RegisterTexture(L"white", path + L"white.png");
@@ -79,7 +80,6 @@ namespace basecross{
 			app->RegisterWav(L"CrystalSE", soundPath);
 			soundPath = path + L"Damage2.wav";
 			app->RegisterWav(L"DamageSE", soundPath);
-
 
 			//�N���A����F��ݒ�
 			Col4 Col;

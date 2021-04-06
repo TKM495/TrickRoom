@@ -1,6 +1,6 @@
 /*!
 @file Effect.h
-@brief ƒGƒtƒFƒNƒg‚È‚Ç
+@brief ï¿½Gï¿½tï¿½Fï¿½Nï¿½gï¿½È‚ï¿½
 */
 
 #pragma once
@@ -21,5 +21,7 @@ namespace basecross {
 
 		void InsertEffect(const Vec3& Pos);
 		void InsertEffect(const Vec3& Pos, Col4 color);
+		void CrystalEffect(const Vec3& Pos);
+
 	};
 }
