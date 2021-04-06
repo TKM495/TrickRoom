@@ -19,6 +19,10 @@ namespace basecross {
 		float m_Mcount;
 		float m_MTime;
 
+		int m_DrawCount;
+		uint8_t m_BlinkMask;
+
+
 		//void Respawn();
 		void Move();
 		Vec3 MoveVec();
@@ -31,9 +35,12 @@ namespace basecross {
 		//Crystal
 		int GetCrystal();
 
+		void Draw();
+
+
 	public:
 		Player(const std::shared_ptr<Stage>& stage)
-			: GameObject(stage), m_moveSpeed(3), m_HP(5), m_crystal(0), bMutekiFlg(false), m_Mcount(0), m_MTime(2)
+			: GameObject(stage), m_moveSpeed(3), m_HP(5), m_crystal(0), bMutekiFlg(false), m_Mcount(0), m_MTime(2), m_DrawCount(0), m_BlinkMask(8)
 			/*,m_count(0),m_RespawnTime(2),bRespawn(false)*/
 		{
 

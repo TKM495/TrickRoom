@@ -72,6 +72,7 @@ namespace basecross {
 		else
 		{
 			Muteki();
+			Draw();
 		}
 	}
 
@@ -134,6 +135,23 @@ namespace basecross {
 		}
 
 	}
+
+	void Player::Draw()
+	{
+		if (m_DrawCount & m_BlinkMask)
+		{
+			SetDrawActive(true);
+		}
+
+
+		else
+		{
+			SetDrawActive(false);
+		}
+
+		++m_DrawCount;
+	}
+
 
 	void Player::SetHP(int HP)
 	{
