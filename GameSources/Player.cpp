@@ -11,7 +11,8 @@ namespace basecross{
 		const wstring& line)
 			: StageObject(stage),
 		m_moveSpeed(6), m_HP(3), m_Rcrystal(0),m_Bcrystal(0),
-		bMutekiFlg(false), m_Mcount(0), m_MTime(2)
+		bMutekiFlg(false), m_Mcount(0), m_MTime(2),
+		m_DrawCount(0), m_BlinkMask(8)
 	{
 		//トークン（カラム）の配列
 		vector<wstring> tokens;
@@ -109,6 +110,7 @@ namespace basecross{
 		if (bMutekiFlg)
 		{
 			Muteki();
+			Draw();
 		}
 
 		auto pursuerPos = pursuer->GetPos();
@@ -160,6 +162,23 @@ namespace basecross{
 		}
 
 	}
+
+	void Player::Draw()
+	{
+		if (m_DrawCount & m_BlinkMask)
+		{
+			SetDrawActive(true);
+		}
+
+
+		else
+		{
+			SetDrawActive(false);
+		}
+
+		++m_DrawCount;
+	}
+
 
 	void Player::SetHP(int HP)
 	{

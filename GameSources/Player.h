@@ -26,6 +26,10 @@ namespace basecross {
 		float m_Mcount;
 		float m_MTime;
 
+		int m_DrawCount;
+		uint8_t m_BlinkMask;
+
+
 		//void Respawn();
 		void Move();
 		Vec3 MoveVec();
@@ -38,6 +42,8 @@ namespace basecross {
 		int GetHP();
 		//Crystal
 		int GetCrystal();
+
+		void Draw();
 
 		//Vec3 jumpVelocity;
 		//private: bool bJump = false;
