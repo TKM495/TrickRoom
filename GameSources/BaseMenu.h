@@ -22,7 +22,7 @@ namespace basecross {
             Vertical,   //垂直方向
             Horizontal  //水平方向
         };
-
+    private:
         //メニュー要素のベクター配列
         vector<MenuElement> m_menuElement;
         //メニューの文字
@@ -42,15 +42,31 @@ namespace basecross {
         //時間計測用
         float m_delta;
 
+    protected:
         //メニュー構築
         void SetUpMenu();
         //ボタンが押されたときの処理
+        virtual void OnPushButton(wstring mes);
         virtual void OnPushButton();
         //シーンが遷移するときの処理
         virtual void SendEvent(wstring mes);
-        //ボタンが押されてから遷移までの時間
+        //リセット
+        virtual void Reset();
+        //ボタンが押されてから遷移までの時間の設定
         void SetDelayTime(float time) {
             m_delayTime = time;
+        }
+        //メニュー要素を配列に入れる
+        void PushBackElement(const MenuElement& element) {
+            m_menuElement.push_back(element);
+        }
+        //メニューの移動方向の設定
+        void SetMenuDirection(MenuDirection dir) {
+            m_dir = dir;
+        }
+        //遷移フラグが立っているか
+        bool IsChange() {
+            return m_bChange;
         }
 
     public:
@@ -66,6 +82,9 @@ namespace basecross {
 
         virtual void OnCreate()override {}
         virtual void OnUpdate()override;
+
+        //メニューの表示、非表示
+        void SetDrawMenu(bool flg);
     };
 }
 //end basecross

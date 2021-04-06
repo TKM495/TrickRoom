@@ -178,5 +178,9 @@ namespace basecross {
 	void StringSprite2::SetSize(float size) {
 		GetComponent<Transform>()->SetScale(Vec3(size));
 	}
+
+	void StringSprite2::SetPos(Vec3 pos) {
+		GetComponent<Transform>()->SetPosition(pos);
+	}
 }
 //end basecross

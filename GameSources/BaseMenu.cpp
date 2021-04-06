@@ -55,11 +55,12 @@ namespace basecross {
 
 
 		if (pad.wPressedButtons & XINPUT_GAMEPAD_A && !m_bChange) {
-			OnPushButton();
+			OnPushButton(element.sendMsg);
 		}
 
 		if (m_bChange) {
 			if (m_delta > m_delayTime) {
+				Reset();
 				SendEvent(element.sendMsg);
 			}
 			m_delta += delta;
@@ -70,9 +71,26 @@ namespace basecross {
 		m_bChange = true;
 	}
 
+	void BaseMenu::OnPushButton(wstring mes) {
+		OnPushButton();
+	}
+
 	void BaseMenu::SendEvent(wstring mes) {
 		//メッセージを送る
 		PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), mes);
+	}
+
+	void BaseMenu::Reset() {
+		m_bChange = false;
+		m_delta = 0.0f;
+		m_nowMenuNum = 0;
+	}
+
+	void BaseMenu::SetDrawMenu(bool flg) {
+		for (auto& menu : m_spriteMenu) {
+			menu->SetDrawActive(flg);
+		}
+		m_cursor.lock()->SetDrawActive(flg);
 	}
 }
 //end basecross

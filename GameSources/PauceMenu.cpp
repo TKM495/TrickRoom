@@ -1,5 +1,5 @@
 /*!
-@file PauceMenu.cpp
+@file PauseMenu.cpp
 @brief ポーズ画面のメニュー管理クラスの実体
 */
 
@@ -7,16 +7,50 @@
 #include "Project.h"
 
 namespace basecross {
-	void PauceMenu::OnCreate() {
-		MenuElement PauceMenu[]{
-			{Vec2(0.0f,0.0f),L"GameStart",L"ToGameStage"},
-			{Vec2(0.0f,-100.0f),L"Exit",L"ToExit"},
+	void PauseMenu::OnCreate() {
+		MenuElement PauseMenu[]{
+			{Vec2(0.0f,0.0f),L"Continue",L"Continue"},
+			{Vec2(0.0f,-100.0f),L"Retry",L"ToGameStage"},
+			{Vec2(0.0f,-200.0f),L"StageSelect",L"ToSelectStage"},
 		};
 
-		for (auto element : PauceMenu) {
-			m_menuElement.push_back(element);
+		for (auto element : PauseMenu) {
+			PushBackElement(element);
 		}
 		SetUpMenu();
+	}
+
+	void PauseMenu::OnUpdate() {
+		BaseMenu::OnUpdate();
+		//Startボタンでもメニューをとじれるようにしたかったが
+		//メニュー表示のボタンが押された判定が残っており
+		//開いた瞬間閉じるのでコメントアウトした
+		//const auto& pad = App::GetApp()->GetInputDevice().GetControlerVec()[0];
+		//if (pad.wPressedButtons & XINPUT_GAMEPAD_START && !IsChange()) {
+		//	BaseMenu::OnPushButton();
+		//	PauseMenu::SendEvent(L"Continue");
+		//}
+	}
+
+	void PauseMenu::OnPushButton(wstring mes) {
+		if (mes != L"Continue") {
+			auto fade = GetStage()->GetSharedGameObject<Fade>(L"Fade");
+			SetDelayTime(fade->GetFadeTime());
+			fade->FadeOut();
+		}
+		BaseMenu::OnPushButton();
+	}
+
+	void PauseMenu::SendEvent(wstring mes) {
+		if (mes == L"Continue") {
+			auto stage = dynamic_pointer_cast<GameStage>(GetStage());
+			stage->SetState(GameStage::GameState::PLAYING);
+			auto pause = stage->GetSharedGameObject<Pause>(L"Pause");
+			pause->IsActive(false);
+		}
+		else {
+			BaseMenu::SendEvent(mes);
+		}
 	}
 }
 //end basecross

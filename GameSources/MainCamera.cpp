@@ -68,7 +68,15 @@ namespace basecross {
 			Zoom(0.1f);
 			break;
 		default:
-			SetEye(at + m_offset);
+			switch (m_CameraState)
+			{
+			case basecross::state::Right:
+				SetEye(at + m_offset);
+				break;
+			case basecross::state::Left:
+				SetEye(at + m_Angle);
+				break;
+			}
 			return;
 			break;
 		}

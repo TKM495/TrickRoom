@@ -69,6 +69,7 @@ namespace basecross {
 		void SetAlignVertical(Align::Vertical ver);
 
 		void SetSize(float size);
+		void SetPos(Vec3 pos);
 
 		shared_ptr<FadeComponent> GetFadeComp() {
 			return GetComponent<FadeComponent>();

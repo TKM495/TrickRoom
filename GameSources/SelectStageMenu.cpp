@@ -15,14 +15,14 @@ namespace basecross {
 		};
 
 		for (auto element : elements) {
-			m_menuElement.push_back(element);
+			PushBackElement(element);
 		}
 		SetUpMenu();
 	}
 
 	void SelectStageMenu::OnPushButton() {
 		auto fade = GetStage()->GetSharedGameObject<Fade>(L"Fade");
-		m_delayTime = fade->GetFadeTime();
+		SetDelayTime(fade->GetFadeTime());
 		fade->FadeOut();
 		BaseMenu::OnPushButton();
 	}

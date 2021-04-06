@@ -188,6 +188,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)EmptyObject.cpp">
       <Filter>EmptyObject</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Pause.cpp">
+      <Filter>UI\Pause</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
@@ -379,6 +382,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)EmptyObject.h">
       <Filter>EmptyObject</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Pause.h">
+      <Filter>UI\Pause</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Menu">
@@ -566,6 +572,9 @@
     </Filter>
     <Filter Include="EmptyObject">
       <UniqueIdentifier>{185e88d2-8c56-45c6-b3f6-53559db1bcec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Pause">
+      <UniqueIdentifier>{41b4e096-ed41-4661-9bc7-d59d3749cbf6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

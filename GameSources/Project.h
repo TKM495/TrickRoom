@@ -41,6 +41,7 @@
 #include "UI_Rank.h"
 #include "UI_LR.h"
 #include "StartCountdown.h"
+#include "Pause.h"
 //行動やコンポーネント
 #include "SinCurve.h"
 #include "FadeComponent.h"

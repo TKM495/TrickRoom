@@ -48,7 +48,7 @@ namespace basecross {
 
 	Vec3 Pursuer::MoveVec()
 	{
-		auto stage = GetStage();
+		auto stage = dynamic_pointer_cast<GameStage>(GetStage());
 
 		auto transComp = GetComponent<Transform>();
 		auto pos = transComp->GetPosition();
@@ -56,10 +56,17 @@ namespace basecross {
 		const auto& app = App::GetApp();
 		float ElapsedTime = app->GetElapsedTime();
 
-		Vec3 moveVec = Vec3(-1.0f, 0.0f, 0.0f);
+		Vec3 moveVec;
+		switch (stage->GetState())
+		{
+		case GameStage::GameState::PAUSE:
+			moveVec = Vec3(0.0f);
+			break;
+		default:
+			moveVec = Vec3(-1.0f, 0.0f, 0.0f);
+			break;
+		}
 		return moveVec * m_Speed * ElapsedTime;
-
-
 	}
 
 

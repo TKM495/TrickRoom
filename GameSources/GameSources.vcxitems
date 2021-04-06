@@ -27,6 +27,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FloorArt.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Goal.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Pause.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Picture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Pillar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Pole.h" />
@@ -94,6 +95,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FloorArt.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Goal.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Pause.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Picture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Pillar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Pole.cpp" />

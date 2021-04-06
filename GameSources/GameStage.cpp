@@ -86,6 +86,8 @@ namespace basecross {
 			AddGameObject<UI_FPS>();
 			AddGameObject<UI_LR>();
 
+			AddGameObject<Pause>();
+
 			AddGameObject<Fade>()->FadeIn();
 
 			//BGM�̍Đ�
@@ -98,8 +100,9 @@ namespace basecross {
 	}
 
 	void GameStage::OnUpdate() {
-		auto& app = App::GetApp();
+		const auto& app = App::GetApp();
 		auto delta = app->GetElapsedTime();
+		const auto& pad = app->GetInputDevice().GetControlerVec()[0];
 		auto fade = GetSharedGameObject<Fade>(L"Fade");
 
 		switch (m_state)
@@ -117,7 +120,10 @@ namespace basecross {
 			}
 			break;
 		case GameState::PLAYING:
-			//SetState(GameState::CLEAR);
+			if (pad.wPressedButtons & XINPUT_GAMEPAD_START) {
+				SetState(GameState::PAUSE);
+				GetSharedGameObject<Pause>(L"Pause")->IsActive(true);
+			}
 			break;
 		case GameState::PAUSE:
 			break;

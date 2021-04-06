@@ -13,7 +13,7 @@ namespace basecross {
 		SelectStageMenu(const shared_ptr<Stage>& stage)
 			:BaseMenu(stage)
 		{
-			m_dir = MenuDirection::Vertical;
+			SetMenuDirection(MenuDirection::Vertical);
 		}
 
 		virtual void OnCreate()override;

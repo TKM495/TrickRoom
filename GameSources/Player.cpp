@@ -78,6 +78,9 @@ namespace basecross{
 		case GameStage::GameState::PLAYING:
 			moveVec = Vec3(-1.0f, 0.0f, fThumbLY);
 			break;
+		case GameStage::GameState::PAUSE:
+			moveVec = Vec3(0.0f);
+			break;
 		default:
 			moveVec = Vec3(-1.0f, 0.0f, 0.0f);
 			break;
