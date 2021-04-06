@@ -27,8 +27,9 @@ namespace basecross{
 			app->RegisterTexture(L"string", path + L"sprite.png");
 			app->RegisterTexture(L"SpikesArt", path + L"Spikes.png");
 			app->RegisterTexture(L"Cursor", path + L"Cursor.png");
-
 			app->RegisterTexture(L"Spark", path + L"spark.png");
+
+			app->RegisterTexture(L"C_Spark", path + L"spark.png");
 
 			//ƒNƒŠƒA‚·‚éF‚ğİ’è
 			Col4 Col;

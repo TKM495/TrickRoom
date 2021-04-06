@@ -17,5 +17,7 @@ namespace basecross {
 		}
 
 		void InsertEffect(const Vec3& Pos);
+		void CrystalEffect(const Vec3& Pos);
+
 	};
 }

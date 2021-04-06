@@ -159,6 +159,7 @@ namespace basecross {
 		{
 			auto bDamegeTag = other->FindTag(L"damege");
 
+			auto bCrystalTag = other->FindTag(L"crystal");
 
 			if (bDamegeTag)
 			{
@@ -175,6 +176,17 @@ namespace basecross {
 				auto effect = GetStage()->GetSharedGameObject<Effect>(L"Effect");
 				effect->InsertEffect(other->GetComponent<Transform>()->GetPosition());
 			}
+
+			if (bCrystalTag)
+			{
+				//auto ColComp = GetComponent<Collision>();
+
+				//ColComp->AddExcludeCollisionTag(L"crystal");
+
+				auto effect = GetStage()->GetSharedGameObject<Effect>(L"C_Effect");
+				effect->CrystalEffect(other->GetComponent<Transform>()->GetPosition());
+			}
+
 
 		}
 		//}
