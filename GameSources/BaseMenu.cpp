@@ -41,11 +41,18 @@ namespace basecross {
 			break;
 		}
 
-		if (negative &&	m_nowMenuNum > 0) {
+		if (negative) {
 			m_nowMenuNum--;
 		}
-		if (positive &&	m_nowMenuNum < m_menuNum) {
+		if (positive) {
 			m_nowMenuNum++;
+		}
+
+		if (m_nowMenuNum < 0) {
+			m_nowMenuNum = m_menuNum;
+		}
+		if (m_nowMenuNum > m_menuNum) {
+			m_nowMenuNum = 0;
 		}
 
 		auto element = m_menuElement[m_nowMenuNum];
