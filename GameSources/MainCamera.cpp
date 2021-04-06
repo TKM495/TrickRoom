@@ -56,6 +56,24 @@ namespace basecross {
 			isFirst = false;
 		}
 
+		auto gameStage = dynamic_pointer_cast<GameStage>(stage);
+		switch (gameStage->GetState())
+		{
+		case GameStage::GameState::PLAYING:
+			break;
+		case GameStage::GameState::CLEAR:
+			Zoom(0.25f);
+			break;
+		case GameStage::GameState::GAMEOVER:
+			Zoom(0.1f);
+			break;
+		default:
+			SetEye(at + m_offset);
+			return;
+			break;
+		}
+
+
 		if (!bLeapFlg)
 		{
 			SetEye(at + m_LeapOffset);
@@ -108,5 +126,12 @@ namespace basecross {
 	bool MainCamera::GetbLeapFlg()
 	{
 		return bLeapFlg;
+	}
+
+	void MainCamera::Zoom(float speed) {
+		SetWidth -= speed;
+		Camera::SetWidth(SetWidth);
+		SetHeight = SetWidth * 0.625f;
+		Camera::SetHeight(SetHeight);
 	}
 }

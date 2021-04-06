@@ -32,7 +32,7 @@ namespace basecross {
 		state m_CameraState;
 
 		bool isFirst;
-
+		void Zoom(float speed);
 	public:
 		MainCamera();
 

@@ -149,7 +149,7 @@ namespace basecross {
 		if (state == GameState::CLEAR || state == GameState::GAMEOVER) {
 			SetSceneTransition();
 			if (state == GameState::GAMEOVER) {
-				GetSharedGameObject<Fade>(L"Fade")->SetFadeTime(2.0f);
+				GetSharedGameObject<Fade>(L"Fade")->SetFadeTime(1.5f);
 			}
 		}
 		m_state = state;

@@ -61,7 +61,7 @@ namespace basecross{
 
 	Vec3 Player::MoveVec()
 	{
-		auto stage = GetStage();
+		auto stage = dynamic_pointer_cast<GameStage>(GetStage());
 
 		auto transComp = GetComponent<Transform>();
 		auto pos = transComp->GetPosition();
@@ -72,7 +72,17 @@ namespace basecross{
 
 		float fThumbLY = cntlPad.fThumbLY;
 
-		Vec3 moveVec = Vec3(-1.0f, 0.0f, fThumbLY);
+		Vec3 moveVec;
+		switch (stage->GetState())
+		{
+		case GameStage::GameState::PLAYING:
+			moveVec = Vec3(-1.0f, 0.0f, fThumbLY);
+			break;
+		default:
+			moveVec = Vec3(-1.0f, 0.0f, 0.0f);
+			break;
+		}
+
 		return moveVec * m_moveSpeed * ElapsedTime;
 
 
