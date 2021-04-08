@@ -93,7 +93,25 @@ namespace basecross {
 		{
 			m_EnemyCount = 0;
 		}
+	}
 
+	void EnemyMove::SetSpeed(int Speed)
+	{
+		m_RotationSpeed = Speed;
+	}
 
+	int EnemyMove::GetSpeed()
+	{
+		return m_RotationSpeed;
+	}
+
+	void EnemyMove::SetLength(float Length)
+	{
+		m_Length = Length;
+	}
+
+	float EnemyMove::GetLength()
+	{
+		return m_Length;
 	}
 }
