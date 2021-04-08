@@ -8,7 +8,6 @@
 
 namespace basecross {
 	class EnemyMove : public GameObject {
-	public:
 		float m_EnemySpeed;
 		float m_EnemyCount;
 		float m_Directions;
@@ -36,7 +35,11 @@ namespace basecross {
 		float m_PI;
 		float m_Deg;
 
-
+	public:
+		void SetSpeed(int Speed);
+		int GetSpeed();
+		void SetLength(float Length);
+		float GetLength();
 
 	public:
 		EnemyMove(const std::shared_ptr<Stage>& stage)
@@ -51,6 +54,7 @@ namespace basecross {
 
 		void CircleMove();
 		void SquareMove();
+
 
 	};
 }
