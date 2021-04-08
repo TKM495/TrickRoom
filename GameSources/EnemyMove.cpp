@@ -19,6 +19,11 @@ namespace basecross {
 
 	void EnemyMove::OnUpdate()
 	{
+		CircleMove();
+	}
+
+	void EnemyMove::CircleMove()
+	{
 		auto stage = GetStage();
 
 		auto transComp = GetComponent<Transform>();
@@ -27,49 +32,6 @@ namespace basecross {
 		const auto& app = App::GetApp();
 		float ElapsedTime = app->GetElapsedTime();
 
-		//m_EnemyCount += 1 * ElapsedTime;
-
-		//if (m_EnemyCount < m_MoveTime)
-		//{
-
-		//	auto Move = m_EnemySpeed * m_MinusDirections * ElapsedTime;
-		//	pos += Vec3(Move, 0.0f, 0.0f);
-		//	transComp->SetPosition(pos);
-
-		//	//MessageBox(0, L"ミッション失敗です、やり直してください", L"Failed", 0);
-		//}
-
-		//if (m_MoveTime < m_EnemyCount && m_EnemyCount < m_MoveTime2)
-		//{
-
-		//	auto Move = m_EnemySpeed * m_MinusDirections * ElapsedTime;
-		//	pos += Vec3(0.0f, 0.0f, Move);
-		//	transComp->SetPosition(pos);
-
-		//	//MessageBox(0, L"ミッション失敗です、やり直してください", L"Failed", 0);
-
-		//}
-
-		//if (m_MoveTime2 < m_EnemyCount && m_EnemyCount < m_MoveTime3)
-		//{
-		//	auto Move = m_EnemySpeed * m_Directions * ElapsedTime;
-		//	pos += Vec3(Move, 0.0f, 0.0f);
-		//	transComp->SetPosition(pos);
-
-		//}
-
-		//if (m_MoveTime3 < m_EnemyCount && m_EnemyCount < m_MoveTime4)
-		//{
-		//	auto Move = m_EnemySpeed * m_Directions * ElapsedTime;
-		//	pos += Vec3(0.0f, 0.0f, Move);
-		//	transComp->SetPosition(pos);
-
-		//}
-
-		//if (m_MoveTime4 < m_EnemyCount)
-		//{
-		//	m_EnemyCount = 0;
-		//}
 
 		float radius = m_Angle * m_PI / m_Deg;
 		auto add_x = cos(radius) * m_Length;
@@ -81,6 +43,56 @@ namespace basecross {
 		m_Angle += m_RotationSpeed;
 
 		transComp->SetPosition(m_PosX, m_Radius, m_PosY);
+	}
+
+	void EnemyMove::SquareMove()
+	{
+		auto stage = GetStage();
+
+		auto transComp = GetComponent<Transform>();
+		auto pos = transComp->GetPosition();
+
+		const auto& app = App::GetApp();
+		float ElapsedTime = app->GetElapsedTime();
+
+		m_EnemyCount += 1 * ElapsedTime;
+
+		if (m_EnemyCount < m_MoveTime)
+		{
+
+			auto Move = m_EnemySpeed * m_MinusDirections * ElapsedTime;
+			pos += Vec3(Move, 0.0f, 0.0f);
+			transComp->SetPosition(pos);
+		}
+
+		if (m_MoveTime < m_EnemyCount && m_EnemyCount < m_MoveTime2)
+		{
+
+			auto Move = m_EnemySpeed * m_MinusDirections * ElapsedTime;
+			pos += Vec3(0.0f, 0.0f, Move);
+			transComp->SetPosition(pos);
+		}
+
+		if (m_MoveTime2 < m_EnemyCount && m_EnemyCount < m_MoveTime3)
+		{
+			auto Move = m_EnemySpeed * m_Directions * ElapsedTime;
+			pos += Vec3(Move, 0.0f, 0.0f);
+			transComp->SetPosition(pos);
+
+		}
+
+		if (m_MoveTime3 < m_EnemyCount && m_EnemyCount < m_MoveTime4)
+		{
+			auto Move = m_EnemySpeed * m_Directions * ElapsedTime;
+			pos += Vec3(0.0f, 0.0f, Move);
+			transComp->SetPosition(pos);
+
+		}
+
+		if (m_MoveTime4 < m_EnemyCount)
+		{
+			m_EnemyCount = 0;
+		}
 
 
 	}
