@@ -13,7 +13,7 @@ namespace basecross {
 		drawComp->SetMeshResource(L"DEFAULT_SPHERE");
 
 		auto transComp = GetComponent<Transform>();
-		transComp->SetPosition(-9.0f, 0.0f, 3.0f);
+		transComp->SetPosition(0.0f, 0.0f, 0.0f);
 
 	}
 

@@ -5,6 +5,7 @@
 
 #pragma once
 #include "stdafx.h"
+#include "SpriteManager.h"
 
 namespace basecross {
 	//スプライトのデータ形式
@@ -14,22 +15,21 @@ namespace basecross {
 		Vec2 size;		//サイズ
 	};
 
-	struct ObjectDataFormat {
-		wstring name;	//名称
-		Vec3 position;	//位置
-		Vec3 scale;		//大きさ
-		Vec3 rotation;	//回転
-	};
-
 	struct PictureDataFormat {
 		wstring name;		//名称(タグみたいなの)
 		Vec2 size;			//サイズ
 		wstring fileName;	//ファイルの名前(拡張子含める)
 	};
 
+	enum class SpriteType {
+		String,
+		Image,
+		Number
+	};
+
 	class CSVLoad :public GameObject{
-		vector<SpriteDataFormat> m_spriteData;
-		vector<ObjectDataFormat> m_objectData;
+		vector<SpriteDataFormat> m_stringSpriteData;
+		vector<SpriteDataFormat> m_imageSpriteData;
 		vector<PictureDataFormat> m_pictureData;
 	public:
 		CSVLoad(const shared_ptr<Stage>& stage)
@@ -38,16 +38,15 @@ namespace basecross {
 
 		virtual void OnCreate()override;
 
-		void SpriteDataExtraction(vector<wstring> fileData);
-		void ObjectDataExtraction(vector<wstring> fileData);
+		void SpriteDataExtraction(vector<wstring> fileData, SpriteType type);
 		void PictureDataExtraction(vector<wstring> fileData);
 
-		vector<SpriteDataFormat>& GetSpriteData(){
-			return m_spriteData;
+		vector<SpriteDataFormat>& GetStringSpriteData(){
+			return m_stringSpriteData;
 		}
 
-		vector<ObjectDataFormat>& GetObjectData(){
-			return m_objectData;
+		vector<SpriteDataFormat>& GetImageSpriteData(){
+			return m_imageSpriteData;
 		}
 
 		vector<PictureDataFormat>& GetPictureData(){

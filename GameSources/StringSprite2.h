@@ -44,6 +44,8 @@ namespace basecross {
 		Align::Vertical m_vertical;
 		//頂点データ
 		vector<VertexPositionColorTexture> vertices;
+		//輪郭用の自分自身のコピー
+		shared_ptr<StringSprite2> m_outlineObj;
 		//データの中からm_nameに一致するデータを返す関数
 		int SearchDataIndex(vector<SpriteDataFormat>& data);
 	public:
@@ -70,6 +72,8 @@ namespace basecross {
 
 		void SetSize(float size);
 		void SetPos(Vec3 pos);
+		float GetSize();
+		Vec3 GetPos();
 
 		shared_ptr<FadeComponent> GetFadeComp() {
 			return GetComponent<FadeComponent>();

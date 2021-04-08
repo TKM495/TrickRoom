@@ -31,6 +31,9 @@
 //UI関係
 #include "Numbers.h"
 #include "Dot1x1.h"
+#include "FrameSprite.h"
+#include "BGSprite.h"
+#include "ColorOut.h"
 #include "UI_HP.h"
 #include "UI_Crystal.h"
 #include "Fade.h"
@@ -44,6 +47,8 @@
 #include "Pause.h"
 //行動やコンポーネント
 #include "SinCurve.h"
+#include "SquareMove.h"
+#include "CircularMove.h"
 #include "FadeComponent.h"
 //エフェクト
 #include "Effect.h"

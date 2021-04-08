@@ -10,7 +10,7 @@ namespace basecross {
 	void StringSprite2::OnCreate() {
 		//CSVLoadを取得しデータをもらう
 		auto csvLoad = dynamic_pointer_cast<CSVLoad>(GetStage()->GetSharedObject(L"CSVLoad"));
-		auto& data = csvLoad->GetSpriteData();
+		auto& data = csvLoad->GetStringSpriteData();
 		//目標のデータを探す
 		int index = SearchDataIndex(data);
 		if (index == -1) {
@@ -181,6 +181,15 @@ namespace basecross {
 
 	void StringSprite2::SetPos(Vec3 pos) {
 		GetComponent<Transform>()->SetPosition(pos);
+	}
+
+	float StringSprite2::GetSize() {
+		//大きさは同じなのでとりあえずxを返す
+		return GetComponent<Transform>()->GetScale().x;
+	}
+
+	Vec3 StringSprite2::GetPos() {
+		return GetComponent<Transform>()->GetPosition();
 	}
 }
 //end basecross

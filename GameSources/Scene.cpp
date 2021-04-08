@@ -21,9 +21,13 @@ namespace basecross{
 			auto dir = app->GetDataDirWString();
 			auto path = dir + L"Csv/";
 			CsvFile csvFile;
-			csvFile.SetFileName(path + L"Sprite.csv");
+			csvFile.SetFileName(path + L"StringSprite.csv");
 			csvFile.ReadCsv();
-			m_spriteWData = csvFile.GetCsvVec();
+			m_stringSpriteWData = csvFile.GetCsvVec();
+
+			csvFile.SetFileName(path + L"ImageSprite.csv");
+			csvFile.ReadCsv();
+			m_imageSpriteWData = csvFile.GetCsvVec();
 
 			csvFile.SetFileName(path + L"Picture.csv");
 			csvFile.ReadCsv();
@@ -31,13 +35,15 @@ namespace basecross{
 
 			//�e�N�X�`��
 			path = dir + L"Textures/";
-			app->RegisterTexture(L"string", path + L"sprite.png");
+			app->RegisterTexture(L"string", path + L"String.png");
+			app->RegisterTexture(L"Sprite", path + L"Sprite.png");
 			app->RegisterTexture(L"SpikesArt", path + L"Spikes.png");
 			app->RegisterTexture(L"BlockArt", path + L"block.png");
 			app->RegisterTexture(L"EnemyArt", path + L"Enemy.png");
 			app->RegisterTexture(L"StairsArt", path + L"saka.png");
 			app->RegisterTexture(L"FloorArt", path + L"RightPlane.png");
 			app->RegisterTexture(L"Cursor", path + L"Cursor.png");
+			app->RegisterTexture(L"VCursor", path + L"VerticalCursor.png");
 			app->RegisterTexture(L"time", path + L"time.png");
 			app->RegisterTexture(L"heart", path + L"heart.png");
 			app->RegisterTexture(L"crystal", path + L"crystal.png");
@@ -49,6 +55,8 @@ namespace basecross{
 			app->RegisterTexture(L"gauge", path + L"gauge.png");
 			app->RegisterTexture(L"white", path + L"white.png");
 			app->RegisterTexture(L"LR", path + L"left_right.png");
+			app->RegisterTexture(L"ColorOut", path + L"ColorOut.png");
+			app->RegisterTexture(L"UVCheck", path + L"UVCheck.png");
 
 			//3D���f��
 			path = dir + L"Models/";
@@ -87,7 +95,7 @@ namespace basecross{
 			SetClearColor(Col);
 			//�������g�ɃC�x���g�𑗂�
 			//����ɂ��e�X�e�[�W��I�u�W�F�N�g��Create���ɃV�[���ɃA�N�Z�X�ł���
-			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToGameStage");
+			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToResultStage");
 		}
 		catch (...) {
 			throw;

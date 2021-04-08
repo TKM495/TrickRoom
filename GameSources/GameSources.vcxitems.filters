@@ -129,7 +129,7 @@
       <Filter>StageParent</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Fade.cpp">
-      <Filter>UI\Fade</Filter>
+      <Filter>UI\Sprites\Fade</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ResultStage.cpp">
       <Filter>Stage\ResultStage</Filter>
@@ -162,7 +162,7 @@
       <Filter>UI\FPS</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Dot1x1.cpp">
-      <Filter>UI\Dot1x1</Filter>
+      <Filter>UI\Sprites\Dot1x1</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Goal.cpp">
       <Filter>StageObject\Goal</Filter>
@@ -190,6 +190,21 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Pause.cpp">
       <Filter>UI\Pause</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SquareMove.cpp">
+      <Filter>Behavior\SquareMove</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CircularMove.cpp">
+      <Filter>Behavior\Circular</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\media\ドキュメント\日本ゲーム大賞\TrickRoom\GameSources\FrameSprite.cpp">
+      <Filter>UI\Sprites\FrameSprite</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)BGSprite.cpp">
+      <Filter>UI\Sprites\BGSprite</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ColorOut.cpp">
+      <Filter>UI\Sprites\ColorOut</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -320,7 +335,7 @@
       <Filter>StageParent</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Fade.h">
-      <Filter>UI\Fade</Filter>
+      <Filter>UI\Sprites\Fade</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ResultStage.h">
       <Filter>Stage\ResultStage</Filter>
@@ -356,7 +371,7 @@
       <Filter>UI\FPS</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Dot1x1.h">
-      <Filter>UI\Dot1x1</Filter>
+      <Filter>UI\Sprites\Dot1x1</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Goal.h">
       <Filter>StageObject\Goal</Filter>
@@ -384,6 +399,21 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Pause.h">
       <Filter>UI\Pause</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SquareMove.h">
+      <Filter>Behavior\SquareMove</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CircularMove.h">
+      <Filter>Behavior\Circular</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\media\ドキュメント\日本ゲーム大賞\TrickRoom\GameSources\FrameSprite.h">
+      <Filter>UI\Sprites\FrameSprite</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)BGSprite.h">
+      <Filter>UI\Sprites\BGSprite</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ColorOut.h">
+      <Filter>UI\Sprites\ColorOut</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -516,9 +546,6 @@
     <Filter Include="StageParent">
       <UniqueIdentifier>{c6bdede5-c904-480e-9f8f-747c1225afe6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="UI\Fade">
-      <UniqueIdentifier>{63e49346-0b6d-46ab-a008-648b6f2244db}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Stage\ResultStage">
       <UniqueIdentifier>{ea1b75dd-1898-4936-80f5-e1f00fad3fd0}</UniqueIdentifier>
     </Filter>
@@ -549,9 +576,6 @@
     <Filter Include="UI\FPS">
       <UniqueIdentifier>{f768a0e3-ce4b-4bbc-878e-5b25fe5df0d2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="UI\Dot1x1">
-      <UniqueIdentifier>{45082e8a-70c6-4371-9561-036e355faf6e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="StageObject\Goal">
       <UniqueIdentifier>{7a4ab6e1-08ba-4847-b157-1471868697b7}</UniqueIdentifier>
     </Filter>
@@ -575,6 +599,33 @@
     </Filter>
     <Filter Include="UI\Pause">
       <UniqueIdentifier>{41b4e096-ed41-4661-9bc7-d59d3749cbf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Behavior\Linear">
+      <UniqueIdentifier>{16dc5503-c948-46a6-a0ca-0ea209c72d5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Behavior\Circular">
+      <UniqueIdentifier>{55aea9e8-e53e-4b0f-a814-7221ac7a8410}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Behavior\SquareMove">
+      <UniqueIdentifier>{eddd0d10-68f6-46eb-af7f-e52766036bf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Sprites">
+      <UniqueIdentifier>{efaf5975-a1bb-435c-b094-b535dfa5162b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Sprites\FrameSprite">
+      <UniqueIdentifier>{c10997ff-15c0-43da-9518-89653d02974b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Sprites\ColorOut">
+      <UniqueIdentifier>{7b7203dc-0350-4e11-a7ed-067e846ca2b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Sprites\BGSprite">
+      <UniqueIdentifier>{9d2e43a2-4c92-4113-b685-6f15f540a730}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Sprites\Fade">
+      <UniqueIdentifier>{63e49346-0b6d-46ab-a008-648b6f2244db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Sprites\Dot1x1">
+      <UniqueIdentifier>{45082e8a-70c6-4371-9561-036e355faf6e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

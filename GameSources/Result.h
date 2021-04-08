@@ -7,6 +7,7 @@
 #include "stdafx.h"
 #include "StringSprite2.h"
 #include "GameStage.h"
+#include "SpriteManager.h"
 
 namespace basecross {
 	//スコアに必要なデータ
@@ -39,12 +40,6 @@ namespace basecross {
 			score.Total = this->Total * _score.Total;
 			return score;
 		}
-	};
-
-	enum class SpriteType {
-		String,
-		Image,
-		Number
 	};
 
 	struct ResultParam {

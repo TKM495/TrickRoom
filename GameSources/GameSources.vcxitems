@@ -14,6 +14,9 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)BGSprite.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)CircularMove.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ColorOut.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Dot1x1.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)AdvCollision.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BaseMenu.h" />
@@ -34,6 +37,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PoleArt.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)pursuer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SelectStageMenu.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FrameSprite.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SquareMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StartCountdown.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UI_LR.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UI_Rank.h" />
@@ -82,6 +87,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Utility.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)BGSprite.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)CircularMove.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ColorOut.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Dot1x1.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)AdvCollision.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BaseMenu.cpp" />
@@ -102,6 +110,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PoleArt.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)pursuer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SelectStageMenu.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FrameSprite.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)SquareMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StartCountdown.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UI_LR.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UI_Rank.cpp" />

@@ -34,7 +34,7 @@ namespace basecross {
 		AddGameObject<UI_FPS>();
 
 		auto csvLoad = AddGameObject<CSVLoad>();
-		csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetSpriteData());
+		csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetStringSpriteData(), SpriteType::String);
 		auto title = AddGameObject<StringSprite2>(L"Title");
 		title->GetComponent<Transform>()->SetPosition(Vec3(0.0f, 200.0f, 0.0f));
 		AddGameObject<TitleMenu>();
