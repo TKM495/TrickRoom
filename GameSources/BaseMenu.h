@@ -68,6 +68,9 @@ namespace basecross {
         bool IsChange() {
             return m_bChange;
         }
+        vector<MenuElement>& GetMenuElement() {
+            return m_menuElement;
+        }
 
     public:
         BaseMenu(const shared_ptr<Stage>& stage)

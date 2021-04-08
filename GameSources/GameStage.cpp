@@ -31,7 +31,8 @@ namespace basecross {
 			auto& app = App::GetApp();
 			auto scene = app->GetScene<Scene>();
 			auto csvLoad = AddGameObject<CSVLoad>();
-			csvLoad->SpriteDataExtraction(scene->GetSpriteData());
+			csvLoad->SpriteDataExtraction(scene->GetStringSpriteData(), SpriteType::String);
+			csvLoad->SpriteDataExtraction(scene->GetImageSpriteData(), SpriteType::Image);
 			csvLoad->PictureDataExtraction(scene->GetPictureData());
 
 			//�Q�[���I�u�W�F�N�g�r���_�[
@@ -81,7 +82,6 @@ namespace basecross {
 
 			stagePar->GetComponent<Transform>()->
 				SetPosition(Vec3(-15.0f, 0.0f, 0.0f));
-
 
 			AddGameObject<UI_HP>();
 			AddGameObject<UI_Crystal>();

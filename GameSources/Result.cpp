@@ -55,7 +55,7 @@ namespace basecross {
 			{Vec2(50.0f,210.0f),SpriteType::Number,Util::IntToWStr(m_data.HP),Align::Horizontal::Right},
 			{Vec2(100.0f,210.0f),SpriteType::String,L"X"},
 			{Vec2(350.0f,210.0f),SpriteType::Number,Util::IntToWStr(factor.HP),Align::Horizontal::Right},
-			//{Vec2(0.0f,210.0f),SpriteType::Image,L"1000,70",Align::Horizontal::Center,Align::Vertical::Center},
+			{Vec2(-50.0f,210.0f),SpriteType::Image,L"1000,70",Align::Horizontal::Center,Align::Vertical::Center},
 
 			{Vec2(-500.0f,130.0f),SpriteType::String,L"Crystal",Align::Horizontal::Left},
 			{Vec2(50.0f,130.0f),SpriteType::Number,Util::IntToWStr(m_data.BCrystal),Align::Horizontal::Right},
@@ -101,14 +101,12 @@ namespace basecross {
 		vector<wstring> tokens;
 		Util::WStrToTokenVector(tokens, param.value, L',');
 
-		Dot1x1Data data{
-			param.pos,
-			Vec2((float)_wtof(tokens[0].c_str()),(float)_wtof(tokens[1].c_str())),
-			Col4(1.0f),
-			param.horizontal,
-			param.vertical
-		};
-		GetStage()->AddGameObject<Dot1x1>(data)->SetDrawLayer(-1);
+		auto size = Vec2((float)_wtof(tokens[0].c_str()), (float)_wtof(tokens[1].c_str()));
+
+
+		auto image = GetStage()->AddGameObject<FrameSprite>(size);
+		image->SetPosition(param.pos);
+		image->SetDrawLayer(-1);
 	}
 	void Result::CreateNumber(ResultParam& param) {
 		Vec3 offset(0.0f);

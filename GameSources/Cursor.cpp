@@ -9,7 +9,7 @@
 namespace basecross {
 	void Cursor::OnCreate() {
 		//色のデータ(R,G,B,A)
-		Col4 color(1.0f, 0.0f, 1.0f, 1.0f);
+		Col4 color(1.0f, 1.0f, 1.0f, 1.0f);
 		//頂点のデータ (番号は左上から右下まで)
 		vector<VertexPositionColorTexture> vertices = {
 			{Vec3(-300.0f, +50.0f,0.0f),color,Vec2(0.0f,0.0f)}, //0
@@ -28,7 +28,8 @@ namespace basecross {
 
 		drawComp->SetSamplerState(SamplerState::AnisotropicWrap); //テクスチャの繰り返し設定(Wrap)
 		drawComp->SetDepthStencilState(DepthStencilState::Read);
-		drawComp->SetTextureResource(L"Cursor");
+		drawComp->SetTextureResource(L"VCursor");
+		drawComp->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, 0.3f));
 
 		SetAlphaActive(true);
 	}

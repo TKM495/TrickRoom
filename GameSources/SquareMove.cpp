@@ -1,55 +1,23 @@
 /*!
-@file EnemyMove.cpp
-@brief 敵の動き
+@file SquareMove.cpp
+@brief ある点を中心とした四角形の上を移動する動きの実体
 */
 
 #include "stdafx.h"
 #include "Project.h"
 
 namespace basecross {
-	void EnemyMove::OnCreate()
+	void SquareMove::OnCreate()
 	{
-		auto drawComp = AddComponent<BcPNTStaticDraw>();
-		drawComp->SetMeshResource(L"DEFAULT_SPHERE");
-
-		auto transComp = GetComponent<Transform>();
-		transComp->SetPosition(0.0f, 0.0f, 0.0f);
-
-	}
-
-	void EnemyMove::OnUpdate()
-	{
-		CircleMove();
-	}
-
-	void EnemyMove::CircleMove()
-	{
-		auto stage = GetStage();
-
-		auto transComp = GetComponent<Transform>();
+		auto transComp = GetGameObject()->GetComponent<Transform>();
 		auto pos = transComp->GetPosition();
-
-		const auto& app = App::GetApp();
-		float ElapsedTime = app->GetElapsedTime();
-
-
-		float radius = m_Angle * m_PI / m_Deg;
-		auto add_x = cos(radius) * m_Length;
-		auto add_y = sin(radius) * m_Length;
-
-		m_PosX = m_CenterX + add_x;
-		m_PosY = m_CenterY + add_y;
-
-		m_Angle += m_RotationSpeed;
-
-		transComp->SetPosition(m_PosX, m_Radius, m_PosY);
+		pos += Vec3(-m_length.x / 2.0f, 0.0f, m_length.y / 2.0f);
+		transComp->SetPosition(pos);
 	}
 
-	void EnemyMove::SquareMove()
+	void SquareMove::Excute()
 	{
-		auto stage = GetStage();
-
-		auto transComp = GetComponent<Transform>();
+		auto transComp = GetGameObject()->GetComponent<Transform>();
 		auto pos = transComp->GetPosition();
 
 		const auto& app = App::GetApp();
@@ -63,6 +31,8 @@ namespace basecross {
 			auto Move = m_EnemySpeed * m_MinusDirections * ElapsedTime;
 			pos += Vec3(Move, 0.0f, 0.0f);
 			transComp->SetPosition(pos);
+
+			//MessageBox(0, L"ミッション失敗です、やり直してください", L"Failed", 0);
 		}
 
 		if (m_MoveTime < m_EnemyCount && m_EnemyCount < m_MoveTime2)
@@ -71,6 +41,9 @@ namespace basecross {
 			auto Move = m_EnemySpeed * m_MinusDirections * ElapsedTime;
 			pos += Vec3(0.0f, 0.0f, Move);
 			transComp->SetPosition(pos);
+
+			//MessageBox(0, L"ミッション失敗です、やり直してください", L"Failed", 0);
+
 		}
 
 		if (m_MoveTime2 < m_EnemyCount && m_EnemyCount < m_MoveTime3)
@@ -93,7 +66,6 @@ namespace basecross {
 		{
 			m_EnemyCount = 0;
 		}
-
 
 	}
 }

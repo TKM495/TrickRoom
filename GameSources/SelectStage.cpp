@@ -28,7 +28,7 @@ namespace basecross {
 		AddGameObject<UI_FPS>();
 
 		auto csvLoad = AddGameObject<CSVLoad>();
-		csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetSpriteData());
+		csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetStringSpriteData(), SpriteType::String);
 		AddGameObject<SelectStageMenu>();
 		AddGameObject<Fade>()->FadeIn();
 	}

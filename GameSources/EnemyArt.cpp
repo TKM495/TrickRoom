@@ -70,6 +70,9 @@ namespace basecross {
 		if (m_behavior == L"SinCurve") {
 			GetBehavior<SinCurve>()->SetOffset(m_offset);
 		}
+		else if (m_behavior == L"SquareMove") {
+			GetBehavior<SquareMove>()->SetSpeed(m_speed);
+		}
 		else {
 
 		}
@@ -100,6 +103,9 @@ namespace basecross {
 
 			if (m_behavior == L"SinCurve") {
 				GetBehavior<SinCurve>()->Excute(m_cycle, m_speed);
+			}
+			else if (m_behavior == L"SquareMove") {
+				GetBehavior<SquareMove>()->Excute();
 			}
 			else {
 

@@ -17,8 +17,10 @@ namespace basecross{
 	///	ゲームシーン
 	//--------------------------------------------------------------------------------------
 	class Scene : public SceneBase{
-		//スプライト用CSVデータ
-		vector<wstring> m_spriteWData;
+		//文字スプライト用CSVデータ
+		vector<wstring> m_stringSpriteWData;
+		//画像スプライト用CSVデータ
+		vector<wstring> m_imageSpriteWData;
 		//画像用CSVデータ
 		vector<wstring> m_pictureWData;
 		//スコアデータ
@@ -32,8 +34,12 @@ namespace basecross{
 		virtual void OnCreate() override;
 		virtual void OnEvent(const shared_ptr<Event>& event) override;
 
-		vector<wstring>& GetSpriteData() {
-			return m_spriteWData;
+		vector<wstring>& GetStringSpriteData() {
+			return m_stringSpriteWData;
+		}
+
+		vector<wstring>& GetImageSpriteData() {
+			return m_imageSpriteWData;
 		}
 
 		vector<wstring>& GetPictureData() {
