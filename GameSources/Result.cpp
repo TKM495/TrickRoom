@@ -107,11 +107,14 @@ namespace basecross {
 		switch (m_data.state)
 		{
 		case GameStage::GameState::CLEAR:
-			if (score.Total > 10000) {
+			if (score.Total >= 30000) {
 				rank = Rank::S;
 			}
-			else if () {
-
+			else if (score.Total >= 20000) {
+				rank = Rank::A;
+			}
+			else {
+				rank = Rank::B;
 			}
 
 			break;
