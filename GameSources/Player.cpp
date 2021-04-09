@@ -127,7 +127,7 @@ namespace basecross{
 			auto colorout = stage->GetSharedGameObject<ColorOut>(L"ColorOut");
 			colorout->SetColor(Col4(0.0f, 0.0f, 0.0f, 1.0f));
 			auto tmp = 1.0f - (dir / 5.0f);
-			tmp += 0.1f;
+			tmp -= 0.5f;
 			colorout->SetRange(tmp, tmp - 0.3f);
 			colorout->SetActive(true);
 		}
