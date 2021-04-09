@@ -117,8 +117,23 @@ namespace basecross{
 		auto myPos = GetComponent<Transform>()->GetPosition();
 		auto dir = pursuerPos.x- myPos.x;
 
+		if (m_HP <= 1) {
+			auto colorout = stage->GetSharedGameObject<ColorOut>(L"ColorOut");
+			colorout->SetColor(Col4(1.0f, 0.0f, 0.0f, 1.0f));
+			colorout->SetRange(0.25f, 0.0f);
+			colorout->SetActive(true);
+		}
+		else if (dir < 5.0f) {
+			auto colorout = stage->GetSharedGameObject<ColorOut>(L"ColorOut");
+			colorout->SetColor(Col4(0.0f, 0.0f, 0.0f, 1.0f));
+			auto tmp = 1.0f - (dir / 5.0f);
+			tmp += 0.1f;
+			colorout->SetRange(tmp, tmp - 0.3f);
+			colorout->SetActive(true);
+		}
+
 		//HPが0になったらゲームオーバー
-		if (m_HP <= 0|| dir < 0.1f) {
+		if (m_HP <= 0|| dir < 0.0f) {
 			ToGameOver();
 		}
 
@@ -201,12 +216,14 @@ namespace basecross{
 
 		auto nowPos = GetComponent<Transform>()->GetPosition();
 
+		auto stage = dynamic_pointer_cast<GameStage>(GetStage());
+		auto offset = stage->GetStartOffset();
 		ScoreData data{
 			GameStage::GameState::GAMEOVER,
 			0, //ゲームオーバー時はHPは0
 			m_Rcrystal,
 			m_Bcrystal,
-			(int)Util::Round((double)m_position.x - nowPos.x,0)
+			(int)Util::Round(((double)m_position.x - offset) - nowPos.x,0)
 		};
 		App::GetApp()->GetScene<Scene>()->SetScoreData(data);
 		//この時点でstateはGameOverになっている
@@ -217,13 +234,14 @@ namespace basecross{
 		SetDrawActive(false);
 		SetUpdateActive(false);
 		auto nowPos = GetComponent<Transform>()->GetPosition();
-
+		auto stage = dynamic_pointer_cast<GameStage>(GetStage());
+		auto offset = stage->GetStartOffset();
 		ScoreData data{
 			GameStage::GameState::CLEAR,
 			m_HP,
 			m_Rcrystal,
 			m_Bcrystal,
-			(int)Util::Round((double)m_position.x - nowPos.x,0)
+			(int)Util::Round(((double)m_position.x - offset) - nowPos.x,0)
 		};
 		App::GetApp()->GetScene<Scene>()->SetScoreData(data);
 		//この時点でstateはClearになっている

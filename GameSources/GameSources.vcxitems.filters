@@ -197,14 +197,14 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CircularMove.cpp">
       <Filter>Behavior\Circular</Filter>
     </ClCompile>
-    <ClCompile Include="D:\media\ドキュメント\日本ゲーム大賞\TrickRoom\GameSources\FrameSprite.cpp">
-      <Filter>UI\Sprites\FrameSprite</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)BGSprite.cpp">
       <Filter>UI\Sprites\BGSprite</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ColorOut.cpp">
       <Filter>UI\Sprites\ColorOut</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FrameSprite.cpp">
+      <Filter>UI\Sprites\FrameSprite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -406,14 +406,14 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CircularMove.h">
       <Filter>Behavior\Circular</Filter>
     </ClInclude>
-    <ClInclude Include="D:\media\ドキュメント\日本ゲーム大賞\TrickRoom\GameSources\FrameSprite.h">
-      <Filter>UI\Sprites\FrameSprite</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)BGSprite.h">
       <Filter>UI\Sprites\BGSprite</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ColorOut.h">
       <Filter>UI\Sprites\ColorOut</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FrameSprite.h">
+      <Filter>UI\Sprites\FrameSprite</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -9,9 +9,9 @@
 namespace basecross {
 	void ResultMenu::OnCreate() {
 		MenuElement elements[]{
-			{Vec2(-400.0f,-300.0f),L"Retry",L"ToGameStage"},
-			{Vec2(0.0f,-300.0f),L"StageSelect",L"ToSelectStage"},
-			{Vec2(400.0f,-300.0f),L"Exit",L"ToExit"}
+			{Vec2(-400.0f,-330.0f),L"Retry",L"ToGameStage"},
+			{Vec2(0.0f,-330.0f),L"StageSelect",L"ToSelectStage"},
+			{Vec2(400.0f,-330.0f),L"Exit",L"ToExit"}
 		};
 
 		for (auto element : elements) {

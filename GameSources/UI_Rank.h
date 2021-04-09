@@ -7,17 +7,25 @@
 #include "stdafx.h"
 
 namespace basecross {
+	enum class Rank {
+		S, A, B, C
+	};
+
 	class UI_Rank :public GameObject {
-		enum class Rank {
-			S ,A ,B ,C ,D
-		};
+		Rank m_rank;
+		Vec2 m_originalSize;
 	public:
-		UI_Rank(const shared_ptr<Stage>& stage)
-			:GameObject(stage)
+		UI_Rank(const shared_ptr<Stage>& stage,
+			const Rank& rank)
+			:GameObject(stage),
+			m_rank(rank),
+			m_originalSize(Vec2(300.0f))
 		{}
 
 		virtual void OnCreate()override;
-	};
 
+		void SetSize(float size);
+		void SetPosition(Vec2 pos);
+	};
 }
 //end basecross

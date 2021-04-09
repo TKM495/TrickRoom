@@ -16,17 +16,17 @@ namespace basecross {
 		auto halfHeight = viewport.Height / 2.0f;
 
 		Col4 color(1.0f, 1.0f, 1.0f, 1.0f);
-		std::vector<VertexPositionColorTexture> vertices = {
-			{Vec3(-halfWidth, +halfHeight, 0.0f), color, Vec2(0.0f,0.0f)},
-			{Vec3(+halfWidth, +halfHeight, 0.0f), color, Vec2(1.0f,0.0f)},
-			{Vec3(-halfWidth, -halfHeight, 0.0f), color, Vec2(0.0f,1.0f)},
-			{Vec3(+halfWidth, -halfHeight, 0.0f), color, Vec2(1.0f,1.0f)}
+		std::vector<VertexPositionColor> vertices = {
+			{Vec3(-halfWidth, +halfHeight, 0.0f), color},
+			{Vec3(+halfWidth, +halfHeight, 0.0f), color},
+			{Vec3(-halfWidth, -halfHeight, 0.0f), color},
+			{Vec3(+halfWidth, -halfHeight, 0.0f), color}
 		};
 		std::vector<uint16_t> indices = {
 			0, 1, 2,
 			2, 1, 3
 		};
-		auto drawComp = AddComponent<PCTSpriteDraw>(vertices, indices);
+		auto drawComp = AddComponent<PCSpriteDraw>(vertices, indices);
 		drawComp->SetTextureResource(L"ColorOut");
 		drawComp->SetDiffuse(m_color);
 
@@ -38,11 +38,11 @@ namespace basecross {
 	void ColorOut::OnUpdate() {
 		auto delta = App::GetApp()->GetElapsedTime();
 
-		auto time = abs(sinf(m_delta));
+		auto time = sinf(m_delta);
 
-		auto alpha = Lerp::CalculateLerp(m_min, m_max, 0.0f, 1.0f, time, Lerp::rate::Linear);
+		auto alpha = Lerp::CalculateLerp(m_min, m_max, -1.0f, 1.0f, time, Lerp::rate::Linear);
 
-		auto drawComp = GetComponent<PCTSpriteDraw>();
+		auto drawComp = GetComponent<PCSpriteDraw>();
 		Col4 color = m_color;
 		color.w = alpha;
 		drawComp->SetDiffuse(color);
