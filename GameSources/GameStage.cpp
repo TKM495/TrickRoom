@@ -132,6 +132,10 @@ namespace basecross {
 			}
 			break;
 		case GameState::PAUSE:
+			if (pad.wPressedButtons & XINPUT_GAMEPAD_START) {
+				SetState(GameState::PLAYING);
+				GetSharedGameObject<Pause>(L"Pause")->IsActive(false);
+			}
 			break;
 		case GameState::CLEAR:
 			if (!fade->GetFadeActive()) {
