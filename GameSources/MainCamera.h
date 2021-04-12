@@ -28,6 +28,7 @@ namespace basecross {
 		float m_LeapSpeed;
 		Vec3 m_Eye;
 		Vec3 m_LeapOffset;
+		Vec3 m_CameraOffset;
 
 		state m_CameraState;
 
