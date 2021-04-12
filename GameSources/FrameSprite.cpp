@@ -22,6 +22,14 @@ namespace basecross {
 		}
 		auto dat = data[index];
 		m_baseSize = dat.size;
+		if (m_baseSize.x > m_size.x || m_baseSize.y > m_size.y) {
+			throw BaseException(
+				L"指定されたサイズが最小のサイズより小さいです",
+				L"BaseSize > Size",
+				L"FrameSprite::OnCreate()"
+			);
+		}
+
 		auto baseSizeHalf = m_baseSize / 2.0f;
 		auto origin = dat.origin;
 		auto pos = SetAlignPosition(m_horizontal, m_vertical, m_size);

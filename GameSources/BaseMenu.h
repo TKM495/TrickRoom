@@ -41,7 +41,8 @@ namespace basecross {
         bool m_bChange;
         //時間計測用
         float m_delta;
-
+        //カーソルの移動速度
+        float m_cursorSp;
     protected:
         //メニュー構築
         void SetUpMenu();
@@ -80,7 +81,8 @@ namespace basecross {
             m_dir(MenuDirection::Vertical),
             m_delayTime(0.0f),
             m_bChange(false),
-            m_delta(0.0f)
+            m_delta(0.0f),
+            m_cursorSp(10.0f)
         {}
 
         virtual void OnCreate()override {}

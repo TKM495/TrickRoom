@@ -98,7 +98,7 @@ namespace basecross {
 		auto transComp = GetComponent<Transform>();
 		auto pos = transComp->GetPosition();
 		auto scale = transComp->GetScale();
-		pos.x += -scale.x;
+		pos.x += -scale.x / 2.0f;
 		return pos;
 	}
 

@@ -53,10 +53,15 @@ namespace basecross{
 			app->RegisterTexture(L"C_Spark", path + L"spark.png");
 			app->RegisterTexture(L"player", path + L"player.png");
 			app->RegisterTexture(L"gauge", path + L"gauge.png");
-			app->RegisterTexture(L"white", path + L"white.png");
 			app->RegisterTexture(L"LR", path + L"left_right.png");
 			app->RegisterTexture(L"ColorOut", path + L"ColorOut.png");
+			app->RegisterTexture(L"Rank", path + L"Rank.png");
+			app->RegisterTexture(L"BackGround", path + L"BGtest.png");
+			app->RegisterTexture(L"BGClear", path + L"BGClear.png");
+			app->RegisterTexture(L"BGGameOver", path + L"BGGameOver.png");
 			app->RegisterTexture(L"UVCheck", path + L"UVCheck.png");
+			app->RegisterTexture(L"white", path + L"white.png");
+
 
 			//3D���f��
 			path = dir + L"Models/";
@@ -81,6 +86,10 @@ namespace basecross{
 			app->RegisterWav(L"TitleBGM", soundPath);
 			soundPath = path + L"GameBGM.wav";
 			app->RegisterWav(L"GameBGM", soundPath);
+			soundPath = path + L"GameClear.wav";
+			app->RegisterWav(L"GameClear", soundPath);
+			soundPath = path + L"GameOver.wav";
+			app->RegisterWav(L"GameOver", soundPath);
 
 			//SE
 			path = dir + L"Sound/SE/";

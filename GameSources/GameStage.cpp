@@ -26,7 +26,7 @@ namespace basecross {
 		try {
 			//�r���[�ƃ��C�g�̍쐬
 			CreateViewLight();
-			//AddGameObject<Debug>();
+			AddGameObject<Debug>();
 
 			auto& app = App::GetApp();
 			auto scene = app->GetScene<Scene>();
@@ -91,7 +91,8 @@ namespace basecross {
 			AddGameObject<UI_LR>();
 
 			AddGameObject<Pause>();
-
+			AddGameObject<ColorOut>(Col4(1.0f), 0.25f, 0.0f, 4.0f);
+			AddGameObject<BGSprite>(L"BackGround");
 			AddGameObject<Fade>()->FadeIn();
 
 			//BGM�̍Đ�
@@ -131,6 +132,10 @@ namespace basecross {
 			}
 			break;
 		case GameState::PAUSE:
+			if (pad.wPressedButtons & XINPUT_GAMEPAD_START) {
+				SetState(GameState::PLAYING);
+				GetSharedGameObject<Pause>(L"Pause")->IsActive(false);
+			}
 			break;
 		case GameState::CLEAR:
 			if (!fade->GetFadeActive()) {

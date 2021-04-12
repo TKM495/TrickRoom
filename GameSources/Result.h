@@ -46,6 +46,7 @@ namespace basecross {
 		Vec2 pos;
 		SpriteType type;
 		wstring value;
+		float size = 1.0f;
 		Align::Horizontal horizontal = Align::Horizontal::Center;	//êÖïΩëµÇ¶à íu
 		Align::Vertical vertical = Align::Vertical::Center;		//êÇíºëµÇ¶à íu
 	};
@@ -65,7 +66,7 @@ namespace basecross {
 			:GameObject(stage),
 			m_data(data),
 			m_strSize(0.8f),
-			m_numSize(0.7f)
+			m_numSize(0.5f)
 		{}
 
 		virtual void OnCreate()override;

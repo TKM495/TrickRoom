@@ -56,9 +56,10 @@ namespace basecross {
 		}
 
 		auto element = m_menuElement[m_nowMenuNum];
-
 		auto transComp = m_cursor.lock()->GetComponent<Transform>();
-		transComp->SetPosition((Vec3)element.pos);
+		auto amount = m_cursorSp * delta;
+		auto pos = Lerp::CalculateLerp(transComp->GetPosition(), (Vec3)element.pos, 0.0f, 1.0f, amount, Lerp::rate::EaseOut);
+		transComp->SetPosition(pos);
 
 
 		if (pad.wPressedButtons & XINPUT_GAMEPAD_A && !m_bChange) {

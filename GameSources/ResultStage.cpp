@@ -41,7 +41,30 @@ namespace basecross {
 
 		AddGameObject<Result>(scoreData);
 		AddGameObject<ResultMenu>();
+
+		switch (scoreData.state)
+		{
+		case GameStage::GameState::CLEAR:
+			AddGameObject<BGSprite>(L"BGClear");
+			break;
+		case GameStage::GameState::GAMEOVER:
+			AddGameObject<BGSprite>(L"BGGameOver");
+			break;
+		}
 		AddGameObject<Fade>()->FadeIn();
+
+		auto audio = App::GetApp()->GetXAudio2Manager();
+		wstring bgmName = L"";
+		switch (scoreData.state)
+		{
+		case GameStage::GameState::CLEAR:
+			bgmName = L"GameClear";
+			break;
+		case GameStage::GameState::GAMEOVER:
+			bgmName = L"GameOver";
+			break;
+		}
+		audio->Start(bgmName, 0, 0.1f);
 	}
 
 	void ResultStage::OnUpdate() {
