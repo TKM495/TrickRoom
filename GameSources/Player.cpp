@@ -90,7 +90,7 @@ namespace basecross {
 		if (MoveVec().length() > 0.0f)
 		{
 			auto utilPtr = GetBehavior<UtilBehavior>();
-			utilPtr->RotToHead(MoveVec(), 0.1f);
+			utilPtr->RotToHead(MoveVec(), rotationSpeed);
 		}
 
 		SetDrawActive(true);

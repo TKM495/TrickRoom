@@ -21,6 +21,7 @@ namespace basecross {
 
 		int m_DrawCount;
 		uint8_t m_BlinkMask;
+		float rotationSpeed;
 
 
 		//void Respawn();
@@ -40,7 +41,7 @@ namespace basecross {
 
 	public:
 		Player(const std::shared_ptr<Stage>& stage)
-			: GameObject(stage), m_moveSpeed(3), m_HP(5), m_crystal(0), bMutekiFlg(false), m_Mcount(0), m_MTime(2), m_DrawCount(0), m_BlinkMask(8)
+			: GameObject(stage), m_moveSpeed(3), m_HP(5), m_crystal(0), bMutekiFlg(false), m_Mcount(0), m_MTime(2), m_DrawCount(0), m_BlinkMask(8),rotationSpeed(0.1f)
 			/*,m_count(0),m_RespawnTime(2),bRespawn(false)*/
 		{
 
