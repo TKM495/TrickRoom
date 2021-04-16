@@ -42,9 +42,11 @@ namespace basecross {
 		float ElapsedTime = app->GetElapsedTime();
 		const auto& cntlPad = app->GetInputDevice().GetControlerVec()[0];
 
+		float fThumbLX = cntlPad.fThumbLX;
 		float fThumbLY = cntlPad.fThumbLY;
 
-		Vec3 moveVec = Vec3(-1.0f, 0.0f, fThumbLY);
+
+		Vec3 moveVec = Vec3(fThumbLX, 0.0f, fThumbLY);
 		return moveVec * m_moveSpeed * ElapsedTime;
 
 
