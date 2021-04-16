@@ -28,6 +28,7 @@ namespace basecross {
 
 		int m_DrawCount;
 		uint8_t m_BlinkMask;
+		float rotationSpeed;
 
 
 		//void Respawn();

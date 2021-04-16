@@ -12,7 +12,8 @@ namespace basecross{
 			: StageObject(stage),
 		m_moveSpeed(6), m_HP(3), m_Rcrystal(0),m_Bcrystal(0),
 		bMutekiFlg(false), m_Mcount(0), m_MTime(2),
-		m_DrawCount(0), m_BlinkMask(8)
+		m_DrawCount(0), m_BlinkMask(8),rotationSpeed(0.2f)
+
 	{
 		//トークン（カラム）の配列
 		vector<wstring> tokens;
@@ -71,22 +72,25 @@ namespace basecross{
 		float ElapsedTime = app->GetElapsedTime();
 		const auto& cntlPad = app->GetInputDevice().GetControlerVec()[0];
 
+		float fThumbLX = cntlPad.fThumbLX;
 		float fThumbLY = cntlPad.fThumbLY;
 
 		Vec3 moveVec;
 		switch (stage->GetState())
 		{
 		case GameStage::GameState::PLAYING:
-			moveVec = Vec3(-1.0f, 0.0f, fThumbLY);
+		Vec3 moveVec = Vec3(fThumbLX, 0.0f, fThumbLY);
 			break;
 		case GameStage::GameState::PAUSE:
 			moveVec = Vec3(0.0f);
 			break;
 		default:
-			moveVec = Vec3(-1.0f, 0.0f, 0.0f);
+			moveVec = Vec3(0.0f, 0.0f, 0.0f);
 			break;
 		}
 
+
+		Vec3 moveVec = Vec3(fThumbLX, 0.0f, fThumbLY);
 		return moveVec * m_moveSpeed * ElapsedTime;
 
 
@@ -157,7 +161,7 @@ namespace basecross{
 		if (MoveVec().length() > 0.0f)
 		{
 			auto utilPtr = GetBehavior<UtilBehavior>();
-			utilPtr->RotToHead(MoveVec(), 0.2f);
+			utilPtr->RotToHead(MoveVec(), rotationSpeed);
 		}
 
 		SetDrawActive(true);

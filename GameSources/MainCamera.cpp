@@ -10,7 +10,7 @@ namespace basecross {
 
 	MainCamera::MainCamera()
 		:m_offset(10.0f, 10.0f, -10.0f), m_Angle(-10.0f, 10.0f, -10.0f), bSetPers(false), SetWidth(18.0f), SetHeight(0.0f), m_CameraState(state::Right),
-		bLeapFlg(false), m_LeapTime(0), m_LeapSpeed(1), m_LeapOffset(m_offset),m_CameraOffset(-5.0,0,0)
+		bLeapFlg(false), m_LeapTime(0), m_LeapSpeed(1), m_LeapOffset(m_offset)
 	{
 		isFirst = true;
 	}
@@ -46,7 +46,7 @@ namespace basecross {
 
 		//カメラ処理
 		auto TransComp = player->GetComponent<Transform>();
-		auto at = TransComp->GetPosition() + m_CameraOffset;
+		auto at = TransComp->GetPosition();
 		auto gameStage = dynamic_pointer_cast<GameStage>(stage);
 		auto limit = gameStage->GetGoalX();
 		if (at.x < limit) {
