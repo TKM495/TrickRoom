@@ -10,7 +10,7 @@ namespace basecross {
 
 	MainCamera::MainCamera()
 		:m_offset(10.0f, 10.0f, -10.0f), m_Angle(-10.0f, 10.0f, -10.0f), bSetPers(false), SetWidth(20.0f), SetHeight(12.5f), m_CameraState(state::Right),
-		bLeapFlg(false), m_LeapTime(0), m_LeapSpeed(1), m_LeapOffset(m_offset),m_CameraOffset(-5.0f,0.0f,0.0f)
+		bLeapFlg(false), m_LeapTime(0), m_LeapSpeed(1), m_LeapOffset(m_offset)
 	{
 		isFirst = true;
 	}
@@ -43,7 +43,7 @@ namespace basecross {
 
 		//カメラ処理
 		auto TransComp = player->GetComponent<Transform>();
-		auto at = TransComp->GetPosition() + m_CameraOffset;
+		auto at = TransComp->GetPosition();
 
 		SetAt(at);
 
