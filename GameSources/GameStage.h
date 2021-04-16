@@ -26,6 +26,12 @@ namespace basecross {
 		GameState m_state;
 		//スタート地点のオフセット
 		float m_startOffset;
+		//ゴールのX座標
+		float m_GoalX;
+		//ステージオフセット
+		float m_stageOffsetX;
+		//ステージナンバー
+		int m_stageNum;
 		//描画距離
 		float m_renderDis;
 		//ObjDraw用時間計測用
@@ -38,14 +44,17 @@ namespace basecross {
 		void CreateViewLight();
 	public:
 		//構築と破棄
-		GameStage()
+		GameStage(int stageNum = 1)
 			:Stage(),
 			m_state(GameState::FADEIN),
 			m_drawDelta(0.0f),
 			m_stateDelta(0.0f),
 			m_renderDis(25.0f),
 			m_startOffset(20.0f),
-			m_beforeValue(0.0f)
+			m_beforeValue(0.0f),
+			m_GoalX(0.0f),
+			m_stageOffsetX(-15.0f),
+			m_stageNum(stageNum)
 		{}
 		virtual ~GameStage() {}
 		//初期化
@@ -54,6 +63,18 @@ namespace basecross {
 		virtual void OnDestroy()override;
 
 		void ObjDraw(float time);
+
+		bool IsStateClear() {
+			switch (m_state)
+			{
+			case GameState::CLEAR:
+				return true;
+				break;
+			default:
+				return false;
+				break;
+			}
+		}
 
 		//現在のステートを取得
 		GameState GetState() {
@@ -64,6 +85,17 @@ namespace basecross {
 
 		float GetStartOffset() {
 			return m_startOffset;
+		}
+
+		float GetGoalX() {
+			return m_GoalX;
+		}
+		void SetGoalX(float x) {
+			m_GoalX = x;
+		}
+
+		float GetStageOffsetX() {
+			return m_stageOffsetX;
 		}
 
 		void SetSceneTransition();

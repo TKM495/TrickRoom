@@ -1,5 +1,4 @@
-
-/*!
+﻿/*!
 @file Scene.cpp
 @brief �V�[������
 */
@@ -59,6 +58,11 @@ namespace basecross{
 			app->RegisterTexture(L"BackGround", path + L"BGtest.png");
 			app->RegisterTexture(L"BGClear", path + L"BGClear.png");
 			app->RegisterTexture(L"BGGameOver", path + L"BGGameOver.png");
+			app->RegisterTexture(L"BGSelectStage", path + L"BGSelectStage.png");
+			app->RegisterTexture(L"PictureFrame", path + L"PictureFrame.png");
+
+			app->RegisterTexture(L"gaku", path + L"Cursor.png");
+			app->RegisterTexture(L"ya", path + L"ya.png");
 			app->RegisterTexture(L"UVCheck", path + L"UVCheck.png");
 			app->RegisterTexture(L"white", path + L"white.png");
 
@@ -97,6 +101,12 @@ namespace basecross{
 			app->RegisterWav(L"CrystalSE", soundPath);
 			soundPath = path + L"Damage2.wav";
 			app->RegisterWav(L"DamageSE", soundPath);
+			soundPath = path + L"Cursor.wav";
+			app->RegisterWav(L"CursorSE", soundPath);
+			soundPath = path + L"Decision.wav";
+			app->RegisterWav(L"DecisionSE", soundPath);
+			soundPath = path + L"Cancel.wav";
+			app->RegisterWav(L"CancelSE", soundPath);
 
 			//�N���A����F��ݒ�
 			Col4 Col;
@@ -104,7 +114,7 @@ namespace basecross{
 			SetClearColor(Col);
 			//�������g�ɃC�x���g�𑗂�
 			//����ɂ��e�X�e�[�W��I�u�W�F�N�g��Create���ɃV�[���ɃA�N�Z�X�ł���
-			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToResultStage");
+			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToTitleStage");
 		}
 		catch (...) {
 			throw;
@@ -122,14 +132,14 @@ namespace basecross{
 		}
 		//�Q�[���X�e�[�W
 		if (event->m_MsgStr == L"ToGameStage") {
-			ResetActiveStage<GameStage>();
+			ResetActiveStage<GameStage>(GetStageNum());
 		}
 		if (event->m_MsgStr == L"ToResultStage") {
 			ResetActiveStage<ResultStage>();
 		}
 		//�Q�[���I��
 		if (event->m_MsgStr == L"ToExit") {
-			exit(0);
+			PostQuitMessage(0);
 		}
 	}
 

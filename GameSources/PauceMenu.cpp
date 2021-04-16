@@ -17,19 +17,7 @@ namespace basecross {
 		for (auto element : PauseMenu) {
 			PushBackElement(element);
 		}
-		SetUpMenu();
-	}
-
-	void PauseMenu::OnUpdate() {
-		BaseMenu::OnUpdate();
-		//Startボタンでもメニューをとじれるようにしたかったが
-		//メニュー表示のボタンが押された判定が残っており
-		//開いた瞬間閉じるのでコメントアウトした
-		//const auto& pad = App::GetApp()->GetInputDevice().GetControlerVec()[0];
-		//if (pad.wPressedButtons & XINPUT_GAMEPAD_START && !IsChange()) {
-		//	BaseMenu::OnPushButton();
-		//	PauseMenu::SendEvent(L"Continue");
-		//}
+		SetUpMenu<StringSprite2, Cursor>();
 	}
 
 	void PauseMenu::OnPushButton(wstring mes) {

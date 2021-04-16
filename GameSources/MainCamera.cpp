@@ -47,6 +47,11 @@ namespace basecross {
 		//カメラ処理
 		auto TransComp = player->GetComponent<Transform>();
 		auto at = TransComp->GetPosition() + m_CameraOffset;
+		auto gameStage = dynamic_pointer_cast<GameStage>(stage);
+		auto limit = gameStage->GetGoalX();
+		if (at.x < limit) {
+			at.x = limit;
+		}
 
 		SetAt(at);
 
@@ -56,7 +61,6 @@ namespace basecross {
 			isFirst = false;
 		}
 
-		auto gameStage = dynamic_pointer_cast<GameStage>(stage);
 		switch (gameStage->GetState())
 		{
 		case GameStage::GameState::PLAYING:

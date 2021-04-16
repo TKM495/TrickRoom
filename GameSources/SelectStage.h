@@ -8,12 +8,15 @@
 
 namespace basecross {
 	class SelectStage : public Stage {
+		shared_ptr<SoundItem> m_selectBGM;
 	public:
 		// ƒrƒ…[‚Ìì¬
 		void CreateViewLight();
 
 		void OnCreate() override;
 		void OnUpdate() override;
+		void OnDestroy()override;
+
 	};
 }
 //end basecross

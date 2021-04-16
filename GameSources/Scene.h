@@ -25,10 +25,18 @@ namespace basecross{
 		vector<wstring> m_pictureWData;
 		//スコアデータ
 		ScoreData m_scoreData;
+		//タイトルBGM
+		shared_ptr<SoundItem> m_titleBGM;
+		//ロードするステージ番号
+		int m_stageNum;
+		//最大ステージ数
+		int m_maxStage;
 		//デバッグステート
 		DebugState m_debugState;
 	public:
-		Scene() :SceneBase()
+		Scene() :SceneBase(),
+			m_stageNum(1),
+			m_maxStage(3)
 		{}
 		virtual ~Scene() {}
 		virtual void OnCreate() override;
@@ -56,6 +64,26 @@ namespace basecross{
 
 		ScoreData GetScoreData() {
 			return m_scoreData;
+		}
+
+		void SetTitleBGM(shared_ptr<SoundItem> bgm) {
+			m_titleBGM = bgm;
+		}
+
+		shared_ptr<SoundItem> GetTitleBGM() {
+			return m_titleBGM;
+		}
+
+		void SetStageNum(int num) {
+			m_stageNum = num;
+		}
+
+		int GetStageNum() {
+			return m_stageNum;
+		}
+
+		int GetMaxStage() {
+			return m_maxStage;
 		}
 	};
 

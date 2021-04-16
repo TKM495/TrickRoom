@@ -17,7 +17,6 @@ namespace basecross {
 		}
 
 		virtual void OnCreate()override;
-		virtual void OnUpdate()override;
 		virtual void OnPushButton(wstring mes)override;
 		virtual void SendEvent(wstring mes)override;
 

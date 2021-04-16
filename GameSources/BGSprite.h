@@ -18,6 +18,9 @@ namespace basecross {
 		{}
 
 		virtual void OnCreate()override;
+		void SetPosition(Vec3 pos) {
+			GetComponent<Transform>()->SetPosition(pos);
+		}
 	};
 }
 //end basecross

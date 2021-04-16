@@ -25,7 +25,7 @@ namespace basecross {
 		);
 		m_scale = Vec3(
 			scale.x * 5.0f,
-			scale.y * 5.0f,
+			scale.y * 9.9f,
 			scale.z * 9.9f
 		);
 		m_rotation = Vec3(0.0f);

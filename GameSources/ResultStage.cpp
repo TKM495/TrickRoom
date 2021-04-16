@@ -33,14 +33,24 @@ namespace basecross {
 
 		auto scoreData = App::GetApp()->GetScene<Scene>()->GetScoreData();
 		//テスト用データ
-		scoreData.state = GameStage::GameState::CLEAR;
-		scoreData.HP = 5;
-		scoreData.BCrystal = 14;
-		scoreData.RCrystal = 6;
-		scoreData.Distance = 200;
+		//scoreData.state = GameStage::GameState::GAMEOVER;
+		//scoreData.HP = 5;
+		//scoreData.BCrystal = 14;
+		//scoreData.RCrystal = 6;
+		//scoreData.Distance = 200;
 
 		AddGameObject<Result>(scoreData);
-		AddGameObject<ResultMenu>();
+		bool stateFlg;
+		switch (scoreData.state)
+		{
+		case GameStage::GameState::CLEAR:
+			stateFlg = true;
+			break;
+		case GameStage::GameState::GAMEOVER:
+			stateFlg = false;
+			break;
+		}
+		AddGameObject<ResultMenu>(stateFlg);
 
 		switch (scoreData.state)
 		{

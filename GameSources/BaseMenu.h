@@ -11,9 +11,10 @@
 namespace basecross {
     // メニュー項目の表示に必要な構造体を用意する
     struct MenuElement {
-        Vec2 pos;        // 座標格納用変数
-        wstring name;    // 項目名格納用変数
-        wstring sendMsg; // 送るメッセージ
+        Vec2 pos;           // 座標格納用変数
+        wstring name;       // 項目名格納用変数
+        wstring sendMsg;    // 送るメッセージ
+        bool flg = true;           // 有効無効
     };
 
     class BaseMenu :public GameObject {
@@ -27,6 +28,8 @@ namespace basecross {
         vector<MenuElement> m_menuElement;
         //メニューの文字
         vector<shared_ptr<StringSprite2>> m_spriteMenu;
+        //オーディオ取得用
+        shared_ptr<XAudio2Manager> m_audio;
         //メニューの要素数
         int m_menuNum;
         //今選択しているメニュー
@@ -45,12 +48,28 @@ namespace basecross {
         float m_cursorSp;
     protected:
         //メニュー構築
-        void SetUpMenu();
+        template<typename T_Object, typename T_Cursor>
+        void SetUpMenu() {
+            //-1なのは配列に合わせるため
+            m_menuNum = (int)m_menuElement.size() - 1;
+
+            auto& stage = GetStage();
+            for (auto& element : m_menuElement) {
+                auto str = stage->AddGameObject<T_Object>(element.name);
+                str->GetComponent<Transform>()->SetPosition((Vec3)element.pos);
+                m_spriteMenu.push_back(str);
+            }
+
+            m_cursor = GetStage()->AddGameObject<T_Cursor>();
+        }
         //ボタンが押されたときの処理
+        virtual void OnPushButton(MenuElement element);
         virtual void OnPushButton(wstring mes);
         virtual void OnPushButton();
         //シーンが遷移するときの処理
         virtual void SendEvent(wstring mes);
+        //リセット前の処理
+        virtual void BeforeReset() {}
         //リセット
         virtual void Reset();
         //ボタンが押されてから遷移までの時間の設定
@@ -82,7 +101,8 @@ namespace basecross {
             m_delayTime(0.0f),
             m_bChange(false),
             m_delta(0.0f),
-            m_cursorSp(10.0f)
+            m_cursorSp(10.0f),
+            m_audio(App::GetApp()->GetXAudio2Manager())
         {}
 
         virtual void OnCreate()override {}

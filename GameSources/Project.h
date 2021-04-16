@@ -34,6 +34,8 @@
 #include "FrameSprite.h"
 #include "BGSprite.h"
 #include "ColorOut.h"
+#include "ImageSprite.h"
+#include "PictureFrame.h"
 #include "UI_HP.h"
 #include "UI_Crystal.h"
 #include "Fade.h"
@@ -49,6 +51,7 @@
 #include "SinCurve.h"
 #include "SquareMove.h"
 #include "CircularMove.h"
+#include "LinearMove.h"
 #include "FadeComponent.h"
 //エフェクト
 #include "Effect.h"

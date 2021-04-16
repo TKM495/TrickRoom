@@ -116,7 +116,6 @@ namespace basecross {
 			else {
 				rank = Rank::B;
 			}
-
 			break;
 		case GameStage::GameState::GAMEOVER:
 			rank = Rank::C;
@@ -137,10 +136,7 @@ namespace basecross {
 	void Result::CreateImage(ResultParam& param) {
 		vector<wstring> tokens;
 		Util::WStrToTokenVector(tokens, param.value, L',');
-
 		auto size = Vec2((float)_wtof(tokens[0].c_str()), (float)_wtof(tokens[1].c_str()));
-
-
 		auto image = GetStage()->AddGameObject<FrameSprite>(size);
 		image->SetPosition(param.pos);
 		image->SetDrawLayer(-1);

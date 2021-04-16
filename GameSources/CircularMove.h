@@ -7,7 +7,54 @@
 #include "stdafx.h"
 
 namespace basecross {
+	class CircularMove :public Behavior {
+		// •`‰æÀ•W
+		float m_PosX;
+		float m_PosY;
 
+		float m_Radius;// ”¼Œa(•`‰æ—p)
 
+		// ’†SÀ•W
+		float m_CenterX;
+		float m_CenterY;
+
+		float m_Angle;// Šp“x
+		float m_Length;// ”¼Œa‚Ì’·‚³
+
+		float m_RotationSpeed;
+
+		float m_PI;
+		float m_Deg;
+	public:
+		CircularMove(const shared_ptr<GameObject>& obj)
+			:Behavior(obj), m_PosX(1), m_PosY(1), m_Radius(2),
+			m_CenterX(0), m_CenterY(0),
+			m_Angle(0), m_Length(2), m_RotationSpeed(5),
+			m_PI(3.14), m_Deg(180.0)
+		{}
+
+		void OnCreate()override;
+		void Excure();
+
+		void SetSpeed(int Speed)
+		{
+			m_RotationSpeed = Speed;
+		}
+
+		int GetSpeed()
+		{
+			return m_RotationSpeed;
+		}
+
+		void SetLength(float Length)
+		{
+			m_Length = Length;
+		}
+
+		float GetLength()
+		{
+			return m_Length;
+		}
+	};
 }
 //end basecross

@@ -24,9 +24,9 @@ namespace basecross {
 
 	void GameStage::OnCreate() {
 		try {
-			//�r���[�ƃ��C�g�̍쐬
-			CreateViewLight();
 			AddGameObject<Debug>();
+
+			CreateViewLight();
 
 			auto& app = App::GetApp();
 			auto scene = app->GetScene<Scene>();
@@ -57,12 +57,9 @@ namespace basecross {
 			builder.Register<Pursuer>(L"Pursuer");
 
 			auto dir = app->GetDataDirWString();
-			auto path = dir + L"Csv/Object.csv";
-			//auto& app = App::GetApp();
-			//auto dir = app->GetDataDirWString();
-			//auto path = dir + L"Csv/Object";
-			//path += scene->GetNum();
-			//path += L".csv";
+			auto path = dir + L"Csv/Stage/Stage";
+			path += to_wstring(m_stageNum);
+			path += L".csv";
 
 			builder.Build(GetThis<Stage>(), path);
 
@@ -81,7 +78,7 @@ namespace basecross {
 			SetSharedGameObject(L"C_Effect", C_effect);
 
 			stagePar->GetComponent<Transform>()->
-				SetPosition(Vec3(-15.0f, 0.0f, 0.0f));
+				SetPosition(Vec3(m_stageOffsetX, 0.0f, 0.0f));
 
 			AddGameObject<UI_HP>();
 			AddGameObject<UI_Crystal>();

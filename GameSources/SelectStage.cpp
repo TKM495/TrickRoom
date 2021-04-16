@@ -29,12 +29,30 @@ namespace basecross {
 
 		auto csvLoad = AddGameObject<CSVLoad>();
 		csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetStringSpriteData(), SpriteType::String);
+		csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetImageSpriteData(), SpriteType::Image);
 		AddGameObject<SelectStageMenu>();
+		auto arrow = AddGameObject<ImageSprite>(L"Arrow");
+		arrow->SetSize(0.5f);
+		arrow->SetPos(Vec3(500.0f, -100.0f, 0.0f));
+		arrow = AddGameObject<ImageSprite>(L"Arrow");
+		arrow->SetSize(0.5f);
+		arrow->SetPos(Vec3(-500.0f, -100.0f, 0.0f));
+		arrow->SetRot(180.0f);
+
 		AddGameObject<Fade>()->FadeIn();
+		//BGM‚ÌÄ¶
+		auto audio = App::GetApp()->GetXAudio2Manager();
+		m_selectBGM = audio->Start(L"TitleBGM", XAUDIO2_LOOP_INFINITE, 0.1f);
 	}
 
 	void SelectStage::OnUpdate() {
 
+	}
+
+	void SelectStage::OnDestroy() {
+		//BGM‚Ì’âŽ~
+		auto audio = App::GetApp()->GetXAudio2Manager();
+		audio->Stop(m_selectBGM);
 	}
 }
 //end basecross

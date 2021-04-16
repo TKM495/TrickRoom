@@ -1,5 +1,5 @@
 /*!
-@file StringSprite2.h
+@file ImageSprite.h
 @brief 文字列表示用クラス
 */
 
@@ -7,25 +7,10 @@
 #include "stdafx.h"
 #include "CSVLoad.h"
 #include "FadeComponent.h"
+#include "StringSprite2.h"
 
 namespace basecross {
-	//揃え方
-	struct Align {
-		//垂直方向
-		enum class Vertical {
-			Top,
-			Center,
-			Bottom
-		};
-		//水平方向
-		enum class Horizontal {
-			Left,
-			Center,
-			Right
-		};
-	};
-
-	class StringSprite2 :public GameObject {
+	class ImageSprite :public GameObject {
 		//時間計測用
 		float m_delta;
 		//非アクティブになるまでの時間
@@ -46,8 +31,10 @@ namespace basecross {
 		vector<VertexPositionColorTexture> vertices;
 		//輪郭用の自分自身のコピー
 		shared_ptr<StringSprite2> m_outlineObj;
+		//データの中からm_nameに一致するデータを返す関数
+		int SearchDataIndex(vector<SpriteDataFormat>& data);
 	public:
-		StringSprite2(const shared_ptr<Stage>& stage,
+		ImageSprite(const shared_ptr<Stage>& stage,
 			wstring name,
 			Align::Horizontal horizontal = Align::Horizontal::Center,
 			Align::Vertical vertical = Align::Vertical::Center,
@@ -70,6 +57,8 @@ namespace basecross {
 
 		void SetSize(float size);
 		void SetPos(Vec3 pos);
+		void SetRot(float rot);
+		float GetRot();
 		float GetSize();
 		Vec3 GetPos();
 

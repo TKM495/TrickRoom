@@ -29,10 +29,28 @@ namespace basecross {
 		drawComp->SetSamplerState(SamplerState::AnisotropicWrap); //テクスチャの繰り返し設定(Wrap)
 		drawComp->SetDepthStencilState(DepthStencilState::Read);
 		drawComp->SetTextureResource(L"VCursor");
-		drawComp->SetDiffuse(Col4(1.0f, 1.0f, 1.0f, 0.3f));
+		m_color = Col4(1.0f, 1.0f, 1.0f, 0.3f);
+		drawComp->SetDiffuse(m_color);
 
 		SetAlphaActive(true);
 	}
 
+	void Cursor::OnUpdate() {
+		auto delta = App::GetApp()->GetElapsedTime();
+
+		auto time = sinf(m_delta);
+
+		auto alpha = Lerp::CalculateLerp(m_min, m_max, -1.0f, 1.0f, time, Lerp::rate::Linear);
+
+		auto drawComp = GetComponent<PCTSpriteDraw>();
+		Col4 color = m_color;
+		color.w = alpha;
+		drawComp->SetDiffuse(color);
+
+		m_delta += delta * m_rate;
+		if (m_delta >= XM_2PI) {
+			m_delta = 0.0f;
+		}
+	}
 }
 //end basecross

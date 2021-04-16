@@ -30,8 +30,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FloorArt.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Goal.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ImageSprite.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)LinearMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Pause.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Picture.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PictureFrame.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Pillar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Pole.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PoleArt.h" />
@@ -103,8 +106,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FloorArt.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Goal.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ImageSprite.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)LinearMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Pause.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Picture.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PictureFrame.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Pillar.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Pole.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PoleArt.cpp" />
@@ -155,6 +161,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleMenu.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtBase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UI_Player.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Utility.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,5 @@
 /*!
-@file StringSprite2.cpp
+@file ImageSprite.cpp
 @brief 文字列表示用クラスの実体
 */
 
@@ -7,17 +7,17 @@
 #include "Project.h"
 
 namespace basecross {
-	void StringSprite2::OnCreate() {
+	void ImageSprite::OnCreate() {
 		//CSVLoadを取得しデータをもらう
 		auto csvLoad = dynamic_pointer_cast<CSVLoad>(GetStage()->GetSharedObject(L"CSVLoad"));
-		auto& data = csvLoad->GetStringSpriteData();
+		auto& data = csvLoad->GetImageSpriteData();
 		//目標のデータを探す
 		int index = Utility::SearchDataIndex(data, m_name);
 		if (index == -1) {
 			throw BaseException(
 				L"目標のデータが見つかりません",
 				L"name : " + m_name,
-				L"StringSprite2::OnCreate()"
+				L"ImageSprite::OnCreate()"
 			);
 		}
 		m_data = data[index];
@@ -62,15 +62,14 @@ namespace basecross {
 			//エラー
 			break;
 		}
-		vector<Vec2> uvs, uv = {
+		vector<Vec2> uvs,uv = {
 			origin,
 			origin + Vec2(size.x,0.0f),
 			origin + Vec2(0.0f, size.y),
 			origin + size
 		};
-		Utility::ConvertToUVCoordinates(uv, L"string", uvs);
-
-		//頂点のデータ (番号は左上から右下まで)
+		Utility::ConvertToUVCoordinates(uv, L"Sprite", uvs);
+		//頂点のデータ
 		vertices = {
 			{Vec3(-pos.left,+pos.top,0.0f),m_color,uvs[0]}, //0
 			{Vec3(+pos.right,+pos.top,0.0f),m_color,uvs[1]}, //1
@@ -85,7 +84,7 @@ namespace basecross {
 		};
 
 		auto drawComp = AddComponent<PCTSpriteDraw>(vertices, indices);
-		drawComp->SetTextureResource(L"string");
+		drawComp->SetTextureResource(L"Sprite");
 		drawComp->SetSamplerState(SamplerState::AnisotropicWrap); //テクスチャの繰り返し設定(Wrap)
 		drawComp->SetDepthStencilState(DepthStencilState::Read);
 
@@ -98,7 +97,7 @@ namespace basecross {
 		SetUpdateActive(false);
 	}
 
-	void StringSprite2::OnUpdate() {
+	void ImageSprite::OnUpdate() {
 		auto delta = App::GetApp()->GetElapsedTime();
 		auto fade = GetComponent<FadeComponent>();
 		if (m_delta > m_deActiveTime && !m_bDeactive) {
@@ -115,7 +114,17 @@ namespace basecross {
 		m_delta += delta;
 	}
 
-	void StringSprite2::SetAlignHorizontal(Align::Horizontal hor) {
+	int ImageSprite::SearchDataIndex(vector<SpriteDataFormat>& data) {
+		for (int i = 0; i < data.size(); i++) {
+			if (data[i].name == m_name) {
+				return i;
+			}
+		}
+		//ここに来たらない
+		return -1;
+	}
+
+	void ImageSprite::SetAlignHorizontal(Align::Horizontal hor) {
 		auto origin = m_data.origin;
 		auto size = m_data.size;
 		m_horizontal = hor;
@@ -144,7 +153,7 @@ namespace basecross {
 		GetComponent<PCTSpriteDraw>()->UpdateVertices(vertices);
 	}
 
-	void StringSprite2::SetAlignVertical(Align::Vertical ver) {
+	void ImageSprite::SetAlignVertical(Align::Vertical ver) {
 		auto origin = m_data.origin;
 		auto size = m_data.size;
 		m_vertical = ver;
@@ -173,20 +182,29 @@ namespace basecross {
 		GetComponent<PCTSpriteDraw>()->UpdateVertices(vertices);
 	}
 
-	void StringSprite2::SetSize(float size) {
+	void ImageSprite::SetSize(float size) {
 		GetComponent<Transform>()->SetScale(Vec3(size));
 	}
 
-	void StringSprite2::SetPos(Vec3 pos) {
+	void ImageSprite::SetPos(Vec3 pos) {
 		GetComponent<Transform>()->SetPosition(pos);
 	}
 
-	float StringSprite2::GetSize() {
+	void ImageSprite::SetRot(float rot) {
+		GetComponent<Transform>()->SetRotation(0.0f, 0.0f, XMConvertToRadians(rot));
+	}
+
+	float ImageSprite::GetRot() {
+		//大きさは同じなのでとりあえずxを返す
+		return GetComponent<Transform>()->GetRotation().z;
+	}
+
+	float ImageSprite::GetSize() {
 		//大きさは同じなのでとりあえずxを返す
 		return GetComponent<Transform>()->GetScale().x;
 	}
 
-	Vec3 StringSprite2::GetPos() {
+	Vec3 ImageSprite::GetPos() {
 		return GetComponent<Transform>()->GetPosition();
 	}
 }
