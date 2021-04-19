@@ -7,7 +7,7 @@
 #include "stdafx.h"
 
 namespace basecross {
-	class Stairs :public StageObject {
+	class Stairs :public StageObject ,public TrickArtBase{
 	public:
 		Stairs(const shared_ptr<Stage>& stage,
 			const wstring& line);

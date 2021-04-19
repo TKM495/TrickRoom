@@ -162,7 +162,7 @@ namespace basecross {
 		pD3D11DeviceContext->PSSetShaderResources(1, 1, &pShadowSRV);
 
 		//TrickArtRenderTarget�̎擾
-		for (int i = 0; i < (int)TADirection::MAX; i++) {
+		for (int i = 0; i < 2; i++) {
 			auto TrickArtDraw = dynamic_pointer_cast<GameStage>(GetStage())->GetTADraw(i);
 			ID3D11ShaderResourceView* pTrickArtDrawSRV = TrickArtDraw->GetShaderResourceView();
 			pD3D11DeviceContext->PSSetShaderResources(2 + i, 1, &pTrickArtDrawSRV);
@@ -246,11 +246,11 @@ namespace basecross {
 
 		Mat4x4 TAView, TAProj;
 
-		TAView = XMMatrixLookAtLH(TrickArtBase::GetDirValue(TADirection::Right) + LightAt, LightAt, Vec3(0, 1.0f, 0));
+		TAView = XMMatrixLookAtLH(TrickArtBase::GetDirValue(state::Right) + LightAt, LightAt, Vec3(0, 1.0f, 0));
 		TAProj = XMMatrixOrthographicLH(CameraPtr->GetWidth(), CameraPtr->GetHeight(),
 			CameraPtr->GetNear(), CameraPtr->GetFar());
 		SmCb.TAViewR = bsm::transpose(TAView);
-		TAView = XMMatrixLookAtLH(TrickArtBase::GetDirValue(TADirection::Left) + LightAt, LightAt, Vec3(0, 1.0f, 0));
+		TAView = XMMatrixLookAtLH(TrickArtBase::GetDirValue(state::Left) + LightAt, LightAt, Vec3(0, 1.0f, 0));
 		SmCb.TAViewL = bsm::transpose(TAView);
 		SmCb.TAProjection = bsm::transpose(TAProj);
 	}

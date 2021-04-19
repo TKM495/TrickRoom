@@ -7,7 +7,7 @@
 #include "stdafx.h"
 
 namespace basecross {
-	class Enemy :public StageObject {
+	class Enemy :public StageObject ,public TrickArtBase{
 		wstring m_behavior;
 		float m_cycle;
 		float m_speed;

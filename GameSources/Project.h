@@ -61,7 +61,7 @@
 #include "EmptyObject.h"
 #include "pursuer.h"
 #include "Picture.h"
-#include "Block2.h"
+#include "Block.h"
 #include "Plane.h"
 #include "Spikes.h"
 #include "Enemy.h"

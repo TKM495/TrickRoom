@@ -58,7 +58,7 @@ namespace basecross {
 	TrickArtDraw::TrickArtDraw(const shared_ptr<GameObject>& GameObjectPtr)
 		:SmBaseDraw(GameObjectPtr), pImpl(new Impl()), m_flg(false)
 	{
-		SetDir(TADirection::Right);
+		SetDir(state::Right);
 	}
 	TrickArtDraw::~TrickArtDraw() {}
 

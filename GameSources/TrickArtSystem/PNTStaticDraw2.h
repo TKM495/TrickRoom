@@ -5,6 +5,7 @@
 
 #pragma once
 #include "stdafx.h"
+#include "TrickArtSystem.h"
 
 namespace basecross {
 	struct SimpleConstantsEX

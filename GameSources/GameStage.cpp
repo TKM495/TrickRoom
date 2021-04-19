@@ -43,18 +43,14 @@ namespace basecross {
 			builder.Register<Plane>(L"Plane");
 			builder.Register<Pillar>(L"Pillar");
 			builder.Register<Block>(L"Block");
-			builder.Register<BlockArt>(L"BlockArt");
 			builder.Register<Enemy>(L"Enemy");
-			builder.Register<EnemyArt>(L"EnemyArt");
 			builder.Register<Spikes>(L"Spikes");
 			builder.Register<SpikesArt>(L"SpikesArt");
 			builder.Register<Stairs>(L"Stairs");
-			builder.Register<StairsArt>(L"StairsArt");
-			builder.Register<FloorArt>(L"FloorArt");
 			builder.Register<PoleArt>(L"PoleArt");
 			builder.Register<Crystal>(L"Crystal");
 			builder.Register<Picture>(L"Picture");
-			builder.Register<Pursuer>(L"Pursuer");
+
 
 			auto dir = app->GetDataDirWString();
 			auto path = dir + L"Csv/Stage/Stage";
@@ -63,22 +59,10 @@ namespace basecross {
 
 			builder.Build(GetThis<Stage>(), path);
 
-			//StageObject�̃^�O�����I�u�W�F�N�g��StageParent�̎q�ɂ���
-			auto stagePar = AddGameObject<StageParent>();
-			vector<shared_ptr<GameObject>> stageObjs;
-			GetUsedTagObjectVec(L"StageObject", stageObjs);
-			for (auto& obj : stageObjs) {
-				obj->GetComponent<Transform>()->SetParent(stagePar);
-			}
 			auto effect = AddGameObject<Effect>(Vec3(-15.0f, 0.0f, 0.0f));
-			effect->GetComponent<Transform>()->SetParent(stagePar);
 			SetSharedGameObject(L"Effect", effect);
 			auto C_effect = AddGameObject<Effect>(Vec3(-15.0f, 0.0f, 0.0f));
-			C_effect->GetComponent<Transform>()->SetParent(stagePar);
 			SetSharedGameObject(L"C_Effect", C_effect);
-
-			stagePar->GetComponent<Transform>()->
-				SetPosition(Vec3(m_stageOffsetX, 0.0f, 0.0f));
 
 			AddGameObject<UI_HP>();
 			AddGameObject<UI_Crystal>();
@@ -89,7 +73,7 @@ namespace basecross {
 
 			AddGameObject<Pause>();
 			AddGameObject<ColorOut>(Col4(1.0f), 0.25f, 0.0f, 4.0f);
-			AddGameObject<BGSprite>(L"BackGround");
+			//AddGameObject<BGSprite>(L"BackGround");
 			AddGameObject<Fade>()->FadeIn();
 
 			//BGM�̍Đ�
@@ -209,9 +193,6 @@ namespace basecross {
 		}
 		m_drawDelta = 0.0f;
 
-		auto parent = GetSharedGameObject<StageParent>(L"StageParent");
-		auto parentPos = parent->GetComponent<Transform>()->GetPosition();
-
 		vector<shared_ptr<GameObject>> stageObjs;
 		GetUsedTagObjectVec(L"StageObject", stageObjs);
 		auto camera = dynamic_pointer_cast<MainCamera>(GetView()->GetTargetCamera());
@@ -222,7 +203,6 @@ namespace basecross {
 			}
 
 			auto pos = obj->GetComponent<Transform>()->GetPosition();
-			pos += parentPos;
 			auto dir = playerPos - pos;
 			if (dir.lengthSqr() > m_renderDis * m_renderDis) {
 				obj->SetDrawActive(false);
@@ -239,7 +219,7 @@ namespace basecross {
 		//描画デバイスの取得
 		auto Dev = App::GetApp()->GetDeviceResources();
 		//マルチビュー未対応
-		for (int i = 0; i < (int)TADirection::MAX; i++) {
+		for (int i = 0; i < 2; i++) {
 			m_TADrawRenderTarget[i]->ClearViews();
 			m_TADrawRenderTarget[i]->StartRenderTarget();
 			const auto& Objs = GetGameObjectVec();

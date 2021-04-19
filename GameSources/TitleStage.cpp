@@ -44,18 +44,13 @@ namespace basecross {
 		builder.Register<Plane>(L"Plane");
 		builder.Register<Pillar>(L"Pillar");
 		builder.Register<Block>(L"Block");
-		builder.Register<BlockArt>(L"BlockArt");
 		builder.Register<Enemy>(L"Enemy");
-		builder.Register<EnemyArt>(L"EnemyArt");
 		builder.Register<Spikes>(L"Spikes");
 		builder.Register<SpikesArt>(L"SpikesArt");
 		builder.Register<Stairs>(L"Stairs");
-		builder.Register<StairsArt>(L"StairsArt");
-		builder.Register<FloorArt>(L"FloorArt");
 		builder.Register<PoleArt>(L"PoleArt");
 		builder.Register<Crystal>(L"Crystal");
 		builder.Register<Picture>(L"Picture");
-		builder.Register<Pursuer>(L"Pursuer");
 
 		auto dir = app->GetDataDirWString();
 		auto path = dir + L"Csv/TitleObject.csv";
@@ -87,4 +82,30 @@ namespace basecross {
 	//void TitleStage::PushB() {
 	//	PostEvent(0.0f, GetThis<ObjectInterface>(), App::GetApp()->GetScene<Scene>(), L"ToGameStage");
 	//}
+
+	void TitleStage::RenderStage() {
+		//描画デバイスの取得
+		auto Dev = App::GetApp()->GetDeviceResources();
+		//マルチビュー未対応
+		for (int i = 0; i < 2; i++) {
+			m_TADrawRenderTarget[i]->ClearViews();
+			m_TADrawRenderTarget[i]->StartRenderTarget();
+			const auto& Objs = GetGameObjectVec();
+			for (auto& ptr : Objs) {
+				if (ptr->IsDrawActive()) {
+					auto TADraw = ptr->GetComponent<TrickArtDraw>(false);
+					if (TADraw) {
+						//方向が同じなら
+						if ((int)TADraw->GetDir() == i) {
+							TADraw->Active();
+							TADraw->OnDraw();
+						}
+					}
+				}
+			}
+			m_TADrawRenderTarget[i]->EndRenderTarget();
+		}
+		Stage::RenderStage();
+	}
+
 }

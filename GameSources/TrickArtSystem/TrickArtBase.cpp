@@ -3,26 +3,20 @@
 
 namespace basecross {
 	TrickArtBase::TrickArtBase()
+		:m_MAX(2), m_tirckFlg(false), m_bProjActive(true)
 	{
-		SetDir(TADirection::Right);
+		SetDir(state::Right);
 	}
 
-	void TrickArtBase::SetDir(TADirection dir) {
+	void TrickArtBase::SetDir(state dir) {
 		m_dir = dir;
 		switch (m_dir)
 		{
-		case TADirection::Right:
+		case state::Right:
 			m_dirValue = Vec3(10.0f, 10.0f, -10.0f);
 			break;
-		case TADirection::Left:
+		case state::Left:
 			m_dirValue = Vec3(-10.0f, 10.0f, -10.0f);
-			break;
-		case TADirection::MAX:
-			throw BaseException(
-				L"この値は使用できません。",
-				L"name : TADirection::MAX",
-				L"TrickArtBase::SetDir()"
-			);
 			break;
 		default:
 			// エラー
@@ -30,21 +24,14 @@ namespace basecross {
 		}
 	}
 
-	Vec3 TrickArtBase::GetDirValue(TADirection dir) {
+	Vec3 TrickArtBase::GetDirValue(state dir) {
 		switch (dir)
 		{
-		case TADirection::Right:
+		case state::Right:
 			return Vec3(10.0f, 10.0f, -10.0f);
 			break;
-		case TADirection::Left:
+		case state::Left:
 			return Vec3(-10.0f, 10.0f, -10.0f);
-			break;
-		case TADirection::MAX:
-			throw BaseException(
-				L"この値は使用できません。",
-				L"name : TADirection::MAX",
-				L"TrickArtBase::SetDir()"
-			);
 			break;
 		default:
 			// エラー

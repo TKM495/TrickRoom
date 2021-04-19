@@ -1,31 +1,41 @@
 #pragma once
 #include "stdafx.h"
+#include "MainCamera.h"
+#include "AdvCollision.h"
 
 namespace basecross {
-	// トリックアートの方向の定義
-	enum class TADirection {
-		Right,
-		Left,
-		MAX		//MAXは常に最後
-	};
-
 	class TrickArtBase {
 		Vec3 m_dirValue;
-		TADirection m_dir;
+		int m_MAX;
+		state m_dir;
 	protected:
+		//トリックアート投影フラグ
+		bool m_bProjActive;
+		//トリックアートとして描画するか
+		bool m_tirckFlg;
+		//トリックアートのときどの方向から見るか
+		state m_activeState;
+		//当たり判定のやつ
+		vector<shared_ptr<AdvCollision>> m_myCols;
+
+		//このクラスを継承したオブジェクトの方向ベクトルを取得
 		Vec3 GetMyDirValue() {
 			return m_dirValue;
 		}
 	public:
 		//TADirectionの項目の数を返す(1～)
 		int GetTypeNum() {
-			return (int)TADirection::MAX;
+			return m_MAX;
 		}
-		void SetDir(TADirection dir);
-		TADirection GetDir() {
+		//自身の方向をセット
+		//(コンポーネントもこの関数を使うためpublic)
+		void SetDir(state dir);
+		//自身の方向を取得
+		state GetDir() {
 			return m_dir;
 		}
-		static Vec3 GetDirValue(TADirection dir);
+		//特定の方向の方向ベクトルを取得
+		static Vec3 GetDirValue(state dir);
 		TrickArtBase();
 	};
 }

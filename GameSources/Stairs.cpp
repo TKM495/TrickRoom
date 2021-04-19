@@ -30,28 +30,50 @@ namespace basecross {
 			XMConvertToRadians((float)_wtof(tokens[8].c_str())),
 			XMConvertToRadians((float)_wtof(tokens[9].c_str()))
 		);
+		m_bProjActive = tokens[10] == L"TRUE" ? true : false;
+		m_tirckFlg = tokens[11] == L"TRUE" ? true : false;
+		m_activeState = tokens[12] == L"Right" ? state::Right : state::Left;
 	}
 
 	void Stairs::OnCreate() {
 		StageObject::OnCreate();
+		if (m_tirckFlg) {
+			auto trick = AddComponent<TrickArtDraw>();
+			trick->SetMeshResource(L"Stairs");
+			trick->SetDir(m_activeState);
 
-		auto drawComp = AddComponent<PNTStaticModelDraw>();
-		drawComp->SetMeshResource(L"Stairs");
-		drawComp->SetOwnShadowActive(true);
+		}
+		else {
+			//影をつける（シャドウマップを描画する）
+			auto shadowPtr = AddComponent<Shadowmap>();
+			//影の形（メッシュ）を設定
+			shadowPtr->SetMeshResource(L"Stairs");
+			if (m_bProjActive) {
+				auto ptrDraw = AddComponent<PNTStaticDraw2>();
+				ptrDraw->SetMeshResource(L"Stairs");
+				ptrDraw->SetOwnShadowActive(true);
+			}
+			else {
+				auto ptrDraw = AddComponent<PNTStaticModelDraw>();
+				ptrDraw->SetMeshResource(L"Stairs");
+				ptrDraw->SetOwnShadowActive(true);
+			}
+		}
 
 		auto stage = GetStage();
 		//斜面用のコリジョン
-		stage->AddGameObject<AdvCollision>(GetThis<Stairs>(),
+		auto coll = stage->AddGameObject<AdvCollision>(GetThis<Stairs>(),
 			Vec3(0.0f, 0.5f, -0.5f),
 			Vec3(1.0f, sqrtf(5.0f), 1.0f),
 			Vec3(XMConvertToRadians(90.0f - 26.56f), 0.0f, 0.0f),
 			AdvCollision::Shape::Rect);
-
-		stage->AddGameObject<AdvCollision>(GetThis<Stairs>(),
+		m_myCols.push_back(coll);
+		coll = stage->AddGameObject<AdvCollision>(GetThis<Stairs>(),
 			Vec3(0.0f, 0.125f, 0.0f),
 			Vec3(1.0f, 0.25f, 1.0f),
 			Vec3(0.0f),
 			AdvCollision::Shape::Obb);
+		m_myCols.push_back(coll);
 	}
 
 	void Stairs::OnUpdate() {

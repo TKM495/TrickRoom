@@ -13,7 +13,7 @@ namespace basecross{
 	//--------------------------------------------------------------------------------------
 	void Scene::OnCreate(){
 		try {
-			m_debugState = DebugState::None;
+			m_debugState = DebugState::Debug;
 
 			//CSV�t�@�C��
 			auto& app = App::GetApp();

@@ -29,25 +29,47 @@ namespace basecross {
 			XMConvertToRadians((float)_wtof(tokens[9].c_str()))
 		);
 
-		m_behavior = tokens[10];
-		m_cycle = (float)_wtof(tokens[11].c_str());
-		m_speed = (float)_wtof(tokens[12].c_str());
-		m_offset = (float)_wtof(tokens[13].c_str());
+		m_bProjActive = tokens[10] == L"TRUE" ? true : false;
+		m_tirckFlg = tokens[11] == L"TRUE" ? true : false;
+		m_activeState = tokens[12] == L"Right" ? state::Right : state::Left;
+
+		m_behavior = tokens[13];
+		m_cycle = (float)_wtof(tokens[14].c_str());
+		m_speed = (float)_wtof(tokens[15].c_str());
+		m_offset = (float)_wtof(tokens[16].c_str());
 	}
 	void Enemy::OnCreate() {
-		auto drawComp = AddComponent<PNTStaticModelDraw>();
-		drawComp->SetMeshResource(L"Enemy");
+		if (m_tirckFlg) {
+			auto trick = AddComponent<TrickArtDraw>();
+			trick->SetMeshResource(L"Enemy");
+			trick->SetDir(m_activeState);
 
-		auto shadow = AddComponent<Shadowmap>();
-		shadow->SetMeshResource(L"Enemy");
-
-		auto collComp = AddComponent<CollisionSphere>();
-		collComp->SetAfterCollision(AfterCollision::None);
-
-		auto scene = App::GetApp()->GetScene<Scene>();
-		if (scene->GetDebugState() == DebugState::Debug) {
-			collComp->SetDrawActive(true);
 		}
+		else {
+			//影をつける（シャドウマップを描画する）
+			auto shadowPtr = AddComponent<Shadowmap>();
+			//影の形（メッシュ）を設定
+			shadowPtr->SetMeshResource(L"Enemy");
+			if (m_bProjActive) {
+				auto ptrDraw = AddComponent<PNTStaticDraw2>();
+				ptrDraw->SetMeshResource(L"Enemy");
+				ptrDraw->SetOwnShadowActive(true);
+			}
+			else {
+				auto ptrDraw = AddComponent<PNTStaticModelDraw>();
+				ptrDraw->SetMeshResource(L"Enemy");
+				ptrDraw->SetOwnShadowActive(true);
+			}
+		}
+
+		//OBB衝突判定を付ける
+		auto stage = GetStage();
+		auto coll = stage->AddGameObject<AdvCollision>(GetThis<Enemy>(),
+			Vec3(0.0f),
+			Vec3(1.0f),
+			Vec3(0.0f),
+			AdvCollision::Shape::Sphere);
+		m_myCols.push_back(coll);
 
 		StageObject::OnCreate();
 
@@ -91,12 +113,6 @@ namespace basecross {
 	}
 
 	void Enemy::OnCollisionEnter(shared_ptr<GameObject>& other) {
-		//判定条件がdamageのタグがあればいいのでこの処理はコメントアウト
-		//auto player = dynamic_pointer_cast<Player>(other);
-		//if (player) {
-		//	return;
-		//}
-
 		//オブジェクトを消してもいいと思ったが、念のため
 		if (other->FindTag(L"damage")) {
 			SetDrawActive(false);

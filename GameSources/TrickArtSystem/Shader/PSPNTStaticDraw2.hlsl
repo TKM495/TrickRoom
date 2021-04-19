@@ -25,6 +25,23 @@ float4 main(PSPNTInputShadow input) : SV_TARGET
 	}
 	RetColor = saturate(RetColor);
 
+	float2 TATexCoordsR;
+	TATexCoordsR.x = 0.5f + (input.TASpacePosR.x / input.TASpacePosR.w * 0.5f);
+	TATexCoordsR.y = 0.5f - (input.TASpacePosR.y / input.TASpacePosR.w * 0.5f);
+
+	float2 TATexCoordsL;
+	TATexCoordsL.x = 0.5f + (input.TASpacePosL.x / input.TASpacePosL.w * 0.5f);
+	TATexCoordsL.y = 0.5f - (input.TASpacePosL.y / input.TASpacePosL.w * 0.5f);
+
+	//　テクスチャカラー
+	float4 TexColorR = g_TADrawMapR.Sample(g_sampler, TATexCoordsR);
+	float4 TexColorL = g_TADrawMapL.Sample(g_sampler, TATexCoordsL);
+	float4 TAColor = TexColorR + TexColorL;
+
+	if (TAColor.w > 0) {
+		return TAColor;
+	}
+
 	//影の濃さ
 	const float3 ambient = float3(0.7f, 0.7f, 0.7f);
 	float3 N = normalize(input.norm);
@@ -42,7 +59,6 @@ float4 main(PSPNTInputShadow input) : SV_TARGET
 		(saturate(shadowTexCoords.y) == shadowTexCoords.y) &&
 		(pixelDepth > 0))
 	{
-
 		float margin = acos(saturate(NdotL));
 		float epsilon = 0.0001 / margin;
 
@@ -70,21 +86,7 @@ float4 main(PSPNTInputShadow input) : SV_TARGET
 
 	float3 shadow = (ambient + DplusS(N, L, NdotL, input.lightView));
 
-	float2 TATexCoordsR;
-	TATexCoordsR.x = 0.5f + (input.TASpacePosR.x / input.TASpacePosR.w * 0.5f);
-	TATexCoordsR.y = 0.5f - (input.TASpacePosR.y / input.TASpacePosR.w * 0.5f);
-
-	float2 TATexCoordsL;
-	TATexCoordsL.x = 0.5f + (input.TASpacePosL.x / input.TASpacePosL.w * 0.5f);
-	TATexCoordsL.y = 0.5f - (input.TASpacePosL.y / input.TASpacePosL.w * 0.5f);
-
-	//　テクスチャカラー
-	float4 TexColorR = g_TADrawMapR.Sample(g_sampler, TATexCoordsR);
-	float4 TexColorL = g_TADrawMapL.Sample(g_sampler, TATexCoordsL);
-	float4 Color = float4(RetColor.xyz * shadow, RetColor.w);
-
-	float4 TAColor = TexColorR + TexColorL;
-	return lerp(Color, TAColor, TAColor.w);
+	return float4(RetColor.xyz * shadow, RetColor.w);
 }
 
 

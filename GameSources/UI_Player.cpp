@@ -38,8 +38,7 @@ namespace basecross
 		transComp->SetPosition(pos);
 
 		auto player = GetStage()->GetSharedGameObject<Player>(L"Player");
-		auto gameStage = dynamic_pointer_cast<GameStage>(GetStage());
-		m_startObjPosX = player->GetComponent<Transform>()->GetPosition().x - gameStage->GetStartOffset();
+		m_startObjPosX = player->GetComponent<Transform>()->GetPosition().x;
 		m_goalObjPosX = -100.0f;
 		m_startToGoalDir = m_goalObjPosX - m_startObjPosX;
 

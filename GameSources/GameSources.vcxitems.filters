@@ -65,14 +65,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)AdvCollision.cpp">
       <Filter>AdvCollision</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Block2.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)Block.cpp">
       <Filter>StageObject\Block</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)SpikesArt.cpp">
       <Filter>TrickArt\SpikesArt</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)BlockArt.cpp">
-      <Filter>TrickArt\BlockArt</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtBaseOld.cpp">
       <Filter>TrickArt</Filter>
@@ -80,17 +77,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp">
       <Filter>StageObject\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)EnemyArt.cpp">
-      <Filter>TrickArt\EnemyArt</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Spikes.cpp">
       <Filter>StageObject\Spikes</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Stairs.cpp">
       <Filter>StageObject\Stairs</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)StairsArt.cpp">
-      <Filter>TrickArt\StairsArt</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Timer.cpp">
       <Filter>UI\Timer</Filter>
@@ -139,9 +130,6 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ResultMenu.cpp">
       <Filter>Menu\Result</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)pursuer.cpp">
-      <Filter>StageObject\pursuer</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Picture.cpp">
       <Filter>StageObject\Picture</Filter>
@@ -295,14 +283,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)AdvCollision.h">
       <Filter>AdvCollision</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Block2.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)Block.h">
       <Filter>StageObject\Block</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)SpikesArt.h">
       <Filter>TrickArt\SpikesArt</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)BlockArt.h">
-      <Filter>TrickArt\BlockArt</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtBaseOld.h">
       <Filter>TrickArt</Filter>
@@ -310,17 +295,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h">
       <Filter>StageObject\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)EnemyArt.h">
-      <Filter>TrickArt\EnemyArt</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Spikes.h">
       <Filter>StageObject\Spikes</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Stairs.h">
       <Filter>StageObject\Stairs</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)StairsArt.h">
-      <Filter>TrickArt\StairsArt</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Timer.h">
       <Filter>UI\Timer</Filter>
@@ -369,9 +348,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ResultMenu.h">
       <Filter>Menu\Result</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)pursuer.h">
-      <Filter>StageObject\pursuer</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Picture.h">
       <Filter>StageObject\Picture</Filter>
@@ -528,23 +504,14 @@
     <Filter Include="TrickArt\SpikesArt">
       <UniqueIdentifier>{6e7361d4-45f9-4f88-81d6-7de7369502ef}</UniqueIdentifier>
     </Filter>
-    <Filter Include="TrickArt\BlockArt">
-      <UniqueIdentifier>{c5e02e68-389c-408a-99a5-328058d6744e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="StageObject\Enemy">
       <UniqueIdentifier>{586a5dab-c961-40fd-aa4f-e4e209fe7433}</UniqueIdentifier>
     </Filter>
     <Filter Include="StageObject\Spikes">
       <UniqueIdentifier>{18f7986c-460f-490a-89c3-a4026f2fc3dc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="TrickArt\EnemyArt">
-      <UniqueIdentifier>{caae5ccc-006d-40fc-88dc-a7b5741f883a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="StageObject\Stairs">
       <UniqueIdentifier>{f5c04e3e-653c-4468-b91b-9a3779dffcae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="TrickArt\StairsArt">
-      <UniqueIdentifier>{fce8a45c-60e5-4304-aa78-33f9dbe04bbe}</UniqueIdentifier>
     </Filter>
     <Filter Include="Debug">
       <UniqueIdentifier>{b10393ed-2132-483b-93a3-591e01fa6454}</UniqueIdentifier>
@@ -599,9 +566,6 @@
     </Filter>
     <Filter Include="Menu\Result">
       <UniqueIdentifier>{1e54f5fa-b822-4fb2-8ad7-b8ae86786df0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="StageObject\pursuer">
-      <UniqueIdentifier>{df463799-a64b-4547-8077-e8bad91c610f}</UniqueIdentifier>
     </Filter>
     <Filter Include="FX">
       <UniqueIdentifier>{a83354de-66ea-4beb-9667-74e4a2abb734}</UniqueIdentifier>

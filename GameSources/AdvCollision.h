@@ -40,6 +40,16 @@ namespace basecross {
 			m_rotation(rotation),
 			m_collShape(shape)
 		{}
+		AdvCollision(const shared_ptr<Stage>& stage,
+			const shared_ptr<GameObject>& parent,
+			Shape shape)
+			:GameObject(stage),
+			m_parent(parent),
+			m_offset(Vec3(0.0f)),
+			m_scale(Vec3(1.0f)),
+			m_rotation(Vec3(0.0f)),
+			m_collShape(shape)
+		{}
 		virtual void OnCreate()override;
 		void SetActive(bool flg);
 	};

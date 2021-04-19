@@ -7,10 +7,10 @@
 
 //外部シンボルは～未解決です。のエラーが出るので解決するまで使用しない
 //namespace basecross {
-//	static class TrickArtSystem{
-//		static shared_ptr<TADrawRenderTarget> m_TADrawRenderTargets[(int)TADirection::MAX];;
+//	class TrickArtSystem{
+//		static shared_ptr<TADrawRenderTarget> m_TADrawRenderTargets[2];
 //	public:
-//		static shared_ptr<TADrawRenderTarget> GetTADrawRenderTarget(TADirection dir) {
+//		static shared_ptr<TADrawRenderTarget> GetTADrawRenderTarget(state dir) {
 //			if (!m_TADrawRenderTargets[(int)dir]) {
 //				m_TADrawRenderTargets[(int)dir] = make_shared<TADrawRenderTarget>();
 //			}

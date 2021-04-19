@@ -49,7 +49,6 @@ namespace basecross {
 		StageObject::OnCreate();
 		AddTag(L"Goal");
 		auto stage = GetTypeStage<GameStage>();
-		auto offset = stage->GetStageOffsetX();
-		stage->SetGoalX(m_position.x + offset);
+		stage->SetGoalX(m_position.x);
 	}
 }

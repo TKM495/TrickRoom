@@ -22,17 +22,13 @@ namespace basecross {
 			GAMEOVER
 		};
 	private:
-		shared_ptr<TADrawRenderTarget> m_TADrawRenderTarget[(int)TADirection::MAX];
+		shared_ptr<TADrawRenderTarget> m_TADrawRenderTarget[2];
 
 		shared_ptr<SoundItem> m_gameBGM;
 		//現在のステート
 		GameState m_state;
-		//スタート地点のオフセット
-		float m_startOffset;
 		//ゴールのX座標
 		float m_GoalX;
-		//ステージオフセット
-		float m_stageOffsetX;
 		//ステージナンバー
 		int m_stageNum;
 		//描画距離
@@ -49,17 +45,15 @@ namespace basecross {
 		//構築と破棄
 		GameStage(int stageNum = 1)
 			:Stage(),
-			m_state(GameState::FADEIN),
+			m_state(GameState::PLAYING),
 			m_drawDelta(0.0f),
 			m_stateDelta(0.0f),
 			m_renderDis(25.0f),
-			m_startOffset(20.0f),
 			m_beforeValue(0.0f),
 			m_GoalX(0.0f),
-			m_stageOffsetX(-15.0f),
 			m_stageNum(stageNum)
 		{
-			for (int i = 0; i < (int)TADirection::MAX; i++) {
+			for (int i = 0; i < 2; i++) {
 				m_TADrawRenderTarget[i] = make_shared<TADrawRenderTarget>();
 			}
 		}
@@ -90,19 +84,11 @@ namespace basecross {
 		//ステートの設定
 		void SetState(GameState state);
 
-		float GetStartOffset() {
-			return m_startOffset;
-		}
-
 		float GetGoalX() {
 			return m_GoalX;
 		}
 		void SetGoalX(float x) {
 			m_GoalX = x;
-		}
-
-		float GetStageOffsetX() {
-			return m_stageOffsetX;
 		}
 
 		void SetSceneTransition();
@@ -111,7 +97,7 @@ namespace basecross {
 		bool StartCountdown();
 
 		virtual void RenderStage()override;
-		shared_ptr<TADrawRenderTarget> GetTADraw(TADirection dir) {
+		shared_ptr<TADrawRenderTarget> GetTADraw(state dir) {
 			return m_TADrawRenderTarget[(int)dir];
 		}
 		shared_ptr<TADrawRenderTarget> GetTADraw(int num) {
