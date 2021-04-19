@@ -35,19 +35,51 @@ namespace basecross {
 	{
 		auto stage = GetStage();
 
+		auto camera = stage->GetView()->GetTargetCamera();
+
 		auto transComp = GetComponent<Transform>();
 		auto pos = transComp->GetPosition();
+
+		auto cameraDir = pos - camera->GetEye();
+		cameraDir.y = 0.0f;
+		cameraDir.normalize();
 
 		const auto& app = App::GetApp();
 		float ElapsedTime = app->GetElapsedTime();
 		const auto& cntlPad = app->GetInputDevice().GetControlerVec()[0];
 
-		float fThumbLX = cntlPad.fThumbLX;
-		float fThumbLY = cntlPad.fThumbLY;
+
+		float fThumbLY = 0.0f;
+		float fThumbLX = 0.0f;
+		if (cntlPad.bConnected)
+		{
+			fThumbLY = cntlPad.fThumbLY;
+			fThumbLX = cntlPad.fThumbLX;
+		}
+
+		if (fThumbLX != 0 || fThumbLY != 0)
+		{
+
+			Vec3 Horizontal = cameraDir;
+			Vec3 Vertical(Horizontal.z, 0, -Horizontal.x);
+
+			Vec3 moveH = Vec3(Horizontal * fThumbLY);
+			Vec3 moveV = Vec3(Vertical * fThumbLX);
+			Vec3 moveVec = moveH + moveV;
+			return moveVec * m_moveSpeed;
+		}
+
+		else
+		{
+			return Vec3(0.0f);
+		}
 
 
-		Vec3 moveVec = Vec3(fThumbLX, 0.0f, fThumbLY);
-		return moveVec * m_moveSpeed * ElapsedTime;
+		//Vec3 fThumbLWidth = cntlPad.fThumbLX * Vec3(cameraDir.z, 0, -cameraDir.x);
+		//Vec3 fThumbLHeight = cntlPad.fThumbLY * cameraDir;
+
+		//Vec3 moveVec = fThumbLHeight + fThumbLWidth;
+		//return moveVec * m_moveSpeed * ElapsedTime;
 
 
 	}
@@ -85,7 +117,10 @@ namespace basecross {
 		auto transComp = GetComponent<Transform>();
 		auto pos = transComp->GetPosition();
 
-		pos += MoveVec();
+		const auto& app = App::GetApp();
+		float ElapsedTime = app->GetElapsedTime();
+
+		pos += MoveVec() * ElapsedTime;
 
 		transComp->SetPosition(pos);
 
