@@ -83,11 +83,11 @@ namespace basecross {
 		auto stage = GetStage();
 
 		auto transComp = GetComponent<Transform>();
-		auto pos = transComp->GetWorldPosition();
+		auto pos = transComp->GetPosition();
 
 		pos += MoveVec();
 
-		transComp->SetWorldPosition(pos);
+		transComp->SetPosition(pos);
 
 		if (MoveVec().length() > 0.0f)
 		{
