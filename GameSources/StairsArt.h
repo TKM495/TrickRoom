@@ -9,7 +9,7 @@
 #include "MainCamera.h"
 
 namespace basecross {
-	class StairsArt :public TrickArtBase {
+	class StairsArt :public TrickArtBaseOld {
 		state m_activeState;
 	public:
 		StairsArt(const shared_ptr<Stage>& stage,

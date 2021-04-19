@@ -74,7 +74,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)BlockArt.cpp">
       <Filter>TrickArt\BlockArt</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtBase.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtBaseOld.cpp">
       <Filter>TrickArt</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp">
@@ -218,6 +218,18 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)LinearMove.cpp">
       <Filter>Behavior\LinearMove</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtBase.cpp">
+      <Filter>TrickArt\TricrkArtSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\PNTStaticDraw2.cpp">
+      <Filter>TrickArt\TricrkArtSystem\ShaderClass</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtDraw.cpp">
+      <Filter>TrickArt\TricrkArtSystem\ShaderClass</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\TADrawRenderTarget.cpp">
+      <Filter>TrickArt\TricrkArtSystem\RenderTarget</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
@@ -292,7 +304,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)BlockArt.h">
       <Filter>TrickArt\BlockArt</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtBase.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtBaseOld.h">
       <Filter>TrickArt</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h">
@@ -435,6 +447,21 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)LinearMove.h">
       <Filter>Behavior\LinearMove</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtBase.h">
+      <Filter>TrickArt\TricrkArtSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtSystem.h">
+      <Filter>TrickArt\TricrkArtSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\PNTStaticDraw2.h">
+      <Filter>TrickArt\TricrkArtSystem\ShaderClass</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtDraw.h">
+      <Filter>TrickArt\TricrkArtSystem\ShaderClass</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\TADrawRenderTarget.h">
+      <Filter>TrickArt\TricrkArtSystem\RenderTarget</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -654,5 +681,39 @@
     <Filter Include="Behavior\LinearMove">
       <UniqueIdentifier>{16dc5503-c948-46a6-a0ca-0ea209c72d5e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TrickArt\TricrkArtSystem">
+      <UniqueIdentifier>{1127e3b5-0c82-4d82-9450-9247919870e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TrickArt\TricrkArtSystem\ShaderClass">
+      <UniqueIdentifier>{2466fc05-03f6-4bc5-94f4-c2de35e0c0bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TrickArt\TricrkArtSystem\RenderTarget">
+      <UniqueIdentifier>{a98d6376-54f9-4120-98d8-777f37728dee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TrickArt\TricrkArtSystem\HLSL">
+      <UniqueIdentifier>{2439f48a-fe07-40a4-8090-6d79c2cc1ebe}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\INCPNTStaticDraw2.hlsli">
+      <Filter>TrickArt\TricrkArtSystem\HLSL</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\INCTrickArt.hlsli">
+      <Filter>TrickArt\TricrkArtSystem\HLSL</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\PSPNTStaticDraw2.hlsl">
+      <Filter>TrickArt\TricrkArtSystem\HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\PSTrickArt.hlsl">
+      <Filter>TrickArt\TricrkArtSystem\HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\VSPNTStaticDraw2.hlsl">
+      <Filter>TrickArt\TricrkArtSystem\HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\VSTrickArt.hlsl">
+      <Filter>TrickArt\TricrkArtSystem\HLSL</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

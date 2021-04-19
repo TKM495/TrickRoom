@@ -235,5 +235,29 @@ namespace basecross {
 		}
 	}
 
+	void GameStage::RenderStage() {
+		//描画デバイスの取得
+		auto Dev = App::GetApp()->GetDeviceResources();
+		//マルチビュー未対応
+		for (int i = 0; i < (int)TADirection::MAX; i++) {
+			m_TADrawRenderTarget[i]->ClearViews();
+			m_TADrawRenderTarget[i]->StartRenderTarget();
+			const auto& Objs = GetGameObjectVec();
+			for (auto& ptr : Objs) {
+				if (ptr->IsDrawActive()) {
+					auto TADraw = ptr->GetComponent<TrickArtDraw>(false);
+					if (TADraw) {
+						//方向が同じなら
+						if ((int)TADraw->GetDir() == i) {
+							TADraw->Active();
+							TADraw->OnDraw();
+						}
+					}
+				}
+			}
+			m_TADrawRenderTarget[i]->EndRenderTarget();
+		}
+		Stage::RenderStage();
+	}
 }
 //end basecross

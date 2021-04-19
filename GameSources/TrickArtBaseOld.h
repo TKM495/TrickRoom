@@ -1,5 +1,5 @@
 /*!
-@file TrickArtBase.h
+@file TrickArtBaseOld.h
 @brief トリックアートの基底クラス
 */
 
@@ -8,7 +8,7 @@
 #include "StageObject.h"
 
 namespace basecross {
-	class TrickArtBase :public StageObject {
+	class TrickArtBaseOld :public StageObject {
 	protected:
 		vector<VertexPositionColorTexture> m_vertices;
 		vector<uint16_t> m_indices;
@@ -17,7 +17,7 @@ namespace basecross {
 		Vec3 m_artSize;
 		state m_activeState;
 	public:
-		TrickArtBase(const shared_ptr<Stage>& stage)
+		TrickArtBaseOld(const shared_ptr<Stage>& stage)
 			:StageObject(stage)
 		{}
 

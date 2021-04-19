@@ -9,7 +9,7 @@
 #include "MainCamera.h"
 
 namespace basecross {
-	class EnemyArt :public TrickArtBase {
+	class EnemyArt :public TrickArtBaseOld {
 		state m_activeState;
 		wstring m_behavior;
 		float m_cycle;

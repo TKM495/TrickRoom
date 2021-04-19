@@ -5,11 +5,11 @@
 
 #pragma once
 #include "stdafx.h"
-#include "TrickArtBase.h"
+#include "TrickArtBaseOld.h"
 #include "MainCamera.h"
 
 namespace basecross {
-	class SpikesArt :public TrickArtBase {
+	class SpikesArt :public TrickArtBaseOld {
 	public:
 		SpikesArt(const shared_ptr<Stage>& stage,
 			const wstring& line);

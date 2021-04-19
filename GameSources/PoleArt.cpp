@@ -9,7 +9,7 @@
 namespace basecross {
 	PoleArt::PoleArt(const shared_ptr<Stage>& stage,
 		const wstring& line)
-		:TrickArtBase(stage)
+		:TrickArtBaseOld(stage)
 	{
 		vector<wstring> tokens;
 		Util::WStrToTokenVector(tokens, line, L',');
@@ -48,7 +48,7 @@ namespace basecross {
 			2, 1, 3  //‰º‚ÌŽOŠpŒ`
 		};
 		m_scale.y = 2.0f;
-		TrickArtBase::OnCreate();
+		TrickArtBaseOld::OnCreate();
 
 		auto obbComp = AddComponent<CollisionObb>();
 		obbComp->SetFixed(true);

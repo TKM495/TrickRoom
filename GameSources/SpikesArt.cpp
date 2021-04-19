@@ -9,7 +9,7 @@
 namespace basecross {
 	SpikesArt::SpikesArt(const shared_ptr<Stage>& stage,
 		const wstring& line)
-		:TrickArtBase(stage)
+		:TrickArtBaseOld(stage)
 	{
 		vector<wstring> tokens;
 		Util::WStrToTokenVector(tokens, line, L',');
@@ -45,7 +45,7 @@ namespace basecross {
 			2, 1, 3
 		};
 
-		TrickArtBase::OnCreate();
+		TrickArtBaseOld::OnCreate();
 
 		auto obbComp = AddComponent<CollisionObb>();
 		obbComp->SetFixed(true);

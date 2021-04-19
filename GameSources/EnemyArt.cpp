@@ -9,7 +9,7 @@
 namespace basecross {
 	EnemyArt::EnemyArt(const shared_ptr<Stage>& stage,
 		const wstring& line)
-		:TrickArtBase(stage)
+		:TrickArtBaseOld(stage)
 	{
 		//トークン（カラム）の配列
 		vector<wstring> tokens;
@@ -55,7 +55,7 @@ namespace basecross {
 			2, 1, 3  //下の三角形
 		};
 
-		TrickArtBase::OnCreate();
+		TrickArtBaseOld::OnCreate();
 
 		auto obbComp = AddComponent<CollisionObb>();
 		//obbComp->SetFixed(true);

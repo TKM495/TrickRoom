@@ -1,5 +1,5 @@
 /*!
-@file TrickArtBase.cpp
+@file TrickArtBaseOld.cpp
 @brief トリックアートの基底クラスの実態
 */
 
@@ -7,7 +7,7 @@
 #include "Project.h"
 
 namespace basecross {
-	void TrickArtBase::OnCreate() {
+	void TrickArtBaseOld::OnCreate() {
 
 		auto drawComp = AddComponent<PCTStaticDraw>();
 		//頂点データと頂点インデックスをもとにメッシュ(ポリゴン)を生成する
@@ -24,7 +24,7 @@ namespace basecross {
 		StageObject::OnCreate();
 	}
 
-	void TrickArtBase::OnUpdate() {
+	void TrickArtBaseOld::OnUpdate() {
 
 	}
 }

@@ -43,6 +43,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)FrameSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SquareMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StartCountdown.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\PNTStaticDraw2.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\TADrawRenderTarget.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtDraw.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtSystem.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UI_LR.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UI_Rank.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Result.h" />
@@ -85,7 +90,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)StageObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StringSprite2.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleMenu.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtBaseOld.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UI_Player.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Utility.h" />
   </ItemGroup>
@@ -119,6 +124,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)FrameSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SquareMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StartCountdown.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\PNTStaticDraw2.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\TADrawRenderTarget.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtBase.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtDraw.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UI_LR.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UI_Rank.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Result.cpp" />
@@ -159,9 +168,31 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)StageObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StringSprite2.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleMenu.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtBase.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtBaseOld.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UI_Player.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Utility.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\INCPNTStaticDraw2.hlsli" />
+    <None Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\INCTrickArt.hlsli" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\PSPNTStaticDraw2.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\PSTrickArt.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\VSPNTStaticDraw2.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\VSTrickArt.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+    </FxCompile>
   </ItemGroup>
 </Project>

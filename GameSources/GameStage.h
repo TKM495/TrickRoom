@@ -5,6 +5,7 @@
 
 #pragma once
 #include "stdafx.h"
+#include "TrickArtSystem/TrickArtSystem.h"
 
 namespace basecross {
 	//--------------------------------------------------------------------------------------
@@ -21,6 +22,8 @@ namespace basecross {
 			GAMEOVER
 		};
 	private:
+		shared_ptr<TADrawRenderTarget> m_TADrawRenderTarget[(int)TADirection::MAX];
+
 		shared_ptr<SoundItem> m_gameBGM;
 		//現在のステート
 		GameState m_state;
@@ -55,7 +58,11 @@ namespace basecross {
 			m_GoalX(0.0f),
 			m_stageOffsetX(-15.0f),
 			m_stageNum(stageNum)
-		{}
+		{
+			for (int i = 0; i < (int)TADirection::MAX; i++) {
+				m_TADrawRenderTarget[i] = make_shared<TADrawRenderTarget>();
+			}
+		}
 		virtual ~GameStage() {}
 		//初期化
 		virtual void OnCreate()override;
@@ -102,6 +109,14 @@ namespace basecross {
 
 		//スタート時のカウントダウン(動作終了するとtrueが返る)
 		bool StartCountdown();
+
+		virtual void RenderStage()override;
+		shared_ptr<TADrawRenderTarget> GetTADraw(TADirection dir) {
+			return m_TADrawRenderTarget[(int)dir];
+		}
+		shared_ptr<TADrawRenderTarget> GetTADraw(int num) {
+			return m_TADrawRenderTarget[num];
+		}
 	};
 }
 //end basecross

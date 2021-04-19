@@ -71,7 +71,8 @@
 #include "Crystal.h"
 #include "Goal.h"
 //トリックアートオブジェクト
-#include "TrickArtBase.h"
+#include "TrickArtSystem/TrickArtSystem.h"
+#include "TrickArtBaseOld.h"
 #include "SpikesArt.h"
 #include "BlockArt.h"
 #include "EnemyArt.h"

@@ -7,7 +7,7 @@
 #include "stdafx.h"
 
 namespace basecross {
-	class BlockArt :public TrickArtBase {
+	class BlockArt :public TrickArtBaseOld {
 	public:
 		BlockArt(const shared_ptr<Stage>& stage,
 			const wstring& line);
