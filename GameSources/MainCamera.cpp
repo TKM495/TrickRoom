@@ -10,7 +10,7 @@ namespace basecross {
 
 	MainCamera::MainCamera()
 		:m_offset(10.0f, 10.0f, -10.0f), m_Angle(-10.0f, 10.0f, -10.0f), bSetPers(false), SetWidth(20.0f), SetHeight(12.5f), m_CameraState(state::Right),
-		bLeapFlg(false), m_LeapTime(0), m_LeapSpeed(1), m_LeapOffset(m_offset)
+		bLeapFlg(false), m_LeapTime(0), m_LeapSpeed(1), m_LeapOffset(m_offset),m_CameraCount(0)
 	{
 		isFirst = true;
 	}
@@ -63,6 +63,8 @@ namespace basecross {
 				m_Eye = GetEye();
 				m_LeapOffset = m_offset;
 
+				m_CameraCount++;
+
 				//SetEye(at + m_offset);
 			}
 
@@ -72,6 +74,8 @@ namespace basecross {
 				bLeapFlg = true;
 				m_Eye = GetEye();
 				m_LeapOffset = m_Angle;
+
+				m_CameraCount++;
 
 				//SetEye(at + m_Angle);
 			}
@@ -105,5 +109,10 @@ namespace basecross {
 	bool MainCamera::GetbLeapFlg()
 	{
 		return bLeapFlg;
+	}
+
+	int MainCamera::GetCameraCount()
+	{
+		return m_CameraCount;
 	}
 }

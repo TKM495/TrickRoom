@@ -32,6 +32,7 @@ namespace basecross {
 		state m_CameraState;
 
 		bool isFirst;
+		int m_CameraCount;
 
 	public:
 		MainCamera();
@@ -40,5 +41,6 @@ namespace basecross {
 		void OnUpdate() override;
 
 		bool GetbLeapFlg();
+		int GetCameraCount();
 	};
 }
