@@ -79,7 +79,7 @@ namespace basecross{
 		switch (stage->GetState())
 		{
 		case GameStage::GameState::PLAYING:
-		Vec3 moveVec = Vec3(fThumbLX, 0.0f, fThumbLY);
+			moveVec = Vec3(fThumbLX, 0.0f, fThumbLY);
 			break;
 		case GameStage::GameState::PAUSE:
 			moveVec = Vec3(0.0f);
@@ -89,8 +89,6 @@ namespace basecross{
 			break;
 		}
 
-
-		Vec3 moveVec = Vec3(fThumbLX, 0.0f, fThumbLY);
 		return moveVec * m_moveSpeed * ElapsedTime;
 
 
