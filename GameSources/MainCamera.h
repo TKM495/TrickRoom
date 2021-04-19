@@ -33,6 +33,8 @@ namespace basecross {
 
 		bool isFirst;
 		void Zoom(float speed);
+		int m_CameraCount;
+
 	public:
 		MainCamera();
 
@@ -43,5 +45,6 @@ namespace basecross {
 		}
 
 		bool GetbLeapFlg();
+		int GetCameraCount();
 	};
 }
