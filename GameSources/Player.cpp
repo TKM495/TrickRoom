@@ -66,7 +66,7 @@ namespace basecross {
 			Vec3 moveH = Vec3(Horizontal * fThumbLY);
 			Vec3 moveV = Vec3(Vertical * fThumbLX);
 			Vec3 moveVec = moveH + moveV;
-			return moveVec * m_moveSpeed;
+			return moveVec * m_moveSpeed * ElapsedTime;
 		}
 
 		else
@@ -75,18 +75,11 @@ namespace basecross {
 		}
 
 
-		//Vec3 fThumbLWidth = cntlPad.fThumbLX * Vec3(cameraDir.z, 0, -cameraDir.x);
-		//Vec3 fThumbLHeight = cntlPad.fThumbLY * cameraDir;
-
-		//Vec3 moveVec = fThumbLHeight + fThumbLWidth;
-		//return moveVec * m_moveSpeed * ElapsedTime;
-
 
 	}
 
 	void Player::OnUpdate()
 	{
-		Move();
 
 		auto stage = GetStage();
 
@@ -98,16 +91,17 @@ namespace basecross {
 			return;
 		}
 
-		if (!bMutekiFlg)
+		if (!bRespawn)
 		{
 			Move();
 		}
 
 		else
 		{
-			Muteki();
-			Draw();
+			Respawn();
 		}
+
+
 	}
 
 	void Player::Move()
@@ -120,7 +114,7 @@ namespace basecross {
 		const auto& app = App::GetApp();
 		float ElapsedTime = app->GetElapsedTime();
 
-		pos += MoveVec() * ElapsedTime;
+		pos += MoveVec();
 
 		transComp->SetPosition(pos);
 
@@ -130,65 +124,29 @@ namespace basecross {
 			utilPtr->RotToHead(MoveVec(), rotationSpeed);
 		}
 
-		SetDrawActive(true);
+		//SetDrawActive(true);
 	}
 
-	//void Player::Respawn()
-	//{
-	//	auto& app = App::GetApp();
-	//	float ElapsedTime = app->GetElapsedTime();
-
-	//	m_count += ElapsedTime;
-
-	//	if (m_count > m_RespawnTime)
-	//	{
-	//		SetDrawActive(true);
-	//		bRespawn = false;
-
-	//		auto transComponent = GetComponent<Transform>();
-	//		transComponent->SetPosition(5.0f, 0.0f, 0.0f);
-
-
-	//		m_count = 0;
-	//	}
-	//}
-
-	void Player::Muteki()
+	void Player::Respawn()
 	{
 		auto& app = App::GetApp();
 		float ElapsedTime = app->GetElapsedTime();
 
-		auto ColComp = GetComponent<Collision>();
+		m_count += ElapsedTime;
 
-
-		m_Mcount += ElapsedTime;
-
-		if (m_Mcount > m_MTime)
+		if (m_count > m_RespawnTime)
 		{
 			SetDrawActive(true);
-			bMutekiFlg = false;
-			ColComp->RemoveExcludeCollisionTag(L"damege");
+			bRespawn = false;
 
-			m_Mcount = 0;
+			auto transComponent = GetComponent<Transform>();
+			transComponent->SetPosition(5.0f, 0.0f, 0.0f);
+
+
+			m_count = 0;
 		}
-
 	}
 
-	void Player::Draw()
-	{
-		if (m_DrawCount & m_BlinkMask)
-		{
-			SetDrawActive(true);
-		}
-
-
-		else
-		{
-			SetDrawActive(false);
-		}
-
-		++m_DrawCount;
-	}
 
 
 	void Player::SetHP(int HP)
@@ -208,11 +166,9 @@ namespace basecross {
 	//衝突判定
 	void Player::OnCollisionEnter(std::shared_ptr<GameObject>& other)
 	{
-		//if (!bRespawn)
-		//{
-
-		if (!bMutekiFlg)
+		if (!bRespawn)
 		{
+
 			auto bDamegeTag = other->FindTag(L"damege");
 
 			auto bCrystalTag = other->FindTag(L"crystal");
@@ -221,13 +177,8 @@ namespace basecross {
 			{
 				m_HP += -1;
 
-				//bRespawn = true;
-				bMutekiFlg = true;
-				auto ColComp = GetComponent<Collision>();
-
-				ColComp->AddExcludeCollisionTag(L"damege");
-
-				//SetDrawActive(false);
+				bRespawn = true;
+				SetDrawActive(false);
 
 				auto effect = GetStage()->GetSharedGameObject<Effect>(L"Effect");
 				effect->InsertEffect(other->GetComponent<Transform>()->GetPosition());
@@ -245,7 +196,6 @@ namespace basecross {
 
 
 		}
-		//}
 
 	}
 
