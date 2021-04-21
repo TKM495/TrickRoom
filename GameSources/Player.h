@@ -15,21 +15,24 @@ namespace basecross {
 		float m_count;//Respawn
 		float m_RespawnTime;
 		bool bRespawn;
+		bool bDotFlg;
+		float m_DotCount;
+		float m_DotMaxCount;
+
 		bool bMutekiFlg;
+		float m_Mcount;
+		float m_MTime;
 
 		float rotationSpeed;
 
+		//“_–Å
+		int m_DrawCount;
+		uint8_t m_BlinkMask;
 
 		void Respawn();
 		void Move();
 		Vec3 MoveVec();
-
-		bool bPlayerLeapFlg;
-		float m_PlayerLeapTime;
-		float m_PlayerLeapSpeed;
-
-		bool bFirst;
-
+		void Muteki();
 
 	public:
 		//HP
@@ -38,20 +41,20 @@ namespace basecross {
 		//Crystal
 		int GetCrystal();
 
-		//void Draw();
-
+		void Draw();
 
 	public:
 		Player(const std::shared_ptr<Stage>& stage)
-			: GameObject(stage), m_moveSpeed(3), m_HP(5), m_crystal(0),rotationSpeed(0.1f),
-			m_count(0),m_RespawnTime(2),bRespawn(false)
+			: GameObject(stage), m_moveSpeed(3), m_HP(5), m_crystal(0), rotationSpeed(0.1f),
+			m_count(0), m_RespawnTime(3), bRespawn(false), m_DrawCount(0), m_BlinkMask(8), bDotFlg(false), m_DotCount(0), m_DotMaxCount(2),
+			bMutekiFlg(false), m_Mcount(0), m_MTime(2)
 		{
 
 		}
 
 		void OnCreate() override;
 		void OnUpdate() override;
-		void OnCollisionEnter(std::shared_ptr<GameObject>& other) override;
+		void OnCollisionExcute(std::shared_ptr<GameObject>& other) override;
 
 	};
 }

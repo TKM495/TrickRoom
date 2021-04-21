@@ -15,6 +15,7 @@ namespace basecross {
 
 		auto transComponent = GetComponent<Transform>();
 		transComponent->SetPosition(5.0f, 0.0f, 0.0f);
+		transComponent->SetScale(0.5, 1.0, 0.5);
 
 		auto ssComp = AddComponent<StringSprite>();
 		ssComp->SetBackColor(Col4(0.0f, 0.0f, 0.0f, 0.5f));
@@ -74,8 +75,6 @@ namespace basecross {
 			return Vec3(0.0f);
 		}
 
-
-
 	}
 
 	void Player::OnUpdate()
@@ -94,6 +93,11 @@ namespace basecross {
 		if (!bRespawn)
 		{
 			Move();
+			if (bDotFlg)
+			{
+				Draw();
+				Muteki();
+			}
 		}
 
 		else
@@ -115,6 +119,7 @@ namespace basecross {
 		float ElapsedTime = app->GetElapsedTime();
 
 		pos += MoveVec();
+		m_count += ElapsedTime;
 
 		transComp->SetPosition(pos);
 
@@ -139,15 +144,63 @@ namespace basecross {
 			SetDrawActive(true);
 			bRespawn = false;
 
-			auto transComponent = GetComponent<Transform>();
-			transComponent->SetPosition(5.0f, 0.0f, 0.0f);
+			bDotFlg = true;
 
+			auto transComponent = GetComponent<Transform>();
+			transComponent->SetPosition(3.0f, 0.0f, 0.0f);
 
 			m_count = 0;
 		}
+
 	}
 
+	//点滅
+	void Player::Draw()
+	{
+		auto& app = App::GetApp();
+		float ElapsedTime = app->GetElapsedTime();
 
+		m_DotCount += ElapsedTime;
+		if (m_DotCount > m_DotMaxCount)
+		{
+			bDotFlg = false;
+		}
+
+		if (m_DrawCount & m_BlinkMask)
+		{
+			SetDrawActive(true);
+		}
+
+
+		else
+		{
+			SetDrawActive(false);
+		}
+
+		++m_DrawCount;
+
+	}
+
+	void Player::Muteki()
+	{
+		auto& app = App::GetApp();
+		float ElapsedTime = app->GetElapsedTime();
+
+		auto ColComp = GetComponent<Collision>();
+
+
+		m_Mcount += ElapsedTime;
+
+		if (m_Mcount > m_MTime)
+		{
+			SetDrawActive(true);
+			bMutekiFlg = false;
+			ColComp->RemoveExcludeCollisionTag(L"damege");
+
+			m_Mcount = 0;
+		}
+
+	}
 
 	void Player::SetHP(int HP)
 	{
@@ -164,11 +217,10 @@ namespace basecross {
 	}
 
 	//衝突判定
-	void Player::OnCollisionEnter(std::shared_ptr<GameObject>& other)
+	void Player::OnCollisionExcute(std::shared_ptr<GameObject>& other)
 	{
-		if (!bRespawn)
+		if (!bRespawn && !bMutekiFlg)
 		{
-
 			auto bDamegeTag = other->FindTag(L"damege");
 
 			auto bCrystalTag = other->FindTag(L"crystal");
@@ -179,6 +231,9 @@ namespace basecross {
 
 				bRespawn = true;
 				SetDrawActive(false);
+				bMutekiFlg = true;
+
+				m_DotCount = 0;
 
 				auto effect = GetStage()->GetSharedGameObject<Effect>(L"Effect");
 				effect->InsertEffect(other->GetComponent<Transform>()->GetPosition());
@@ -193,7 +248,6 @@ namespace basecross {
 				auto effect = GetStage()->GetSharedGameObject<Effect>(L"C_Effect");
 				effect->CrystalEffect(other->GetComponent<Transform>()->GetPosition());
 			}
-
 
 		}
 
