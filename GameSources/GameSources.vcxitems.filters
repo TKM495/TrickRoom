@@ -58,15 +58,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Plane.cpp">
       <Filter>StageObject\Plane</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)StageLoad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Debug.cpp">
       <Filter>Debug</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)AdvCollision.cpp">
       <Filter>AdvCollision</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Block.cpp">
-      <Filter>StageObject\Block</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)SpikesArt.cpp">
       <Filter>TrickArt\SpikesArt</Filter>
@@ -115,9 +111,6 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)StageScroller.cpp">
       <Filter>StageScroller</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)StageParent.cpp">
-      <Filter>StageParent</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Fade.cpp">
       <Filter>UI\Sprites\Fade</Filter>
@@ -218,6 +211,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\TADrawRenderTarget.cpp">
       <Filter>TrickArt\TricrkArtSystem\RenderTarget</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)RouteMove.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Block.cpp">
+      <Filter>StageObject\Block</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
@@ -276,15 +273,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Plane.h">
       <Filter>StageObject\Plane</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)StageLoad.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Debug.h">
       <Filter>Debug</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)AdvCollision.h">
       <Filter>AdvCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Block.h">
-      <Filter>StageObject\Block</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)SpikesArt.h">
       <Filter>TrickArt\SpikesArt</Filter>
@@ -333,9 +326,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)StageScroller.h">
       <Filter>StageScroller</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)StageParent.h">
-      <Filter>StageParent</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Fade.h">
       <Filter>UI\Sprites\Fade</Filter>
@@ -438,6 +428,10 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\TADrawRenderTarget.h">
       <Filter>TrickArt\TricrkArtSystem\RenderTarget</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)RouteMove.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Block.h">
+      <Filter>StageObject\Block</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -554,9 +548,6 @@
     </Filter>
     <Filter Include="StageScroller">
       <UniqueIdentifier>{09eb2d1b-4456-4a32-962d-e19efba2dea3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="StageParent">
-      <UniqueIdentifier>{c6bdede5-c904-480e-9f8f-747c1225afe6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Stage\ResultStage">
       <UniqueIdentifier>{ea1b75dd-1898-4936-80f5-e1f00fad3fd0}</UniqueIdentifier>
