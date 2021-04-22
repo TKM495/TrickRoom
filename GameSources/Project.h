@@ -8,6 +8,7 @@
 //メイン
 #include "Scene.h"
 #include "MainCamera.h"
+#include "PlayerModel.h"
 #include "Player.h"
 #include "CSVLoad.h"
 #include "Debug.h"
@@ -24,13 +25,12 @@
 #include "StringSprite2.h"
 #include "BaseMenu.h"
 #include "TitleMenu.h"
-#include "PauceMenu.h"
+#include "PauseMenu.h"
 #include "ResultMenu.h"
 #include "SelectStageMenu.h"
 #include "Cursor.h"
 //UI関係
 #include "Numbers.h"
-#include "Dot1x1.h"
 #include "FrameSprite.h"
 #include "BGSprite.h"
 #include "ColorOut.h"
@@ -45,7 +45,6 @@
 #include "UI_FPS.h"
 #include "UI_Rank.h"
 #include "UI_LR.h"
-#include "StartCountdown.h"
 #include "Pause.h"
 //行動やコンポーネント
 #include "SinCurve.h"
@@ -76,8 +75,3 @@
 #include "SpikesArt.h"
 #include "FloorArt.h"
 #include "PoleArt.h"
-
-//未使用
-#include "FloorGenerator.h"
-#include "Timer.h"
-#include "Score.h"

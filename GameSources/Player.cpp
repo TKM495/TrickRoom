@@ -33,7 +33,7 @@ namespace basecross{
 		);
 		m_rotation = Vec3(
 			XMConvertToRadians((float)_wtof(tokens[7].c_str())),
-			XMConvertToRadians((float)_wtof(tokens[8].c_str())),
+			XMConvertToRadians((float)_wtof(tokens[8].c_str()) + 90.0f),
 			XMConvertToRadians((float)_wtof(tokens[9].c_str()))
 		);
 		//m_respawnPos = m_position;
@@ -41,24 +41,22 @@ namespace basecross{
 
 	void Player::OnCreate()
 	{
-		m_position.y = 0.25f;
-		auto transComp = GetComponent<Transform>();
-		transComp->SetPosition(m_position);
-		transComp->SetScale(Vec3(0.2f));
-		transComp->SetRotation(m_rotation);
-
 		GetStage()->SetSharedGameObject(L"Player", GetThis<Player>());
 
-		auto drawComp = AddComponent<PNTStaticModelDraw>();
-		drawComp->SetMultiMeshResource(L"PlayerModel");
+		auto model = GetStage()->AddGameObject<PlayerModel>();
+		auto trans = model->GetComponent<Transform>();
+		trans->SetParent(GetThis<Player>());
+		trans->SetPosition(Vec3(0.0f, -0.75f, -0.25f));
 
-		auto shadow = AddComponent<Shadowmap>();
-		shadow->SetMultiMeshResource(L"PlayerModel");
-
-		 AddTag(L"Player");
+		AddTag(L"Player");
 
 		AddComponent<Gravity>();
-		AddComponent<CollisionObb>();
+		AddComponent<CollisionObb>()->SetDrawActive(true);
+
+		auto transComp = GetComponent<Transform>();
+		transComp->SetPosition(m_position);
+		transComp->SetScale(m_scale);
+		transComp->SetRotation(m_rotation);
 	}
 
 	Vec3 Player::MoveVec()

@@ -6,7 +6,6 @@
 #pragma once
 #include "stdafx.h"
 #include "StageObject.h"
-//#include "InputHandler.h"
 
 namespace basecross {
 	class Player : public StageObject {

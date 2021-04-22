@@ -1,163 +1,599 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\PSPNTStaticDraw2.hlsl" />
-    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\PSTrickArt.hlsl" />
-    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\VSPNTStaticDraw2.hlsl" />
-    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\VSTrickArt.hlsl" />
+    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\PSPNTStaticDraw2.hlsl">
+      <Filter>TrickArt\HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\PSTrickArt.hlsl">
+      <Filter>TrickArt\HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\VSPNTStaticDraw2.hlsl">
+      <Filter>TrickArt\HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\VSTrickArt.hlsl">
+      <Filter>TrickArt\HLSL</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="$(MSBuildThisFileDirectory)BGSprite.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Block.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)CircularMove.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ColorOut.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Dot1x1.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)AdvCollision.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)BaseMenu.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Character.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Crystal.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Effect.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)EmptyObject.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Fade.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)FadeComponent.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)FloorArt.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Goal.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ImageSprite.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)LinearMove.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Pause.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Picture.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)PictureFrame.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Pillar.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Pole.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)PoleArt.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)RouteMove.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)SelectStageMenu.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)FrameSprite.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)SquareMove.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)StartCountdown.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\PNTStaticDraw2.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\TADrawRenderTarget.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtBase.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtDraw.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)UI_LR.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)UI_Rank.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Result.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ResultMenu.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ResultStage.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Score.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)SinCurve.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)StageScroller.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)TitleModel.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)UI_Crystal.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)CSVLoad.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Cursor.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Debug.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)UI_FPS.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)UI_Goalgauge.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)UI_HP.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)MyMath.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Numbers.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)PauceMenu.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Plane.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectBehavior.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ProjectShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)SelectStage.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Spikes.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Stairs.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Timer.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)SpikesArt.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)StageObject.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)StringSprite2.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)TitleMenu.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtBaseOld.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)UI_Player.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Utility.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)AdvCollision.cpp">
+      <Filter>AdvCollision</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)BaseMenu.cpp">
+      <Filter>Menu\BaseMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)BGSprite.cpp">
+      <Filter>Sprite\BGSprite</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Block.cpp">
+      <Filter>StageObject\Block</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CircularMove.cpp">
+      <Filter>Behavior\CircularMove</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ColorOut.cpp">
+      <Filter>Sprite\ColorOut</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Crystal.cpp">
+      <Filter>StageObject\Crystal</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CSVLoad.cpp">
+      <Filter>CSVLoad</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Cursor.cpp">
+      <Filter>Sprite\Cursor</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Debug.cpp">
+      <Filter>Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Effect.cpp">
+      <Filter>Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EmptyObject.cpp">
+      <Filter>EmptyObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp">
+      <Filter>StageObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Fade.cpp">
+      <Filter>Sprite\Fade</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FadeComponent.cpp">
+      <Filter>Sprite\Fade\Comp</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FrameSprite.cpp">
+      <Filter>Sprite\Frame</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp">
+      <Filter>Stage\GameStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Goal.cpp">
+      <Filter>StageObject\Goal</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ImageSprite.cpp">
+      <Filter>Sprite\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)LinearMove.cpp">
+      <Filter>Behavior\LinearMove</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp">
+      <Filter>MainCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MyMath.cpp">
+      <Filter>MyMath</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Numbers.cpp">
+      <Filter>Sprite\Numbers</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Pause.cpp">
+      <Filter>Sprite\Pause</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Picture.cpp">
+      <Filter>StageObject\Picture</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PictureFrame.cpp">
+      <Filter>Sprite\PictureFrame</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Plane.cpp">
+      <Filter>StageObject\Plane</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp">
+      <Filter>StageObject\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Pole.cpp">
+      <Filter>StageObject\Pole</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PoleArt.cpp">
+      <Filter>StageObject\Pole</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Result.cpp">
+      <Filter>Sprite\Result</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ResultMenu.cpp">
+      <Filter>Menu\Result</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ResultStage.cpp">
+      <Filter>Stage\ResultStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)RouteMove.cpp">
+      <Filter>Behavior\RouteMove</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SelectStage.cpp">
+      <Filter>Stage\SelectStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SelectStageMenu.cpp">
+      <Filter>Menu\SelectStageMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SinCurve.cpp">
+      <Filter>Behavior\SinCurve</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Spikes.cpp">
+      <Filter>StageObject\Spikes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SpikesArt.cpp">
+      <Filter>StageObject\Spikes</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)SquareMove.cpp">
+      <Filter>Behavior\SquareMove</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StageObject.cpp">
+      <Filter>StageObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Stairs.cpp">
+      <Filter>StageObject\Stairs</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StringSprite2.cpp">
+      <Filter>Sprite\StringSprite2</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleMenu.cpp">
+      <Filter>Menu\TitleMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleModel.cpp">
+      <Filter>StageObject\TitleModel</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleStage.cpp">
+      <Filter>Stage\TitleStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtBase.cpp">
+      <Filter>TrickArt</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtBaseOld.cpp">
+      <Filter>TrickArt</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Utility.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)UI_Crystal.cpp">
+      <Filter>UI\UI_Crystal</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)UI_FPS.cpp">
+      <Filter>UI\UI_FPS</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)UI_Goalgauge.cpp">
+      <Filter>UI\Goalgauge</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)UI_HP.cpp">
+      <Filter>UI\UI_HP</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)UI_LR.cpp">
+      <Filter>UI\UI_LR</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)UI_Player.cpp">
+      <Filter>UI\UI_Player</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)UI_Rank.cpp">
+      <Filter>UI\UI_Rank</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtDraw.cpp">
+      <Filter>TrickArt\Comp</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\PNTStaticDraw2.cpp">
+      <Filter>TrickArt\Comp</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\TADrawRenderTarget.cpp">
+      <Filter>TrickArt\RenderTarget</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PauseMenu.cpp">
+      <Filter>Menu\Pause</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerModel.cpp">
+      <Filter>StageObject\Player\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)BGSprite.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Block.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)CircularMove.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ColorOut.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Dot1x1.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)AdvCollision.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)BaseMenu.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Character.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Crystal.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Effect.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)EmptyObject.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Fade.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)FadeComponent.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)FloorArt.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Goal.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ImageSprite.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)LinearMove.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Pause.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Picture.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)PictureFrame.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Pillar.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Pole.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)PoleArt.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)RouteMove.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)SelectStageMenu.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)FrameSprite.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)SquareMove.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)StartCountdown.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\PNTStaticDraw2.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\TADrawRenderTarget.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtBase.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtDraw.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtSystem.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)UI_LR.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)UI_Rank.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Result.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ResultMenu.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ResultStage.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Score.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)SinCurve.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)StageScroller.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TitleModel.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)UI_Crystal.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)CSVLoad.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Cursor.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Debug.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)UI_FPS.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)UI_Goalgauge.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)UI_HP.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)MyMath.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Numbers.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)PauceMenu.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Plane.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Player.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectBehavior.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)ProjectShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)InputHandler.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)SelectStage.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Spikes.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Stairs.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Timer.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)SpikesArt.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)StageObject.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)StringSprite2.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TitleMenu.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtBaseOld.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)UI_Player.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Utility.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)AdvCollision.h">
+      <Filter>AdvCollision</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)BaseMenu.h">
+      <Filter>Menu\BaseMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)BGSprite.h">
+      <Filter>Sprite\BGSprite</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Block.h">
+      <Filter>StageObject\Block</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CircularMove.h">
+      <Filter>Behavior\CircularMove</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ColorOut.h">
+      <Filter>Sprite\ColorOut</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Crystal.h">
+      <Filter>StageObject\Crystal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CSVLoad.h">
+      <Filter>CSVLoad</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Cursor.h">
+      <Filter>Sprite\Cursor</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Debug.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Effect.h">
+      <Filter>Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EmptyObject.h">
+      <Filter>EmptyObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h">
+      <Filter>StageObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Fade.h">
+      <Filter>Sprite\Fade</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FadeComponent.h">
+      <Filter>Sprite\Fade\Comp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FrameSprite.h">
+      <Filter>Sprite\Frame</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h">
+      <Filter>Stage\GameStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Goal.h">
+      <Filter>StageObject\Goal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ImageSprite.h">
+      <Filter>Sprite\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)InputHandler.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)LinearMove.h">
+      <Filter>Behavior\LinearMove</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h">
+      <Filter>MainCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MyMath.h">
+      <Filter>MyMath</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Numbers.h">
+      <Filter>Sprite\Numbers</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Pause.h">
+      <Filter>Sprite\Pause</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Picture.h">
+      <Filter>StageObject\Picture</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PictureFrame.h">
+      <Filter>Sprite\PictureFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Plane.h">
+      <Filter>StageObject\Plane</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Player.h">
+      <Filter>StageObject\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Pole.h">
+      <Filter>StageObject\Pole</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PoleArt.h">
+      <Filter>StageObject\Pole</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Result.h">
+      <Filter>Sprite\Result</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ResultMenu.h">
+      <Filter>Menu\Result</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ResultStage.h">
+      <Filter>Stage\ResultStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)RouteMove.h">
+      <Filter>Behavior\RouteMove</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SelectStage.h">
+      <Filter>Stage\SelectStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SelectStageMenu.h">
+      <Filter>Menu\SelectStageMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SinCurve.h">
+      <Filter>Behavior\SinCurve</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Spikes.h">
+      <Filter>StageObject\Spikes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SpikesArt.h">
+      <Filter>StageObject\Spikes</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SquareMove.h">
+      <Filter>Behavior\SquareMove</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StageObject.h">
+      <Filter>StageObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Stairs.h">
+      <Filter>StageObject\Stairs</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StringSprite2.h">
+      <Filter>Sprite\StringSprite2</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleMenu.h">
+      <Filter>Menu\TitleMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleModel.h">
+      <Filter>StageObject\TitleModel</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleStage.h">
+      <Filter>Stage\TitleStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtBase.h">
+      <Filter>TrickArt</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtBaseOld.h">
+      <Filter>TrickArt</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtSystem.h">
+      <Filter>TrickArt</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Utility.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)UI_Crystal.h">
+      <Filter>UI\UI_Crystal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)UI_FPS.h">
+      <Filter>UI\UI_FPS</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)UI_Goalgauge.h">
+      <Filter>UI\Goalgauge</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)UI_HP.h">
+      <Filter>UI\UI_HP</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)UI_LR.h">
+      <Filter>UI\UI_LR</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)UI_Player.h">
+      <Filter>UI\UI_Player</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)UI_Rank.h">
+      <Filter>UI\UI_Rank</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtDraw.h">
+      <Filter>TrickArt\Comp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\PNTStaticDraw2.h">
+      <Filter>TrickArt\Comp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\TADrawRenderTarget.h">
+      <Filter>TrickArt\RenderTarget</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PauseMenu.h">
+      <Filter>Menu\Pause</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerModel.h">
+      <Filter>StageObject\Player\Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\INCPNTStaticDraw2.hlsli" />
-    <None Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\INCTrickArt.hlsli" />
+    <None Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\INCPNTStaticDraw2.hlsli">
+      <Filter>TrickArt\HLSL</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\INCTrickArt.hlsli">
+      <Filter>TrickArt\HLSL</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="AdvCollision">
+      <UniqueIdentifier>{e684a2b2-6923-4bc2-af6f-d938ec2d2a51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu">
+      <UniqueIdentifier>{98590476-931a-493f-9f29-284f676c87b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu\BaseMenu">
+      <UniqueIdentifier>{1892db5d-ff03-46ba-9c53-a5c57d163ce2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject">
+      <UniqueIdentifier>{7aa68cc9-80a1-4868-aa12-f1fa6cc9717f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Block">
+      <UniqueIdentifier>{e94ee3c0-30a2-49ce-b0fb-f118601f36bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Behavior">
+      <UniqueIdentifier>{b2a58a42-3a43-403c-86dd-5d9741b0d9f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Behavior\CircularMove">
+      <UniqueIdentifier>{b3da718f-2ac5-4240-9fca-285bbbd7e39b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Crystal">
+      <UniqueIdentifier>{6b6d1f7a-54e8-4bb7-a353-0baeb90abe37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CSVLoad">
+      <UniqueIdentifier>{f24ee87f-1903-48be-8be1-2589e4691b56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{a5a60149-11f1-433a-89a0-cfd94bf904cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Effect">
+      <UniqueIdentifier>{61a84e10-6fb1-4247-a879-3777860eb918}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EmptyObject">
+      <UniqueIdentifier>{96b51550-60ca-4246-bd43-4df33c65a75b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Enemy">
+      <UniqueIdentifier>{76d1eaf9-ac7c-449b-8f75-fa0517d4e0e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sprite">
+      <UniqueIdentifier>{56fd2faf-50f8-4d90-913e-ea414ca0f1ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sprite\Fade">
+      <UniqueIdentifier>{2219da21-4ece-4c5e-b21a-d2b489032963}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sprite\Fade\Comp">
+      <UniqueIdentifier>{d40c5bf9-dd11-4148-a94d-0923bd2e958a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sprite\Cursor">
+      <UniqueIdentifier>{a4cd803d-19fe-497b-8f42-683474b9850e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sprite\ColorOut">
+      <UniqueIdentifier>{4fbebea4-e2e6-4fa4-a0de-eaf6ae1e8865}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sprite\BGSprite">
+      <UniqueIdentifier>{984e75c6-f9dc-4924-b5d5-b76150b3fb2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sprite\Frame">
+      <UniqueIdentifier>{44079cc5-255d-4557-a514-74f2951072ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stage">
+      <UniqueIdentifier>{e3a7558b-8fd5-48e1-89c5-d70b3ddf25fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stage\GameStage">
+      <UniqueIdentifier>{cb61ac1f-f028-4cdf-bf40-c7c311548ff7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Goal">
+      <UniqueIdentifier>{2c4567ff-25fc-4dff-8086-74221dbec7a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sprite\Image">
+      <UniqueIdentifier>{bca21695-cea7-4364-bb77-549e43a9aa89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Other">
+      <UniqueIdentifier>{a03b5c3c-4e85-4303-974c-37c3c2f2713f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Behavior\LinearMove">
+      <UniqueIdentifier>{7d068b42-a5dd-46db-a74c-a1792f8799ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainCamera">
+      <UniqueIdentifier>{8fed7338-3e28-41c9-a892-1ca5e6af7478}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyMath">
+      <UniqueIdentifier>{baa8f760-006d-4f80-8c2a-3e912521e06f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sprite\Numbers">
+      <UniqueIdentifier>{67f5daa3-9583-4c7c-ab7a-88ad9d7f699b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu\Pause">
+      <UniqueIdentifier>{96eadbaf-f837-4be1-a2eb-14136e79e9ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sprite\Pause">
+      <UniqueIdentifier>{22fee416-664c-4d4f-bdce-71542471a6de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Picture">
+      <UniqueIdentifier>{43eccea1-6852-4a24-b510-997720f642fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sprite\PictureFrame">
+      <UniqueIdentifier>{4ae2d553-1ea1-48c7-a499-b94f108c51cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Plane">
+      <UniqueIdentifier>{fa9bac5d-b89e-4f6d-b2ba-d8c40d2c3a9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Player">
+      <UniqueIdentifier>{0a59f3cb-2505-4a32-a807-12e5d8a7ffb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TrickArt">
+      <UniqueIdentifier>{c457810c-6a08-409e-9e07-7bfa958dfb53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TrickArt\HLSL">
+      <UniqueIdentifier>{a5699d14-ec98-4f7d-b643-a92074a5a23a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Pole">
+      <UniqueIdentifier>{7b8cb7dc-1a9d-461c-bc66-4e87cf3c6246}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sprite\Result">
+      <UniqueIdentifier>{b60002f3-7386-4ffe-9378-3d28dde15824}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu\Result">
+      <UniqueIdentifier>{2f75f2df-790d-4b46-a90a-f85f22d33a0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stage\ResultStage">
+      <UniqueIdentifier>{20101216-3f4a-4a0d-9b7d-86ff2fe6bc03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Behavior\RouteMove">
+      <UniqueIdentifier>{ed7d1cf4-e57d-4bd2-bff9-ef3ce66b1c9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stage\SelectStage">
+      <UniqueIdentifier>{5e2cbd42-8b32-4de2-b591-71ff01558d25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu\SelectStageMenu">
+      <UniqueIdentifier>{0e3ed808-b954-467f-adeb-c6474fb3dbca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Behavior\SinCurve">
+      <UniqueIdentifier>{3677588e-5315-41b6-a1a7-61494dcacbdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Spikes">
+      <UniqueIdentifier>{76aca58a-0efb-40e3-a449-95809509f736}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Behavior\SquareMove">
+      <UniqueIdentifier>{882a9b1e-5e37-4a94-9f23-3f2641005c56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Stairs">
+      <UniqueIdentifier>{77d71e71-e227-46b2-ba99-a95c18f53106}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sprite\StringSprite2">
+      <UniqueIdentifier>{16d5c309-a57e-45b0-a011-81670d14976c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu\TitleMenu">
+      <UniqueIdentifier>{c72e4c07-d08f-49cb-b7e9-8947c576fdae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\TitleModel">
+      <UniqueIdentifier>{a025318b-1561-4e51-8c50-69318da6d6a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stage\TitleStage">
+      <UniqueIdentifier>{7d699aa9-eea8-43d5-9e45-068159005465}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{4b4df83a-d441-4c46-bcbf-6d3c5a6dad1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{f49822be-9ec6-4bdf-b564-8ab14378b480}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\UI_Crystal">
+      <UniqueIdentifier>{30108abe-5d24-4a8c-a081-c9bfa9803c1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\UI_FPS">
+      <UniqueIdentifier>{cc219563-8d90-496f-8378-7a031f6059f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Goalgauge">
+      <UniqueIdentifier>{c9bcc78c-0ae8-4c1b-831c-e020d503e2dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\UI_HP">
+      <UniqueIdentifier>{9014a8cf-bbb3-43ed-a473-e7714b7496c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\UI_LR">
+      <UniqueIdentifier>{e77024e3-e09b-459e-ac60-ca2ac9834f98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\UI_Player">
+      <UniqueIdentifier>{b278b776-f344-40a4-8325-f3cd53b07f4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\UI_Rank">
+      <UniqueIdentifier>{2b011de3-3031-43d2-a991-439f49dd478a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TrickArt\Comp">
+      <UniqueIdentifier>{f684f8df-ca7e-4819-aa32-f969feb237a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TrickArt\RenderTarget">
+      <UniqueIdentifier>{5af90b02-f04f-4364-90f7-d824d2bcadfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Player\Model">
+      <UniqueIdentifier>{413ff329-ded8-4e78-a251-9becf3160d1b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

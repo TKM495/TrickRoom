@@ -41,7 +41,6 @@ namespace basecross {
 			builder.Register<Player>(L"Player");
 			builder.Register<Goal>(L"Goal");
 			builder.Register<Plane>(L"Plane");
-			builder.Register<Pillar>(L"Pillar");
 			builder.Register<Block>(L"Block");
 			builder.Register<Enemy>(L"Enemy");
 			builder.Register<Spikes>(L"Spikes");
