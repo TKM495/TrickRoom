@@ -69,7 +69,7 @@ namespace basecross {
 		void SetAlignVertical(Align::Vertical ver);
 
 		void SetSize(float size);
-		void SetPos(Vec3 pos);
+		void SetPos(Vec2 pos);
 		float GetSize();
 		Vec3 GetPos();
 

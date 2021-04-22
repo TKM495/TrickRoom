@@ -68,9 +68,6 @@ namespace basecross {
 		case GameStage::GameState::CLEAR:
 			Zoom(0.25f);
 			break;
-		case GameStage::GameState::GAMEOVER:
-			Zoom(0.1f);
-			break;
 		default:
 			switch (m_CameraState)
 			{

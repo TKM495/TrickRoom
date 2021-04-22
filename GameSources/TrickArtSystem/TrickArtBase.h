@@ -4,7 +4,7 @@
 #include "AdvCollision.h"
 
 namespace basecross {
-	class TrickArtBase {
+	class TrickArtBase{
 		Vec3 m_dirValue;
 		int m_MAX;
 		state m_dir;
@@ -12,7 +12,7 @@ namespace basecross {
 		//トリックアート投影フラグ
 		bool m_bProjActive;
 		//トリックアートとして描画するか
-		bool m_tirckFlg;
+		bool m_trickFlg;
 		//トリックアートのときどの方向から見るか
 		state m_activeState;
 		//当たり判定のやつ
@@ -23,6 +23,8 @@ namespace basecross {
 			return m_dirValue;
 		}
 	public:
+		TrickArtBase();
+
 		//TADirectionの項目の数を返す(1～)
 		int GetTypeNum() {
 			return m_MAX;
@@ -36,7 +38,23 @@ namespace basecross {
 		}
 		//特定の方向の方向ベクトルを取得
 		static Vec3 GetDirValue(state dir);
-		TrickArtBase();
+
+		void UpdateArt(const shared_ptr<Camera>& cam);
+
+		template<typename T>
+		void UpdateArt(const shared_ptr<Camera>& cam,const shared_ptr<T>& col) {
+			if (!m_trickFlg) {
+				return;
+			}
+			auto camera = dynamic_pointer_cast<MainCamera>(cam);
+			state nowState = camera->GetCamState();
+			if (nowState == m_activeState) {
+				col->SetUpdateActive(true);
+			}
+			else {
+				col->SetUpdateActive(false);
+			}
+		}
 	};
 }
 // end basecross

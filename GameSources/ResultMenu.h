@@ -10,12 +10,9 @@
 namespace basecross {
 	class ResultMenu :public BaseMenu {
 		int m_stageNum;
-		bool m_bStateFlg;
 	public:
-		ResultMenu(const shared_ptr<Stage>& stage,
-			bool flg)
-			:BaseMenu(stage),
-			m_bStateFlg(flg)
+		ResultMenu(const shared_ptr<Stage>& stage)
+			:BaseMenu(stage)
 		{
 			SetMenuDirection(MenuDirection::Horizontal);
 		}

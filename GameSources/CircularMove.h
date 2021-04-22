@@ -34,13 +34,18 @@ namespace basecross {
 		{}
 
 		void OnCreate()override;
-		void Excure();
+		void Excute();
 
 		void SetSpeed(int Speed)
 		{
 			m_RotationSpeed = Speed;
 		}
-
+		void SetRadius(float radius) {
+			m_Radius = radius;
+		}
+		void SetOffset(float offset) {
+			m_Angle = offset;
+		}
 		int GetSpeed()
 		{
 			return m_RotationSpeed;

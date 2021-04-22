@@ -11,10 +11,10 @@ namespace basecross {
 		auto transComp = GetGameObject()->GetComponent<Transform>();
 		auto pos = transComp->GetPosition();
 		m_CenterX = pos.x;
-		m_CenterY = pos.y;
+		m_CenterY = pos.z;
 	}
 
-	void CircularMove::Excure() {
+	void CircularMove::Excute() {
 		auto transComp = GetGameObject()->GetComponent<Transform>();
 		auto pos = transComp->GetPosition();
 
@@ -23,15 +23,15 @@ namespace basecross {
 
 
 		float radius = m_Angle * m_PI / m_Deg;
-		auto add_x = cos(radius) * m_Length;
-		auto add_y = sin(radius) * m_Length;
+		auto add_x = cos(radius) * m_Radius;
+		auto add_y = sin(radius) * m_Radius;
 
 		m_PosX = m_CenterX + add_x;
 		m_PosY = m_CenterY + add_y;
 
 		m_Angle += m_RotationSpeed * ElapsedTime;
 
-		transComp->SetPosition(m_PosX, m_Radius, m_PosY);
+		transComp->SetPosition(m_PosX, pos.y, m_PosY);
 	}
 }
 //end basecross

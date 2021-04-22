@@ -8,14 +8,15 @@
 
 namespace basecross {
 	void ResultStage::CreateViewLight() {
-		const Vec3 eye(0.0f, 10.0f, -10.0f);
-		const Vec3 at(0.0f);
+		const Vec3 eye(0.0f, 2.0f, -10.0f);
+		const Vec3 at(0.0f, 1.8f, 5.0f);
 		auto PtrView = CreateView<SingleView>();
 		//ビューのカメラの設定
 		auto PtrCamera = ObjectFactory::Create<Camera>();
 		PtrView->SetCamera(PtrCamera);
 		PtrCamera->SetEye(eye);
 		PtrCamera->SetAt(at);
+		PtrCamera->SetFovY(0.4f);
 		//マルチライトの作成
 		auto PtrMultiLight = CreateLight<MultiLight>();
 		//デフォルトのライティングを指定
@@ -31,56 +32,29 @@ namespace basecross {
 		csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetStringSpriteData(), SpriteType::String);
 		csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetImageSpriteData(), SpriteType::Image);
 
+		GameObjecttCSVBuilder builder;
+		builder.Register<Player>(L"Player");
+		builder.Register<Plane>(L"Plane");
+		builder.Register<Block>(L"Block");
+
+		auto dir = App::GetApp()->GetDataDirWString();
+		auto path = dir + L"Csv/ResultObject.csv";
+		builder.Build(GetThis<Stage>(), path);
+
 		auto scoreData = App::GetApp()->GetScene<Scene>()->GetScoreData();
-		//テスト用データ
-		//scoreData.state = GameStage::GameState::GAMEOVER;
-		//scoreData.HP = 5;
-		//scoreData.BCrystal = 14;
-		//scoreData.RCrystal = 6;
-		//scoreData.Distance = 200;
 
 		AddGameObject<Result>(scoreData);
-		bool stateFlg;
-		switch (scoreData.state)
-		{
-		case GameStage::GameState::CLEAR:
-			stateFlg = true;
-			break;
-		case GameStage::GameState::GAMEOVER:
-			stateFlg = false;
-			break;
-		}
-		AddGameObject<ResultMenu>(stateFlg);
 
-		switch (scoreData.state)
-		{
-		case GameStage::GameState::CLEAR:
-			AddGameObject<BGSprite>(L"BGClear");
-			break;
-		case GameStage::GameState::GAMEOVER:
-			AddGameObject<BGSprite>(L"BGGameOver");
-			break;
-		}
+		AddGameObject<ResultMenu>();
+
+		//AddGameObject<BGSprite>(L"BGClear");
+
 		AddGameObject<Fade>()->FadeIn();
 
 		auto audio = App::GetApp()->GetXAudio2Manager();
 		wstring bgmName = L"";
-		switch (scoreData.state)
-		{
-		case GameStage::GameState::CLEAR:
-			bgmName = L"GameClear";
-			break;
-		case GameStage::GameState::GAMEOVER:
-			bgmName = L"GameOver";
-			break;
-		}
-		audio->Start(bgmName, 0, 0.1f);
-	}
 
-	void ResultStage::OnUpdate() {
-		//コントローラチェックして入力があればコマンド呼び出し
-		//m_Inputhandler.PushHandle(GetThis<TitleStage>());
+		audio->Start(L"GameClear", 0, 0.1f);
 	}
-
 }
 //end basecross

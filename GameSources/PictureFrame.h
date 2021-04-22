@@ -7,17 +7,18 @@
 #include "stdafx.h"
 
 namespace basecross {
-	class PictureFrame :public GameObject {
-		//現在のステージ(0～)
-		int m_nowStage;
+	class PictureFrame :public StageObject {
 	public:
-		PictureFrame(const shared_ptr<Stage>& stage,
-			int num)
-			:GameObject(stage),
-			m_nowStage(num)
+		PictureFrame(const shared_ptr<Stage>& stage)
+			:StageObject(stage)
 		{}
 
 		void OnCreate()override;
+
+		void SetPos(Vec2 pos);
+		void SetSize(float size);
+		Vec2 GetPos();
+		float GetSize();
 	};
 }
 //end basecross

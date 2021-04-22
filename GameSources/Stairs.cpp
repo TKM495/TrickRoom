@@ -31,13 +31,13 @@ namespace basecross {
 			XMConvertToRadians((float)_wtof(tokens[9].c_str()))
 		);
 		m_bProjActive = tokens[10] == L"TRUE" ? true : false;
-		m_tirckFlg = tokens[11] == L"TRUE" ? true : false;
+		m_trickFlg = tokens[11] == L"TRUE" ? true : false;
 		m_activeState = tokens[12] == L"Right" ? state::Right : state::Left;
 	}
 
 	void Stairs::OnCreate() {
 		StageObject::OnCreate();
-		if (m_tirckFlg) {
+		if (m_trickFlg) {
 			auto trick = AddComponent<TrickArtDraw>();
 			trick->SetMeshResource(L"Stairs");
 			trick->SetDir(m_activeState);

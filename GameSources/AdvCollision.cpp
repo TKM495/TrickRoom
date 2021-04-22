@@ -52,14 +52,23 @@ namespace basecross {
 			m_offset.z * parentScale.z
 		);
 		auto transComp = GetComponent<Transform>();
-		transComp->SetParent(m_parent);
 		transComp->SetPosition(pos);
 		transComp->SetScale(scale);
 		transComp->SetRotation(m_rotation);
 	}
 
+	void AdvCollision::OnUpdate() {
+		auto myTrans = GetComponent<Transform>();
+		auto parentTrans = m_parent->GetComponent<Transform>();
+		myTrans->SetPosition(parentTrans->GetPosition());
+	}
+
 	void AdvCollision::SetActive(bool flg) {
 		GetComponent<Collision>()->SetUpdateActive(flg);
 	}
+
+	//void AdvCollision::OnCollisionEnter(shared_ptr<GameObject>& other) {
+	//	m_parent->OnCollisionEnter(other);
+	//}
 }
 //end basecross

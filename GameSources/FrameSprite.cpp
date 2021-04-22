@@ -86,8 +86,6 @@ namespace basecross {
 		drawComp->SetDepthStencilState(DepthStencilState::Read);
 
 		SetAlphaActive(true); //透明をサポートする&両面描画になる
-
-		//SetPosition(m_position);
 	}
 
 	//void FrameSprite::SetAlignVertical(Align::Vertical ver) {

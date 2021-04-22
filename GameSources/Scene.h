@@ -36,7 +36,7 @@ namespace basecross{
 	public:
 		Scene() :SceneBase(),
 			m_stageNum(1),
-			m_maxStage(3)
+			m_maxStage(10)
 		{}
 		virtual ~Scene() {}
 		virtual void OnCreate() override;

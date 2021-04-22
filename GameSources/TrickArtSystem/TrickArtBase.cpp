@@ -3,7 +3,7 @@
 
 namespace basecross {
 	TrickArtBase::TrickArtBase()
-		:m_MAX(2), m_tirckFlg(false), m_bProjActive(true)
+		:m_MAX(2), m_trickFlg(false), m_bProjActive(true)
 	{
 		SetDir(state::Right);
 	}
@@ -38,6 +38,24 @@ namespace basecross {
 			break;
 		}
 		return Vec3(0.0f);
+	}
+
+	void TrickArtBase::UpdateArt(const shared_ptr<Camera>& cam) {
+		if (!m_trickFlg) {
+			return;
+		}
+		auto camera = dynamic_pointer_cast<MainCamera>(cam);
+		state nowState = camera->GetCamState();
+		if (nowState == m_activeState) {
+			for (auto& coll : m_myCols) {
+				coll->SetActive(true);
+			}
+		}
+		else {
+			for (auto& coll : m_myCols) {
+				coll->SetActive(false);
+			}
+		}
 	}
 }
 // end basecross

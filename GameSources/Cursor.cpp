@@ -8,15 +8,38 @@
 
 namespace basecross {
 	void Cursor::OnCreate() {
+		vector<Vec3> pos;
+		if (m_name == L"VCursor") {
+			pos = {
+				Vec3(-300.0f, +50.0f,0.0f),
+				Vec3(+300.0f, +50.0f,0.0f),
+				Vec3(-300.0f, -50.0f,0.0f),
+				Vec3(+300.0f, -50.0f,0.0f)
+			};
+			m_color = Col4(1.0f, 1.0f, 1.0f, 0.3f);
+		}
+		else if (m_name == L"SelectCursor") {
+			auto size = Utility::GetTextureSize(m_name);
+			auto widthHalf = size.x / 2.0f;
+			auto heightHalf = size.y / 2.0f;
+			pos = {
+				Vec3(-widthHalf, +heightHalf,0.0f),
+				Vec3(+widthHalf, +heightHalf,0.0f),
+				Vec3(-widthHalf, -heightHalf,0.0f),
+				Vec3(+widthHalf, -heightHalf,0.0f)
+			};
+			m_color = Col4(1.0f, 1.0f, 0.0f, 1.0f);
+			//SetUpdateActive(false);
+		}
+
 		//色のデータ(R,G,B,A)
 		Col4 color(1.0f, 1.0f, 1.0f, 1.0f);
 		//頂点のデータ (番号は左上から右下まで)
 		vector<VertexPositionColorTexture> vertices = {
-			{Vec3(-300.0f, +50.0f,0.0f),color,Vec2(0.0f,0.0f)}, //0
-			{Vec3(+300.0f, +50.0f,0.0f),color,Vec2(1.0f,0.0f)}, //1
-
-			{Vec3(-300.0f, -50.0f,0.0f),color,Vec2(0.0f,1.0f)}, //2
-			{Vec3(+300.0f, -50.0f,0.0f),color,Vec2(1.0f,1.0f)},  //3
+			{pos[0],color,Vec2(0.0f,0.0f)}, //0
+			{pos[1],color,Vec2(1.0f,0.0f)}, //1
+			{pos[2],color,Vec2(0.0f,1.0f)}, //2
+			{pos[3],color,Vec2(1.0f,1.0f)},  //3
 		};
 		//頂点インデックス(頂点をつなげる順番)
 		std::vector<uint16_t> indices = {
@@ -28,8 +51,7 @@ namespace basecross {
 
 		drawComp->SetSamplerState(SamplerState::AnisotropicWrap); //テクスチャの繰り返し設定(Wrap)
 		drawComp->SetDepthStencilState(DepthStencilState::Read);
-		drawComp->SetTextureResource(L"VCursor");
-		m_color = Col4(1.0f, 1.0f, 1.0f, 0.3f);
+		drawComp->SetTextureResource(m_name);
 		drawComp->SetDiffuse(m_color);
 
 		SetAlphaActive(true);

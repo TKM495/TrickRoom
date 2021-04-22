@@ -12,30 +12,26 @@
 namespace basecross {
 	//スコアに必要なデータ
 	struct ScoreData {
-		GameStage::GameState state;	//ゲームの状態
-		int HP;						//HP
-		int RCrystal;				//赤色のクリスタル
-		int BCrystal;				//青色のクリスタル
-		int Distance;				//スタートからの距離
+		int Time;					//タイム
+		int Crystal;				//クリスタル
+		int CamNum;					//カメラの回転数
 	};
 
 	struct ScorePoints {
-		int HP;			//HP
-		int RCrystal;	//赤色のクリスタル
-		int BCrystal;	//青色のクリスタル
-		int Distance;	//スタートからの距離
+		int Time;		//タイム
+		int Crystal;	//クリスタル
+		int CamNum;		//カメラの回転数
 		int ClearBonus;	//クリアボーナス
 		int Total;		//合計
 		void CountTotal() {
-			Total = HP + RCrystal + BCrystal + Distance + ClearBonus;
+			Total = Time + Crystal + CamNum + ClearBonus;
 		}
 
 		ScorePoints operator*(const ScorePoints& _score)const {
 			ScorePoints score;
-			score.HP = this->HP * _score.HP;
-			score.RCrystal = this->RCrystal * _score.RCrystal;
-			score.BCrystal = this->BCrystal * _score.BCrystal;
-			score.Distance = this->Distance * _score.Distance;
+			score.Time = this->Time * _score.Time;
+			score.Crystal = this->Crystal * _score.Crystal;
+			score.CamNum = this->CamNum * _score.CamNum;
 			score.ClearBonus = this->ClearBonus * _score.ClearBonus;
 			score.Total = this->Total * _score.Total;
 			return score;

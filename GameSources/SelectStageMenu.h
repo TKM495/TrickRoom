@@ -13,18 +13,16 @@ namespace basecross {
         //額
         vector<shared_ptr<PictureFrame>> m_picFrame;
         vector<shared_ptr<BGSprite>> m_bgObj;
-        vector<Vec3> m_picFramePos;
         //オーディオ取得用
         shared_ptr<XAudio2Manager> m_audio;
+        //カーソルオブジェクト
+        weak_ptr<Cursor> m_cursor;
 
         //メニューの要素数
         int m_menuNum;
         //今選択しているメニュー
         int m_nowMenuNum;
-        //以前選択していたメニュー
-        int m_beforeMenuNum;
         wstring m_mes;
-        Vec3 m_nowPos;
         //遷移遅延
         float m_delayTime;
         //遷移フラグ
@@ -57,8 +55,7 @@ namespace basecross {
             m_delayTime(0.0f),
             m_bChange(false),
             m_delta(0.0f),
-            m_cursorSp(5.0f),
-            m_nowPos(Vec3(0.0f)),
+            m_cursorSp(10.0f),
             m_mes(L""),
             m_audio(App::GetApp()->GetXAudio2Manager())
         {}

@@ -12,7 +12,7 @@ namespace basecross {
 		stage->SetSharedGameObject(L"Pause", GetThis<Pause>());
 
 		m_titleObj = stage->AddGameObject<StringSprite2>(L"Pause");
-		m_titleObj.lock()->SetPos(Vec3(0.0f, 200.0f, 0.0f));
+		m_titleObj.lock()->SetPos(Vec2(0.0f, 200.0f));
 
 		m_menuObj = stage->AddGameObject<PauseMenu>();
 

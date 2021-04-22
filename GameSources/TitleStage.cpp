@@ -38,25 +38,25 @@ namespace basecross {
 		title->GetComponent<Transform>()->SetPosition(Vec3(0.0f, 200.0f, 0.0f));
 		AddGameObject<TitleMenu>();
 
-		GameObjecttCSVBuilder builder;
-		builder.Register<Player>(L"Player");
-		builder.Register<Goal>(L"Goal");
-		builder.Register<Plane>(L"Plane");
-		builder.Register<Pillar>(L"Pillar");
-		builder.Register<Block>(L"Block");
-		builder.Register<Enemy>(L"Enemy");
-		builder.Register<Spikes>(L"Spikes");
-		builder.Register<SpikesArt>(L"SpikesArt");
-		builder.Register<Stairs>(L"Stairs");
-		builder.Register<PoleArt>(L"PoleArt");
-		builder.Register<Crystal>(L"Crystal");
-		builder.Register<Picture>(L"Picture");
+		//GameObjecttCSVBuilder builder;
+		//builder.Register<Player>(L"Player");
+		//builder.Register<Goal>(L"Goal");
+		//builder.Register<Plane>(L"Plane");
+		//builder.Register<Pillar>(L"Pillar");
+		//builder.Register<Block>(L"Block");
+		//builder.Register<Enemy>(L"Enemy");
+		//builder.Register<Spikes>(L"Spikes");
+		//builder.Register<SpikesArt>(L"SpikesArt");
+		//builder.Register<Stairs>(L"Stairs");
+		//builder.Register<PoleArt>(L"PoleArt");
+		//builder.Register<Crystal>(L"Crystal");
+		//builder.Register<Picture>(L"Picture");
 
-		auto dir = app->GetDataDirWString();
-		auto path = dir + L"Csv/TitleObject.csv";
-		builder.Build(GetThis<Stage>(), path);
+		//auto dir = app->GetDataDirWString();
+		//auto path = dir + L"Csv/TitleObject.csv";
+		//builder.Build(GetThis<Stage>(), path);
 
-		AddGameObject<BGSprite>(L"BackGround");
+		//AddGameObject<BGSprite>(L"BackGround");
 		AddGameObject<UI_FPS>();
 
 		AddGameObject<Fade>()->FadeIn();

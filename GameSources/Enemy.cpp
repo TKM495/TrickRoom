@@ -30,7 +30,7 @@ namespace basecross {
 		);
 
 		m_bProjActive = tokens[10] == L"TRUE" ? true : false;
-		m_tirckFlg = tokens[11] == L"TRUE" ? true : false;
+		m_trickFlg = tokens[11] == L"TRUE" ? true : false;
 		m_activeState = tokens[12] == L"Right" ? state::Right : state::Left;
 
 		m_behavior = tokens[13];
@@ -39,11 +39,11 @@ namespace basecross {
 		m_offset = (float)_wtof(tokens[16].c_str());
 	}
 	void Enemy::OnCreate() {
-		if (m_tirckFlg) {
+		if (m_trickFlg) {
 			auto trick = AddComponent<TrickArtDraw>();
 			trick->SetMeshResource(L"Enemy");
 			trick->SetDir(m_activeState);
-
+			AddTag(L"TrickArtObj");
 		}
 		else {
 			//影をつける（シャドウマップを描画する）
@@ -62,14 +62,13 @@ namespace basecross {
 			}
 		}
 
-		//OBB衝突判定を付ける
-		auto stage = GetStage();
-		auto coll = stage->AddGameObject<AdvCollision>(GetThis<Enemy>(),
-			Vec3(0.0f),
-			Vec3(1.0f),
-			Vec3(0.0f),
-			AdvCollision::Shape::Sphere);
-		m_myCols.push_back(coll);
+		auto col = AddComponent<CollisionSphere>();
+		//これをつけるとOnCollisionEnterが呼ばれないのでコメントアウト
+		//col->SetFixed(true);
+		auto scene = App::GetApp()->GetScene<Scene>();
+		if (scene->GetDebugState() == DebugState::Debug) {
+			col->SetDrawActive(true);
+		}
 
 		StageObject::OnCreate();
 
@@ -79,11 +78,20 @@ namespace basecross {
 		else if (m_behavior == L"SquareMove") {
 			GetBehavior<SquareMove>()->SetSpeed(m_speed);
 		}
+		else if (m_behavior == L"RouteMove") {
+			GetBehavior<RouteMove>()->SetSpeed(m_speed);
+		}
+		else if (m_behavior == L"CircularMove") {
+			auto beha = GetBehavior<CircularMove>();
+			beha->SetSpeed(m_speed);
+			beha->SetRadius(m_cycle);
+			beha->SetOffset(m_offset);
+		}
 		else {
 
 		}
 
-
+		AddTag(L"Enemy");
 		AddTag(L"damage");
 	}
 
@@ -92,16 +100,21 @@ namespace basecross {
 		auto camera = dynamic_pointer_cast<MainCamera>(GetStage()->GetView()->GetTargetCamera());
 		switch (state)
 		{
-		case basecross::GameStage::GameState::PLAYING:
+		default:
 			if (camera->GetbLeapFlg()) {
 				return;
 			}
-
 			if (m_behavior == L"SinCurve") {
 				GetBehavior<SinCurve>()->Excute(m_cycle, m_speed);
 			}
 			else if (m_behavior == L"SquareMove") {
 				GetBehavior<SquareMove>()->Excute();
+			}
+			else if (m_behavior == L"RouteMove") {
+				GetBehavior<RouteMove>()->Excute();
+			}
+			else if (m_behavior == L"CircularMove") {
+				GetBehavior<CircularMove>()->Excute();
 			}
 			else {
 
@@ -110,6 +123,7 @@ namespace basecross {
 		case basecross::GameStage::GameState::PAUSE:
 			break;
 		}
+		UpdateArt<CollisionSphere>(OnGetDrawCamera(), GetComponent<CollisionSphere>());
 	}
 
 	void Enemy::OnCollisionEnter(shared_ptr<GameObject>& other) {
@@ -118,6 +132,22 @@ namespace basecross {
 			SetDrawActive(false);
 			SetUpdateActive(false);
 			AddNumTag(-1);
+		}
+		if (m_behavior == L"RouteMove") {
+			//if (!other->FindTag(L"Enemy")&&
+			//	!other->FindTag(L"Crystal")&&
+			//	!other->FindTag(L"Floor")) {
+			//	GetBehavior<RouteMove>()->Hit(true);
+			//}
+			//else {
+			//	GetBehavior<RouteMove>()->Hit(false);
+			//}
+			if (other->FindTag(L"Wall")) {
+				GetBehavior<RouteMove>()->Hit(true);
+			}
+			else {
+				GetBehavior<RouteMove>()->Hit(false);
+			}
 		}
 	}
 }

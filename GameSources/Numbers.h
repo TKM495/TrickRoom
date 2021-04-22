@@ -58,6 +58,9 @@ namespace basecross {
 		void SetSize(float size) {
 			GetComponent<Transform>()->SetScale(Vec3(size));
 		}
+		void SetPos(Vec2 pos) {
+			GetComponent<Transform>()->SetPosition((Vec3)pos);
+		}
 
 		int Numbers::SearchDataIndex(vector<SpriteDataFormat>& data);
 	};

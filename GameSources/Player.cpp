@@ -9,10 +9,11 @@
 namespace basecross{
 	Player::Player(const std::shared_ptr<Stage>& stage,
 		const wstring& line)
-			: StageObject(stage),
-		m_moveSpeed(6), m_HP(3), m_Rcrystal(0),m_Bcrystal(0),
+		: StageObject(stage),
+		m_moveSpeed(4), m_HP(3), m_Crystal(0),
 		bMutekiFlg(false), m_Mcount(0), m_MTime(2),
-		m_DrawCount(0), m_BlinkMask(8),rotationSpeed(0.2f)
+		m_DrawCount(0), m_BlinkMask(8), rotationSpeed(0.2f),
+		m_bExtrude(false), m_deltaExtrude(0.0f)
 	{
 		//トークン（カラム）の配列
 		vector<wstring> tokens;
@@ -34,23 +35,23 @@ namespace basecross{
 			XMConvertToRadians((float)_wtof(tokens[9].c_str()))
 		);
 		//m_respawnPos = m_position;
-
 	}
 
 	void Player::OnCreate()
 	{
+		m_position.y = 0.25f;
 		auto transComp = GetComponent<Transform>();
 		transComp->SetPosition(m_position);
-		transComp->SetScale(m_scale);
+		transComp->SetScale(Vec3(0.2f));
 		transComp->SetRotation(m_rotation);
 
 		GetStage()->SetSharedGameObject(L"Player", GetThis<Player>());
 
-		auto drawComp = AddComponent<BcPNTStaticDraw>();
-		drawComp->SetMeshResource(L"DEFAULT_CUBE");
+		auto drawComp = AddComponent<PNTStaticModelDraw>();
+		drawComp->SetMultiMeshResource(L"PlayerModel");
 
 		auto shadow = AddComponent<Shadowmap>();
-		shadow->SetMeshResource(L"DEFAULT_CUBE");
+		shadow->SetMultiMeshResource(L"PlayerModel");
 
 		 AddTag(L"Player");
 
@@ -128,6 +129,17 @@ namespace basecross{
 		auto camera = stage->GetView()->GetTargetCamera();
 		auto mainCamera = dynamic_pointer_cast<MainCamera>(camera);
 
+		if (m_bExtrude) {
+			auto delta = App::GetApp()->GetElapsedTime();
+			auto pos = GetComponent<Transform>()->GetPosition();
+			pos.y = Lerp::CalculateLerp(m_startPos, m_startPos + m_dir, 0.0, 1.0f, m_deltaExtrude, Lerp::rate::Linear);
+			GetComponent<Transform>()->SetPosition(pos);
+			m_deltaExtrude += delta;
+			if (m_deltaExtrude > 1.0f) {
+				m_deltaExtrude = 0.0f;
+				m_bExtrude = false;
+			}
+		}
 		if (mainCamera->GetbLeapFlg())
 		{
 			return;
@@ -149,18 +161,6 @@ namespace basecross{
 			colorout->SetRange(0.25f, 0.0f);
 			colorout->SetActive(true);
 		}
-
-		//HPが0になったらゲームオーバー
-		if (m_HP <= 0) {
-			ToGameOver();
-		}
-
-		if (myPos.x > 100.0f || myPos.x < -100.0f) {
-			GetComponent<Gravity>()->SetUpdateActive(false);
-		}
-		else {
-			GetComponent<Gravity>()->SetUpdateActive(true);
-		}
 	}
 
 	void Player::Move()
@@ -178,7 +178,8 @@ namespace basecross{
 		if (MoveVec().length() > 0.0f)
 		{
 			auto utilPtr = GetBehavior<UtilBehavior>();
-			utilPtr->RotToHead(MoveVec(), rotationSpeed);
+			//3Dモデルが逆になっているので一時的にこれ
+			utilPtr->RotToHead(-MoveVec(), rotationSpeed);
 		}
 
 		SetDrawActive(true);
@@ -228,43 +229,20 @@ namespace basecross{
 
 	int Player::GetCrystal()
 	{
-		return m_Rcrystal + m_Bcrystal;
-	}
-
-	void Player::ToGameOver() {
-		SetDrawActive(false);
-		SetUpdateActive(false);
-
-		auto nowPos = GetComponent<Transform>()->GetPosition();
-
-		auto stage = dynamic_pointer_cast<GameStage>(GetStage());
-		ScoreData data{
-			GameStage::GameState::GAMEOVER,
-			0, //ゲームオーバー時はHPは0
-			m_Rcrystal,
-			m_Bcrystal,
-			(int)Util::Round(((double)m_position.x) - nowPos.x,0)
-		};
-		App::GetApp()->GetScene<Scene>()->SetScoreData(data);
-		//この時点でstateはGameOverになっている
-		dynamic_pointer_cast<GameStage>(GetStage())->SetState(data.state);
+		return m_Crystal;
 	}
 
 	void Player::ToClear() {
 		SetDrawActive(false);
 		SetUpdateActive(false);
-		auto nowPos = GetComponent<Transform>()->GetPosition();
-		auto stage = dynamic_pointer_cast<GameStage>(GetStage());
+		auto cam = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
 		ScoreData data{
-			GameStage::GameState::CLEAR,
-			m_HP,
-			m_Rcrystal,
-			m_Bcrystal,
-			(int)Util::Round(((double)m_position.x) - nowPos.x,0)
+			20.0f,		//タイム
+			m_Crystal,	//クリスタル
+			cam->GetCameraCount()
 		};
 		App::GetApp()->GetScene<Scene>()->SetScoreData(data);
-		//この時点でstateはClearになっている
-		dynamic_pointer_cast<GameStage>(GetStage())->SetState(data.state);
+		dynamic_pointer_cast<GameStage>(GetStage())->SetState(GameStage::GameState::CLEAR);
 	}
 
 	//衝突判定
@@ -301,19 +279,7 @@ namespace basecross{
 
 			auto effect = GetStage()->GetSharedGameObject<Effect>(L"C_Effect");
 			effect->CrystalEffect(other->GetComponent<Transform>()->GetPosition());
-			if (other->FindTag(L"Red")) {
-				m_Rcrystal++;
-			}
-			else if (other->FindTag(L"Blue")) {
-				m_Bcrystal++;
-			}
-			else {
-				throw BaseException(
-					L"タグが見つかりません",
-					L"FindTag() != Red or Blue",
-					L"Player::OnCollisionEnter()"
-				);
-			}
+
 			other->SetDrawActive(false);
 			other->SetUpdateActive(false);
 			other->AddNumTag(-1);
@@ -326,6 +292,30 @@ namespace basecross{
 		if (other->FindTag(L"Goal")) {
 			ToClear();
 		}
+
+		if (other->FindTag(L"TrickArtObj")) {
+			auto camera = GetStage()->GetView()->GetTargetCamera();
+			auto mainCamera = dynamic_pointer_cast<MainCamera>(camera);
+			if (!mainCamera->GetbLeapFlg())
+			{
+				return;
+			}
+			auto otherOBB = other->GetComponent<CollisionObb>()->GetObb();
+			auto myOBB = GetComponent<CollisionObb>()->GetObb();
+			if (HitTest::OBB_OBB(otherOBB, myOBB)) {
+				auto otherUp = other->GetComponent<Transform>()->GetPosition().y +
+					other->GetComponent<Transform>()->GetScale().y / 2.0f;
+				auto myDown = GetComponent<Transform>()->GetPosition().y -
+					GetComponent<Transform>()->GetScale().y / 2.0f;
+				m_startPos = GetComponent<Transform>()->GetPosition().y;
+				m_dir = otherUp - myDown;
+				m_bExtrude = true;
+			}
+		}
+	}
+
+	void Player::OnCollisionExcute(shared_ptr<GameObject>& other) {
+
 	}
 }
 //end basecross

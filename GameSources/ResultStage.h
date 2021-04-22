@@ -18,9 +18,7 @@ namespace basecross {
 		void CreateViewLight();
 
 		void OnCreate() override;
-		void OnUpdate() override;
 
-		//void PushB();
 	};
 
 }

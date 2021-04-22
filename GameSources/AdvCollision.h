@@ -51,7 +51,9 @@ namespace basecross {
 			m_collShape(shape)
 		{}
 		virtual void OnCreate()override;
+		virtual void OnUpdate()override;
 		void SetActive(bool flg);
+		//void OnCollisionEnter(shared_ptr<GameObject>& other) override;
 	};
 
 }

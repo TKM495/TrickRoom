@@ -60,7 +60,7 @@ namespace basecross {
                 m_spriteMenu.push_back(str);
             }
 
-            m_cursor = GetStage()->AddGameObject<T_Cursor>();
+            m_cursor = GetStage()->AddGameObject<T_Cursor>(L"VCursor");
         }
         //ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚Ìˆ—
         virtual void OnPushButton(MenuElement element);

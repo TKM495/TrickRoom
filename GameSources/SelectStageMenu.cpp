@@ -8,20 +8,45 @@
 
 namespace basecross {
 	void SelectStageMenu::OnCreate() {
-		m_picFramePos.resize(3);
 		auto& stage = GetStage();
-		for (int i = 0; i < 3; i++) {
-			auto str = stage->AddGameObject<PictureFrame>(i);
-			m_picFramePos[i] = Vec3(1280.0f * i, 0.0f, 0.0f);
-			str->GetComponent<Transform>()->SetPosition(m_picFramePos[i]);
-			m_picFrame.push_back(str);
+		vector<Vec2> positions = {
+			Vec2(-450.0f, 220.0f),
+			Vec2(-225.0f, 120.0f),
+			Vec2(0.0f, 180.0f),
+			Vec2(225.0f, 120.0f),
+			Vec2(450.0f, 220.0f),
+			Vec2(-450.0f, -50.0f),
+			Vec2(-225.0f, -150.0f),
+			Vec2(0.0f, -100.0f),
+			Vec2(225.0f, -150.0f),
+			Vec2(450.0f, -50.0f)
+		};
 
-			auto bg = stage->AddGameObject<BGSprite>(L"BGSelectStage");
-			bg->GetComponent<Transform>()->SetPosition(m_picFramePos[i]);
-			m_bgObj.push_back(bg);
+		for (int i = 1; i < 11; i++) {
+			auto frame = stage->AddGameObject<PictureFrame>();
+			frame->SetSize(0.4f);
+			frame->SetPos(positions[i - 1]);
+			m_picFrame.push_back(frame);
+
+			int place = static_cast<int>(pow(10, 2 - 1));
+			Vec2 offset(-30.0f, 0.0f);
+
+			for (int j = 0; j < 2; j++)
+			{
+				int value = (i / place) % 10; //任意の桁を取り出す
+				place /= 10;
+				auto number = stage->AddGameObject<Numbers>(value);
+				number->SetPos(positions[i - 1] + offset);
+				offset += Vec2(60.0f, 0.0f);
+			}
 		}
 
-		m_menuNum = m_picFrame.size() - 1;
+		m_menuNum = m_picFrame.size() - 1; //vectorは1～なので
+		m_cursor = stage->AddGameObject<Cursor>(L"SelectCursor");
+		m_cursor.lock()->SetValue(1.0f, 0.5f);
+		auto trans = m_cursor.lock()->GetComponent<Transform>();
+		trans->SetScale(Vec3(0.4f));
+		trans->SetPosition((Vec3)positions[0]);
 	}
 
 	void SelectStageMenu::OnUpdate() {
@@ -30,40 +55,57 @@ namespace basecross {
 		//コントローラの取得
 		const auto& pad = app->GetInputDevice().GetControlerVec()[0];
 
-		m_beforeMenuNum = m_nowMenuNum;
-
 		if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_LEFT) {
 			m_nowMenuNum--;
-			m_audio->Start(L"CursorSE", 0, 0.1f);
+			//m_nowMenuNumは配列基準
+			if (m_nowMenuNum == 5 - 1) {
+				m_nowMenuNum++;
+			}
+			else {
+				m_audio->Start(L"CursorSE", 0, 0.1f);
+			}
 		}
 		if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_RIGHT) {
 			m_nowMenuNum++;
-			m_audio->Start(L"CursorSE", 0, 0.1f);
+			if (m_nowMenuNum == 6 - 1) {
+				m_nowMenuNum--;
+			}
+			else {
+				m_audio->Start(L"CursorSE", 0, 0.1f);
+			}
+		}
+
+		if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_UP) {
+			m_nowMenuNum -= 5;
+			if (m_nowMenuNum < 0) {
+				m_nowMenuNum += 5;
+			}
+			else {
+				m_audio->Start(L"CursorSE", 0, 0.1f);
+			}
+		}
+		if (pad.wPressedButtons & XINPUT_GAMEPAD_DPAD_DOWN) {
+			m_nowMenuNum += 5;
+			if (m_nowMenuNum > m_menuNum) {
+				m_nowMenuNum -= 5;
+			}
+			else {
+				m_audio->Start(L"CursorSE", 0, 0.1f);
+			}
 		}
 
 		if (m_nowMenuNum < 0) {
-			m_nowMenuNum = m_menuNum;
-		}
-		if (m_nowMenuNum > m_menuNum) {
 			m_nowMenuNum = 0;
 		}
-
-		auto nowPos = m_picFramePos[m_nowMenuNum];
-
-		if (m_beforeMenuNum != m_nowMenuNum) {
-			m_nowPos = m_picFramePos[m_beforeMenuNum];
+		if (m_nowMenuNum > m_menuNum) {
+			m_nowMenuNum = m_menuNum;
 		}
 
+		auto framePos = m_picFrame[m_nowMenuNum]->GetPos();
+		auto cursorTrans = m_cursor.lock()->GetComponent<Transform>();
 		auto amount = m_cursorSp * delta;
-		m_nowPos = Lerp::CalculateLerp(m_nowPos, nowPos, 0.0f, 1.0f, 0.1f, Lerp::rate::Linear);
-		for (int i = 0; i < 3; i++) {
-			auto transComp = m_picFrame[i]->GetComponent<Transform>();
-			auto pos = m_picFramePos[i];
-			transComp->SetPosition(pos - m_nowPos);
-
-			auto bg = m_bgObj[i]->GetComponent<Transform>();
-			bg->SetPosition(pos - m_nowPos);
-		}
+		auto pos = Lerp::CalculateLerp(cursorTrans->GetPosition(), (Vec3)framePos, 0.0f, 1.0f, amount, Lerp::rate::Linear);
+		cursorTrans->SetPosition(pos);
 
 		if (pad.wPressedButtons & XINPUT_GAMEPAD_A && !m_bChange) {
 			OnPushButton();

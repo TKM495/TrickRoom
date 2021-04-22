@@ -64,8 +64,8 @@ namespace basecross {
 			auto C_effect = AddGameObject<Effect>(Vec3(-15.0f, 0.0f, 0.0f));
 			SetSharedGameObject(L"C_Effect", C_effect);
 
-			AddGameObject<UI_HP>();
-			AddGameObject<UI_Crystal>();
+			//AddGameObject<UI_HP>();
+			//AddGameObject<UI_Crystal>();
 			AddGameObject<UI_Goalgauge>();
 			AddGameObject<UI_Player>();
 			AddGameObject<UI_FPS>();
@@ -98,6 +98,7 @@ namespace basecross {
 			if (!fade->GetFadeActive()) {
 				m_state = GameState::STAY;
 				m_stateDelta = 0.0f;
+				CreateStageNum();
 			}
 			break;
 		case GameState::STAY:
@@ -123,11 +124,6 @@ namespace basecross {
 				PostEvent(0.0f, GetThis<ObjectInterface>(), app->GetScene<Scene>(), L"ToResultStage");
 			}
 			break;
-		case GameState::GAMEOVER:
-			if (!fade->GetFadeActive()) {
-				PostEvent(0.0f, GetThis<ObjectInterface>(), app->GetScene<Scene>(), L"ToResultStage");
-			}
-			break;
 		default:
 			break;
 		}
@@ -143,11 +139,8 @@ namespace basecross {
 	}
 
 	void GameStage::SetState(GameState state) {
-		if (state == GameState::CLEAR || state == GameState::GAMEOVER) {
+		if (state == GameState::CLEAR) {
 			SetSceneTransition();
-			if (state == GameState::GAMEOVER) {
-				GetSharedGameObject<Fade>(L"Fade")->SetFadeTime(1.5f);
-			}
 		}
 		m_state = state;
 	}
@@ -156,22 +149,32 @@ namespace basecross {
 		GetSharedGameObject<Fade>(L"Fade")->FadeOut();
 	}
 
+	void GameStage::CreateStageNum() {
+		auto basePos = Vec2(0.0f, 300.0f);
+
+		auto str = AddGameObject<StringSprite2>(L"Stage",
+			Align::Horizontal::Center,
+			Align::Vertical::Center);
+		str->SetSize(1.0f);
+		str->SetPos(basePos);
+		str->GetFadeComp()->SetFadeTime(0.1f);
+		str->GetFadeComp()->FadeIn();
+		str->Deactive(1.0f);
+		auto stageNum = App::GetApp()->GetScene<Scene>()->GetStageNum();
+		auto obj = AddGameObject<Numbers>(stageNum);
+		obj->SetSize(1.0f);
+		obj->SetPos(basePos + Vec2(180.0f, 0.0f));
+		obj->GetFadeComp()->SetFadeTime(0.1f);
+		obj->GetFadeComp()->FadeIn();
+		obj->Deactive(1.0f);
+	}
+
 	bool GameStage::StartCountdown() {
 		auto delta = App::GetApp()->GetElapsedTime();
-		auto deltaTime = 4.0f - m_stateDelta;
+		auto deltaTime = 2.0f - m_stateDelta;
 		bool flg = false;
 		//数字の時
-		if (deltaTime > 1.0f) {
-			auto num = (int)deltaTime;
-			if (m_beforeValue != num) {
-				auto obj = AddGameObject<Numbers>(num);
-				obj->SetSize(1.5f);
-				obj->GetFadeComp()->SetFadeTime(0.1f);
-				obj->GetFadeComp()->FadeIn();
-				obj->Deactive(0.7f);
-			}
-		}
-		else {
+		if (deltaTime <= 1.0f) {
 			auto str = AddGameObject<StringSprite2>(L"Start",
 				Align::Horizontal::Center,
 				Align::Vertical::Center);

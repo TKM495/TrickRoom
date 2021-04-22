@@ -18,8 +18,7 @@ namespace basecross {
 			STAY,
 			PLAYING,
 			PAUSE,
-			CLEAR,
-			GAMEOVER
+			CLEAR
 		};
 	private:
 		shared_ptr<TADrawRenderTarget> m_TADrawRenderTarget[2];
@@ -45,7 +44,7 @@ namespace basecross {
 		//構築と破棄
 		GameStage(int stageNum = 1)
 			:Stage(),
-			m_state(GameState::PLAYING),
+			m_state(GameState::FADEIN),
 			m_drawDelta(0.0f),
 			m_stateDelta(0.0f),
 			m_renderDis(25.0f),
@@ -95,6 +94,7 @@ namespace basecross {
 
 		//スタート時のカウントダウン(動作終了するとtrueが返る)
 		bool StartCountdown();
+		void CreateStageNum();
 
 		virtual void RenderStage()override;
 		shared_ptr<TADrawRenderTarget> GetTADraw(state dir) {

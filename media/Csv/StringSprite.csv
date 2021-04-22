@@ -7,11 +7,10 @@ Exit,450,300,160,100
 Start,0,400,285,100
 StageClear,0,500,600,100
 GameOver,0,600,520,100
-RemainLife,0,700,240,60
-Crystal,240,700,250,60
-ClearBonus,490,700,340,60
-FromStart,0,760,440,60
-TotalScore,440,760,340,60
+Crystal,0,700,250,60
+Score,0,760,140,60
+Time,250,700,140,60
+CamRotNum,390,700,340,60
 X,610,200,55,100
 NextStage,0,820,300,60
 Retry,300,820,150,60
@@ -19,3 +18,5 @@ StageSelect,450,820,345,60
 Pause,665,200,315,100
 Continue,0,880,240,60
 Rank,240,880,140,60
+Stage,0,500,290,100
+StageSelect2,0,940,640,100

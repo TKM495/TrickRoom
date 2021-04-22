@@ -19,7 +19,6 @@ namespace basecross {
 		virtual void OnCreate()override;
 		virtual void OnUpdate()override;
 		void OnCollisionEnter(shared_ptr<GameObject>& other) override;
-
 	};
 }
 //end basecross

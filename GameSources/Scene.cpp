@@ -13,7 +13,7 @@ namespace basecross{
 	//--------------------------------------------------------------------------------------
 	void Scene::OnCreate(){
 		try {
-			m_debugState = DebugState::Debug;
+			m_debugState = DebugState::None;
 
 			//CSV�t�@�C��
 			auto& app = App::GetApp();
@@ -41,7 +41,7 @@ namespace basecross{
 			app->RegisterTexture(L"EnemyArt", path + L"Enemy.png");
 			app->RegisterTexture(L"StairsArt", path + L"saka.png");
 			app->RegisterTexture(L"FloorArt", path + L"RightPlane.png");
-			app->RegisterTexture(L"Cursor", path + L"Cursor.png");
+			app->RegisterTexture(L"SelectCursor", path + L"SelectCursor.png");
 			app->RegisterTexture(L"VCursor", path + L"VerticalCursor.png");
 			app->RegisterTexture(L"time", path + L"time.png");
 			app->RegisterTexture(L"heart", path + L"heart.png");
@@ -59,7 +59,12 @@ namespace basecross{
 			app->RegisterTexture(L"BGClear", path + L"BGClear.png");
 			app->RegisterTexture(L"BGGameOver", path + L"BGGameOver.png");
 			app->RegisterTexture(L"BGSelectStage", path + L"BGSelectStage.png");
+			app->RegisterTexture(L"Wall", path + L"Wall.png");
+			app->RegisterTexture(L"Floor", path + L"Floor.png");
 			app->RegisterTexture(L"PictureFrame", path + L"PictureFrame.png");
+			for (int i = 1; i < 11; i++) {
+				app->RegisterTexture(L"Stage" + to_wstring(i), path + L"Stage" + to_wstring(i) + L".png");
+			}
 
 			app->RegisterTexture(L"gaku", path + L"Cursor.png");
 			app->RegisterTexture(L"ya", path + L"ya.png");
@@ -79,10 +84,9 @@ namespace basecross{
 			app->RegisterResource(L"Stairs", modelMesh);
 			modelMesh = MeshResource::CreateStaticModelMesh(path+L"Crystal/", L"Crystal.bmf");
 			app->RegisterResource(L"Crystal", modelMesh);
-			modelMesh = MeshResource::CreateStaticModelMesh(path+L"Pillar/", L"Pillar.bmf");
-			app->RegisterResource(L"Pillar", modelMesh);
-			modelMesh = MeshResource::CreateStaticModelMesh(path+L"Title/", L"title.bmf");
-			app->RegisterResource(L"Title", modelMesh);
+
+			auto multiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(path + L"Player/", L"Player.bmf");
+			app->RegisterResource(L"PlayerModel", multiModelMesh);
 
 			//BGM
 			path = dir + L"Sound/BGM/";
@@ -92,8 +96,6 @@ namespace basecross{
 			app->RegisterWav(L"GameBGM", soundPath);
 			soundPath = path + L"GameClear.wav";
 			app->RegisterWav(L"GameClear", soundPath);
-			soundPath = path + L"GameOver.wav";
-			app->RegisterWav(L"GameOver", soundPath);
 
 			//SE
 			path = dir + L"Sound/SE/";

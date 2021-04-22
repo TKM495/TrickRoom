@@ -9,36 +9,19 @@
 namespace basecross {
 	void Result::OnCreate() {
 		wstring titleStr = L"";
-		int clearflg = 0;
-		switch (m_data.state)
-		{
-		case GameStage::GameState::CLEAR:
-			titleStr = L"StageClear";
-			clearflg = 1;
-			break;
-		case GameStage::GameState::GAMEOVER:
-			titleStr = L"GameOver";
-			clearflg = 0;
-			break;
-		default:
-			//エラー
-			break;
-		}
 
 		//生の値
 		ScorePoints score{
-			m_data.HP,
-			m_data.RCrystal,
-			m_data.BCrystal,
-			m_data.Distance,
-			clearflg
+			m_data.Time,
+			m_data.Crystal,
+			m_data.CamNum,
+			1
 		};
 		//かかる倍率
 		ScorePoints factor{
-			500,	//HP
-			750,	//赤のクリスタル
-			250,	//青のクリスタル
-			100,	//距離
+			500,	//タイム
+			250,	//クリスタル
+			100,	//カメラの回転数
 			1000,	//クリアボーナス
 			1		//トータルスコア
 		};
@@ -47,46 +30,36 @@ namespace basecross {
 		score.CountTotal(); //初期化の内容から合計を計算
 
 		//タイトルは一つなので別処理
-		auto title = GetStage()->AddGameObject<StringSprite2>(titleStr);
+		auto title = GetStage()->AddGameObject<StringSprite2>(L"StageClear");
 		title->GetComponent<Transform>()->SetPosition(Vec3(0.0f, 330.0f, 0.0f));
 
 		vector<ResultParam> params{
-			{Vec2(-500.0f,220.0f),SpriteType::String,L"RemainLife",1.0f,Align::Horizontal::Left},
-			{Vec2(50.0f,220.0f),SpriteType::Number,Util::IntToWStr(m_data.HP),1.0f,Align::Horizontal::Right},
-			{Vec2(100.0f,220.0f),SpriteType::String,L"X"},
-			{Vec2(350.0f,220.0f),SpriteType::Number,Util::IntToWStr(factor.HP),1.0f,Align::Horizontal::Right},
-			{Vec2(-50.0f,220.0f),SpriteType::Image,L"1000,60"},
-			{Vec2(180.0f,220.0f),SpriteType::Image,L"520,50"},
+			{Vec2(-350.0f,70.0f),SpriteType::String,L"Time",1.0f,Align::Horizontal::Left},
+			{Vec2(200.0f,70.0f),SpriteType::Number,Util::IntToWStr(m_data.Time),1.0f,Align::Horizontal::Right},
+			{Vec2(0.0f,70.0f),SpriteType::Image,L"800,60"},
+			{Vec2(230.0f,70.0f),SpriteType::Image,L"320,50"},
 
-			{Vec2(-500.0f,140.0f),SpriteType::String,L"Crystal",1.0f,Align::Horizontal::Left},
-			{Vec2(50.0f,140.0f),SpriteType::Number,Util::IntToWStr(m_data.BCrystal),1.0f,Align::Horizontal::Right},
-			{Vec2(100.0f,140.0f),SpriteType::String,L"X"},
-			{Vec2(350.0f,140.0f),SpriteType::Number,Util::IntToWStr(factor.BCrystal),1.0f,Align::Horizontal::Right},
-			{Vec2(50.0f,80.0f),SpriteType::Number,Util::IntToWStr(m_data.RCrystal),1.0f,Align::Horizontal::Right},
-			{Vec2(100.0f,80.0f),SpriteType::String,L"X"},
-			{Vec2(350.0f,80.0f),SpriteType::Number,Util::IntToWStr(factor.RCrystal),1.0f,Align::Horizontal::Right},
-			{Vec2(-50.0f,110.0f),SpriteType::Image,L"1000,120"},
-			{Vec2(180.0f,140.0f),SpriteType::Image,L"520,50"},
-			{Vec2(180.0f,80.0f),SpriteType::Image,L"520,50"},
+			{Vec2(-350.0f,0.0f),SpriteType::String,L"CamRotNum",1.0f,Align::Horizontal::Left},
+			{Vec2(300.0f,0.0f),SpriteType::Number,Util::IntToWStr(m_data.CamNum),1.0f,Align::Horizontal::Right},
+			{Vec2(0.0f,0.0f),SpriteType::Image,L"800,60"},
+			{Vec2(230.0f,0.0f),SpriteType::Image,L"320,50"},
 
-			{Vec2(-500.0f,0.0f),SpriteType::String,L"FromStart",1.0f,Align::Horizontal::Left},
-			{Vec2(150.0f,0.0f),SpriteType::Number,Util::IntToWStr(m_data.Distance),1.0f,Align::Horizontal::Right},
-			{Vec2(-150.0f,0.0f),SpriteType::Image,L"800,60"},
-			{Vec2(80.0f,0.0f),SpriteType::Image,L"320,50"},
+			{Vec2(-350.0f,-70.0f),SpriteType::String,L"Score",1.0f,Align::Horizontal::Left},
+			{Vec2(300.0f,-120.0f),SpriteType::Number,Util::IntToWStr(score.Total),1.3f,Align::Horizontal::Right},
+			{Vec2(0.0f,-100.0f),SpriteType::Image,L"800,120"},
 
-			{Vec2(-500.0f,-80.0f),SpriteType::String,L"ClearBonus",1.0f,Align::Horizontal::Left},
-			{Vec2(150.0f,-80.0f),SpriteType::Number,Util::IntToWStr(score.ClearBonus),1.0f,Align::Horizontal::Right},
-			{Vec2(-150.0f,-80.0f),SpriteType::Image,L"800,60"},
-			{Vec2(80.0f,-80.0f),SpriteType::Image,L"320,50"},
-
-			{Vec2(-500.0f,-160.0f),SpriteType::String,L"TotalScore",1.0f,Align::Horizontal::Left},
-			{Vec2(150.0f,-210.0f),SpriteType::Number,Util::IntToWStr(score.Total),1.3f,Align::Horizontal::Right},
-			{Vec2(-150.0f,-190.0f),SpriteType::Image,L"800,120"},
-
-			{Vec2(420.0f,20.0f),SpriteType::String,L"Rank"}
+			//クリスタルとランク
+			//{Vec2(-500.0f,140.0f),SpriteType::String,L"Crystal",1.0f,Align::Horizontal::Left},
+			//{Vec2(50.0f,140.0f),SpriteType::Number,Util::IntToWStr(m_data.Crystal),1.0f,Align::Horizontal::Right},
+			//{Vec2(100.0f,140.0f),SpriteType::String,L"X"},
+			//{Vec2(350.0f,140.0f),SpriteType::Number,Util::IntToWStr(factor.Crystal),1.0f,Align::Horizontal::Right},
+			//{Vec2(180.0f,80.0f),SpriteType::Image,L"520,50"},
+			//{Vec2(420.0f,20.0f),SpriteType::String,L"Rank"}
 		};
 
+		Vec2 offset(0.0f, 170.0f);
 		for (auto& param : params) {
+			param.pos += offset;
 			switch (param.type)
 			{
 			case SpriteType::String:
@@ -101,29 +74,20 @@ namespace basecross {
 			}
 		}
 
-
-
 		Rank rank;
-		switch (m_data.state)
-		{
-		case GameStage::GameState::CLEAR:
-			if (score.Total >= 30000) {
-				rank = Rank::S;
-			}
-			else if (score.Total >= 20000) {
-				rank = Rank::A;
-			}
-			else {
-				rank = Rank::B;
-			}
-			break;
-		case GameStage::GameState::GAMEOVER:
-			rank = Rank::C;
-			break;
+		if (score.Total >= 30000) {
+			rank = Rank::S;
 		}
-		auto uiRank = GetStage()->AddGameObject<UI_Rank>(rank);
-		uiRank->SetPosition(Vec2(420.0f, -130.0f));
-		uiRank->SetSize(0.9f);
+		else if (score.Total >= 20000) {
+			rank = Rank::A;
+		}
+		else {
+			rank = Rank::B;
+		}
+
+		//auto uiRank = GetStage()->AddGameObject<UI_Rank>(rank);
+		//uiRank->SetPosition(Vec2(420.0f, -130.0f));
+		//uiRank->SetSize(0.9f);
 	}
 
 	void Result::CreateString(ResultParam& param) {

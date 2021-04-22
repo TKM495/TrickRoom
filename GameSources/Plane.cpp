@@ -31,19 +31,46 @@ namespace basecross {
 			XMConvertToRadians((float)_wtof(tokens[9].c_str()))
 		);
 		m_bProjActive = tokens[10] == L"TRUE" ? true : false;
+		//床の時(床は必ず90°になるので)
+		if ((float)_wtof(tokens[7].c_str()) == 90.0f) {
+			AddTag(L"Floor");
+			m_texName = L"Floor";
+		}
+		else {
+			AddTag(L"Wall");
+			m_texName = L"Wall";
+		}
 	}
 
 	void Plane::OnCreate() {
+
+		vector<Vec2> uv;
+		if (m_texName == L"Floor") {
+			uv = {
+				Vec2(0.0f,0.0f),
+				Vec2(m_scale.x / 2.0f,0.0f),
+				Vec2(0.0f,m_scale.y / 2.0f),
+				Vec2(m_scale.x / 2.0f,m_scale.y / 2.0f)
+			};
+		}
+		else if (m_texName == L"Wall") {
+			uv = {
+				Vec2(0.0f,0.0f),
+				Vec2(m_scale.x,0.0f),
+				Vec2(0.0f,1.0f),
+				Vec2(m_scale.x,1.0f)
+			};
+		}
 		//色のデータ(R,G,B,A)
 		Col4 color(1.0f, 1.0f, 1.0f, 1.0f);
-		Vec3 up(0.0f, -1.0f, 0.0f);
+		Vec3 up(-1.0f, 0.0f, 0.0f);
 		//頂点のデータ (番号は左上から右下まで)
 		//ZではなくYを使っているのは当たり判定の関係上
 		vector<VertexPositionNormalTexture> vertices = {
-			{Vec3(-0.5f, +0.5f, 0.0f),up,Vec2(0.0f,0.0f)}, //0
-			{Vec3(+0.5f, +0.5f, 0.0f),up,Vec2(1.0f,0.0f)}, //1
-			{Vec3(-0.5f, -0.5f, 0.0f),up,Vec2(0.0f,1.0f)}, //2
-			{Vec3(+0.5f, -0.5f, 0.0f),up,Vec2(1.0f,1.0f)}  //3
+			{Vec3(-0.5f, +0.5f, 0.0f),up,uv[0]}, //0
+			{Vec3(+0.5f, +0.5f, 0.0f),up,uv[1]}, //1
+			{Vec3(-0.5f, -0.5f, 0.0f),up,uv[2]}, //2
+			{Vec3(+0.5f, -0.5f, 0.0f),up,uv[3]}  //3
 		};
 		//頂点インデックス(頂点をつなげる順番)
 		std::vector<uint16_t> indices = {
@@ -56,12 +83,18 @@ namespace basecross {
 			ptrDraw->SetOwnShadowActive(true);
 			ptrDraw->CreateOriginalMesh(vertices, indices);
 			ptrDraw->SetOriginalMeshUse(true);
+			ptrDraw->SetTextureResource(m_texName);
+			ptrDraw->SetSamplerState(SamplerState::AnisotropicWrap);
+			ptrDraw->SetDepthStencilState(DepthStencilState::Read);
 		}
 		else {
 			auto ptrDraw = AddComponent<PNTStaticDraw>();
 			ptrDraw->SetOwnShadowActive(true);
 			ptrDraw->CreateOriginalMesh(vertices, indices);
 			ptrDraw->SetOriginalMeshUse(true);
+			ptrDraw->SetTextureResource(m_texName);
+			ptrDraw->SetSamplerState(SamplerState::AnisotropicWrap);
+			ptrDraw->SetDepthStencilState(DepthStencilState::Read);
 		}
 
 		StageObject::OnCreate();
@@ -75,8 +108,7 @@ namespace basecross {
 
 		//drawComp->SetSamplerState(SamplerState::AnisotropicWrap); //テクスチャの繰り返し設定(Wrap)
 		//drawComp->SetDepthStencilState(DepthStencilState::Read);
-
-		AddTag(L"Plane");
+		SetDrawLayer(-1);
 	}
 }
 //end basecross

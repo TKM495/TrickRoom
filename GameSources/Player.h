@@ -17,8 +17,7 @@ namespace basecross {
 		Vec3 m_rotation;
 		float m_moveSpeed;
 		int m_HP;
-		int m_Rcrystal;
-		int m_Bcrystal;
+		int m_Crystal;
 		//float m_count;//Respawn
 		//float m_RespawnTime;
 		//bool bRespawn;
@@ -30,12 +29,15 @@ namespace basecross {
 		uint8_t m_BlinkMask;
 		float rotationSpeed;
 
+		float m_startPos;
+		float m_dir;
+		bool m_bExtrude;
+		float m_deltaExtrude;
 
 		//void Respawn();
 		void Move();
 		Vec3 MoveVec();
 		void Muteki();
-		void ToGameOver();
 		void ToClear();
 	public:
 		//HP
@@ -55,6 +57,7 @@ namespace basecross {
 		void OnCreate() override;
 		void OnUpdate() override;
 		void OnCollisionEnter(std::shared_ptr<GameObject>& other) override;
+		void OnCollisionExcute(std::shared_ptr<GameObject>& other) override;
 
 	};
 }

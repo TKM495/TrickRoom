@@ -52,14 +52,15 @@
 #include "SquareMove.h"
 #include "CircularMove.h"
 #include "LinearMove.h"
+#include "RouteMove.h"
 #include "FadeComponent.h"
 //エフェクト
 #include "Effect.h"
+//トリックアート
+#include "TrickArtSystem/TrickArtSystem.h"
 //ステージオブジェクト
 #include "StageObject.h"
-#include "StageParent.h"
 #include "EmptyObject.h"
-#include "pursuer.h"
 #include "Picture.h"
 #include "Block.h"
 #include "Plane.h"
@@ -71,17 +72,12 @@
 #include "Crystal.h"
 #include "Goal.h"
 //トリックアートオブジェクト
-#include "TrickArtSystem/TrickArtSystem.h"
 #include "TrickArtBaseOld.h"
 #include "SpikesArt.h"
-#include "BlockArt.h"
-#include "EnemyArt.h"
-#include "StairsArt.h"
 #include "FloorArt.h"
 #include "PoleArt.h"
 
 //未使用
 #include "FloorGenerator.h"
 #include "Timer.h"
-#include "StageLoad.h"
 #include "Score.h"
