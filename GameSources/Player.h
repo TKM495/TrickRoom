@@ -16,7 +16,6 @@ namespace basecross {
 		Vec3 m_scale;
 		Vec3 m_rotation;
 		float m_moveSpeed;
-		int m_HP;
 		int m_Crystal;
 		int m_HP;//HP(�����l�T)
 		float m_count;//Respawn
