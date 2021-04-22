@@ -13,7 +13,9 @@ namespace basecross{
 		m_moveSpeed(4), m_HP(3), m_Crystal(0),
 		bMutekiFlg(false), m_Mcount(0), m_MTime(2),
 		m_DrawCount(0), m_BlinkMask(8), rotationSpeed(0.2f),
-		m_bExtrude(false), m_deltaExtrude(0.0f)
+		m_bExtrude(false), m_deltaExtrude(0.0f),
+		bDotFlg(false), m_DotCount(0), m_DotMaxCount(2),
+		m_count(0), m_RespawnTime(3), bRespawn(false)
 	{
 		//トークン（カラム）の配列
 		vector<wstring> tokens;
@@ -104,7 +106,7 @@ namespace basecross{
 				moveVec = Vec3(0.0f, 0.0f, 0.0f);
 				break;
 			}
-			return moveVec * m_moveSpeed;
+			return moveVec * m_moveSpeed * ElapsedTime;
 		}
 
 		else
@@ -112,18 +114,11 @@ namespace basecross{
 			return Vec3(0.0f);
 		}
 
-
-		//Vec3 fThumbLWidth = cntlPad.fThumbLX * Vec3(cameraDir.z, 0, -cameraDir.x);
-		//Vec3 fThumbLHeight = cntlPad.fThumbLY * cameraDir;
-
-		//Vec3 moveVec = fThumbLHeight + fThumbLWidth;
-		//return moveVec * m_moveSpeed * ElapsedTime;
-
-
 	}
 
 	void Player::OnUpdate()
 	{
+
 		auto stage = GetStage();
 
 		auto camera = stage->GetView()->GetTargetCamera();
@@ -145,12 +140,19 @@ namespace basecross{
 			return;
 		}
 
-		Move();
+		if (!bRespawn)
+		{
+			Move();
+			if (bDotFlg)
+			{
+				Draw();
+				Muteki();
+			}
+		}
 
 		if (bMutekiFlg)
 		{
-			Muteki();
-			Draw();
+			Respawn();
 		}
 
 		auto myPos = GetComponent<Transform>()->GetPosition();
@@ -171,7 +173,8 @@ namespace basecross{
 		const auto& app = App::GetApp();
 		float ElapsedTime = app->GetElapsedTime();
 
-		pos += MoveVec() * ElapsedTime;
+		pos += MoveVec();
+		m_count += ElapsedTime;
 
 		transComp->SetPosition(pos);
 
@@ -182,27 +185,43 @@ namespace basecross{
 			utilPtr->RotToHead(-MoveVec(), rotationSpeed);
 		}
 
-		SetDrawActive(true);
+		//SetDrawActive(true);
 	}
 
-	void Player::Muteki()
+	void Player::Respawn()
 	{
 		auto& app = App::GetApp();
 		float ElapsedTime = app->GetElapsedTime();
 
-		m_Mcount += ElapsedTime;
+		m_count += ElapsedTime;
 
-		if (m_Mcount > m_MTime)
+		if (m_count > m_RespawnTime)
 		{
 			SetDrawActive(true);
-			bMutekiFlg = false;
-			m_Mcount = 0;
+			bRespawn = false;
+
+			bDotFlg = true;
+
+			auto transComponent = GetComponent<Transform>();
+			transComponent->SetPosition(3.0f, 0.0f, 0.0f);
+
+			m_count = 0;
 		}
 
 	}
 
+	//点滅
 	void Player::Draw()
 	{
+		auto& app = App::GetApp();
+		float ElapsedTime = app->GetElapsedTime();
+
+		m_DotCount += ElapsedTime;
+		if (m_DotCount > m_DotMaxCount)
+		{
+			bDotFlg = false;
+		}
+
 		if (m_DrawCount & m_BlinkMask)
 		{
 			SetDrawActive(true);
@@ -215,8 +234,29 @@ namespace basecross{
 		}
 
 		++m_DrawCount;
+
 	}
 
+	void Player::Muteki()
+	{
+		auto& app = App::GetApp();
+		float ElapsedTime = app->GetElapsedTime();
+
+		auto ColComp = GetComponent<Collision>();
+
+
+		m_Mcount += ElapsedTime;
+
+		if (m_Mcount > m_MTime)
+		{
+			SetDrawActive(true);
+			bMutekiFlg = false;
+			ColComp->RemoveExcludeCollisionTag(L"damege");
+
+			m_Mcount = 0;
+		}
+
+	}
 
 	void Player::SetHP(int HP)
 	{
@@ -248,28 +288,6 @@ namespace basecross{
 	//衝突判定
 	void Player::OnCollisionEnter(std::shared_ptr<GameObject>& other)
 	{
-		if (!bMutekiFlg)
-		{
-			auto bDamegeTag = other->FindTag(L"damage");
-
-
-			if (bDamegeTag)
-			{
-				m_HP += -1;
-				bMutekiFlg = true;
-				auto audio = App::GetApp()->GetXAudio2Manager();
-				audio->Start(L"DamageSE", 0, 0.1f);
-				auto ColComp = GetComponent<Collision>();
-
-				ColComp->AddExcludeCollisionTag(L"damege");
-
-				//SetDrawActive(false);
-
-				auto effect = GetStage()->GetSharedGameObject<Effect>(L"Effect");
-				effect->InsertEffect(other->GetComponent<Transform>()->GetPosition());
-			}
-		}
-
 		auto bCrystalTag = other->FindTag(L"Crystal");
 		if (bCrystalTag)
 		{
@@ -315,7 +333,25 @@ namespace basecross{
 	}
 
 	void Player::OnCollisionExcute(shared_ptr<GameObject>& other) {
+		if (!bRespawn && !bMutekiFlg)
+		{
+			auto bDamegeTag = other->FindTag(L"damage");
 
+
+			if (bDamegeTag)
+			{
+				m_HP += -1;
+
+				bRespawn = true;
+				SetDrawActive(false);
+				bMutekiFlg = true;
+
+				m_DotCount = 0;
+
+				auto effect = GetStage()->GetSharedGameObject<Effect>(L"Effect");
+				effect->InsertEffect(other->GetComponent<Transform>()->GetPosition());
+			}
+		}
 	}
 }
 //end basecross

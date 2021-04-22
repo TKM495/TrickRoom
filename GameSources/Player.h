@@ -18,23 +18,29 @@ namespace basecross {
 		float m_moveSpeed;
 		int m_HP;
 		int m_Crystal;
-		//float m_count;//Respawn
-		//float m_RespawnTime;
-		//bool bRespawn;
+		int m_HP;//HP(�����l�T)
+		float m_count;//Respawn
+		float m_RespawnTime;
+		bool bRespawn;
+		bool bDotFlg;
+		float m_DotCount;
+		float m_DotMaxCount;
+
 		bool bMutekiFlg;
 		float m_Mcount;
 		float m_MTime;
 
-		int m_DrawCount;
-		uint8_t m_BlinkMask;
 		float rotationSpeed;
 
 		float m_startPos;
 		float m_dir;
 		bool m_bExtrude;
 		float m_deltaExtrude;
+		//�_��
+		int m_DrawCount;
+		uint8_t m_BlinkMask;
 
-		//void Respawn();
+		void Respawn();
 		void Move();
 		Vec3 MoveVec();
 		void Muteki();
