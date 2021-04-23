@@ -26,6 +26,10 @@ namespace basecross {
 		Vec3 m_rotation;
 		//コリジョンの形
 		AdvCollision::Shape m_collShape;
+		//何かに当たったかどうか
+		bool m_bHit;
+		//当たったオブジェクトの情報
+		shared_ptr<GameObject> m_hitObj;
 	public:
 		AdvCollision(const shared_ptr<Stage>& stage,
 			const shared_ptr<GameObject>& parent,
@@ -38,7 +42,8 @@ namespace basecross {
 			m_offset(offset),
 			m_scale(scale),
 			m_rotation(rotation),
-			m_collShape(shape)
+			m_collShape(shape),
+			m_bHit(false)
 		{}
 		AdvCollision(const shared_ptr<Stage>& stage,
 			const shared_ptr<GameObject>& parent,
@@ -48,12 +53,25 @@ namespace basecross {
 			m_offset(Vec3(0.0f)),
 			m_scale(Vec3(1.0f)),
 			m_rotation(Vec3(0.0f)),
-			m_collShape(shape)
+			m_collShape(shape),
+			m_bHit(false)
 		{}
 		virtual void OnCreate()override;
 		virtual void OnUpdate()override;
+		template<typename T>
+		void bHit() {
+			if (m_bHit) {
+				auto obj = dynamic_pointer_cast<T>(m_parent);
+				obj->OnCollisionEnter(m_hitObj);
+			}
+		}
+		bool bHit() {
+			return m_bHit;
+		}
 		void SetActive(bool flg);
-		//void OnCollisionEnter(shared_ptr<GameObject>& other) override;
+		void SetAfterCollision(AfterCollision col);
+		void OnCollisionEnter(shared_ptr<GameObject>& other) override;
+		void OnCollisionExit(shared_ptr<GameObject>& other) override;
 	};
 
 }

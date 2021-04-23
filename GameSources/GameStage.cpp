@@ -24,7 +24,7 @@ namespace basecross {
 
 	void GameStage::OnCreate() {
 		try {
-			AddGameObject<Debug>();
+			//AddGameObject<Debug>();
 
 			CreateViewLight();
 
@@ -49,7 +49,8 @@ namespace basecross {
 			builder.Register<PoleArt>(L"PoleArt");
 			builder.Register<Crystal>(L"Crystal");
 			builder.Register<Picture>(L"Picture");
-
+			builder.Register<RouteEnemy>(L"RouteEnemy");
+			builder.Register<RouteFloor>(L"RouteFloor");
 
 			auto dir = app->GetDataDirWString();
 			auto path = dir + L"Csv/Stage/Stage";
@@ -69,10 +70,11 @@ namespace basecross {
 			AddGameObject<UI_Player>();
 			AddGameObject<UI_FPS>();
 			AddGameObject<UI_LR>();
+			AddGameObject<Timer>();
 
 			AddGameObject<Pause>();
 			AddGameObject<ColorOut>(Col4(1.0f), 0.25f, 0.0f, 4.0f);
-			//AddGameObject<BGSprite>(L"BackGround");
+			AddGameObject<BGSprite>(L"BackGround");
 			AddGameObject<Fade>()->FadeIn();
 
 			//BGM�̍Đ�

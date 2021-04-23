@@ -36,6 +36,7 @@ namespace basecross {
 
 		void SetSize(Vec2 size);
 		void SetPosition(Vec2 pos);
+		void SetColor(Col4 color);
 	};
 }
 //end basecross

@@ -36,7 +36,6 @@ namespace basecross {
 		builder.Register<Player>(L"Player");
 		builder.Register<Plane>(L"Plane");
 		builder.Register<Block>(L"Block");
-
 		auto dir = App::GetApp()->GetDataDirWString();
 		auto path = dir + L"Csv/ResultObject.csv";
 		builder.Build(GetThis<Stage>(), path);
@@ -44,10 +43,10 @@ namespace basecross {
 		auto scoreData = App::GetApp()->GetScene<Scene>()->GetScoreData();
 
 		AddGameObject<Result>(scoreData);
-
+		auto frame = AddGameObject<FrameSprite>(Vec2(1270.0f, 100.0f));
+		frame->SetPosition(Vec2(0.0f, -300.0f));
+		frame->SetColor(Col4(0.5f, 0.5f, 0.5f, 1.0f));
 		AddGameObject<ResultMenu>();
-
-		//AddGameObject<BGSprite>(L"BGClear");
 
 		AddGameObject<Fade>()->FadeIn();
 

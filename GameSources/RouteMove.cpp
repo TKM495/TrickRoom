@@ -15,71 +15,32 @@ namespace basecross {
 		auto transComp = GetGameObject()->GetComponent<Transform>();
 		auto pos = transComp->GetPosition();
 
-		const auto& app = App::GetApp();
-		float ElapsedTime = app->GetElapsedTime();
+		auto ElapsedTime = App::GetApp()->GetElapsedTime();
 
-		if (!bHitFlg && bjudgment)
-		{
-			auto Move = m_Speed * ElapsedTime;
-			pos += Vec3(0.0f, 0.0f, Move);
-			transComp->SetPosition(pos);
-		}
-
-		if (bHitFlg && bjudgment)
-		{
-			auto Move = m_Speed * ElapsedTime;
-			pos += Vec3(-Move, 0.0f, 0.0f);
-			transComp->SetPosition(pos);
-			//m_counter += 1 * ElapsedTime;
-		}
-
-		if (!bHitFlg && !bjudgment)
-		{
-			auto Move = m_Speed * ElapsedTime;
-			pos += Vec3(0.0f, 0.0f, -Move);
-			transComp->SetPosition(pos);
-		}
-
-		if (bHitFlg && !bjudgment)
-		{
-			auto Move = m_Speed * ElapsedTime;
-			pos += Vec3(Move, 0.0f, 0.0f);
-			transComp->SetPosition(pos);
-			//m_counter += 1 * ElapsedTime;
-		}
+		auto Move = m_moveDir[m_moveIndex] * m_Speed * ElapsedTime;
+		pos += Move;
+		transComp->SetPosition(pos);
 	}
 
-	void RouteMove::Hit(bool flg)
+	void RouteMove::Hit()
 	{
-		//auto bWallTag = other->FindTag(L"Wall");
-		//auto bWallTag = other->FindTag(L"Wall");
-		//auto bWallTag2 = other->FindTag(L"Wall2");
-
-
-		//if (bWallTag)//•Ç‚É“–‚½‚Á‚½‚ç
-		//{
-		//	bHitFlg = true;
-		//}
-
-		//if (bWallTag2)
-		//{
-		//	bwalljudg = true;
-		//}
-
-		//if (bHitFlg && bwalljudg && bjudgment)
-		//{
-		//	bHitFlg = false;
-		//	m_counter = 0;
-		//	bjudgment = false;
-		//	bwalljudg = false;
-		//}
-
-		//if (bHitFlg && bwalljudg && !bjudgment)
-		//{
-		//	bHitFlg = false;
-		//	m_counter = 0;
-		//	bjudgment = true;
-		//	bwalljudg = false;
-		//}
+		switch (m_turnDir)
+		{
+		case TurnDir::Right:
+			m_moveIndex++;
+			if (Utility::GetArrayLength(m_moveDir) < m_moveIndex) {
+				m_moveIndex = 0;
+			}
+			break;
+		case TurnDir::Left:
+			m_moveIndex--;
+			if (m_moveIndex < 0) {
+				m_moveIndex = Utility::GetArrayLength(m_moveDir);
+			}
+			break;
+		default:
+			//ƒGƒ‰[
+			break;
+		}
 	}
 }

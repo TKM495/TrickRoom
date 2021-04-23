@@ -35,10 +35,13 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerModel.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Pole.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PoleArt.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)RouteEnemy.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)RouteFloor.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)RouteMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SelectStageMenu.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FrameSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SquareMove.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Timer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\PNTStaticDraw2.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\TADrawRenderTarget.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtBase.h" />
@@ -102,10 +105,13 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerModel.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Pole.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PoleArt.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)RouteEnemy.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)RouteFloor.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)RouteMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SelectStageMenu.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FrameSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SquareMove.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Timer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\PNTStaticDraw2.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\TADrawRenderTarget.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtBase.cpp" />

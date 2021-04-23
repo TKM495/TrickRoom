@@ -43,7 +43,7 @@ namespace basecross{
 			app->RegisterTexture(L"FloorArt", path + L"RightPlane.png");
 			app->RegisterTexture(L"SelectCursor", path + L"SelectCursor.png");
 			app->RegisterTexture(L"VCursor", path + L"VerticalCursor.png");
-			app->RegisterTexture(L"time", path + L"time.png");
+			app->RegisterTexture(L"timer", path + L"time.png");
 			app->RegisterTexture(L"heart", path + L"heart.png");
 			app->RegisterTexture(L"crystal", path + L"crystal.png");
 			app->RegisterTexture(L"point", path + L"point.png");
@@ -62,9 +62,6 @@ namespace basecross{
 			app->RegisterTexture(L"Wall", path + L"Wall.png");
 			app->RegisterTexture(L"Floor", path + L"Floor.png");
 			app->RegisterTexture(L"PictureFrame", path + L"PictureFrame.png");
-			for (int i = 1; i < 11; i++) {
-				app->RegisterTexture(L"Stage" + to_wstring(i), path + L"Stage" + to_wstring(i) + L".png");
-			}
 
 			app->RegisterTexture(L"gaku", path + L"Cursor.png");
 			app->RegisterTexture(L"ya", path + L"ya.png");

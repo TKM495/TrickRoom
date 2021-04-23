@@ -45,6 +45,7 @@
 #include "UI_FPS.h"
 #include "UI_Rank.h"
 #include "UI_LR.h"
+#include "Timer.h"
 #include "Pause.h"
 //行動やコンポーネント
 #include "SinCurve.h"
@@ -70,6 +71,8 @@
 #include "Pole.h"
 #include "Crystal.h"
 #include "Goal.h"
+#include "RouteEnemy.h"
+#include "RouteFloor.h"
 //トリックアートオブジェクト
 #include "TrickArtBaseOld.h"
 #include "SpikesArt.h"

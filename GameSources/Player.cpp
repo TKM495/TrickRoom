@@ -36,22 +36,26 @@ namespace basecross{
 			XMConvertToRadians((float)_wtof(tokens[8].c_str()) + 90.0f),
 			XMConvertToRadians((float)_wtof(tokens[9].c_str()))
 		);
-		//m_respawnPos = m_position;
+		m_respawnPos = m_position;
 	}
 
 	void Player::OnCreate()
 	{
 		GetStage()->SetSharedGameObject(L"Player", GetThis<Player>());
 
-		auto model = GetStage()->AddGameObject<PlayerModel>();
-		auto trans = model->GetComponent<Transform>();
+		m_model = GetStage()->AddGameObject<PlayerModel>(GetThis<Player>());
+		auto trans = m_model->GetComponent<Transform>();
 		trans->SetParent(GetThis<Player>());
 		trans->SetPosition(Vec3(0.0f, -0.75f, -0.25f));
 
 		AddTag(L"Player");
 
 		AddComponent<Gravity>();
-		AddComponent<CollisionObb>()->SetDrawActive(true);
+		auto col = AddComponent<CollisionObb>();
+		auto scene = App::GetApp()->GetScene<Scene>();
+		if (scene->GetDebugState() == DebugState::Debug) {
+			col->SetDrawActive(true);
+		}
 
 		auto transComp = GetComponent<Transform>();
 		transComp->SetPosition(m_position);
@@ -147,20 +151,18 @@ namespace basecross{
 				Muteki();
 			}
 		}
-
-		if (bMutekiFlg)
-		{
+		else {
 			Respawn();
 		}
 
-		auto myPos = GetComponent<Transform>()->GetPosition();
+		//auto myPos = GetComponent<Transform>()->GetPosition();
 
-		if (m_HP <= 1) {
-			auto colorout = stage->GetSharedGameObject<ColorOut>(L"ColorOut");
-			colorout->SetColor(Col4(1.0f, 0.0f, 0.0f, 1.0f));
-			colorout->SetRange(0.25f, 0.0f);
-			colorout->SetActive(true);
-		}
+		//if (m_HP <= 1) {
+		//	auto colorout = stage->GetSharedGameObject<ColorOut>(L"ColorOut");
+		//	colorout->SetColor(Col4(1.0f, 0.0f, 0.0f, 1.0f));
+		//	colorout->SetRange(0.25f, 0.0f);
+		//	colorout->SetActive(true);
+		//}
 	}
 
 	void Player::Move()
@@ -195,13 +197,13 @@ namespace basecross{
 
 		if (m_count > m_RespawnTime)
 		{
-			SetDrawActive(true);
+			m_model->SetDrawActive(true);
 			bRespawn = false;
 
 			bDotFlg = true;
 
 			auto transComponent = GetComponent<Transform>();
-			transComponent->SetPosition(3.0f, 0.0f, 0.0f);
+			transComponent->SetPosition(m_respawnPos);
 
 			m_count = 0;
 		}
@@ -222,13 +224,13 @@ namespace basecross{
 
 		if (m_DrawCount & m_BlinkMask)
 		{
-			SetDrawActive(true);
+			m_model->SetDrawActive(true);
 		}
 
 
 		else
 		{
-			SetDrawActive(false);
+			m_model->SetDrawActive(false);
 		}
 
 		++m_DrawCount;
@@ -247,7 +249,7 @@ namespace basecross{
 
 		if (m_Mcount > m_MTime)
 		{
-			SetDrawActive(true);
+			m_model->SetDrawActive(true);
 			bMutekiFlg = false;
 			ColComp->RemoveExcludeCollisionTag(L"damege");
 
@@ -271,7 +273,7 @@ namespace basecross{
 	}
 
 	void Player::ToClear() {
-		SetDrawActive(false);
+		m_model->SetDrawActive(false);
 		SetUpdateActive(false);
 		auto cam = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
 		ScoreData data{
@@ -334,14 +336,11 @@ namespace basecross{
 		if (!bRespawn && !bMutekiFlg)
 		{
 			auto bDamegeTag = other->FindTag(L"damage");
-
-
 			if (bDamegeTag)
 			{
-				m_HP += -1;
-
+				//m_HP += -1;
 				bRespawn = true;
-				SetDrawActive(false);
+				m_model->SetDrawActive(false);
 				bMutekiFlg = true;
 
 				m_DotCount = 0;

@@ -1,5 +1,5 @@
 /*!
-@file Enemy.cpp
+@file RouteEnemy.cpp
 @brief
 */
 
@@ -7,9 +7,12 @@
 #include "Project.h"
 
 namespace basecross {
-	Enemy::Enemy(const shared_ptr<Stage>& stage,
+	RouteEnemy::RouteEnemy(const shared_ptr<Stage>& stage,
 		const wstring& line)
-		:StageObject(stage)
+		:StageObject(stage),
+		m_before(Vec3(0.0f)),
+		m_now(Vec3(0.0f)),
+		m_delta(0.0f)
 	{
 		vector<wstring> tokens;
 		Util::WStrToTokenVector(tokens, line, L',');
@@ -33,12 +36,9 @@ namespace basecross {
 		m_trickFlg = tokens[11] == L"TRUE" ? true : false;
 		m_activeState = tokens[12] == L"Right" ? state::Right : state::Left;
 
-		m_behavior = tokens[13];
-		m_cycle = (float)_wtof(tokens[14].c_str());
-		m_speed = (float)_wtof(tokens[15].c_str());
-		m_offset = (float)_wtof(tokens[16].c_str());
+		m_speed = (float)_wtof(tokens[13].c_str());
 	}
-	void Enemy::OnCreate() {
+	void RouteEnemy::OnCreate() {
 		if (m_trickFlg) {
 			auto trick = AddComponent<TrickArtDraw>();
 			trick->SetMeshResource(L"Enemy");
@@ -46,9 +46,9 @@ namespace basecross {
 			AddTag(L"TrickArtObj");
 		}
 		else {
-			//å½±ã‚’ã¤ã‘ã‚‹ï¼ˆã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‚’æç”»ã™ã‚‹ï¼‰
+			//‰e‚ğ‚Â‚¯‚éiƒVƒƒƒhƒEƒ}ƒbƒv‚ğ•`‰æ‚·‚éj
 			auto shadowPtr = AddComponent<Shadowmap>();
-			//å½±ã®å½¢ï¼ˆãƒ¡ãƒƒã‚·ãƒ¥ï¼‰ã‚’è¨­å®š
+			//‰e‚ÌŒ`iƒƒbƒVƒ…j‚ğİ’è
 			shadowPtr->SetMeshResource(L"Enemy");
 			if (m_bProjActive) {
 				auto ptrDraw = AddComponent<PNTStaticDraw2>();
@@ -63,8 +63,8 @@ namespace basecross {
 		}
 
 		auto col = AddComponent<CollisionSphere>();
-		//ã“ã‚Œã‚’ã¤ã‘ã‚‹ã¨OnCollisionEnterãŒå‘¼ã°ã‚Œãªã„ã®ã§ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆ
-		col->SetFixed(true);
+		//‚±‚ê‚ğ‚Â‚¯‚é‚ÆOnCollisionEnter‚ªŒÄ‚Î‚ê‚È‚¢‚Ì‚ÅƒRƒƒ“ƒgƒAƒEƒg
+		//col->SetFixed(true);
 		auto scene = App::GetApp()->GetScene<Scene>();
 		if (scene->GetDebugState() == DebugState::Debug) {
 			col->SetDrawActive(true);
@@ -72,56 +72,43 @@ namespace basecross {
 
 		StageObject::OnCreate();
 
-		if (m_behavior == L"SinCurve") {
-			GetBehavior<SinCurve>()->SetOffset(m_offset);
-		}
-		else if (m_behavior == L"SquareMove") {
-			GetBehavior<SquareMove>()->SetSpeed(m_speed);
-		}
-		else if (m_behavior == L"CircularMove") {
-			auto beha = GetBehavior<CircularMove>();
-			beha->SetSpeed(m_speed);
-			beha->SetRadius(m_cycle);
-			beha->SetOffset(m_offset);
-		}
-		else {
-
-		}
-
 		AddTag(L"Enemy");
 		AddTag(L"damage");
+		SetDrawLayer(-1);
 	}
 
-	void Enemy::OnUpdate() {
+	void RouteEnemy::OnUpdate() {
 		auto state = dynamic_pointer_cast<GameStage>(GetStage())->GetState();
 		auto camera = dynamic_pointer_cast<MainCamera>(GetStage()->GetView()->GetTargetCamera());
+		auto delta = App::GetApp()->GetElapsedTime();
+		auto trans = GetComponent<Transform>();
+		m_before = m_now;
+		m_now = trans->GetPosition();
 		switch (state)
 		{
 		default:
 			if (camera->GetbLeapFlg()) {
 				return;
 			}
-			if (m_behavior == L"SinCurve") {
-				GetBehavior<SinCurve>()->Excute(m_cycle, m_speed);
-			}
-			else if (m_behavior == L"SquareMove") {
-				GetBehavior<SquareMove>()->Excute();
-			}
-			else if (m_behavior == L"CircularMove") {
-				GetBehavior<CircularMove>()->Excute();
-			}
-			else {
-
-			}
+			GetBehavior<RouteMove>()->Excute();
 			break;
 		case basecross::GameStage::GameState::PAUSE:
 			break;
 		}
 		UpdateArt<CollisionSphere>(OnGetDrawCamera(), GetComponent<CollisionSphere>());
+		auto dir = m_before - m_now;
+		if (dir.length() == 0.0f) {
+			//’x‰„‚ğ“ü‚ê‚é
+			if (m_delta > 0.05f) {
+				GetBehavior<RouteMove>()->Hit();
+				m_delta = 0.0f;
+			}
+			m_delta += delta;
+		}
 	}
 
-	void Enemy::OnCollisionEnter(shared_ptr<GameObject>& other) {
-		//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ¶ˆã—ã¦ã‚‚ã„ã„ã¨æ€ã£ãŸãŒã€å¿µã®ãŸã‚
+	void RouteEnemy::OnCollisionEnter(shared_ptr<GameObject>& other) {
+		//ƒIƒuƒWƒFƒNƒg‚ğÁ‚µ‚Ä‚à‚¢‚¢‚Æv‚Á‚½‚ªA”O‚Ì‚½‚ß
 		if (other->FindTag(L"damage")) {
 			SetDrawActive(false);
 			SetUpdateActive(false);

@@ -217,5 +217,9 @@ namespace basecross {
 	void FrameSprite::SetPosition(Vec2 pos) {
 		GetComponent<Transform>()->SetPosition((Vec3)pos);
 	}
+
+	void FrameSprite::SetColor(Col4 color) {
+		GetComponent<PCTSpriteDraw>()->SetDiffuse(color);
+	}
 }
 //end basecross

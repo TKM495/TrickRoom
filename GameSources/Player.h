@@ -10,10 +10,11 @@
 namespace basecross {
 	class Player : public StageObject {
 
-		//InputHandler<Player> m_InputHandler;
+		shared_ptr<GameObject> m_model;
 		Vec3 m_position;
 		Vec3 m_scale;
 		Vec3 m_rotation;
+		Vec3 m_respawnPos;
 		float m_moveSpeed;
 		int m_Crystal;
 		int m_HP;//HP(�����l�T)

@@ -40,19 +40,15 @@ namespace basecross {
 
 		auto parentTrans = m_parent->GetComponent<Transform>();
 		auto parentScale = parentTrans->GetScale();
+		auto parentPos = parentTrans->GetPosition();
 
 		auto scale = Vec3(
 			m_scale.x * parentScale.x,
 			m_scale.y * parentScale.y,
 			m_scale.z * parentScale.z
 		);
-		auto pos = Vec3(
-			m_offset.x * parentScale.x,
-			m_offset.y * parentScale.y,
-			m_offset.z * parentScale.z
-		);
 		auto transComp = GetComponent<Transform>();
-		transComp->SetPosition(pos);
+		transComp->SetPosition(parentPos + m_offset);
 		transComp->SetScale(scale);
 		transComp->SetRotation(m_rotation);
 	}
@@ -60,15 +56,25 @@ namespace basecross {
 	void AdvCollision::OnUpdate() {
 		auto myTrans = GetComponent<Transform>();
 		auto parentTrans = m_parent->GetComponent<Transform>();
-		myTrans->SetPosition(parentTrans->GetPosition());
+		myTrans->SetPosition(parentTrans->GetPosition()+ m_offset);
 	}
 
 	void AdvCollision::SetActive(bool flg) {
 		GetComponent<Collision>()->SetUpdateActive(flg);
 	}
 
-	//void AdvCollision::OnCollisionEnter(shared_ptr<GameObject>& other) {
-	//	m_parent->OnCollisionEnter(other);
-	//}
+	void AdvCollision::SetAfterCollision(AfterCollision col) {
+		GetComponent<Collision>()->SetAfterCollision(col);
+	}
+
+	void AdvCollision::OnCollisionEnter(shared_ptr<GameObject>& other) {
+		m_bHit = true;
+		m_hitObj = other;
+	}
+	void AdvCollision::OnCollisionExit(shared_ptr<GameObject>& other) {
+		m_bHit = false;
+		m_hitObj = nullptr;
+	}
+
 }
 //end basecross

@@ -200,6 +200,15 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerModel.cpp">
       <Filter>StageObject\Player\Model</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Timer.cpp">
+      <Filter>Sprite\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)RouteEnemy.cpp">
+      <Filter>StageObject\RouteObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)RouteFloor.cpp">
+      <Filter>StageObject\RouteObject\Floor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
@@ -392,6 +401,15 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerModel.h">
       <Filter>StageObject\Player\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Timer.h">
+      <Filter>Sprite\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)RouteEnemy.h">
+      <Filter>StageObject\RouteObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)RouteFloor.h">
+      <Filter>StageObject\RouteObject\Floor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -594,6 +612,18 @@
     </Filter>
     <Filter Include="StageObject\Player\Model">
       <UniqueIdentifier>{413ff329-ded8-4e78-a251-9becf3160d1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sprite\Timer">
+      <UniqueIdentifier>{3b54dc9f-abc1-4af2-aed5-6673e0671fdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\RouteObject">
+      <UniqueIdentifier>{ada98ba5-57c2-438e-b7d1-da896724ab6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\RouteObject\Enemy">
+      <UniqueIdentifier>{dffcbbce-36c3-44e0-bcb5-d7cfed371c31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\RouteObject\Floor">
+      <UniqueIdentifier>{66c6a24a-7842-4d11-ba18-e7263dcf4f1f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -9,4 +9,7 @@ namespace basecross {
 		auto shadow = AddComponent<Shadowmap>();
 		shadow->SetMultiMeshResource(L"PlayerModel");
 	}
+	void PlayerModel::OnUpdate() {
+		//‚±‚±‚Åƒ‚[ƒVƒ‡ƒ“‚ğ“®‚©‚·
+	}
 }

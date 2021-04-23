@@ -44,9 +44,9 @@ namespace basecross {
 			{Vec2(0.0f,0.0f),SpriteType::Image,L"800,60"},
 			{Vec2(230.0f,0.0f),SpriteType::Image,L"320,50"},
 
-			{Vec2(-350.0f,-70.0f),SpriteType::String,L"Score",1.0f,Align::Horizontal::Left},
-			{Vec2(300.0f,-120.0f),SpriteType::Number,Util::IntToWStr(score.Total),1.3f,Align::Horizontal::Right},
-			{Vec2(0.0f,-100.0f),SpriteType::Image,L"800,120"},
+			//{Vec2(-350.0f,-70.0f),SpriteType::String,L"Score",1.0f,Align::Horizontal::Left},
+			//{Vec2(300.0f,-120.0f),SpriteType::Number,Util::IntToWStr(score.Total),1.3f,Align::Horizontal::Right},
+			//{Vec2(0.0f,-100.0f),SpriteType::Image,L"800,120"},
 
 			//クリスタルとランク
 			//{Vec2(-500.0f,140.0f),SpriteType::String,L"Crystal",1.0f,Align::Horizontal::Left},
@@ -85,9 +85,9 @@ namespace basecross {
 			rank = Rank::B;
 		}
 
-		//auto uiRank = GetStage()->AddGameObject<UI_Rank>(rank);
-		//uiRank->SetPosition(Vec2(420.0f, -130.0f));
-		//uiRank->SetSize(0.9f);
+		auto uiRank = GetStage()->AddGameObject<UI_Rank>(rank);
+		uiRank->SetPosition(Vec2(0.0f, -0.0f));
+		uiRank->SetSize(0.9f);
 	}
 
 	void Result::CreateString(ResultParam& param) {
