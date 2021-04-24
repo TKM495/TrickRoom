@@ -20,6 +20,7 @@ namespace basecross {
 
 		void OnCreate() override;
 		void OnUpdate() override;
+		void OnCollisionEnter(shared_ptr<GameObject>& other) override;
 
 		static int getCount()
 		{

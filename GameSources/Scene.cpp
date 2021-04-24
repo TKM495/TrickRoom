@@ -13,7 +13,7 @@ namespace basecross{
 	//--------------------------------------------------------------------------------------
 	void Scene::OnCreate(){
 		try {
-			m_debugState = DebugState::Debug;
+			m_debugState = DebugState::None;
 
 			//CSV�t�@�C��
 			auto& app = App::GetApp();
@@ -113,7 +113,7 @@ namespace basecross{
 			SetClearColor(Col);
 			//�������g�ɃC�x���g�𑗂�
 			//����ɂ��e�X�e�[�W��I�u�W�F�N�g��Create���ɃV�[���ɃA�N�Z�X�ł���
-			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToGameStage");
+			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToTitleStage");
 		}
 		catch (...) {
 			throw;

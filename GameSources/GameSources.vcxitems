@@ -14,7 +14,9 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Battery.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)BGSprite.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Bullet.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CircularMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ColorOut.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)AdvCollision.h" />
@@ -84,7 +86,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Utility.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Battery.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)BGSprite.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Bullet.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CircularMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ColorOut.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)AdvCollision.cpp" />

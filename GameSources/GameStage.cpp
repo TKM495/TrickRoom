@@ -51,6 +51,7 @@ namespace basecross {
 			builder.Register<Picture>(L"Picture");
 			builder.Register<RouteEnemy>(L"RouteEnemy");
 			builder.Register<RouteFloor>(L"RouteFloor");
+			builder.Register<Battery>(L"Battery");
 
 			auto dir = app->GetDataDirWString();
 			auto path = dir + L"Csv/Stage/Stage";

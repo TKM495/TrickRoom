@@ -9,13 +9,15 @@
 namespace basecross {
 	struct TADrawRenderTarget::Impl {
 		//ビュー関連
+		const float m_TADrawDimension;
 		ComPtr<ID3D11ShaderResourceView>	m_ShaderResourceView;	//シェーダリソースビュー
 		ComPtr<ID3D11RenderTargetView> m_D3D11RenderTargetView;	//レンダリングターゲットレビュー
 		ComPtr<ID3D11Texture2D>		m_DepthStencil;		//深度ステンシルバッファ
 		ComPtr<ID3D11Texture2D>		m_test;		//
 		ComPtr<ID3D11DepthStencilView>	m_DepthStencilView;	//深度ステンシルビュー
 
-		Impl()
+		Impl(float TADrawDimension)
+			:m_TADrawDimension(TADrawDimension)
 		{}
 		~Impl() {}
 	};
@@ -27,8 +29,8 @@ namespace basecross {
 	//	＊デフォルトのレンダラー
 	//--------------------------------------------------------------------------------------
 	//構築
-	TADrawRenderTarget::TADrawRenderTarget() :
-		pImpl(new Impl())
+	TADrawRenderTarget::TADrawRenderTarget(float TADrawDimension) :
+		pImpl(new Impl(TADrawDimension))
 	{
 		try {
 

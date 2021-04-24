@@ -26,13 +26,12 @@ namespace basecross {
 		auto forward = transComp->GetForword(); // オブジェクトの正面を表す単位ベクトル
 
 		pos += forward * 10.0f * delta; // 前方に秒速10.0移動する
-		if (pos.x > 5.0f - 1.0f || pos.x < -5.0f + 1.0f ||
-			pos.z > 5.0f - 1.0f || pos.z < -5.0f + 1.0f)
-		{
-			// 消す
-			GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
-		}
 
 		transComp->SetPosition(pos);
+	}
+
+	void Bullet::OnCollisionEnter(shared_ptr<GameObject>& other) {
+		// 消す
+		GetStage()->RemoveGameObject<Bullet>(GetThis<Bullet>());
 	}
 }
