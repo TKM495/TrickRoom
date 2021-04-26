@@ -1,14 +1,15 @@
 /*!
-@file ImageSprite.h
+@file ImageSpriteForCSV.h
 @brief 画像表示用クラス
 */
 
 #pragma once
 #include "stdafx.h"
+#include "CSVLoad.h"
 #include "FadeComponent.h"
 
 namespace basecross {
-	class ImageSprite :public GameObject {
+	class ImageSpriteForCSV :public GameObject {
 		//時間計測用
 		float m_delta;
 		//非アクティブになるまでの時間
@@ -17,7 +18,9 @@ namespace basecross {
 		bool m_bDeactive;
 		//色
 		Col4 m_color;
-		//表示するテクスチャ
+		//自分のデータ
+		SpriteDataFormat m_data;
+		//表示する文字の名前
 		wstring m_name;
 		//横の設定
 		Align::Horizontal m_horizontal;
@@ -25,12 +28,14 @@ namespace basecross {
 		Align::Vertical m_vertical;
 		//頂点データ
 		vector<VertexPositionColorTexture> vertices;
+		//データの中からm_nameに一致するデータを返す関数
+		int SearchDataIndex(vector<SpriteDataFormat>& data);
 	public:
-		ImageSprite(const shared_ptr<Stage>& stage,
+		ImageSpriteForCSV(const shared_ptr<Stage>& stage,
 			wstring name,
 			Align::Horizontal horizontal = Align::Horizontal::Center,
 			Align::Vertical vertical = Align::Vertical::Center,
-			Col4 color = Col4(1.0f, 1.0f, 1.0f, 1.0f))
+			Col4 color = Col4(0.0f, 0.0f, 0.0f, 1.0f))
 			:GameObject(stage),
 			m_name(name),
 			m_horizontal(horizontal),
@@ -48,7 +53,7 @@ namespace basecross {
 		void SetAlignVertical(Align::Vertical ver);
 
 		void SetSize(float size);
-		void SetPos(Vec2 pos);
+		void SetPos(Vec3 pos);
 		void SetRot(float rot);
 		float GetRot();
 		float GetSize();

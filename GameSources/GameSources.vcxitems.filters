@@ -71,7 +71,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Goal.cpp">
       <Filter>StageObject\Goal</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ImageSprite.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)ImageSpriteForCSV.cpp">
       <Filter>Sprite\Image</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)LinearMove.cpp">
@@ -201,7 +201,7 @@
       <Filter>StageObject\Player\Model</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Timer.cpp">
-      <Filter>Sprite\Timer</Filter>
+      <Filter>UI\Timer</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)RouteEnemy.cpp">
       <Filter>StageObject\RouteObject\Enemy</Filter>
@@ -214,6 +214,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Battery.cpp">
       <Filter>StageObject\Battery</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)ImageSprite.cpp">
+      <Filter>Sprite\Image</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -273,7 +276,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Goal.h">
       <Filter>StageObject\Goal</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ImageSprite.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)ImageSpriteForCSV.h">
       <Filter>Sprite\Image</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)InputHandler.h">
@@ -409,7 +412,7 @@
       <Filter>StageObject\Player\Model</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Timer.h">
-      <Filter>Sprite\Timer</Filter>
+      <Filter>UI\Timer</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)RouteEnemy.h">
       <Filter>StageObject\RouteObject\Enemy</Filter>
@@ -422,6 +425,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Battery.h">
       <Filter>StageObject\Battery</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)ImageSprite.h">
+      <Filter>Sprite\Image</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -625,9 +631,6 @@
     <Filter Include="StageObject\Player\Model">
       <UniqueIdentifier>{413ff329-ded8-4e78-a251-9becf3160d1b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sprite\Timer">
-      <UniqueIdentifier>{3b54dc9f-abc1-4af2-aed5-6673e0671fdc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="StageObject\RouteObject">
       <UniqueIdentifier>{ada98ba5-57c2-438e-b7d1-da896724ab6e}</UniqueIdentifier>
     </Filter>
@@ -642,6 +645,9 @@
     </Filter>
     <Filter Include="StageObject\Battery\Bullet">
       <UniqueIdentifier>{9701ddf6-add7-4a15-b8d3-69db2d0d2702}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Timer">
+      <UniqueIdentifier>{3b54dc9f-abc1-4af2-aed5-6673e0671fdc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

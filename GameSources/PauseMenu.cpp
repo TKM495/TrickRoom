@@ -35,6 +35,7 @@ namespace basecross {
 			stage->SetState(GameStage::GameState::PLAYING);
 			auto pause = stage->GetSharedGameObject<Pause>(L"Pause");
 			pause->IsActive(false);
+			stage->GetSharedGameObject<Timer>(L"Timer")->Start();
 		}
 		else {
 			BaseMenu::SendEvent(mes);

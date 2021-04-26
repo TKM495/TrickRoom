@@ -14,7 +14,7 @@ namespace basecross {
 	void Effect::InsertEffect(const Vec3& Pos, Col4 color)
 	{
 		auto ParticlePtr = InsertParticle(4);
-		ParticlePtr->SetEmitterPos(Pos + m_offset);
+		ParticlePtr->SetEmitterPos(Pos);
 		ParticlePtr->SetTextureResource(L"Spark");
 		ParticlePtr->SetMaxTime(0.2f);
 		for (auto& rParticleSprite : ParticlePtr->GetParticleSpriteVec()) {
@@ -37,7 +37,7 @@ namespace basecross {
 	void Effect::CrystalEffect(const Vec3& Pos)
 	{
 		auto ParticlePtr = InsertParticle(5);
-		ParticlePtr->SetEmitterPos(Pos + m_offset);
+		ParticlePtr->SetEmitterPos(Pos);
 		ParticlePtr->SetTextureResource(L"C_Spark");
 		ParticlePtr->SetMaxTime(0.4f);
 		for (auto& rParticleSprite : ParticlePtr->GetParticleSpriteVec()) {

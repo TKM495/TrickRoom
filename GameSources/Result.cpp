@@ -28,10 +28,13 @@ namespace basecross {
 		score = score * factor;
 
 		score.CountTotal(); //初期化の内容から合計を計算
+		auto stage = GetStage();
+		auto back = stage->AddGameObject<PictureFrame>(Vec2(1100.0f, 640.0f));
+		back->SetPos(Vec2(0.0f, 120.0f));
 
 		//タイトルは一つなので別処理
-		auto title = GetStage()->AddGameObject<StringSprite2>(L"StageClear");
-		title->GetComponent<Transform>()->SetPosition(Vec3(0.0f, 330.0f, 0.0f));
+		auto title = stage->AddGameObject<StringSprite2>(L"StageClear");
+		title->GetComponent<Transform>()->SetPosition(Vec3(0.0f, 320.0f, 0.0f));
 
 		vector<ResultParam> params{
 			{Vec2(-350.0f,70.0f),SpriteType::String,L"Time",1.0f,Align::Horizontal::Left},

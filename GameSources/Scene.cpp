@@ -62,6 +62,8 @@ namespace basecross{
 			app->RegisterTexture(L"Wall", path + L"Wall.png");
 			app->RegisterTexture(L"Floor", path + L"Floor.png");
 			app->RegisterTexture(L"PictureFrame", path + L"PictureFrame.png");
+			app->RegisterTexture(L"AButton", path + L"AButton.png");
+			app->RegisterTexture(L"BButton", path + L"BButton.png");
 
 			app->RegisterTexture(L"gaku", path + L"Cursor.png");
 			app->RegisterTexture(L"ya", path + L"ya.png");
@@ -113,7 +115,7 @@ namespace basecross{
 			SetClearColor(Col);
 			//�������g�ɃC�x���g�𑗂�
 			//����ɂ��e�X�e�[�W��I�u�W�F�N�g��Create���ɃV�[���ɃA�N�Z�X�ł���
-			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToTitleStage");
+			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToResultStage");
 		}
 		catch (...) {
 			throw;

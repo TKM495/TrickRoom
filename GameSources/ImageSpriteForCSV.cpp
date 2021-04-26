@@ -1,5 +1,5 @@
 /*!
-@file ImageSprite.cpp
+@file ImageSpriteForCSV.cpp
 @brief 画像表示用クラスの実体
 */
 
@@ -7,9 +7,22 @@
 #include "Project.h"
 
 namespace basecross {
-	void ImageSprite::OnCreate() {
-		auto origin = Vec2(0.0f);
-		auto size = Utility::GetTextureSize(m_name);
+	void ImageSpriteForCSV::OnCreate() {
+		//CSVLoadを取得しデータをもらう
+		auto csvLoad = dynamic_pointer_cast<CSVLoad>(GetStage()->GetSharedObject(L"CSVLoad"));
+		auto& data = csvLoad->GetImageSpriteData();
+		//目標のデータを探す
+		int index = Utility::SearchDataIndex(data, m_name);
+		if (index == -1) {
+			throw BaseException(
+				L"目標のデータが見つかりません",
+				L"name : " + m_name,
+				L"ImageSpriteForCSV::OnCreate()"
+			);
+		}
+		m_data = data[index];
+		auto origin = m_data.origin;
+		auto size = m_data.size;
 		Rect2D<float> pos;
 		//縦位置の設定
 		switch (m_horizontal)
@@ -55,7 +68,7 @@ namespace basecross {
 			origin + Vec2(0.0f, size.y),
 			origin + size
 		};
-		Utility::ConvertToUVCoordinates(uv, size, uvs);
+		Utility::ConvertToUVCoordinates(uv, L"Sprite", uvs);
 		//頂点のデータ
 		vertices = {
 			{Vec3(-pos.left,+pos.top,0.0f),m_color,uvs[0]}, //0
@@ -71,7 +84,7 @@ namespace basecross {
 		};
 
 		auto drawComp = AddComponent<PCTSpriteDraw>(vertices, indices);
-		drawComp->SetTextureResource(m_name);
+		drawComp->SetTextureResource(L"Sprite");
 		drawComp->SetSamplerState(SamplerState::AnisotropicWrap); //テクスチャの繰り返し設定(Wrap)
 		drawComp->SetDepthStencilState(DepthStencilState::Read);
 
@@ -84,7 +97,7 @@ namespace basecross {
 		SetUpdateActive(false);
 	}
 
-	void ImageSprite::OnUpdate() {
+	void ImageSpriteForCSV::OnUpdate() {
 		auto delta = App::GetApp()->GetElapsedTime();
 		auto fade = GetComponent<FadeComponent>();
 		if (m_delta > m_deActiveTime && !m_bDeactive) {
@@ -101,10 +114,19 @@ namespace basecross {
 		m_delta += delta;
 	}
 
+	int ImageSpriteForCSV::SearchDataIndex(vector<SpriteDataFormat>& data) {
+		for (int i = 0; i < data.size(); i++) {
+			if (data[i].name == m_name) {
+				return i;
+			}
+		}
+		//ここに来たらない
+		return -1;
+	}
 
-	void ImageSprite::SetAlignHorizontal(Align::Horizontal hor) {
-		auto origin = Vec2(0.0f);
-		auto size = Utility::GetTextureSize(m_name);
+	void ImageSpriteForCSV::SetAlignHorizontal(Align::Horizontal hor) {
+		auto origin = m_data.origin;
+		auto size = m_data.size;
 		m_horizontal = hor;
 		Rect2D<float> pos;
 		//縦位置の設定
@@ -131,9 +153,9 @@ namespace basecross {
 		GetComponent<PCTSpriteDraw>()->UpdateVertices(vertices);
 	}
 
-	void ImageSprite::SetAlignVertical(Align::Vertical ver) {
-		auto origin = Vec2(0.0f);
-		auto size = Utility::GetTextureSize(m_name);
+	void ImageSpriteForCSV::SetAlignVertical(Align::Vertical ver) {
+		auto origin = m_data.origin;
+		auto size = m_data.size;
 		m_vertical = ver;
 		Rect2D<float> pos;
 		//横位置の設定
@@ -160,29 +182,29 @@ namespace basecross {
 		GetComponent<PCTSpriteDraw>()->UpdateVertices(vertices);
 	}
 
-	void ImageSprite::SetSize(float size) {
+	void ImageSpriteForCSV::SetSize(float size) {
 		GetComponent<Transform>()->SetScale(Vec3(size));
 	}
 
-	void ImageSprite::SetPos(Vec2 pos) {
-		GetComponent<Transform>()->SetPosition((Vec3)pos);
+	void ImageSpriteForCSV::SetPos(Vec3 pos) {
+		GetComponent<Transform>()->SetPosition(pos);
 	}
 
-	void ImageSprite::SetRot(float rot) {
+	void ImageSpriteForCSV::SetRot(float rot) {
 		GetComponent<Transform>()->SetRotation(0.0f, 0.0f, XMConvertToRadians(rot));
 	}
 
-	float ImageSprite::GetRot() {
+	float ImageSpriteForCSV::GetRot() {
 		//大きさは同じなのでとりあえずxを返す
 		return GetComponent<Transform>()->GetRotation().z;
 	}
 
-	float ImageSprite::GetSize() {
+	float ImageSpriteForCSV::GetSize() {
 		//大きさは同じなのでとりあえずxを返す
 		return GetComponent<Transform>()->GetScale().x;
 	}
 
-	Vec3 ImageSprite::GetPos() {
+	Vec3 ImageSpriteForCSV::GetPos() {
 		return GetComponent<Transform>()->GetPosition();
 	}
 }

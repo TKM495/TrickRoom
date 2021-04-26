@@ -5,6 +5,7 @@ namespace basecross
 {
 	void Timer::OnCreate()
 	{
+		GetStage()->SetSharedGameObject(L"Timer", GetThis<Timer>());
 		float fontspace = 15.0f;
 		Col4 color(1.0f, 1.0f, 1.0f, 1.0f);
 		std::vector<VertexPositionColorTexture> vertices = {
@@ -28,15 +29,16 @@ namespace basecross
 		transComp->SetPosition(pos);
 
 		// ”š•”•ª‚Ì‰Šú‰»
-		numbers.resize(3);
-		Vec3 offset(200.0f, 0.0f, 0.0f);
+		numbers.resize(4);
+		Vec3 offset(130.0f, -40.0f, 0.0f);
 		for (auto& number : numbers)
 		{
-			number = ObjectFactory::Create<Numbers>(GetStage(), 0);
+			number = ObjectFactory::Create<Numbers>(GetStage(), 0, Col4(1.0f));
 			auto numberTrans = number->GetComponent<Transform>();
 			numberTrans->SetPosition(pos + offset); // TIME‚Ì—×‚É”š‚ª•À‚Ô‚æ‚¤‚É‚¸‚ç‚·
-			numberTrans->SetScale(0.5f, 0.5f, 0.5f);
-			offset += Vec3(20.0f, 0.0f, 0.0f); // ”š‚Ì•‚Ì•ª‚¾‚¯‚³‚ç‚É‚¸‚ç‚·
+			numberTrans->SetScale(Vec3(0.75f));
+
+			offset += Vec3(45.0f, 0.0f, 0.0f); // ”š‚Ì•‚Ì•ª‚¾‚¯‚³‚ç‚É‚¸‚ç‚·
 		}
 	}
 

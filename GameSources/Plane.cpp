@@ -108,7 +108,7 @@ namespace basecross {
 
 		//drawComp->SetSamplerState(SamplerState::AnisotropicWrap); //テクスチャの繰り返し設定(Wrap)
 		//drawComp->SetDepthStencilState(DepthStencilState::Read);
-		//SetDrawLayer(-1);
+		SetDrawLayer(-1);
 	}
 }
 //end basecross

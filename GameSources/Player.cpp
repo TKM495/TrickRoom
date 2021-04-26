@@ -15,7 +15,7 @@ namespace basecross{
 		m_DrawCount(0), m_BlinkMask(8), rotationSpeed(0.2f),
 		m_bExtrude(false), m_deltaExtrude(0.0f),
 		bDotFlg(false), m_DotCount(0), m_DotMaxCount(2),
-		m_count(0), m_RespawnTime(3), bRespawn(false)
+		m_count(0), m_RespawnTime(2), bRespawn(false)
 	{
 		//トークン（カラム）の配列
 		vector<wstring> tokens;
@@ -170,18 +170,14 @@ namespace basecross{
 		auto transComp = GetComponent<Transform>();
 		auto pos = transComp->GetPosition();
 
-		const auto& app = App::GetApp();
-		float ElapsedTime = app->GetElapsedTime();
-
 		pos += MoveVec();
-		m_count += ElapsedTime;
 
 		transComp->SetPosition(pos);
 
 		if (MoveVec().length() > 0.0f)
 		{
 			auto utilPtr = GetBehavior<UtilBehavior>();
-			//3Dモデルが逆になっているので一時的にこれ
+			//3Dモデルの正面が逆なのでマイナス
 			utilPtr->RotToHead(-MoveVec(), rotationSpeed);
 		}
 
@@ -204,6 +200,8 @@ namespace basecross{
 
 			auto transComponent = GetComponent<Transform>();
 			transComponent->SetPosition(m_respawnPos);
+			GetComponent<Collision>()->SetUpdateActive(true);
+			GetComponent<Gravity>()->SetUpdateActive(true);
 
 			m_count = 0;
 		}
@@ -220,14 +218,14 @@ namespace basecross{
 		if (m_DotCount > m_DotMaxCount)
 		{
 			bDotFlg = false;
+			m_model->SetDrawActive(true);
+			return;
 		}
 
 		if (m_DrawCount & m_BlinkMask)
 		{
 			m_model->SetDrawActive(true);
 		}
-
-
 		else
 		{
 			m_model->SetDrawActive(false);
@@ -242,17 +240,11 @@ namespace basecross{
 		auto& app = App::GetApp();
 		float ElapsedTime = app->GetElapsedTime();
 
-		auto ColComp = GetComponent<Collision>();
-
-
 		m_Mcount += ElapsedTime;
 
 		if (m_Mcount > m_MTime)
 		{
-			m_model->SetDrawActive(true);
 			bMutekiFlg = false;
-			ColComp->RemoveExcludeCollisionTag(L"damege");
-
 			m_Mcount = 0;
 		}
 
@@ -276,8 +268,10 @@ namespace basecross{
 		m_model->SetDrawActive(false);
 		SetUpdateActive(false);
 		auto cam = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
+		auto timer = GetStage()->GetSharedGameObject<Timer>(L"Timer");
+		timer->Stop();
 		ScoreData data{
-			20.0f,		//タイム
+			timer->GetTime() ,		//タイム
 			m_Crystal,	//クリスタル
 			cam->GetCameraCount()
 		};
@@ -288,24 +282,24 @@ namespace basecross{
 	//衝突判定
 	void Player::OnCollisionEnter(std::shared_ptr<GameObject>& other)
 	{
-		auto bCrystalTag = other->FindTag(L"Crystal");
-		if (bCrystalTag)
-		{
-			//auto ColComp = GetComponent<Collision>();
+		//auto bCrystalTag = other->FindTag(L"Crystal");
+		//if (bCrystalTag)
+		//{
+		//	//auto ColComp = GetComponent<Collision>();
 
-			//ColComp->AddExcludeCollisionTag(L"crystal");
+		//	//ColComp->AddExcludeCollisionTag(L"crystal");
 
-			auto effect = GetStage()->GetSharedGameObject<Effect>(L"C_Effect");
-			effect->CrystalEffect(other->GetComponent<Transform>()->GetPosition());
+		//	auto effect = GetStage()->GetSharedGameObject<Effect>(L"C_Effect");
+		//	effect->CrystalEffect(other->GetComponent<Transform>()->GetPosition());
 
-			other->SetDrawActive(false);
-			other->SetUpdateActive(false);
-			other->AddNumTag(-1);
+		//	other->SetDrawActive(false);
+		//	other->SetUpdateActive(false);
+		//	other->AddNumTag(-1);
 
-			//SE
-			auto audio = App::GetApp()->GetXAudio2Manager();
-			audio->Start(L"CrystalSE", 0, 0.1f);
-		}
+		//	//SE
+		//	auto audio = App::GetApp()->GetXAudio2Manager();
+		//	audio->Start(L"CrystalSE", 0, 0.1f);
+		//}
 
 		if (other->FindTag(L"Goal")) {
 			ToClear();
@@ -345,6 +339,8 @@ namespace basecross{
 
 				m_DotCount = 0;
 
+				GetComponent<Collision>()->SetUpdateActive(false);
+				GetComponent<Gravity>()->SetUpdateActive(false);
 				auto effect = GetStage()->GetSharedGameObject<Effect>(L"Effect");
 				effect->InsertEffect(other->GetComponent<Transform>()->GetPosition());
 			}

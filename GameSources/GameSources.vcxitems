@@ -29,6 +29,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Goal.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ImageSprite.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ImageSpriteForCSV.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LinearMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Pause.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PauseMenu.h" />
@@ -101,6 +102,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Goal.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)ImageSprite.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ImageSpriteForCSV.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)LinearMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Pause.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PauseMenu.cpp" />

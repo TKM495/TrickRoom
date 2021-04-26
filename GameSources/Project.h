@@ -34,6 +34,7 @@
 #include "FrameSprite.h"
 #include "BGSprite.h"
 #include "ColorOut.h"
+#include "ImageSpriteForCSV.h"
 #include "ImageSprite.h"
 #include "PictureFrame.h"
 #include "UI_HP.h"

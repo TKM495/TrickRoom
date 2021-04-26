@@ -9,12 +9,9 @@
 namespace basecross {
 	class Effect : public MultiParticle
 	{
-		Vec3 m_offset;
 	public:
-		Effect(const std::shared_ptr<Stage>& stage,
-			const Vec3& offset)
-			: MultiParticle(stage),
-			m_offset(offset)
+		Effect(const std::shared_ptr<Stage>& stage)
+			: MultiParticle(stage)
 		{
 
 		}
