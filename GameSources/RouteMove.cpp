@@ -26,13 +26,13 @@ namespace basecross {
 	{
 		switch (m_turnDir)
 		{
-		case TurnDir::Right:
+		case TurnDir::Left:
 			m_moveIndex++;
 			if (Utility::GetArrayLength(m_moveDir) < m_moveIndex) {
 				m_moveIndex = 0;
 			}
 			break;
-		case TurnDir::Left:
+		case TurnDir::Right:
 			m_moveIndex--;
 			if (m_moveIndex < 0) {
 				m_moveIndex = Utility::GetArrayLength(m_moveDir);

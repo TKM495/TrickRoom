@@ -31,6 +31,7 @@ namespace basecross {
 		auto csvLoad = AddGameObject<CSVLoad>();
 		csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetStringSpriteData(), SpriteType::String);
 		csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetImageSpriteData(), SpriteType::Image);
+		csvLoad->StageScoreDataExtraction(App::GetApp()->GetScene<Scene>()->GetStageScoreData());
 
 		GameObjecttCSVBuilder builder;
 		builder.Register<Player>(L"Player");

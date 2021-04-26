@@ -34,33 +34,62 @@ namespace basecross {
 
 		m_bProjActive = tokens[10] == L"TRUE" ? true : false;
 		m_trickFlg = tokens[11] == L"TRUE" ? true : false;
-		m_activeState = tokens[12] == L"Right" ? state::Right : state::Left;
-
-		m_speed = (float)_wtof(tokens[13].c_str());
-	}
-	void RouteEnemy::OnCreate() {
-		if (m_trickFlg) {
-			auto trick = AddComponent<TrickArtDraw>();
-			trick->SetMeshResource(L"Enemy");
-			trick->SetDir(m_activeState);
-			AddTag(L"TrickArtObj");
+		if (tokens[12] == L"Right") {
+			m_activeState = state::Right;
+		}
+		else if (tokens[12] == L"Left") {
+			m_activeState = state::Left;
+		}
+		else if (!m_trickFlg && tokens[12] == L"null") {
+			//条件式を反転すれば下のelseと一緒にできるけど
+			//とりあえず今はこのまま
 		}
 		else {
-			//影をつける（シャドウマップを描画する）
-			auto shadowPtr = AddComponent<Shadowmap>();
-			//影の形（メッシュ）を設定
-			shadowPtr->SetMeshResource(L"Enemy");
-			if (m_bProjActive) {
-				auto ptrDraw = AddComponent<PNTStaticDraw2>();
-				ptrDraw->SetMeshResource(L"Enemy");
-				ptrDraw->SetOwnShadowActive(true);
-			}
-			else {
-				auto ptrDraw = AddComponent<PNTStaticModelDraw>();
-				ptrDraw->SetMeshResource(L"Enemy");
-				ptrDraw->SetOwnShadowActive(true);
-			}
+			throw BaseException(
+				L"不明な文字列です。",
+				L"m_activeState : " + tokens[12],
+				L"RouteEnemy::RouteEnemy()"
+			);
 		}
+
+		if (tokens[13] == L"Up") {
+			m_moveDir = RouteMove::MoveDir::Up;
+		}
+		else if (tokens[13] == L"Left") {
+			m_moveDir = RouteMove::MoveDir::Left;
+		}
+		else if (tokens[13] == L"Down") {
+			m_moveDir = RouteMove::MoveDir::Down;
+		}
+		else if (tokens[13] == L"Right") {
+			m_moveDir = RouteMove::MoveDir::Right;
+		}
+		else {
+			throw BaseException(
+				L"不明な文字列です。",
+				L"m_activeState : " + tokens[13],
+				L"RouteEnemy::RouteEnemy()"
+			);
+		}
+
+		m_speed = (float)_wtof(tokens[14].c_str());
+	}
+	void RouteEnemy::OnCreate() {
+		//影をつける（シャドウマップを描画する）
+		auto shadowPtr = AddComponent<Shadowmap>();
+		//影の形（メッシュ）を設定
+		shadowPtr->SetMeshResource(L"Enemy");
+		if (m_bProjActive) {
+			auto ptrDraw = AddComponent<PNTStaticDraw2>();
+			ptrDraw->SetMeshResource(L"Enemy");
+			ptrDraw->SetOwnShadowActive(true);
+		}
+		else {
+			auto ptrDraw = AddComponent<PNTStaticModelDraw>();
+			ptrDraw->SetMeshResource(L"Enemy");
+			ptrDraw->SetOwnShadowActive(true);
+		}
+
 
 		auto col = AddComponent<CollisionSphere>();
 		//これをつけるとOnCollisionEnterが呼ばれないのでコメントアウト
@@ -71,7 +100,7 @@ namespace basecross {
 		}
 
 		StageObject::OnCreate();
-
+		GetBehavior<RouteMove>()->SetMoveDir(m_moveDir);
 		AddTag(L"Enemy");
 		AddTag(L"damage");
 		SetDrawLayer(-1);
@@ -91,19 +120,17 @@ namespace basecross {
 				return;
 			}
 			GetBehavior<RouteMove>()->Excute();
+			if ((m_before - m_now).length() == 0.0f) {
+				//遅延を入れる
+				if (m_delta > 0.05f) {
+					GetBehavior<RouteMove>()->Hit();
+					m_delta = 0.0f;
+				}
+				m_delta += delta;
+			}
 			break;
 		case basecross::GameStage::GameState::PAUSE:
 			break;
-		}
-		UpdateArt<CollisionSphere>(OnGetDrawCamera(), GetComponent<CollisionSphere>());
-		auto dir = m_before - m_now;
-		if (dir.length() == 0.0f) {
-			//遅延を入れる
-			if (m_delta > 0.05f) {
-				GetBehavior<RouteMove>()->Hit();
-				m_delta = 0.0f;
-			}
-			m_delta += delta;
 		}
 	}
 

@@ -31,35 +31,28 @@ namespace basecross {
 		m_bProjActive = tokens[10] == L"TRUE" ? true : false;
 		m_trickFlg = tokens[11] == L"TRUE" ? true : false;
 		m_activeState = tokens[12] == L"Right" ? state::Right : state::Left;
+		m_speed = (float)_wtof(tokens[13].c_str());
 	}
 	RouteFloor::~RouteFloor() {}
 
 	void RouteFloor::OnCreate() {
 		StageObject::OnCreate();
 
-		if (m_trickFlg) {
-			auto trick = AddComponent<TrickArtDraw>();
-			trick->SetMeshResource(L"DEFAULT_CUBE");
-			trick->SetDir(m_activeState);
-			AddTag(L"TrickArtObj");
+		auto shadowPtr = AddComponent<Shadowmap>();
+		shadowPtr->SetMeshResource(L"DEFAULT_CUBE");
+		if (m_bProjActive) {
+			auto ptrDraw = AddComponent<PNTStaticDraw2>();
+			ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
+			ptrDraw->SetOwnShadowActive(true);
 		}
 		else {
-			auto shadowPtr = AddComponent<Shadowmap>();
-			shadowPtr->SetMeshResource(L"DEFAULT_CUBE");
-			if (m_bProjActive) {
-				auto ptrDraw = AddComponent<PNTStaticDraw2>();
-				ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
-				ptrDraw->SetOwnShadowActive(true);
-			}
-			else {
-				auto ptrDraw = AddComponent<PNTStaticDraw>();
-				ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
-				ptrDraw->SetOwnShadowActive(true);
-			}
+			auto ptrDraw = AddComponent<PNTStaticDraw>();
+			ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
+			ptrDraw->SetOwnShadowActive(true);
 		}
 
+
 		auto col = AddComponent<CollisionObb>();
-		col->SetFixed(true);
 		auto scene = App::GetApp()->GetScene<Scene>();
 		if (scene->GetDebugState() == DebugState::Debug) {
 			col->SetDrawActive(true);
@@ -67,7 +60,31 @@ namespace basecross {
 	}
 
 	void RouteFloor::OnUpdate() {
-		UpdateArt<CollisionObb>(OnGetDrawCamera(), GetComponent<CollisionObb>());
+		auto state = dynamic_pointer_cast<GameStage>(GetStage())->GetState();
+		auto camera = dynamic_pointer_cast<MainCamera>(GetStage()->GetView()->GetTargetCamera());
+		auto delta = App::GetApp()->GetElapsedTime();
+		auto trans = GetComponent<Transform>();
+		m_before = m_now;
+		m_now = trans->GetPosition();
+		switch (state)
+		{
+		default:
+			if (camera->GetbLeapFlg()) {
+				return;
+			}
+			GetBehavior<RouteMove>()->Excute();
+			if ((m_before - m_now).length() == 0.0f) {
+				//’x‰„‚ð“ü‚ê‚é
+				if (m_delta > 0.05f) {
+					GetBehavior<RouteMove>()->Hit();
+					m_delta = 0.0f;
+				}
+				m_delta += delta;
+			}
+			break;
+		case basecross::GameStage::GameState::PAUSE:
+			break;
+		}
 	}
 }
 //end basecross

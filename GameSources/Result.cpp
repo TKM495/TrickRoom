@@ -8,6 +8,11 @@
 
 namespace basecross {
 	void Result::OnCreate() {
+		auto stageNum = App::GetApp()->GetScene<Scene>()->GetStageNum();
+
+		auto csvLoad = GetStage()->GetSharedGameObject<CSVLoad>(L"CSVLoad");
+		//-1なのはstageNumが1～なので
+		auto& stageScore = csvLoad->GetStageScoreData()[stageNum - 1];
 		wstring titleStr = L"";
 
 		//生の値
@@ -17,17 +22,17 @@ namespace basecross {
 			m_data.CamNum,
 			1
 		};
-		//かかる倍率
-		ScorePoints factor{
-			500,	//タイム
-			250,	//クリスタル
-			100,	//カメラの回転数
-			1000,	//クリアボーナス
-			1		//トータルスコア
-		};
-		score = score * factor;
+		////かかる倍率
+		//ScorePoints factor{
+		//	500,	//タイム
+		//	250,	//クリスタル
+		//	100,	//カメラの回転数
+		//	1000,	//クリアボーナス
+		//	1		//トータルスコア
+		//};
+		//score = score * factor;
 
-		score.CountTotal(); //初期化の内容から合計を計算
+		//score.CountTotal(); //初期化の内容から合計を計算
 		auto stage = GetStage();
 		auto back = stage->AddGameObject<PictureFrame>(Vec2(1100.0f, 640.0f));
 		back->SetPos(Vec2(0.0f, 120.0f));
@@ -46,18 +51,6 @@ namespace basecross {
 			{Vec2(300.0f,0.0f),SpriteType::Number,Util::IntToWStr(m_data.CamNum),1.0f,Align::Horizontal::Right},
 			{Vec2(0.0f,0.0f),SpriteType::Image,L"800,60"},
 			{Vec2(230.0f,0.0f),SpriteType::Image,L"320,50"},
-
-			//{Vec2(-350.0f,-70.0f),SpriteType::String,L"Score",1.0f,Align::Horizontal::Left},
-			//{Vec2(300.0f,-120.0f),SpriteType::Number,Util::IntToWStr(score.Total),1.3f,Align::Horizontal::Right},
-			//{Vec2(0.0f,-100.0f),SpriteType::Image,L"800,120"},
-
-			//クリスタルとランク
-			//{Vec2(-500.0f,140.0f),SpriteType::String,L"Crystal",1.0f,Align::Horizontal::Left},
-			//{Vec2(50.0f,140.0f),SpriteType::Number,Util::IntToWStr(m_data.Crystal),1.0f,Align::Horizontal::Right},
-			//{Vec2(100.0f,140.0f),SpriteType::String,L"X"},
-			//{Vec2(350.0f,140.0f),SpriteType::Number,Util::IntToWStr(factor.Crystal),1.0f,Align::Horizontal::Right},
-			//{Vec2(180.0f,80.0f),SpriteType::Image,L"520,50"},
-			//{Vec2(420.0f,20.0f),SpriteType::String,L"Rank"}
 		};
 
 		Vec2 offset(0.0f, 170.0f);
@@ -78,6 +71,9 @@ namespace basecross {
 		}
 
 		Rank rank;
+		//if (score.Time < stageScore.Time[0]) {
+
+		//}
 		if (score.Total >= 30000) {
 			rank = Rank::S;
 		}

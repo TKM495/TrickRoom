@@ -5,11 +5,13 @@
 
 #pragma once
 #include "stdafx.h"
-#include "StageObject.h"
-#include "TrickArtSystem/TrickArtSystem.h"
 
 namespace basecross {
 	class RouteFloor : public StageObject, public TrickArtBase {
+		float m_speed;
+		Vec3 m_before;
+		Vec3 m_now;
+		float m_delta;
 	public:
 		RouteFloor(const shared_ptr<Stage>& StagePtr,
 			const wstring& line);

@@ -5,7 +5,7 @@
 
 #pragma once
 #include "stdafx.h"
-#include "SpriteManager.h"
+#include "UI_Rank.h"
 
 namespace basecross {
 	//スプライトのデータ形式
@@ -27,10 +27,17 @@ namespace basecross {
 		Number
 	};
 
+	struct StageScoreDataFormat {
+		int StageNum;
+		float Time[(int)Rank::MAX];	//0～Rank::MAX(S～C)
+		int CamNum[(int)Rank::MAX];
+	};
+
 	class CSVLoad :public GameObject{
 		vector<SpriteDataFormat> m_stringSpriteData;
 		vector<SpriteDataFormat> m_imageSpriteData;
 		vector<PictureDataFormat> m_pictureData;
+		vector<StageScoreDataFormat> m_stageScoreData;
 	public:
 		CSVLoad(const shared_ptr<Stage>& stage)
 			:GameObject(stage)
@@ -40,6 +47,7 @@ namespace basecross {
 
 		void SpriteDataExtraction(vector<wstring> fileData, SpriteType type);
 		void PictureDataExtraction(vector<wstring> fileData);
+		void StageScoreDataExtraction(vector<wstring> fileData);
 
 		vector<SpriteDataFormat>& GetStringSpriteData(){
 			return m_stringSpriteData;
@@ -58,6 +66,10 @@ namespace basecross {
 				);
 			}
 			return m_pictureData;
+		}
+
+		vector<StageScoreDataFormat>& GetStageScoreData() {
+			return m_stageScoreData;
 		}
 	};
 }

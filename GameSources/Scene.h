@@ -23,6 +23,8 @@ namespace basecross{
 		vector<wstring> m_imageSpriteWData;
 		//画像用CSVデータ
 		vector<wstring> m_pictureWData;
+		//各ステージに置けるランクの基準用CSVデータ
+		vector<wstring> m_stageScoreWData;
 		//スコアデータ
 		ScoreData m_scoreData;
 		//タイトルBGM
@@ -52,6 +54,10 @@ namespace basecross{
 
 		vector<wstring>& GetPictureData() {
 			return m_pictureWData;
+		}
+
+		vector<wstring>& GetStageScoreData() {
+			return m_stageScoreWData;
 		}
 
 		DebugState GetDebugState() {

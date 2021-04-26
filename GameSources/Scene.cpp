@@ -13,7 +13,7 @@ namespace basecross{
 	//--------------------------------------------------------------------------------------
 	void Scene::OnCreate(){
 		try {
-			m_debugState = DebugState::None;
+			m_debugState = DebugState::Debug;
 
 			//CSV�t�@�C��
 			auto& app = App::GetApp();
@@ -31,6 +31,10 @@ namespace basecross{
 			csvFile.SetFileName(path + L"Picture.csv");
 			csvFile.ReadCsv();
 			m_pictureWData = csvFile.GetCsvVec();
+
+			csvFile.SetFileName(path + L"Stage/StageScore.csv");
+			csvFile.ReadCsv();
+			m_stageScoreWData = csvFile.GetCsvVec();
 
 			//�e�N�X�`��
 			path = dir + L"Textures/";
@@ -115,7 +119,7 @@ namespace basecross{
 			SetClearColor(Col);
 			//�������g�ɃC�x���g�𑗂�
 			//����ɂ��e�X�e�[�W��I�u�W�F�N�g��Create���ɃV�[���ɃA�N�Z�X�ł���
-			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToResultStage");
+			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToSelectStage");
 		}
 		catch (...) {
 			throw;

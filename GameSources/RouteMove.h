@@ -15,6 +15,13 @@ namespace basecross {
 			Right,
 			Left
 		};
+		//移動方向(外部設定用)
+		enum class MoveDir {
+			Up,
+			Left,
+			Down,
+			Right
+		};
 	private:
 		//移動速度
 		float m_Speed;
@@ -28,7 +35,7 @@ namespace basecross {
 		shared_ptr<AdvCollision> m_collision;
 	public:
 		RouteMove(const shared_ptr<GameObject>& obj)
-			: Behavior(obj), m_Speed(3), m_turnDir(TurnDir::Right),
+			: Behavior(obj), m_Speed(3), m_turnDir(TurnDir::Left),
 			m_moveIndex(0)
 		{
 			//配列に移動方向を代入
@@ -48,6 +55,10 @@ namespace basecross {
 
 		void SetTurnDir(TurnDir turn) {
 			m_turnDir = turn;
+		}
+
+		void SetMoveDir(MoveDir move) {
+			m_moveIndex = (int)move;
 		}
 	};
 }

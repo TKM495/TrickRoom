@@ -24,7 +24,7 @@ namespace basecross {
 
 	void GameStage::OnCreate() {
 		try {
-			//AddGameObject<Debug>();
+			AddGameObject<Debug>();
 
 			CreateViewLight();
 

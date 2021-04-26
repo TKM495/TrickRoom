@@ -301,6 +301,27 @@ namespace basecross{
 		//	audio->Start(L"CrystalSE", 0, 0.1f);
 		//}
 
+		//OnCollisionExcute()のほうにも入れているが弾の判定が取れないため
+		//こちらにも入れる
+		if (!bRespawn && !bMutekiFlg)
+		{
+			auto bDamegeTag = other->FindTag(L"damage");
+			if (bDamegeTag)
+			{
+				//m_HP += -1;
+				bRespawn = true;
+				m_model->SetDrawActive(false);
+				bMutekiFlg = true;
+
+				m_DotCount = 0;
+
+				GetComponent<Collision>()->SetUpdateActive(false);
+				GetComponent<Gravity>()->SetUpdateActive(false);
+				auto effect = GetStage()->GetSharedGameObject<Effect>(L"Effect");
+				effect->InsertEffect(other->GetComponent<Transform>()->GetPosition());
+			}
+		}
+
 		if (other->FindTag(L"Goal")) {
 			ToClear();
 		}

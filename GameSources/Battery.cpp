@@ -30,14 +30,25 @@ namespace basecross {
 	{
 		auto drawComp = AddComponent<PNTStaticDraw>(); // ドロー(描画)コンポーネントを追加
 		drawComp->SetMeshResource(L"DEFAULT_CUBE"); // 見た目としてメッシュを設定
+		auto col = AddComponent<CollisionObb>();
+		col->SetFixed(true);
+		StageObject::OnCreate();
+		AddTag(L"Battery");
 	}
 
 	void Battery::OnUpdate()
 	{
 		auto& app = App::GetApp();
 		float delta = app->GetElapsedTime();
-
-		delay += delta;
+		auto state = dynamic_pointer_cast<GameStage>(GetStage())->GetState();
+		switch (state)
+		{
+		default:
+			delay += delta;
+			break;
+		case basecross::GameStage::GameState::PAUSE:
+			break;
+		}
 		if (delay > interval)
 		{
 			ShotBullet();

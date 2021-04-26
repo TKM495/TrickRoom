@@ -79,5 +79,32 @@ namespace basecross {
 			m_pictureData.push_back(data);
 		}
 	}
+
+	void CSVLoad::StageScoreDataExtraction(vector<wstring> fileData) {
+		if (fileData.size() == 0) {
+			throw BaseException(
+				L"データがありません",
+				L"Size : " + to_wstring(fileData.size()),
+				L"CSVLoad::StageScoreDataExtraction()"
+			);
+		}
+		//0番目(1行目は見出しなので除外)
+		for (size_t i = 1; i < fileData.size(); i++) {
+			//トークン（カラム）の配列
+			vector<wstring> tokens;
+
+			//トークン（カラム）単位で文字列を抽出(L','をデリミタとして区分け)
+			Util::WStrToTokenVector(tokens, fileData[i], L',');
+
+			StageScoreDataFormat data;
+			data.StageNum = i + 1;
+			for (int j = 0; j < (int)Rank::MAX; j++) {
+				data.Time[j] = (float)_wtof(tokens[j + 1].c_str());
+				data.CamNum[j] = (int)_wtof(tokens[j + 5].c_str());
+			}
+			m_stageScoreData.push_back(data);
+		}
+	}
+
 }
 //end basecross
