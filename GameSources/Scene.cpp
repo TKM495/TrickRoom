@@ -13,7 +13,7 @@ namespace basecross{
 	//--------------------------------------------------------------------------------------
 	void Scene::OnCreate(){
 		try {
-			m_debugState = DebugState::Debug;
+			m_debugState = DebugState::None;
 
 			//CSV�t�@�C��
 			auto& app = App::GetApp();
@@ -66,6 +66,7 @@ namespace basecross{
 			app->RegisterTexture(L"Wall", path + L"Wall.png");
 			app->RegisterTexture(L"Floor", path + L"Floor.png");
 			app->RegisterTexture(L"PictureFrame", path + L"PictureFrame.png");
+			app->RegisterTexture(L"PictureFrame2", path + L"PictureFrame2.png");
 			app->RegisterTexture(L"AButton", path + L"AButton.png");
 			app->RegisterTexture(L"BButton", path + L"BButton.png");
 
@@ -87,8 +88,10 @@ namespace basecross{
 			app->RegisterResource(L"Stairs", modelMesh);
 			modelMesh = MeshResource::CreateStaticModelMesh(path+L"Crystal/", L"Crystal.bmf");
 			app->RegisterResource(L"Crystal", modelMesh);
+			modelMesh = MeshResource::CreateStaticModelMesh(path+L"Title/", L"title.bmf");
+			app->RegisterResource(L"Title", modelMesh);
 
-			auto multiModelMesh = MultiMeshResource::CreateStaticModelMultiMesh(path + L"Player/", L"Player.bmf");
+			auto multiModelMesh = MeshResource::CreateStaticModelMesh(path + L"Player/", L"Player.bmf");
 			app->RegisterResource(L"PlayerModel", multiModelMesh);
 
 			//BGM
@@ -119,7 +122,7 @@ namespace basecross{
 			SetClearColor(Col);
 			//�������g�ɃC�x���g�𑗂�
 			//����ɂ��e�X�e�[�W��I�u�W�F�N�g��Create���ɃV�[���ɃA�N�Z�X�ł���
-			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToSelectStage");
+			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToResultStage");
 		}
 		catch (...) {
 			throw;
@@ -127,6 +130,7 @@ namespace basecross{
 	}
 
 	void Scene::OnEvent(const shared_ptr<Event>& event) {
+		m_nowStageName = event->m_MsgStr;
 		//�^�C�g���X�e�[�W
 		if (event->m_MsgStr == L"ToTitleStage") {
 			ResetActiveStage<TitleStage>();

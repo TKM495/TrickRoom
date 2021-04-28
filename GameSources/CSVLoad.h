@@ -29,7 +29,7 @@ namespace basecross {
 
 	struct StageScoreDataFormat {
 		int StageNum;
-		float Time[(int)Rank::MAX];	//0Å`Rank::MAX(SÅ`C)
+		float Time[(int)Rank::MAX];	//0Å`Rank::MAX(SÅ`B)
 		int CamNum[(int)Rank::MAX];
 	};
 

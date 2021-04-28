@@ -9,6 +9,7 @@
 namespace basecross {
 	class Plane :public StageObject ,public TrickArtBase{
 		wstring m_texName;
+		bool m_bNotTexture;
 	public:
 		Plane(shared_ptr<Stage>& stage,
 			const wstring& line);

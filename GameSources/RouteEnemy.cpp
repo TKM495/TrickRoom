@@ -85,7 +85,7 @@ namespace basecross {
 			ptrDraw->SetOwnShadowActive(true);
 		}
 		else {
-			auto ptrDraw = AddComponent<PNTStaticModelDraw>();
+			auto ptrDraw = AddComponent<PNTStaticDraw>();
 			ptrDraw->SetMeshResource(L"Enemy");
 			ptrDraw->SetOwnShadowActive(true);
 		}
@@ -111,14 +111,14 @@ namespace basecross {
 		auto camera = dynamic_pointer_cast<MainCamera>(GetStage()->GetView()->GetTargetCamera());
 		auto delta = App::GetApp()->GetElapsedTime();
 		auto trans = GetComponent<Transform>();
+		if (camera->GetbLeapFlg()) {
+			return;
+		}
 		m_before = m_now;
 		m_now = trans->GetPosition();
 		switch (state)
 		{
 		default:
-			if (camera->GetbLeapFlg()) {
-				return;
-			}
 			GetBehavior<RouteMove>()->Excute();
 			if ((m_before - m_now).length() == 0.0f) {
 				//’x‰„‚ð“ü‚ê‚é

@@ -20,9 +20,6 @@ namespace basecross {
 		case Rank::B:
 			origin = Vec2(m_originalSize.x * 2.0f, 0.0f);
 			break;
-		case Rank::C:
-			origin = Vec2(0.0f, m_originalSize.y);
-			break;
 		}
 		auto halfWidth = m_originalSize.x / 2.0f;
 		auto halfHeight = m_originalSize.y / 2.0f;

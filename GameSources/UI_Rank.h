@@ -8,7 +8,7 @@
 
 namespace basecross {
 	enum class Rank {
-		S, A, B, C, MAX
+		S, A, B, MAX
 	};
 
 	class UI_Rank :public GameObject {

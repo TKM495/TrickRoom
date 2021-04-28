@@ -8,6 +8,9 @@
 
 namespace basecross {
 	void BaseMenu::OnUpdate() {
+		if (!m_bActive) {
+			return;
+		}
 		auto& app = App::GetApp();
 		auto delta = app->GetElapsedTime();
 		//ƒRƒ“ƒgƒ[ƒ‰‚ÌŽæ“¾
@@ -92,6 +95,7 @@ namespace basecross {
 			menu->SetDrawActive(flg);
 		}
 		m_cursor.lock()->SetDrawActive(flg);
+		m_bActive = flg;
 	}
 }
 //end basecross

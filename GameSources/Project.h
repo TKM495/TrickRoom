@@ -74,6 +74,7 @@
 #include "Goal.h"
 #include "RouteEnemy.h"
 #include "RouteFloor.h"
+#include "FloorModel.h"
 #include "Battery.h"
 #include "Bullet.h"
 //トリックアートオブジェクト

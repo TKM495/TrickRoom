@@ -15,9 +15,9 @@ namespace basecross {
 	}
 
 	void Debug::OnUpdate() {
-		auto player = GetStage()->GetSharedGameObject<Player>(L"Player");
-		auto transComp = player->GetComponent<Transform>();
-		auto pos = transComp->GetPosition();
+		//auto player = GetStage()->GetSharedGameObject<Player>(L"Player");
+		//auto transComp = player->GetComponent<Transform>();
+		//auto pos = transComp->GetPosition();
 
 		//オブジェクト数
 		auto ObjCount = GetStage()->GetGameObjectVec().size();
@@ -32,14 +32,14 @@ namespace basecross {
 		FPS += Util::FloatToWStr(ElapsedTime);
 		FPS += L"\n";
 
-		auto viewport = GetTypeStage<GameStage>()->GetView()->GetTargetViewport();
+		auto viewport = GetStage()->GetView()->GetTargetViewport();
 		wstring ViewStr(L"View:\n");
 		ViewStr += L"Width=" + Util::FloatToWStr(viewport.Width, 6, Util::FloatModify::Fixed) + L",\t";
 		ViewStr += L"Height=" + Util::FloatToWStr(viewport.Height, 6, Util::FloatModify::Fixed) + L",\n";
 
 		wss.str(L"");
 		wss << FPS;
-		wss << L"PlayerPos:" << pos.x << L"," << pos.y << L"," << pos.z << endl;
+		//wss << L"PlayerPos:" << pos.x << L"," << pos.y << L"," << pos.z << endl;
 		wss << ViewStr << OBJ_COUNT << endl;
 
 		auto ssComp = GetComponent<StringSprite>();

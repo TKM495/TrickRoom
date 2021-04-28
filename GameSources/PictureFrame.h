@@ -9,11 +9,14 @@
 namespace basecross {
 	class PictureFrame :public StageObject {
 		Vec2 m_frameSize;
+		bool m_innerFrame;
 	public:
 		PictureFrame(const shared_ptr<Stage>& stage,
-			const Vec2& frameSize=Vec2(560.0f))
+			const Vec2& frameSize = Vec2(560.0f),
+			bool flg = true)
 			:StageObject(stage),
-			m_frameSize(frameSize)
+			m_frameSize(frameSize),
+			m_innerFrame(flg)
 		{}
 
 		void OnCreate()override;

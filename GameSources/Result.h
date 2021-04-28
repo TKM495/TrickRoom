@@ -12,13 +12,13 @@
 namespace basecross {
 	//スコアに必要なデータ
 	struct ScoreData {
-		int Time;					//タイム
+		float Time;					//タイム
 		int Crystal;				//クリスタル
 		int CamNum;					//カメラの回転数
 	};
 
 	struct ScorePoints {
-		int Time;		//タイム
+		float Time;		//タイム
 		int Crystal;	//クリスタル
 		int CamNum;		//カメラの回転数
 		int ClearBonus;	//クリアボーナス

@@ -24,7 +24,7 @@ namespace basecross
 		SetAlphaActive(true);
 
 		auto transComp = AddComponent<Transform>();
-		Vec3 pos(-640.0f, +400.0f, 0.0f);
+		Vec3 pos(+350.0f, +400.0f, 0.0f);
 		transComp->SetScale(0.5f, 0.5f, 0.5f);
 		transComp->SetPosition(pos);
 
@@ -46,6 +46,10 @@ namespace basecross
 	{
 		auto& app = App::GetApp(); // アプリの参照取得
 		float delta = app->GetElapsedTime();
+		auto camera = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
+		if (camera->GetbLeapFlg()) {
+			return;
+		}
 
 		if (bup)count += delta; // 1フレーム当たりの秒数を加算
 		if (count > 1.0f && timer < pow(10, numbers.size()) - 1)

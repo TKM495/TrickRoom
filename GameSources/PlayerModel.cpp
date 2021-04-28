@@ -4,10 +4,10 @@
 namespace basecross {
 	void PlayerModel::OnCreate() {
 		auto drawComp = AddComponent<PNTStaticModelDraw>();
-		drawComp->SetMultiMeshResource(L"PlayerModel");
+		drawComp->SetMeshResource(L"PlayerModel");
 
 		auto shadow = AddComponent<Shadowmap>();
-		shadow->SetMultiMeshResource(L"PlayerModel");
+		shadow->SetMeshResource(L"PlayerModel");
 	}
 	void PlayerModel::OnUpdate() {
 		//‚±‚±‚Åƒ‚[ƒVƒ‡ƒ“‚ğ“®‚©‚·

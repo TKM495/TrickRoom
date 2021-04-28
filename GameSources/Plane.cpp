@@ -31,6 +31,9 @@ namespace basecross {
 			XMConvertToRadians((float)_wtof(tokens[9].c_str()))
 		);
 		m_bProjActive = tokens[10] == L"TRUE" ? true : false;
+
+		m_bNotTexture = tokens[11] == L"TRUE" ? true : false;
+
 		//床の時(床は必ず90°になるので)
 		if ((float)_wtof(tokens[7].c_str()) == 90.0f) {
 			AddTag(L"Floor");
@@ -78,24 +81,21 @@ namespace basecross {
 			2, 1, 3  //下の三角形
 		};
 
+		shared_ptr<SmBaseDraw> ptrDraw;
 		if (m_bProjActive) {
-			auto ptrDraw = AddComponent<PNTStaticDraw2>();
-			ptrDraw->SetOwnShadowActive(true);
-			ptrDraw->CreateOriginalMesh(vertices, indices);
-			ptrDraw->SetOriginalMeshUse(true);
-			ptrDraw->SetTextureResource(m_texName);
-			ptrDraw->SetSamplerState(SamplerState::AnisotropicWrap);
-			ptrDraw->SetDepthStencilState(DepthStencilState::Read);
+			ptrDraw = AddComponent<PNTStaticDraw2>();
 		}
 		else {
-			auto ptrDraw = AddComponent<PNTStaticDraw>();
-			ptrDraw->SetOwnShadowActive(true);
-			ptrDraw->CreateOriginalMesh(vertices, indices);
-			ptrDraw->SetOriginalMeshUse(true);
-			ptrDraw->SetTextureResource(m_texName);
-			ptrDraw->SetSamplerState(SamplerState::AnisotropicWrap);
-			ptrDraw->SetDepthStencilState(DepthStencilState::Read);
+			ptrDraw = AddComponent<PNTStaticDraw>();
 		}
+		ptrDraw->SetOwnShadowActive(true);
+		ptrDraw->CreateOriginalMesh(vertices, indices);
+		ptrDraw->SetOriginalMeshUse(true);
+		if (!m_bNotTexture) {
+			ptrDraw->SetTextureResource(m_texName);
+		}
+		ptrDraw->SetSamplerState(SamplerState::AnisotropicWrap);
+		ptrDraw->SetDepthStencilState(DepthStencilState::Read);
 
 		StageObject::OnCreate();
 
@@ -108,7 +108,6 @@ namespace basecross {
 
 		//drawComp->SetSamplerState(SamplerState::AnisotropicWrap); //テクスチャの繰り返し設定(Wrap)
 		//drawComp->SetDepthStencilState(DepthStencilState::Read);
-		SetDrawLayer(-1);
 	}
 }
 //end basecross

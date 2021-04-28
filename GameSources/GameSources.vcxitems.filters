@@ -218,6 +218,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)ImageSprite.cpp">
       <Filter>Sprite\Image</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FloorModel.cpp">
+      <Filter>StageObject\RouteObject\Floor\FloorModel</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
@@ -428,6 +431,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ImageSprite.h">
       <Filter>Sprite\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FloorModel.h">
+      <Filter>StageObject\RouteObject\Floor\FloorModel</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -648,6 +654,9 @@
     </Filter>
     <Filter Include="UI\Timer">
       <UniqueIdentifier>{3b54dc9f-abc1-4af2-aed5-6673e0671fdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\RouteObject\Floor\FloorModel">
+      <UniqueIdentifier>{10490aa6-b97b-4fbc-aff2-4d2587424e80}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

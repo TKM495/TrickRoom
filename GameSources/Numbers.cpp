@@ -46,6 +46,7 @@ namespace basecross {
 
 		AddComponent<FadeComponent>();
 		GetFadeComp()->SetFadeColor(m_color);
+		SetDrawLayer(2);
 		SetUpdateActive(false);
 	}
 

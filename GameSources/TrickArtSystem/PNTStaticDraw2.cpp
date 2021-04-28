@@ -89,6 +89,7 @@ namespace basecross {
 		auto Dev = App::GetApp()->GetDeviceResources();
 		auto pD3D11DeviceContext = Dev->GetD3DDeviceContext();
 		auto RenderState = Dev->GetRenderState();
+		auto scene = App::GetApp()->GetScene<Scene>();
 		//NULLのシェーダリソースの準備
 		ID3D11ShaderResourceView* pNull[D3D11_COMMONSHADER_INPUT_RESOURCE_SLOT_COUNT] = { nullptr };
 		//サンプラーの準備
@@ -163,7 +164,13 @@ namespace basecross {
 
 		//TrickArtRenderTargetの取得
 		for (int i = 0; i < 2; i++) {
-			auto TrickArtDraw = dynamic_pointer_cast<GameStage>(GetStage())->GetTADraw(i);
+			shared_ptr<TADrawRenderTarget> TrickArtDraw;
+			if (scene->GetNowStageName() == L"ToGameStage") {
+				TrickArtDraw = dynamic_pointer_cast<GameStage>(GetStage())->GetTADraw(i);
+			}
+			else if (scene->GetNowStageName() == L"ToTitleStage") {
+				TrickArtDraw = dynamic_pointer_cast<TitleStage>(GetStage())->GetTADraw(i);
+			}
 			ID3D11ShaderResourceView* pTrickArtDrawSRV = TrickArtDraw->GetShaderResourceView();
 			pD3D11DeviceContext->PSSetShaderResources(2 + i, 1, &pTrickArtDrawSRV);
 		}

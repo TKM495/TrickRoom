@@ -28,35 +28,63 @@ namespace basecross {
 			XMConvertToRadians((float)_wtof(tokens[8].c_str())),
 			XMConvertToRadians((float)_wtof(tokens[9].c_str()))
 		);
-		m_bProjActive = tokens[10] == L"TRUE" ? true : false;
-		m_trickFlg = tokens[11] == L"TRUE" ? true : false;
-		m_activeState = tokens[12] == L"Right" ? state::Right : state::Left;
-		m_speed = (float)_wtof(tokens[13].c_str());
+		//m_bProjActive = tokens[10] == L"TRUE" ? true : false;
+		//m_trickFlg = tokens[11] == L"TRUE" ? true : false;
+		//if (tokens[12] == L"Right") {
+		//	m_activeState = state::Right;
+		//}
+		//else if (tokens[12] == L"Left") {
+		//	m_activeState = state::Left;
+		//}
+		//else if (!m_trickFlg && tokens[12] == L"null") {
+		//	//条件式を反転すれば下のelseと一緒にできるけど
+		//	//とりあえず今はこのまま
+		//}
+		//else {
+		//	throw BaseException(
+		//		L"不明な文字列です。",
+		//		L"m_activeState : " + tokens[12],
+		//		L"RouteEnemy::RouteEnemy()"
+		//	);
+		//}
+
+		if (tokens[13] == L"Up") {
+			m_moveDir = RouteMove::MoveDir::Up;
+		}
+		else if (tokens[13] == L"Left") {
+			m_moveDir = RouteMove::MoveDir::Left;
+		}
+		else if (tokens[13] == L"Down") {
+			m_moveDir = RouteMove::MoveDir::Down;
+		}
+		else if (tokens[13] == L"Right") {
+			m_moveDir = RouteMove::MoveDir::Right;
+		}
+		else {
+			throw BaseException(
+				L"不明な文字列です。",
+				L"m_activeState : " + tokens[13],
+				L"RouteEnemy::RouteEnemy()"
+			);
+		}
+
+		m_speed = (float)_wtof(tokens[14].c_str());
 	}
 	RouteFloor::~RouteFloor() {}
 
 	void RouteFloor::OnCreate() {
 		StageObject::OnCreate();
 
-		auto shadowPtr = AddComponent<Shadowmap>();
-		shadowPtr->SetMeshResource(L"DEFAULT_CUBE");
-		if (m_bProjActive) {
-			auto ptrDraw = AddComponent<PNTStaticDraw2>();
-			ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
-			ptrDraw->SetOwnShadowActive(true);
-		}
-		else {
-			auto ptrDraw = AddComponent<PNTStaticDraw>();
-			ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
-			ptrDraw->SetOwnShadowActive(true);
-		}
-
+		GetStage()->AddGameObject<FloorModel>(GetThis<RouteFloor>());
 
 		auto col = AddComponent<CollisionObb>();
+		col->AddExcludeCollisionTag(L"Player");
 		auto scene = App::GetApp()->GetScene<Scene>();
 		if (scene->GetDebugState() == DebugState::Debug) {
 			col->SetDrawActive(true);
 		}
+		GetBehavior<RouteMove>()->SetMoveDir(m_moveDir);
+		SetDrawLayer(-1);
 	}
 
 	void RouteFloor::OnUpdate() {
@@ -64,16 +92,17 @@ namespace basecross {
 		auto camera = dynamic_pointer_cast<MainCamera>(GetStage()->GetView()->GetTargetCamera());
 		auto delta = App::GetApp()->GetElapsedTime();
 		auto trans = GetComponent<Transform>();
+		if (camera->GetbLeapFlg()) {
+			return;
+		}
 		m_before = m_now;
 		m_now = trans->GetPosition();
 		switch (state)
 		{
 		default:
-			if (camera->GetbLeapFlg()) {
-				return;
-			}
 			GetBehavior<RouteMove>()->Excute();
-			if ((m_before - m_now).length() == 0.0f) {
+			m_move = m_before - m_now;
+			if (m_move.length() == 0.0f) {
 				//遅延を入れる
 				if (m_delta > 0.05f) {
 					GetBehavior<RouteMove>()->Hit();

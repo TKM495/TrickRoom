@@ -1,8 +1,8 @@
 name,PosX,PosY,PosZ,ScaleX,ScaleY,ScaleZ,RotX,RotY,RotZ,ProjFlg,ArtFlg,DefArt,Behavior,cycle,Speed,Offset
-Plane,0,0,0,25,20,1,90,0,0,FALSE,,,,,,
-,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,
+Plane,0,0,0,10,10,1,90,0,0,TRUE,,,,,,
+Plane,0,2.5,5,10,5,1,0,0,0,TRUE,,,,,,
+Plane,5,2.5,0,10,5,1,0,90,0,TRUE,,,,,,
+Plane,-5,2.5,0,10,5,1,0,-90,0,TRUE,,,,,,
 ,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,

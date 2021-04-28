@@ -28,10 +28,13 @@ namespace basecross {
 		auto pos = transComp->GetPosition();
 		auto forward = transComp->GetForword(); // オブジェクトの正面を表す単位ベクトル
 		auto state = dynamic_pointer_cast<GameStage>(GetStage())->GetState();
+		auto camera = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
 		switch (state)
 		{
 		default:
-			pos += forward * 10.0f * delta; // 前方に秒速10.0移動する
+			if (!camera->GetbLeapFlg()) {
+				pos += forward * 10.0f * delta; // 前方に秒速10.0移動する
+			}
 			break;
 		case basecross::GameStage::GameState::PAUSE:
 			break;

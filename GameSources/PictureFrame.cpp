@@ -87,13 +87,20 @@ namespace basecross {
 			9,6,12
 		};
 
+		wstring texName;
+		if (m_innerFrame) {
+			texName = L"PictureFrame";
+		}
+		else {
+			texName = L"PictureFrame2";
+		}
+
 		auto drawComp = AddComponent<PCTSpriteDraw>(vertices, indices);
-		drawComp->SetTextureResource(L"PictureFrame");
+		drawComp->SetTextureResource(texName);
 		drawComp->SetSamplerState(SamplerState::AnisotropicWrap); //テクスチャの繰り返し設定(Wrap)
 		drawComp->SetDepthStencilState(DepthStencilState::Read);
 
 		SetAlphaActive(true); //透明をサポートする&両面描画になる
-		SetDrawLayer(-1);
 	}
 
 	void PictureFrame::SetPos(Vec2 pos) {

@@ -34,7 +34,7 @@ namespace basecross {
 
 		//score.CountTotal(); //初期化の内容から合計を計算
 		auto stage = GetStage();
-		auto back = stage->AddGameObject<PictureFrame>(Vec2(1100.0f, 640.0f));
+		auto back = stage->AddGameObject<PictureFrame>(Vec2(1100.0f, 640.0f), false);
 		back->SetPos(Vec2(0.0f, 120.0f));
 
 		//タイトルは一つなので別処理
@@ -43,12 +43,13 @@ namespace basecross {
 
 		vector<ResultParam> params{
 			{Vec2(-350.0f,70.0f),SpriteType::String,L"Time",1.0f,Align::Horizontal::Left},
-			{Vec2(200.0f,70.0f),SpriteType::Number,Util::IntToWStr(m_data.Time),1.0f,Align::Horizontal::Right},
+			{Vec2(300.0f,70.0f),SpriteType::Number,Util::IntToWStr(m_data.Time),1.0f,Align::Horizontal::Right},
 			{Vec2(0.0f,70.0f),SpriteType::Image,L"800,60"},
 			{Vec2(230.0f,70.0f),SpriteType::Image,L"320,50"},
 
 			{Vec2(-350.0f,0.0f),SpriteType::String,L"CamRotNum",1.0f,Align::Horizontal::Left},
 			{Vec2(300.0f,0.0f),SpriteType::Number,Util::IntToWStr(m_data.CamNum),1.0f,Align::Horizontal::Right},
+			{Vec2(360.0f,0.0f),SpriteType::String,L"Count",1.0f,Align::Horizontal::Right},
 			{Vec2(0.0f,0.0f),SpriteType::Image,L"800,60"},
 			{Vec2(230.0f,0.0f),SpriteType::Image,L"320,50"},
 		};
@@ -71,13 +72,12 @@ namespace basecross {
 		}
 
 		Rank rank;
-		//if (score.Time < stageScore.Time[0]) {
-
-		//}
-		if (score.Total >= 30000) {
+		if (score.Time <= stageScore.Time[0] &&
+			score.CamNum <= stageScore.CamNum[0]) {
 			rank = Rank::S;
 		}
-		else if (score.Total >= 20000) {
+		else if (score.Time <= stageScore.Time[1] &&
+			score.CamNum <= stageScore.CamNum[1]) {
 			rank = Rank::A;
 		}
 		else {
@@ -86,7 +86,7 @@ namespace basecross {
 
 		auto uiRank = GetStage()->AddGameObject<UI_Rank>(rank);
 		uiRank->SetPosition(Vec2(0.0f, -0.0f));
-		uiRank->SetSize(0.9f);
+		uiRank->SetSize(0.8f);
 	}
 
 	void Result::CreateString(ResultParam& param) {
@@ -102,7 +102,6 @@ namespace basecross {
 		auto size = Vec2((float)_wtof(tokens[0].c_str()), (float)_wtof(tokens[1].c_str()));
 		auto image = GetStage()->AddGameObject<FrameSprite>(size);
 		image->SetPosition(param.pos);
-		image->SetDrawLayer(-1);
 	}
 	void Result::CreateNumber(ResultParam& param) {
 		Vec3 offset(0.0f);
@@ -132,7 +131,7 @@ namespace basecross {
 			auto transComp = num->GetComponent<Transform>();
 			transComp->SetPosition((Vec3)param.pos + offset);
 			transComp->SetScale(scale);
-			offset += Vec3(50.0f * key, 0, 0); // 数字の幅の文
+			offset += Vec3(40.0f * key, 0, 0); // 数字の幅の文
 		}
 	}
 }

@@ -10,7 +10,7 @@ namespace basecross{
 	Player::Player(const std::shared_ptr<Stage>& stage,
 		const wstring& line)
 		: StageObject(stage),
-		m_moveSpeed(4), m_HP(3), m_Crystal(0),
+		m_moveSpeed(3), m_HP(3), m_Crystal(0),
 		bMutekiFlg(false), m_Mcount(0), m_MTime(2),
 		m_DrawCount(0), m_BlinkMask(8), rotationSpeed(0.2f),
 		m_bExtrude(false), m_deltaExtrude(0.0f),
@@ -267,15 +267,6 @@ namespace basecross{
 	void Player::ToClear() {
 		m_model->SetDrawActive(false);
 		SetUpdateActive(false);
-		auto cam = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
-		auto timer = GetStage()->GetSharedGameObject<Timer>(L"Timer");
-		timer->Stop();
-		ScoreData data{
-			timer->GetTime() ,		//タイム
-			m_Crystal,	//クリスタル
-			cam->GetCameraCount()
-		};
-		App::GetApp()->GetScene<Scene>()->SetScoreData(data);
 		dynamic_pointer_cast<GameStage>(GetStage())->SetState(GameStage::GameState::CLEAR);
 	}
 

@@ -23,6 +23,9 @@ namespace basecross {
 	void Pause::IsActive(bool flg) {
 		m_titleObj.lock()->SetDrawActive(flg);
 		m_menuObj.lock()->SetDrawMenu(flg);
+		if (!flg) {
+			m_menuObj.lock()->Reset();
+		}
 	}
 }
 //end basecross

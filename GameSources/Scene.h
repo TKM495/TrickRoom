@@ -35,6 +35,8 @@ namespace basecross{
 		int m_maxStage;
 		//デバッグステート
 		DebugState m_debugState;
+		//現在のステージ名
+		wstring m_nowStageName;
 	public:
 		Scene() :SceneBase(),
 			m_stageNum(1),
@@ -90,6 +92,10 @@ namespace basecross{
 
 		int GetMaxStage() {
 			return m_maxStage;
+		}
+
+		wstring GetNowStageName() {
+			return m_nowStageName;
 		}
 	};
 

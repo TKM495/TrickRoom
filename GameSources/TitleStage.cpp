@@ -10,14 +10,16 @@
 namespace basecross {
 
 	void TitleStage::CreateViewLight() {
-		const Vec3 eye(0.0f, 10.0f, -10.0f);
-		const Vec3 at(0.0f);
+		const Vec3 eye(0.0f, 1.8f, -5.0f);
+		const Vec3 at(0.0f, 1.8f, 5.0f);
 		auto PtrView = CreateView<SingleView>();
 		//ビューのカメラの設定
 		auto PtrCamera = ObjectFactory::Create<Camera>();
 		PtrView->SetCamera(PtrCamera);
 		PtrCamera->SetEye(eye);
 		PtrCamera->SetAt(at);
+		PtrCamera->SetFovY(0.6f);
+
 		//マルチライトの作成
 		auto PtrMultiLight = CreateLight<MultiLight>();
 		//デフォルトのライティングを指定
@@ -34,29 +36,20 @@ namespace basecross {
 
 		auto csvLoad = AddGameObject<CSVLoad>();
 		csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetStringSpriteData(), SpriteType::String);
-		auto title = AddGameObject<StringSprite2>(L"Title");
-		title->GetComponent<Transform>()->SetPosition(Vec3(0.0f, 200.0f, 0.0f));
+		//auto title = AddGameObject<StringSprite2>(L"Title");
+		//title->GetComponent<Transform>()->SetPosition(Vec3(0.0f, 200.0f, 0.0f));
 		AddGameObject<TitleMenu>();
 
-		//GameObjecttCSVBuilder builder;
-		//builder.Register<Player>(L"Player");
-		//builder.Register<Goal>(L"Goal");
-		//builder.Register<Plane>(L"Plane");
-		//builder.Register<Pillar>(L"Pillar");
-		//builder.Register<Block>(L"Block");
-		//builder.Register<Enemy>(L"Enemy");
-		//builder.Register<Spikes>(L"Spikes");
-		//builder.Register<SpikesArt>(L"SpikesArt");
-		//builder.Register<Stairs>(L"Stairs");
-		//builder.Register<PoleArt>(L"PoleArt");
-		//builder.Register<Crystal>(L"Crystal");
-		//builder.Register<Picture>(L"Picture");
+		AddGameObject<TitleModel>();
 
-		//auto dir = app->GetDataDirWString();
-		//auto path = dir + L"Csv/TitleObject.csv";
-		//builder.Build(GetThis<Stage>(), path);
+		GameObjecttCSVBuilder builder;
+		builder.Register<Player>(L"Player");
+		builder.Register<Plane>(L"Plane");
+		builder.Register<Block>(L"Block");
+		auto dir = App::GetApp()->GetDataDirWString();
+		auto path = dir + L"Csv/TitleObject.csv";
+		builder.Build(GetThis<Stage>(), path);
 
-		//AddGameObject<BGSprite>(L"BackGround");
 		AddGameObject<UI_FPS>();
 
 		AddGameObject<Fade>()->FadeIn();
@@ -86,6 +79,7 @@ namespace basecross {
 	void TitleStage::RenderStage() {
 		//描画デバイスの取得
 		auto Dev = App::GetApp()->GetDeviceResources();
+
 		//マルチビュー未対応
 		for (int i = 0; i < 2; i++) {
 			m_TADrawRenderTarget[i]->ClearViews();

@@ -46,6 +46,8 @@ namespace basecross {
         float m_delta;
         //カーソルの移動速度
         float m_cursorSp;
+        //メニューの現在の状態
+        bool m_bActive;
     protected:
         //メニュー構築
         template<typename T_Object, typename T_Cursor>
@@ -70,8 +72,6 @@ namespace basecross {
         virtual void SendEvent(wstring mes);
         //リセット前の処理
         virtual void BeforeReset() {}
-        //リセット
-        virtual void Reset();
         //ボタンが押されてから遷移までの時間の設定
         void SetDelayTime(float time) {
             m_delayTime = time;
@@ -102,7 +102,8 @@ namespace basecross {
             m_bChange(false),
             m_delta(0.0f),
             m_cursorSp(10.0f),
-            m_audio(App::GetApp()->GetXAudio2Manager())
+            m_audio(App::GetApp()->GetXAudio2Manager()),
+            m_bActive(true)
         {}
 
         virtual void OnCreate()override {}
@@ -110,6 +111,9 @@ namespace basecross {
 
         //メニューの表示、非表示
         void SetDrawMenu(bool flg);
+        //リセット
+        virtual void Reset();
+
     };
 }
 //end basecross

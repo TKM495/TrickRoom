@@ -74,6 +74,8 @@ namespace basecross {
 		if (scene->GetDebugState() == DebugState::Debug) {
 			col->SetDrawActive(true);
 		}
+		SetDrawLayer(-1);
+		AddTag(L"Block");
 	}
 
 	void Block::OnUpdate() {

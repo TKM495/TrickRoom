@@ -41,10 +41,13 @@ namespace basecross {
 		auto& app = App::GetApp();
 		float delta = app->GetElapsedTime();
 		auto state = dynamic_pointer_cast<GameStage>(GetStage())->GetState();
+		auto camera = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
 		switch (state)
 		{
 		default:
-			delay += delta;
+			if (!camera->GetbLeapFlg()) {
+				delay += delta;
+			}
 			break;
 		case basecross::GameStage::GameState::PAUSE:
 			break;

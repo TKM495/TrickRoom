@@ -55,6 +55,7 @@ namespace basecross {
 		drawComp->SetDiffuse(m_color);
 
 		SetAlphaActive(true);
+		SetDrawLayer(3);
 	}
 
 	void Cursor::OnUpdate() {

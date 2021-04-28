@@ -56,7 +56,7 @@ namespace basecross {
 				ptrDraw->SetOwnShadowActive(true);
 			}
 			else {
-				auto ptrDraw = AddComponent<PNTStaticModelDraw>();
+				auto ptrDraw = AddComponent<PNTStaticDraw>();
 				ptrDraw->SetMeshResource(L"Enemy");
 				ptrDraw->SetOwnShadowActive(true);
 			}

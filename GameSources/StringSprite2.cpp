@@ -94,7 +94,7 @@ namespace basecross {
 
 		SetAlphaActive(true); //透明をサポートする&両面描画になる
 		//GetComponent<Transform>()->SetScale(Vec3(0.005f));
-
+		SetDrawLayer(2);
 		SetUpdateActive(false);
 	}
 

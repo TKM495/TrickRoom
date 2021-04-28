@@ -100,7 +100,7 @@ namespace basecross {
 			data.StageNum = i + 1;
 			for (int j = 0; j < (int)Rank::MAX; j++) {
 				data.Time[j] = (float)_wtof(tokens[j + 1].c_str());
-				data.CamNum[j] = (int)_wtof(tokens[j + 5].c_str());
+				data.CamNum[j] = (int)_wtof(tokens[j + 4].c_str());
 			}
 			m_stageScoreData.push_back(data);
 		}

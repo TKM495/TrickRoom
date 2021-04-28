@@ -24,7 +24,7 @@ namespace basecross {
 
 	void GameStage::OnCreate() {
 		try {
-			AddGameObject<Debug>();
+			//AddGameObject<Debug>();
 
 			CreateViewLight();
 
@@ -71,7 +71,6 @@ namespace basecross {
 			AddGameObject<UI_Player>();
 			AddGameObject<UI_FPS>();
 			AddGameObject<UI_LR>();
-			AddGameObject<Timer>();
 
 			AddGameObject<Pause>();
 			AddGameObject<ColorOut>(Col4(1.0f), 0.25f, 0.0f, 4.0f);
@@ -93,8 +92,6 @@ namespace basecross {
 		auto delta = app->GetElapsedTime();
 		const auto& pad = app->GetInputDevice().GetControlerVec()[0];
 		auto fade = GetSharedGameObject<Fade>(L"Fade");
-		auto timer = GetSharedGameObject<Timer>(L"Timer");
-
 		switch (m_state)
 		{
 		case GameState::FADEIN:
@@ -108,21 +105,18 @@ namespace basecross {
 			if (StartCountdown()) {
 				m_state = GameState::PLAYING;
 				m_stateDelta = 0.0f;
-				timer->Start();
 			}
 			break;
 		case GameState::PLAYING:
 			if (pad.wPressedButtons & XINPUT_GAMEPAD_START) {
 				SetState(GameState::PAUSE);
 				GetSharedGameObject<Pause>(L"Pause")->IsActive(true);
-				timer->Stop();
 			}
 			break;
 		case GameState::PAUSE:
 			if (pad.wPressedButtons & XINPUT_GAMEPAD_START) {
 				SetState(GameState::PLAYING);
 				GetSharedGameObject<Pause>(L"Pause")->IsActive(false);
-				timer->Start();
 			}
 			break;
 		case GameState::CLEAR:
