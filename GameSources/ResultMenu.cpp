@@ -27,9 +27,9 @@ namespace basecross {
 	}
 
 	void ResultMenu::OnPushButton(MenuElement element) {
-		auto fade = GetStage()->GetSharedGameObject<Fade>(L"Fade");
-		SetDelayTime(fade->GetFadeTime());
-		fade->FadeOut();
+		auto fade = GetStage()->GetSharedGameObject<SceneTransition>(L"SceneTransition");
+		SetDelayTime(fade->GetTransitionTime());
+		fade->Play(SceneTransition::TransDir::Out);
 		if (element.name == L"NextStage") {
 			m_stageNum++;
 		}

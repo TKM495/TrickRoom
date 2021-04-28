@@ -31,7 +31,6 @@ namespace basecross {
 		auto csvLoad = AddGameObject<CSVLoad>();
 		csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetStringSpriteData(), SpriteType::String);
 		csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetImageSpriteData(), SpriteType::Image);
-		csvLoad->StageScoreDataExtraction(App::GetApp()->GetScene<Scene>()->GetStageScoreData());
 
 		GameObjecttCSVBuilder builder;
 		builder.Register<Player>(L"Player");
@@ -41,15 +40,13 @@ namespace basecross {
 		auto path = dir + L"Csv/ResultObject.csv";
 		builder.Build(GetThis<Stage>(), path);
 
-		auto scoreData = App::GetApp()->GetScene<Scene>()->GetScoreData();
-
-		AddGameObject<Result>(scoreData);
-		auto frame = AddGameObject<FrameSprite>(Vec2(1270.0f, 100.0f));
-		frame->SetPosition(Vec2(0.0f, -300.0f));
-		frame->SetColor(Col4(0.5f, 0.5f, 0.5f, 1.0f));
+		AddGameObject<Result>();
+		//auto frame = AddGameObject<FrameSprite>(Vec2(1270.0f, 100.0f));
+		//frame->SetPosition(Vec2(0.0f, -300.0f));
+		//frame->SetColor(Col4(0.5f, 0.5f, 0.5f, 1.0f));
 		AddGameObject<ResultMenu>();
 
-		AddGameObject<Fade>()->FadeIn();
+		AddGameObject<SceneTransition>()->Play(SceneTransition::TransDir::In);
 
 		auto audio = App::GetApp()->GetXAudio2Manager();
 		wstring bgmName = L"";

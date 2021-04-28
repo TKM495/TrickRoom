@@ -25,8 +25,6 @@ namespace basecross{
 		vector<wstring> m_pictureWData;
 		//各ステージに置けるランクの基準用CSVデータ
 		vector<wstring> m_stageScoreWData;
-		//スコアデータ
-		ScoreData m_scoreData;
 		//タイトルBGM
 		shared_ptr<SoundItem> m_titleBGM;
 		//ロードするステージ番号
@@ -64,14 +62,6 @@ namespace basecross{
 
 		DebugState GetDebugState() {
 			return m_debugState;
-		}
-
-		void SetScoreData(ScoreData data) {
-			m_scoreData = data;
-		}
-
-		ScoreData GetScoreData() {
-			return m_scoreData;
 		}
 
 		void SetTitleBGM(shared_ptr<SoundItem> bgm) {

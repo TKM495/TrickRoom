@@ -50,9 +50,12 @@ namespace basecross {
 		auto path = dir + L"Csv/TitleObject.csv";
 		builder.Build(GetThis<Stage>(), path);
 
+		auto frame = AddGameObject<FrameSprite>(Vec2(300.0f, 300.0f));
+		frame->SetSize(0.25f);
+
 		AddGameObject<UI_FPS>();
 
-		AddGameObject<Fade>()->FadeIn();
+		AddGameObject<SceneTransition>()->Play(SceneTransition::TransDir::In);
 
 		//BGM‚ÌÄ¶
 		auto audio = App::GetApp()->GetXAudio2Manager();

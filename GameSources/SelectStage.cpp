@@ -48,7 +48,7 @@ namespace basecross {
 		AddGameObject<BGSprite>(L"BGSelectStage");
 		AddGameObject<SelectStageMenu>();
 
-		AddGameObject<Fade>()->FadeIn();
+		AddGameObject<SceneTransition>()->Play(SceneTransition::TransDir::In);
 		//BGM‚ÌÄ¶
 		auto audio = App::GetApp()->GetXAudio2Manager();
 		m_selectBGM = audio->Start(L"TitleBGM", XAUDIO2_LOOP_INFINITE, 0.1f);

@@ -56,7 +56,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp">
       <Filter>StageObject\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Fade.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)SceneTransition.cpp">
       <Filter>Sprite\Fade</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeComponent.cpp">
@@ -264,7 +264,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h">
       <Filter>StageObject\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Fade.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)SceneTransition.h">
       <Filter>Sprite\Fade</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeComponent.h">

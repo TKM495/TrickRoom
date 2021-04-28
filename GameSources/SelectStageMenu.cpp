@@ -130,9 +130,9 @@ namespace basecross {
 	}
 
 	void SelectStageMenu::OnPushButton() {
-		auto fade = GetStage()->GetSharedGameObject<Fade>(L"Fade");
-		SetDelayTime(fade->GetFadeTime());
-		fade->FadeOut();
+		auto fade = GetStage()->GetSharedGameObject<SceneTransition>(L"SceneTransition");
+		SetDelayTime(fade->GetTransitionTime());
+		fade->Play(SceneTransition::TransDir::Out);
 		m_bChange = true;
 	}
 

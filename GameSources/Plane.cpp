@@ -92,7 +92,36 @@ namespace basecross {
 		ptrDraw->CreateOriginalMesh(vertices, indices);
 		ptrDraw->SetOriginalMeshUse(true);
 		if (!m_bNotTexture) {
-			ptrDraw->SetTextureResource(m_texName);
+			auto scene = App::GetApp()->GetScene<Scene>();
+			wstring num;
+			switch (scene->GetStageNum())
+			{
+			case 1:
+			case 2:
+			case 3:
+				num = L"1";
+				break;
+			case 4:
+			case 5:
+			case 6:
+				num = L"2";
+				break;
+			case 7:
+			case 8:
+			case 9:
+				num = L"3";
+				break;
+			case 10:
+				num = L"4";
+				break;
+			default:
+				num = L"1";
+				break;
+			}
+			if (m_texName == L"Floor") {
+				num = L"";
+			}
+			ptrDraw->SetTextureResource(m_texName + num);
 		}
 		ptrDraw->SetSamplerState(SamplerState::AnisotropicWrap);
 		ptrDraw->SetDepthStencilState(DepthStencilState::Read);

@@ -40,18 +40,9 @@ namespace basecross{
 			path = dir + L"Textures/";
 			app->RegisterTexture(L"string", path + L"String.png");
 			app->RegisterTexture(L"Sprite", path + L"Sprite.png");
-			app->RegisterTexture(L"SpikesArt", path + L"Spikes.png");
-			app->RegisterTexture(L"BlockArt", path + L"block.png");
-			app->RegisterTexture(L"EnemyArt", path + L"Enemy.png");
-			app->RegisterTexture(L"StairsArt", path + L"saka.png");
-			app->RegisterTexture(L"FloorArt", path + L"RightPlane.png");
 			app->RegisterTexture(L"SelectCursor", path + L"SelectCursor.png");
 			app->RegisterTexture(L"VCursor", path + L"VerticalCursor.png");
-			app->RegisterTexture(L"timer", path + L"time.png");
-			app->RegisterTexture(L"heart", path + L"heart.png");
-			app->RegisterTexture(L"crystal", path + L"crystal.png");
-			app->RegisterTexture(L"point", path + L"point.png");
-			app->RegisterTexture(L"PoleArt", path + L"Pole.png");
+			app->RegisterTexture(L"Triangle", path + L"Triangle.png");
 			app->RegisterTexture(L"Spark", path + L"spark.png");
 			app->RegisterTexture(L"C_Spark", path + L"spark.png");
 			app->RegisterTexture(L"player", path + L"player.png");
@@ -59,22 +50,24 @@ namespace basecross{
 			app->RegisterTexture(L"LR", path + L"left_right.png");
 			app->RegisterTexture(L"ColorOut", path + L"ColorOut.png");
 			app->RegisterTexture(L"Rank", path + L"Rank.png");
-			app->RegisterTexture(L"BackGround", path + L"BGtest.png");
-			app->RegisterTexture(L"BGClear", path + L"BGClear.png");
-			app->RegisterTexture(L"BGGameOver", path + L"BGGameOver.png");
-			app->RegisterTexture(L"BGSelectStage", path + L"BGSelectStage.png");
-			app->RegisterTexture(L"Wall", path + L"Wall.png");
+			app->RegisterTexture(L"Wall1", path + L"Wall1.png");
+			app->RegisterTexture(L"Wall2", path + L"Wall2.png");
+			app->RegisterTexture(L"Wall3", path + L"Wall3.png");
+			app->RegisterTexture(L"Wall4", path + L"Wall4.png");
 			app->RegisterTexture(L"Floor", path + L"Floor.png");
 			app->RegisterTexture(L"PictureFrame", path + L"PictureFrame.png");
 			app->RegisterTexture(L"PictureFrame2", path + L"PictureFrame2.png");
 			app->RegisterTexture(L"AButton", path + L"AButton.png");
 			app->RegisterTexture(L"BButton", path + L"BButton.png");
-
-			app->RegisterTexture(L"gaku", path + L"Cursor.png");
-			app->RegisterTexture(L"ya", path + L"ya.png");
-			app->RegisterTexture(L"UVCheck", path + L"UVCheck.png");
-			app->RegisterTexture(L"white", path + L"white.png");
-
+			app->RegisterTexture(L"BGSelectStage", path + L"BGSelectStage.png");
+			app->RegisterTexture(L"BackGround", path + L"BGTest.png");
+			app->RegisterTexture(L"Frame", path + L"Frame.png");
+			app->RegisterTexture(L"1280x800", path + L"1280x800.png");
+			//app->RegisterTexture(L"UVCheck", path + L"UVCheck.png");
+			app->RegisterTexture(L"timer", path + L"time.png");
+			app->RegisterTexture(L"heart", path + L"heart.png");
+			app->RegisterTexture(L"crystal", path + L"crystal.png");
+			app->RegisterTexture(L"point", path + L"point.png");
 
 			//3D���f��
 			path = dir + L"Models/";
@@ -122,7 +115,7 @@ namespace basecross{
 			SetClearColor(Col);
 			//�������g�ɃC�x���g�𑗂�
 			//����ɂ��e�X�e�[�W��I�u�W�F�N�g��Create���ɃV�[���ɃA�N�Z�X�ł���
-			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToResultStage");
+			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToTitleStage");
 		}
 		catch (...) {
 			throw;

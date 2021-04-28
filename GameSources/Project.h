@@ -39,7 +39,7 @@
 #include "PictureFrame.h"
 #include "UI_HP.h"
 #include "UI_Crystal.h"
-#include "Fade.h"
+#include "SceneTransition.h"
 #include "Result.h"
 #include "UI_Player.h"
 #include "UI_Goalgauge.h"

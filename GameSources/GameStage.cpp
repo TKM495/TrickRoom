@@ -75,7 +75,7 @@ namespace basecross {
 			AddGameObject<Pause>();
 			AddGameObject<ColorOut>(Col4(1.0f), 0.25f, 0.0f, 4.0f);
 			AddGameObject<BGSprite>(L"BackGround");
-			AddGameObject<Fade>()->FadeIn();
+			AddGameObject<SceneTransition>()->Play(SceneTransition::TransDir::In);
 
 			//BGM�̍Đ�
 			auto audio = App::GetApp()->GetXAudio2Manager();
@@ -91,11 +91,11 @@ namespace basecross {
 		const auto& app = App::GetApp();
 		auto delta = app->GetElapsedTime();
 		const auto& pad = app->GetInputDevice().GetControlerVec()[0];
-		auto fade = GetSharedGameObject<Fade>(L"Fade");
+		auto fade = GetSharedGameObject<SceneTransition>(L"SceneTransition");
 		switch (m_state)
 		{
 		case GameState::FADEIN:
-			if (!fade->GetFadeActive()) {
+			if (!fade->GetTransitionActive()) {
 				m_state = GameState::STAY;
 				m_stateDelta = 0.0f;
 				CreateStageNum();
@@ -120,7 +120,7 @@ namespace basecross {
 			}
 			break;
 		case GameState::CLEAR:
-			if (!fade->GetFadeActive()) {
+			if (!fade->GetTransitionActive()) {
 				PostEvent(0.0f, GetThis<ObjectInterface>(), app->GetScene<Scene>(), L"ToResultStage");
 			}
 			break;
@@ -146,7 +146,7 @@ namespace basecross {
 	}
 
 	void GameStage::SetSceneTransition() {
-		GetSharedGameObject<Fade>(L"Fade")->FadeOut();
+		GetSharedGameObject<SceneTransition>(L"SceneTransition")->Play(SceneTransition::TransDir::Out);
 	}
 
 	void GameStage::CreateStageNum() {

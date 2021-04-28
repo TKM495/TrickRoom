@@ -8,21 +8,9 @@
 
 namespace basecross {
 	void FrameSprite::OnCreate() {
-		//CSVLoadを取得しデータをもらう
-		auto csvLoad = dynamic_pointer_cast<CSVLoad>(GetStage()->GetSharedObject(L"CSVLoad"));
-		auto& data = csvLoad->GetImageSpriteData();
-		//目標のデータを探す
-		int index = Utility::SearchDataIndex(data, L"Background");
-		if (index == -1) {
-			throw BaseException(
-				L"目標のデータが見つかりません",
-				L"name : Background",
-				L"FrameSprite::OnCreate()"
-			);
-		}
-		auto dat = data[index];
-		m_baseSize = dat.size;
-		if (m_baseSize.x > m_size.x || m_baseSize.y > m_size.y) {
+		auto size = Utility::GetTextureSize(L"Frame");
+		auto baseSize = size / 2.0f;
+		if (baseSize.x > m_size.x || baseSize.y > m_size.y) {
 			throw BaseException(
 				L"指定されたサイズが最小のサイズより小さいです",
 				L"BaseSize > Size",
@@ -30,32 +18,60 @@ namespace basecross {
 			);
 		}
 
-		auto baseSizeHalf = m_baseSize / 2.0f;
-		auto origin = dat.origin;
-		auto pos = SetAlignPosition(m_horizontal, m_vertical, m_size);
+		Rect2D<float> pos;
+
+		pos.left = (m_size.x / 2.0f);
+		pos.right = (m_size.x / 2.0f);
+		pos.top = (m_size.y / 2.0f);
+		pos.bottom = (m_size.y / 2.0f);
+		auto origin = Vec2(0.0f);
+		auto baseSizeHalf = size / 2.0f;
+		vector<Vec2> uvs, uv = {
+			origin,
+			origin + Vec2(baseSizeHalf.x, 0.0f),
+			origin + Vec2(0.0f, baseSizeHalf.y),
+			origin + baseSizeHalf,
+
+			origin + Vec2(baseSizeHalf.x, 0.0f),
+			origin + Vec2(size.x, 0.0f),
+			origin + baseSizeHalf,
+			origin + Vec2(size.x, baseSizeHalf.y),
+
+			origin + Vec2(0.0f, baseSizeHalf.y),
+			origin + baseSizeHalf,
+			origin + Vec2(0.0f, size.y),
+			origin + Vec2(baseSizeHalf.x, size.y),
+
+			origin + baseSizeHalf,
+			origin + Vec2(size.x, baseSizeHalf.y),
+			origin + Vec2(baseSizeHalf.x, size.y),
+			origin + size,
+		};
+		Utility::ConvertToUVCoordinates(uv, size, uvs);
+		Col4 color(1.0f);
 		//頂点のデータ (番号は左上から右下まで)
 		vertices = {
-			{Vec3(-pos.left                  ,   pos.top       ,0.0f) ,   m_color,(origin)/512.0f},  //0
-			{Vec3(-pos.left + baseSizeHalf.x ,   pos.top       ,0.0f) ,m_color,(origin+Vec2(baseSizeHalf.x,0.0f))/512.0f},  //1
-			{Vec3(-pos.left                  ,+pos.top -baseSizeHalf.y  ,0.0f),m_color,(origin + Vec2(0.0f,baseSizeHalf.y)) / 512.0f},  //2
-			{Vec3(-pos.left + baseSizeHalf.x ,+pos.top -baseSizeHalf.y  ,0.0f),m_color,(origin + baseSizeHalf) / 512.0f},  //3
+			{Vec3(-pos.left                  ,+pos.top                 ,0.0f),color,uvs[0]},  //0
+			{Vec3(-pos.left + baseSizeHalf.x ,+pos.top                 ,0.0f),color,uvs[1]},  //1
+			{Vec3(-pos.left                  ,+pos.top - baseSizeHalf.y,0.0f),color,uvs[2]},  //2
+			{Vec3(-pos.left + baseSizeHalf.x ,+pos.top - baseSizeHalf.y,0.0f),color,uvs[3]},  //3
 
-			{Vec3(+pos.right - baseSizeHalf.x ,   +pos.top      ,0.0f),   m_color,(origin+Vec2(baseSizeHalf.x,0.0f))/512.0f},  //4
-			{Vec3(+pos.right                  ,   +pos.top      ,0.0f),m_color,(origin+Vec2(m_baseSize.x,0.0f))/512.0f},  //5
-			{Vec3(+pos.right - baseSizeHalf.x ,+pos.top -baseSizeHalf.y  ,0.0f),m_color,(origin + baseSizeHalf) / 512.0f},  //6
-			{Vec3(+pos.right                  ,+pos.top -baseSizeHalf.y  ,0.0f),m_color,(origin + Vec2(m_baseSize.x,baseSizeHalf.y)) / 512.0f},  //7
+			{Vec3(+pos.right - baseSizeHalf.x,+pos.top                 ,0.0f),color,uvs[4]},  //4
+			{Vec3(+pos.right                 ,+pos.top                 ,0.0f),color,uvs[5]},  //5
+			{Vec3(+pos.right - baseSizeHalf.x,+pos.top - baseSizeHalf.y,0.0f),color,uvs[6]},  //6
+			{Vec3(+pos.right                 ,+pos.top - baseSizeHalf.y,0.0f),color,uvs[7]},  //7
 
-			{Vec3(-pos.left                  ,   -pos.bottom+baseSizeHalf.y,0.0f),   m_color,(origin+Vec2(0.0f,baseSizeHalf.y))/512.0f},  //8
-			{Vec3(-pos.left + baseSizeHalf.x ,-pos.bottom +baseSizeHalf.y   ,0.0f),m_color,(origin+ baseSizeHalf)/512.0f},  //9
-			{Vec3(-pos.left                  ,-pos.bottom         ,0.0f)  ,m_color,(origin + Vec2(0.0f,m_baseSize.y)) / 512.0f},  //10
-			{Vec3(-pos.left + baseSizeHalf.x ,-pos.bottom         ,0.0f)  ,m_color,(origin + Vec2(baseSizeHalf.x,m_baseSize.y)) / 512.0f},  //11
+			{Vec3(-pos.left                  ,-pos.bottom + baseSizeHalf.y,0.0f),color,uvs[8]},  //8
+			{Vec3(-pos.left + baseSizeHalf.x ,-pos.bottom + baseSizeHalf.y,0.0f),color,uvs[9]},  //9
+			{Vec3(-pos.left                  ,-pos.bottom                 ,0.0f),color,uvs[10]},  //10
+			{Vec3(-pos.left + baseSizeHalf.x ,-pos.bottom                 ,0.0f),color,uvs[11]},  //11
 
-			{Vec3(+pos.right -baseSizeHalf.x  ,-pos.bottom +baseSizeHalf.y   ,0.0f),   m_color,(origin+baseSizeHalf)/512.0f},  //12
-			{Vec3(+pos.right                  ,   -pos.bottom +baseSizeHalf.y,0.0f),m_color,(origin+ Vec2(m_baseSize.x,baseSizeHalf.y))/512.0f},  //13
-			{Vec3(+pos.right -baseSizeHalf.x  ,-pos.bottom         ,0.0f)   ,m_color,(origin + Vec2(baseSizeHalf.x,m_baseSize.y)) / 512.0f},  //14
-			{Vec3(+pos.right                  ,-pos.bottom         ,0.0f)   ,m_color,(origin + m_baseSize) / 512.0f},  //15
+			{Vec3(+pos.right - baseSizeHalf.x,-pos.bottom + baseSizeHalf.y,0.0f),color,uvs[12]},  //12
+			{Vec3(+pos.right                 ,-pos.bottom + baseSizeHalf.y,0.0f),color,uvs[13]},  //13
+			{Vec3(+pos.right - baseSizeHalf.x,-pos.bottom                 ,0.0f),color,uvs[14]},  //14
+			{Vec3(+pos.right                 ,-pos.bottom                 ,0.0f),color,uvs[15]},  //15
 
-		    };
+		};
 		//頂点インデックス
 		vector<uint16_t> indices = {
 			0,1,2,
@@ -81,7 +97,7 @@ namespace basecross {
 		};
 
 		auto drawComp = AddComponent<PCTSpriteDraw>(vertices, indices);
-		drawComp->SetTextureResource(L"Sprite");
+		drawComp->SetTextureResource(L"Frame");
 		drawComp->SetSamplerState(SamplerState::AnisotropicWrap); //テクスチャの繰り返し設定(Wrap)
 		drawComp->SetDepthStencilState(DepthStencilState::Read);
 
@@ -89,130 +105,57 @@ namespace basecross {
 		SetDrawLayer(1);
 	}
 
-	//void FrameSprite::SetAlignVertical(Align::Vertical ver) {
-	//	auto size = m_data.size;
-	//	m_data.vertical = ver;
-	//	Rect2D<float> pos;
-	//	//横位置の設定
-	//	switch (m_data.vertical)
-	//	{
-	//	case basecross::Align::Vertical::Top:
-	//		pos.top = 0.0f;
-	//		pos.bottom = size.y;
-	//		break;
-	//	case basecross::Align::Vertical::Center:
-	//		pos.top = size.y / 2.0f;
-	//		pos.bottom = size.y / 2.0f;
-	//		break;
-	//	case basecross::Align::Vertical::Bottom:
-	//		pos.top = size.y;
-	//		pos.bottom = 0.0f;
-	//		break;
-	//	default:
-	//		//エラー
-	//		break;
-	//	}
-	//	vertices[0].position.y = vertices[1].position.y = +pos.top;
-	//	vertices[2].position.y = vertices[3].position.y = -pos.bottom;
-	//	GetComponent<PCTSpriteDraw>()->UpdateVertices(vertices);
-	//}
-
-	//void FrameSprite::SetSize(Vec2 size) {
-	//	auto origin = m_data.position;
-	//	m_data.size = size;
-	//	Rect2D<float> pos;
-	//	//縦位置の設定
-	//	switch (m_data.horizontal)
-	//	{
-	//	case basecross::Align::Horizontal::Left:
-	//		pos.left = 0.0f;
-	//		pos.right = m_data.size.x;
-	//		break;
-	//	case basecross::Align::Horizontal::Center:
-	//		pos.left = m_data.size.x / 2.0f;
-	//		pos.right = m_data.size.x / 2.0f;
-	//		break;
-	//	case basecross::Align::Horizontal::Right:
-	//		pos.left = m_data.size.x;
-	//		pos.right = 0.0f;
-	//		break;
-	//	default:
-	//		//エラー
-	//		break;
-	//	}
-	//	//横位置の設定
-	//	switch (m_data.vertical)
-	//	{
-	//	case basecross::Align::Vertical::Top:
-	//		pos.top = 0.0f;
-	//		pos.bottom = m_data.size.y;
-	//		break;
-	//	case basecross::Align::Vertical::Center:
-	//		pos.top = m_data.size.y / 2.0f;
-	//		pos.bottom = m_data.size.y / 2.0f;
-	//		break;
-	//	case basecross::Align::Vertical::Bottom:
-	//		pos.top = m_data.size.y;
-	//		pos.bottom = 0.0f;
-	//		break;
-	//	default:
-	//		//エラー
-	//		break;
-	//	}
-
-	//	vertices[0].position = Vec3(-pos.left, +pos.top, 0.0f);
-	//	vertices[1].position = Vec3(+pos.right, +pos.top, 0.0f);
-	//	vertices[2].position = Vec3(-pos.left, -pos.bottom, 0.0f);
-	//	vertices[3].position = Vec3(+pos.right, -pos.bottom, 0.0f);
-
-	//	GetComponent<PCTSpriteDraw>()->UpdateVertices(vertices);
-	//}
-
-	Rect2D<float> FrameSprite::SetAlignPosition(Align::Horizontal hor, Align::Vertical ver, const Vec2& size) {
+	void FrameSprite::UpdateVertices() {
+		auto texSize = Utility::GetTextureSize(L"Frame");
+		auto size = GetComponent<Transform>()->GetScale();
 		Rect2D<float> pos;
-		//縦位置の設定
-		switch (hor)
-		{
-		case basecross::Align::Horizontal::Left:
-			pos.left = 0.0f;
-			pos.right = size.x;
-			break;
-		case basecross::Align::Horizontal::Center:
-			pos.left = size.x / 2.0f;
-			pos.right = size.x / 2.0f;
-			break;
-		case basecross::Align::Horizontal::Right:
-			pos.left = size.x;
-			pos.right = 0.0f;
-			break;
-		default:
-			//エラー
-			break;
+		pos.left = (m_size.x * (1 / size.x)) / 2.0f;
+		pos.right = (m_size.x * (1 / size.x)) / 2.0f;
+		pos.top = (m_size.y * (1 / size.y)) / 2.0f;
+		pos.bottom = (m_size.y * (1 / size.y)) / 2.0f;
+		auto baseSizeHalf = texSize / 2.0f;
+		vector<Vec3> vertexPos = {
+			{Vec3(-pos.left                  ,+pos.top                 ,0.0f)},  //0
+			{Vec3(-pos.left + baseSizeHalf.x ,+pos.top                 ,0.0f)},  //1
+			{Vec3(-pos.left                  ,+pos.top - baseSizeHalf.y,0.0f)},  //2
+			{Vec3(-pos.left + baseSizeHalf.x ,+pos.top - baseSizeHalf.y,0.0f)},  //3
+
+			{Vec3(+pos.right - baseSizeHalf.x,+pos.top                 ,0.0f)},  //4
+			{Vec3(+pos.right                 ,+pos.top                 ,0.0f)},  //5
+			{Vec3(+pos.right - baseSizeHalf.x,+pos.top - baseSizeHalf.y,0.0f)},  //6
+			{Vec3(+pos.right                 ,+pos.top - baseSizeHalf.y,0.0f)},  //7
+
+			{Vec3(-pos.left                  ,-pos.bottom + baseSizeHalf.y,0.0f)},  //8
+			{Vec3(-pos.left + baseSizeHalf.x ,-pos.bottom + baseSizeHalf.y,0.0f)},  //9
+			{Vec3(-pos.left                  ,-pos.bottom                 ,0.0f)},  //10
+			{Vec3(-pos.left + baseSizeHalf.x ,-pos.bottom                 ,0.0f)},  //11
+
+			{Vec3(+pos.right - baseSizeHalf.x,-pos.bottom + baseSizeHalf.y,0.0f)},  //12
+			{Vec3(+pos.right                 ,-pos.bottom + baseSizeHalf.y,0.0f)},  //13
+			{Vec3(+pos.right - baseSizeHalf.x,-pos.bottom                 ,0.0f)},  //14
+			{Vec3(+pos.right                 ,-pos.bottom                 ,0.0f)},  //15
+		};
+		if (vertices.size() != vertexPos.size()) {
+			throw BaseException(
+				L"サイズが一致しません。",
+				L"vertices : " + to_wstring(vertices.size()) + L"vertexPos : " + to_wstring(vertexPos.size()),
+				L"FrameSprite:UpdateVertices()"
+			);
 		}
-		//横位置の設定
-		switch (ver)
-		{
-		case basecross::Align::Vertical::Top:
-			pos.top = 0.0f;
-			pos.bottom = size.y;
-			break;
-		case basecross::Align::Vertical::Center:
-			pos.top = size.y / 2.0f;
-			pos.bottom = size.y / 2.0f;
-			break;
-		case basecross::Align::Vertical::Bottom:
-			pos.top = size.y;
-			pos.bottom = 0.0f;
-			break;
-		default:
-			//エラー
-			break;
+		for (int i = 0; i < vertexPos.size(); i++) {
+			vertices[i].position = vertexPos[i];
 		}
-		return pos;
+		GetComponent<PCTSpriteDraw>()->UpdateVertices(vertices);
 	}
 
 	void FrameSprite::SetSize(Vec2 size) {
 		GetComponent<Transform>()->SetScale((Vec3)size);
+		UpdateVertices();
+	}
+
+	void FrameSprite::SetSize(float size) {
+		GetComponent<Transform>()->SetScale(Vec3(size));
+		UpdateVertices();
 	}
 
 	void FrameSprite::SetPosition(Vec2 pos) {
