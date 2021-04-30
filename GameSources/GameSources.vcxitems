@@ -25,6 +25,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Crystal.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Effect.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)EmptyObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Fade.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)illusionFrame.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)LineSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SceneTransition.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FloorModel.h" />
@@ -99,6 +102,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Crystal.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Effect.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)EmptyObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Fade.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)illusionFrame.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)LineSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SceneTransition.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FloorModel.cpp" />

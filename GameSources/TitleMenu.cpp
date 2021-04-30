@@ -16,7 +16,7 @@ namespace basecross {
 		for (auto element : titleMenu) {
 			PushBackElement(element);
 		}
-		SetUpMenu<StringSprite2, Cursor>();
+		SetUpMenu();
 	}
 
 	void TitleMenu::OnPushButton() {

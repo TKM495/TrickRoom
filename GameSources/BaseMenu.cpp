@@ -7,6 +7,23 @@
 #include "Project.h"
 
 namespace basecross {
+	void BaseMenu::SetUpMenu() {
+		//-1‚È‚Ì‚Í”z—ñ‚É‡‚í‚¹‚é‚½‚ß
+		m_menuNum = (int)m_menuElement.size() - 1;
+
+		auto& stage = GetStage();
+		for (auto& element : m_menuElement) {
+			auto str = stage->AddGameObject<StringSprite2>(element.name);
+			str->SetPos(element.pos);
+			str->SetSize(0.9f);
+			m_stringSprite.push_back(str);
+			auto texSize = str->GetTexSize();
+			auto frame = stage->AddGameObject<illusionFrame>(texSize.x, texSize.y);
+			frame->SetPosition(element.pos);
+			m_illusionFrame.push_back(frame);
+		}
+	}
+
 	void BaseMenu::OnUpdate() {
 		if (!m_bActive) {
 			return;
@@ -46,10 +63,14 @@ namespace basecross {
 		}
 
 		auto element = m_menuElement[m_nowMenuNum];
-		auto transComp = m_cursor.lock()->GetComponent<Transform>();
-		auto amount = m_cursorSp * delta;
-		auto pos = Lerp::CalculateLerp(transComp->GetPosition(), (Vec3)element.pos, 0.0f, 1.0f, amount, Lerp::rate::EaseOut);
-		transComp->SetPosition(pos);
+		for (int i = 0; i < m_menuElement.size(); i++) {
+			if (i == m_nowMenuNum) {
+				m_illusionFrame[i]->SetItemActive(true);
+			}
+			else {
+				m_illusionFrame[i]->SetItemActive(false);
+			}
+		}
 
 
 		if (pad.wPressedButtons & XINPUT_GAMEPAD_A && !m_bChange) {
@@ -91,10 +112,12 @@ namespace basecross {
 	}
 
 	void BaseMenu::SetDrawMenu(bool flg) {
-		for (auto& menu : m_spriteMenu) {
-			menu->SetDrawActive(flg);
+		for (auto& string : m_stringSprite) {
+			string->SetDrawActive(flg);
 		}
-		m_cursor.lock()->SetDrawActive(flg);
+		for (auto& frame : m_illusionFrame) {
+			frame->SetDrawActive(flg);
+		}
 		m_bActive = flg;
 	}
 }

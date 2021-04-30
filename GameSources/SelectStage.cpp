@@ -29,23 +29,26 @@ namespace basecross {
 
 		auto csvLoad = AddGameObject<CSVLoad>();
 		csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetStringSpriteData(), SpriteType::String);
-		csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetImageSpriteData(), SpriteType::Image);
-		//auto arrow = AddGameObject<ImageSpriteForCSV>(L"Arrow");
-		//arrow->SetSize(0.5f);
-		//arrow->SetPos(Vec3(500.0f, 0.0f, 0.0f));
-		//arrow = AddGameObject<ImageSpriteForCSV>(L"Arrow");
-		//arrow->SetSize(0.5f);
-		//arrow->SetPos(Vec3(-500.0f, 0.0f, 0.0f));
-		//arrow->SetRot(180.0f);
+		auto arrow = AddGameObject<ImageSprite>(L"Arrow");
+		arrow->SetSize(0.4f);
+		arrow->SetPos(Vec2(550.0f, 0.0f));
+		arrow->SetDrawLayer(5);
+		arrow = AddGameObject<ImageSprite>(L"Arrow");
+		arrow->SetSize(-0.4f);
+		arrow->SetPos(Vec2(-550.0f, 0.0f));
+		arrow->SetDrawLayer(5);
+
+		auto frame = AddGameObject<FrameSprite>(Vec2(520.0f, 150.0f));
+		frame->SetSize(0.5f);
+		frame->SetPosition(Vec2(370.0f, -325.0f));
 		auto aButton = AddGameObject<ImageSprite>(L"AButton");
-		aButton->SetPos(Vec2(250.0f, -325.0f));
+		aButton->SetPos(Vec2(240.0f, -325.0f));
 		aButton->SetSize(0.3f);
 		auto bButton = AddGameObject<ImageSprite>(L"BButton");
-		bButton->SetPos(Vec2(470.0f, -325.0f));
+		bButton->SetPos(Vec2(455.0f, -325.0f));
 		bButton->SetSize(0.25f);
 		auto title = AddGameObject<StringSprite2>(L"StageSelect2");
 		title->SetPos(Vec2(0.0f, 330.0f));
-		AddGameObject<BGSprite>(L"BGSelectStage");
 		AddGameObject<SelectStageMenu>();
 
 		AddGameObject<SceneTransition>()->Play(SceneTransition::TransDir::In);

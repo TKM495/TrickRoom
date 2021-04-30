@@ -72,6 +72,9 @@ namespace basecross {
 		void SetPos(Vec2 pos);
 		float GetSize();
 		Vec3 GetPos();
+		Vec2 GetTexSize() {
+			return m_data.size;
+		}
 
 		shared_ptr<FadeComponent> GetFadeComp() {
 			return GetComponent<FadeComponent>();

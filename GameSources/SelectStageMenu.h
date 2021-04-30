@@ -17,11 +17,18 @@ namespace basecross {
         shared_ptr<XAudio2Manager> m_audio;
         //カーソルオブジェクト
         weak_ptr<Cursor> m_cursor;
-
+        vector<Vec2> m_menuGroupPos;
+        vector<Vec2> m_menuItemPos;
+        vector<Vec2> m_menuItemBasePos;
         //メニューの要素数
         int m_menuNum;
         //今選択しているメニュー
         int m_nowMenuNum;
+        //メニューグループ
+        int m_nowMenuGroupNum;
+        Vec2 m_nowmenuGroupPos;
+        int m_beforeMenuGroupNum;
+        Vec2 m_beforeMenuGroupPos;
         wstring m_mes;
         //遷移遅延
         float m_delayTime;
@@ -52,6 +59,7 @@ namespace basecross {
             :GameObject(stage),
             m_menuNum(0),
             m_nowMenuNum(0),
+            m_nowMenuGroupNum(0),
             m_delayTime(0.0f),
             m_bChange(false),
             m_delta(0.0f),

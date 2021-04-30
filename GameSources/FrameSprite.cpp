@@ -10,13 +10,13 @@ namespace basecross {
 	void FrameSprite::OnCreate() {
 		auto size = Utility::GetTextureSize(L"Frame");
 		auto baseSize = size / 2.0f;
-		if (baseSize.x > m_size.x || baseSize.y > m_size.y) {
-			throw BaseException(
-				L"指定されたサイズが最小のサイズより小さいです",
-				L"BaseSize > Size",
-				L"FrameSprite::OnCreate()"
-			);
-		}
+		//if (baseSize.x > m_size.x || baseSize.y > m_size.y) {
+		//	throw BaseException(
+		//		L"指定されたサイズが最小のサイズより小さいです",
+		//		L"BaseSize > Size",
+		//		L"FrameSprite::OnCreate()"
+		//	);
+		//}
 
 		Rect2D<float> pos;
 
@@ -102,7 +102,6 @@ namespace basecross {
 		drawComp->SetDepthStencilState(DepthStencilState::Read);
 
 		SetAlphaActive(true); //透明をサポートする&両面描画になる
-		SetDrawLayer(1);
 	}
 
 	void FrameSprite::UpdateVertices() {

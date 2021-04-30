@@ -118,6 +118,9 @@ namespace basecross {
 				num = L"1";
 				break;
 			}
+			if (scene->GetNowStageName() == L"ToTitleStage") {
+				num = L"1";
+			}
 			if (m_texName == L"Floor") {
 				num = L"";
 			}

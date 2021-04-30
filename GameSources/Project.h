@@ -32,6 +32,8 @@
 //UI関係
 #include "Numbers.h"
 #include "FrameSprite.h"
+#include "LineSprite.h"
+#include "illusionFrame.h"
 #include "BGSprite.h"
 #include "ColorOut.h"
 #include "ImageSpriteForCSV.h"
@@ -40,6 +42,7 @@
 #include "UI_HP.h"
 #include "UI_Crystal.h"
 #include "SceneTransition.h"
+#include "Fade.h"
 #include "Result.h"
 #include "UI_Player.h"
 #include "UI_Goalgauge.h"

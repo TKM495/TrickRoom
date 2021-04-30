@@ -221,6 +221,15 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)FloorModel.cpp">
       <Filter>StageObject\RouteObject\Floor\FloorModel</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Fade.cpp">
+      <Filter>Sprite\Fade</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)LineSprite.cpp">
+      <Filter>Sprite\Line</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)illusionFrame.cpp">
+      <Filter>Sprite\illusionFrame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
@@ -434,6 +443,15 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)FloorModel.h">
       <Filter>StageObject\RouteObject\Floor\FloorModel</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Fade.h">
+      <Filter>Sprite\Fade</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)LineSprite.h">
+      <Filter>Sprite\Line</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)illusionFrame.h">
+      <Filter>Sprite\illusionFrame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -657,6 +675,12 @@
     </Filter>
     <Filter Include="StageObject\RouteObject\Floor\FloorModel">
       <UniqueIdentifier>{10490aa6-b97b-4fbc-aff2-4d2587424e80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sprite\Line">
+      <UniqueIdentifier>{a5d2eb22-bd55-4ee2-8fc3-7a52f9acadc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sprite\illusionFrame">
+      <UniqueIdentifier>{8c43dab1-069c-4446-bc0e-da99afad748a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

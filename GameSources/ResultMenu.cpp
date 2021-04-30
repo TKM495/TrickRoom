@@ -23,7 +23,7 @@ namespace basecross {
 			PushBackElement(element);
 		}
 
-		SetUpMenu<StringSprite2, Cursor>();
+		SetUpMenu();
 	}
 
 	void ResultMenu::OnPushButton(MenuElement element) {

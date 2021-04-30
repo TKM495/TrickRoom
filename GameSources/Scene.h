@@ -16,7 +16,7 @@ namespace basecross{
 	//--------------------------------------------------------------------------------------
 	///	ゲームシーン
 	//--------------------------------------------------------------------------------------
-	class Scene : public SceneBase{
+	class Scene : public SceneBase {
 		//文字スプライト用CSVデータ
 		vector<wstring> m_stringSpriteWData;
 		//画像スプライト用CSVデータ
@@ -33,8 +33,10 @@ namespace basecross{
 		int m_maxStage;
 		//デバッグステート
 		DebugState m_debugState;
-		//現在のステージ名
+		//現在のステージ(シーン)名
 		wstring m_nowStageName;
+		//以前のステージ(シーン)名
+		wstring m_beforeStageName;
 	public:
 		Scene() :SceneBase(),
 			m_stageNum(1),
@@ -44,51 +46,21 @@ namespace basecross{
 		virtual void OnCreate() override;
 		virtual void OnEvent(const shared_ptr<Event>& event) override;
 
-		vector<wstring>& GetStringSpriteData() {
-			return m_stringSpriteWData;
-		}
+		vector<wstring>& GetStringSpriteData();
+		vector<wstring>& GetImageSpriteData();
+		vector<wstring>& GetPictureData();
+		vector<wstring>& GetStageScoreData();
 
-		vector<wstring>& GetImageSpriteData() {
-			return m_imageSpriteWData;
-		}
+		DebugState GetDebugState();
+		shared_ptr<SoundItem> GetTitleBGM();
+		void SetTitleBGM(shared_ptr<SoundItem> bgm);
+		void SetStageNum(int num);
+		int GetStageNum();
+		int GetMaxStage();
 
-		vector<wstring>& GetPictureData() {
-			return m_pictureWData;
-		}
-
-		vector<wstring>& GetStageScoreData() {
-			return m_stageScoreWData;
-		}
-
-		DebugState GetDebugState() {
-			return m_debugState;
-		}
-
-		void SetTitleBGM(shared_ptr<SoundItem> bgm) {
-			m_titleBGM = bgm;
-		}
-
-		shared_ptr<SoundItem> GetTitleBGM() {
-			return m_titleBGM;
-		}
-
-		void SetStageNum(int num) {
-			m_stageNum = num;
-		}
-
-		int GetStageNum() {
-			return m_stageNum;
-		}
-
-		int GetMaxStage() {
-			return m_maxStage;
-		}
-
-		wstring GetNowStageName() {
-			return m_nowStageName;
-		}
+		wstring GetNowStageName();
+		wstring GetBeforeStageName();
 	};
-
 }
 
 //end basecross

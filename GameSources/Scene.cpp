@@ -7,10 +7,26 @@
 #include "Project.h"
 
 namespace basecross{
+	vector<wstring>& Scene::GetStringSpriteData() { return m_stringSpriteWData; }
+	vector<wstring>& Scene::GetImageSpriteData() { return m_imageSpriteWData; }
+	vector<wstring>& Scene::GetPictureData() { return m_pictureWData; }
+	vector<wstring>& Scene::GetStageScoreData() { return m_stageScoreWData; }
 
-	//--------------------------------------------------------------------------------------
-	///	�Q�[���V�[��
-	//--------------------------------------------------------------------------------------
+	DebugState Scene::GetDebugState() { return m_debugState; }
+	shared_ptr<SoundItem> Scene::GetTitleBGM() { return m_titleBGM; }
+	int Scene::GetStageNum() { return m_stageNum; }
+	int Scene::GetMaxStage() { return m_maxStage; }
+
+	wstring Scene::GetNowStageName() { return m_nowStageName; }
+	wstring Scene::GetBeforeStageName() { return m_beforeStageName; }
+
+	void Scene::SetTitleBGM(shared_ptr<SoundItem> bgm) {
+		m_titleBGM = bgm;
+	}
+	void Scene::SetStageNum(int num) {
+		m_stageNum = num;
+	}
+
 	void Scene::OnCreate(){
 		try {
 			m_debugState = DebugState::None;
@@ -59,7 +75,11 @@ namespace basecross{
 			app->RegisterTexture(L"PictureFrame2", path + L"PictureFrame2.png");
 			app->RegisterTexture(L"AButton", path + L"AButton.png");
 			app->RegisterTexture(L"BButton", path + L"BButton.png");
-			app->RegisterTexture(L"BGSelectStage", path + L"BGSelectStage.png");
+			app->RegisterTexture(L"BGSelectStage1", path + L"BGSelectStage1.png");
+			app->RegisterTexture(L"BGSelectStage2", path + L"BGSelectStage2.png");
+			app->RegisterTexture(L"BGSelectStage3", path + L"BGSelectStage3.png");
+			app->RegisterTexture(L"BGSelectStage4", path + L"BGSelectStage4.png");
+			app->RegisterTexture(L"Arrow", path + L"Arrow.png");
 			app->RegisterTexture(L"BackGround", path + L"BGTest.png");
 			app->RegisterTexture(L"Frame", path + L"Frame.png");
 			app->RegisterTexture(L"1280x800", path + L"1280x800.png");
@@ -113,6 +133,7 @@ namespace basecross{
 			Col4 Col;
 			Col.set(0.5f, 0.5f, 0.7f, 1.0f);
 			SetClearColor(Col);
+			m_nowStageName = L"Startup";
 			//�������g�ɃC�x���g�𑗂�
 			//����ɂ��e�X�e�[�W��I�u�W�F�N�g��Create���ɃV�[���ɃA�N�Z�X�ł���
 			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToTitleStage");
@@ -123,6 +144,7 @@ namespace basecross{
 	}
 
 	void Scene::OnEvent(const shared_ptr<Event>& event) {
+		m_beforeStageName = m_nowStageName;
 		m_nowStageName = event->m_MsgStr;
 		//�^�C�g���X�e�[�W
 		if (event->m_MsgStr == L"ToTitleStage") {

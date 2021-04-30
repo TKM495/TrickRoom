@@ -17,7 +17,7 @@ namespace basecross {
 		for (auto element : PauseMenu) {
 			PushBackElement(element);
 		}
-		SetUpMenu<StringSprite2, Cursor>();
+		SetUpMenu();
 	}
 
 	void PauseMenu::OnPushButton(wstring mes) {

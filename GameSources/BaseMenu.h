@@ -6,6 +6,7 @@
 #pragma once
 #include "stdafx.h"
 #include "StringSprite2.h"
+#include "illusionFrame.h"
 #include "Cursor.h"
 
 namespace basecross {
@@ -27,15 +28,15 @@ namespace basecross {
         //メニュー要素のベクター配列
         vector<MenuElement> m_menuElement;
         //メニューの文字
-        vector<shared_ptr<StringSprite2>> m_spriteMenu;
+        vector<shared_ptr<StringSprite2>> m_stringSprite;
+        //メニューの文字のフレーム
+        vector<shared_ptr<illusionFrame>> m_illusionFrame;
         //オーディオ取得用
         shared_ptr<XAudio2Manager> m_audio;
         //メニューの要素数
         int m_menuNum;
         //今選択しているメニュー
         int m_nowMenuNum;
-        //カーソルオブジェクト
-        weak_ptr<Cursor> m_cursor;
         //カーソルの移動方向
         MenuDirection m_dir;
         //遷移遅延
@@ -50,20 +51,7 @@ namespace basecross {
         bool m_bActive;
     protected:
         //メニュー構築
-        template<typename T_Object, typename T_Cursor>
-        void SetUpMenu() {
-            //-1なのは配列に合わせるため
-            m_menuNum = (int)m_menuElement.size() - 1;
-
-            auto& stage = GetStage();
-            for (auto& element : m_menuElement) {
-                auto str = stage->AddGameObject<T_Object>(element.name);
-                str->GetComponent<Transform>()->SetPosition((Vec3)element.pos);
-                m_spriteMenu.push_back(str);
-            }
-
-            m_cursor = GetStage()->AddGameObject<T_Cursor>(L"VCursor");
-        }
+        void SetUpMenu();
         //ボタンが押されたときの処理
         virtual void OnPushButton(MenuElement element);
         virtual void OnPushButton(wstring mes);
