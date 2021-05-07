@@ -16,6 +16,7 @@ namespace basecross {
 		Vec3 m_rotation;
 		Vec3 m_respawnPos;
 		float m_moveSpeed;
+		Vec3 m_nowMoveSp;
 		int m_Crystal;
 		int m_HP;//HP(�����l�T)
 		float m_count;//Respawn
@@ -50,7 +51,15 @@ namespace basecross {
 		int GetHP();
 		//Crystal
 		int GetCrystal();
-
+		bool GetbRespawn() {
+			return bRespawn;
+		}
+		bool GetMutekiFlg() {
+			return bMutekiFlg;
+		}
+		Vec3 GetNowMoveSp() {
+			return m_nowMoveSp;
+		}
 		void Draw();
 
 		//Vec3 jumpVelocity;

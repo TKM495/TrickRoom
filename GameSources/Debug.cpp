@@ -15,9 +15,9 @@ namespace basecross {
 	}
 
 	void Debug::OnUpdate() {
-		//auto player = GetStage()->GetSharedGameObject<Player>(L"Player");
-		//auto transComp = player->GetComponent<Transform>();
-		//auto pos = transComp->GetPosition();
+		auto player = GetStage()->GetSharedGameObject<Player>(L"Player");
+		auto transComp = player->GetComponent<Transform>();
+		auto pos = transComp->GetPosition();
 
 		//オブジェクト数
 		auto ObjCount = GetStage()->GetGameObjectVec().size();
@@ -39,7 +39,7 @@ namespace basecross {
 
 		wss.str(L"");
 		wss << FPS;
-		//wss << L"PlayerPos:" << pos.x << L"," << pos.y << L"," << pos.z << endl;
+		wss << L"PlayerPos:" << pos.x << L"," << pos.y << L"," << pos.z << endl;
 		wss << ViewStr << OBJ_COUNT << endl;
 
 		auto ssComp = GetComponent<StringSprite>();

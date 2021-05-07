@@ -70,7 +70,7 @@ namespace basecross {
 			col->SetDrawActive(true);
 		}
 
-		StageObject::OnCreate();
+		StageObject::ObjectSetUp();
 
 		if (m_behavior == L"SinCurve") {
 			GetBehavior<SinCurve>()->SetOffset(m_offset);

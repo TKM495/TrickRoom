@@ -36,7 +36,7 @@ namespace basecross {
 	}
 
 	void Stairs::OnCreate() {
-		StageObject::OnCreate();
+		StageObject::ObjectSetUp();
 		if (m_trickFlg) {
 			auto trick = AddComponent<TrickArtDraw>();
 			trick->SetMeshResource(L"Stairs");
@@ -54,7 +54,7 @@ namespace basecross {
 				ptrDraw->SetOwnShadowActive(true);
 			}
 			else {
-				auto ptrDraw = AddComponent<PNTStaticModelDraw>();
+				auto ptrDraw = AddComponent<PNTStaticDraw>();
 				ptrDraw->SetMeshResource(L"Stairs");
 				ptrDraw->SetOwnShadowActive(true);
 			}

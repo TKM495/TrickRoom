@@ -27,24 +27,40 @@ namespace basecross {
 	}
 
 	void FloorModel::OnCollisionEnter(shared_ptr<GameObject>& other) {
+		auto state = dynamic_pointer_cast<GameStage>(GetStage())->GetState();
 		auto camera = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
-		if (other->FindTag(L"Player")&&
-			!camera->GetbLeapFlg()) {
-			auto playerTrans = other->GetComponent<Transform>();
-			auto pos = playerTrans->GetPosition();
-			pos += -m_floor->GetMove();
-			playerTrans->SetPosition(pos);
+		switch (state)
+		{
+		default:
+			if (other->FindTag(L"Player") &&
+				!camera->GetbLeapFlg()) {
+				auto playerTrans = other->GetComponent<Transform>();
+				auto pos = playerTrans->GetPosition();
+				pos += -m_floor->GetMove();
+				playerTrans->SetPosition(pos);
+			}
+			break;
+		case basecross::GameStage::GameState::PAUSE:
+			break;
 		}
 	}
 
 	void FloorModel::OnCollisionExcute(shared_ptr<GameObject>& other) {
+		auto state = dynamic_pointer_cast<GameStage>(GetStage())->GetState();
 		auto camera = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
-		if (other->FindTag(L"Player") &&
-			!camera->GetbLeapFlg()) {
-			auto playerTrans = other->GetComponent<Transform>();
-			auto pos = playerTrans->GetPosition();
-			pos += -m_floor->GetMove();
-			playerTrans->SetPosition(pos);
+		switch (state)
+		{
+		default:
+			if (other->FindTag(L"Player") &&
+				!camera->GetbLeapFlg()) {
+				auto playerTrans = other->GetComponent<Transform>();
+				auto pos = playerTrans->GetPosition();
+				pos += -m_floor->GetMove();
+				playerTrans->SetPosition(pos);
+			}
+			break;
+		case basecross::GameStage::GameState::PAUSE:
+			break;
 		}
 	}
 

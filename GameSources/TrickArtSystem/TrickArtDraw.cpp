@@ -130,9 +130,9 @@ namespace basecross {
 			}
 		}
 		//コンスタントバッファの更新
-		pD3D11DeviceContext->UpdateSubresource(CBPNTStaticDraw2::GetPtr()->GetBuffer(), 0, nullptr, &SmCb, 0, 0);
+		pD3D11DeviceContext->UpdateSubresource(CBTrickArt::GetPtr()->GetBuffer(), 0, nullptr, &SmCb, 0, 0);
 		//コンスタントバッファの設定
-		ID3D11Buffer* pConstantBuffer = CBPNTStaticDraw2::GetPtr()->GetBuffer();
+		ID3D11Buffer* pConstantBuffer = CBTrickArt::GetPtr()->GetBuffer();
 		ID3D11Buffer* pNullConstantBuffer = nullptr;
 		//頂点シェーダに渡す
 		pD3D11DeviceContext->VSSetConstantBuffers(0, 1, &pConstantBuffer);

@@ -10,12 +10,12 @@ namespace basecross{
 	Player::Player(const std::shared_ptr<Stage>& stage,
 		const wstring& line)
 		: StageObject(stage),
-		m_moveSpeed(3), m_HP(3), m_Crystal(0),
+		m_moveSpeed(2), m_HP(3), m_Crystal(0),
 		bMutekiFlg(false), m_Mcount(0), m_MTime(2),
 		m_DrawCount(0), m_BlinkMask(8), rotationSpeed(0.2f),
 		m_bExtrude(false), m_deltaExtrude(0.0f),
 		bDotFlg(false), m_DotCount(0), m_DotMaxCount(2),
-		m_count(0), m_RespawnTime(2), bRespawn(false)
+		m_count(0), m_RespawnTime(2), bRespawn(false),m_nowMoveSp(Vec3(0.0f))
 	{
 		//トークン（カラム）の配列
 		vector<wstring> tokens;
@@ -37,6 +37,7 @@ namespace basecross{
 			XMConvertToRadians((float)_wtof(tokens[9].c_str()))
 		);
 		m_respawnPos = m_position;
+		m_respawnPos.y += 0.5f;
 	}
 
 	void Player::OnCreate()
@@ -46,15 +47,24 @@ namespace basecross{
 		m_model = GetStage()->AddGameObject<PlayerModel>(GetThis<Player>());
 		auto trans = m_model->GetComponent<Transform>();
 		trans->SetParent(GetThis<Player>());
-		trans->SetPosition(Vec3(0.0f, -0.75f, -0.25f));
+		trans->SetPosition(Vec3(0.0f, -0.75f, 0.0f));
+
+		auto pos = m_respawnPos;
+		pos.y = 0.01f;
+		GetStage()->AddGameObject<StartPoint>(pos);
 
 		AddTag(L"Player");
 
-		AddComponent<Gravity>();
-		auto col = AddComponent<CollisionObb>();
 		auto scene = App::GetApp()->GetScene<Scene>();
-		if (scene->GetDebugState() == DebugState::Debug) {
-			col->SetDrawActive(true);
+		if (!(scene->GetDebugState() == DebugState::CreateStage)) {
+			AddComponent<Gravity>();
+			auto col = AddComponent<CollisionObb>();
+			if (scene->GetDebugState() == DebugState::Debug) {
+				col->SetDrawActive(true);
+			}
+		}
+		else {
+			m_moveSpeed = 10.0f;
 		}
 
 		auto transComp = GetComponent<Transform>();
@@ -170,7 +180,8 @@ namespace basecross{
 		auto transComp = GetComponent<Transform>();
 		auto pos = transComp->GetPosition();
 
-		pos += MoveVec();
+		m_nowMoveSp = MoveVec();
+		pos += m_nowMoveSp;
 
 		transComp->SetPosition(pos);
 
@@ -308,8 +319,16 @@ namespace basecross{
 
 				GetComponent<Collision>()->SetUpdateActive(false);
 				GetComponent<Gravity>()->SetUpdateActive(false);
-				auto effect = GetStage()->GetSharedGameObject<Effect>(L"Effect");
-				effect->InsertEffect(other->GetComponent<Transform>()->GetPosition());
+				if (other->FindTag(L"FallingArea")) {
+					auto audio = App::GetApp()->GetXAudio2Manager();
+					audio->Start(L"FallSE", 0, 0.1f);
+				}
+				else {
+					auto effect = GetStage()->GetSharedGameObject<Effect>(L"Effect");
+					effect->InsertEffect(other->GetComponent<Transform>()->GetPosition());
+					auto audio = App::GetApp()->GetXAudio2Manager();
+					audio->Start(L"DamageSE", 0, 0.1f);
+				}
 			}
 		}
 
@@ -353,8 +372,16 @@ namespace basecross{
 
 				GetComponent<Collision>()->SetUpdateActive(false);
 				GetComponent<Gravity>()->SetUpdateActive(false);
-				auto effect = GetStage()->GetSharedGameObject<Effect>(L"Effect");
-				effect->InsertEffect(other->GetComponent<Transform>()->GetPosition());
+				if (other->FindTag(L"FallingArea")) {
+					auto audio = App::GetApp()->GetXAudio2Manager();
+					//audio->Start(L"DamageSE", 0, 0.1f);
+				}
+				else {
+					auto effect = GetStage()->GetSharedGameObject<Effect>(L"Effect");
+					effect->InsertEffect(other->GetComponent<Transform>()->GetPosition());
+					auto audio = App::GetApp()->GetXAudio2Manager();
+					audio->Start(L"DamageSE", 0, 0.1f);
+				}
 			}
 		}
 	}

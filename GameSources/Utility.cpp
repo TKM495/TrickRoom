@@ -36,5 +36,14 @@ namespace basecross {
 				uv.push_back(Vec2(x, y));
 			}
 		}
+
+		Vec3 ConvertDegVecToRadVec(const Vec3& deg) {
+			Vec3 rad(
+				XMConvertToRadians(deg.x),
+				XMConvertToRadians(deg.y),
+				XMConvertToRadians(deg.z)
+			);
+			return rad;
+		}
 	}
 }

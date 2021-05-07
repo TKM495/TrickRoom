@@ -5,6 +5,8 @@
 #include "PNTStaticDraw2.h"
 #include "TADrawRenderTarget.h"
 
+#include "TrickArtDrawTitle.h"
+#include "PNTStaticDraw2Title.h"
 //外部シンボルは～未解決です。のエラーが出るので解決するまで使用しない
 //namespace basecross {
 //	class TrickArtSystem{

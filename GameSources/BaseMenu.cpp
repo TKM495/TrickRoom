@@ -13,12 +13,24 @@ namespace basecross {
 
 		auto& stage = GetStage();
 		for (auto& element : m_menuElement) {
-			auto str = stage->AddGameObject<StringSprite2>(element.name);
+			auto str = stage->AddGameObject<StringSprite2>(element.name,
+				Align::Horizontal::Center, Align::Vertical::Center,
+				Col4(1.0f));
 			str->SetPos(element.pos);
 			str->SetSize(0.9f);
 			m_stringSprite.push_back(str);
-			auto texSize = str->GetTexSize();
-			auto frame = stage->AddGameObject<illusionFrame>(texSize.x, texSize.y);
+
+			wstring texName = L"";
+			switch (m_dir)
+			{
+			case MenuDirection::Vertical:
+				texName = L"ButtonFrame";
+				break;
+			case MenuDirection::Horizontal:
+				texName = L"ButtonFrame2";
+				break;
+			}
+			auto frame = stage->AddGameObject<illusionFrame>(texName);
 			frame->SetPosition(element.pos);
 			m_illusionFrame.push_back(frame);
 		}
@@ -62,20 +74,26 @@ namespace basecross {
 			m_nowMenuNum = 0;
 		}
 
-		auto element = m_menuElement[m_nowMenuNum];
-		for (int i = 0; i < m_menuElement.size(); i++) {
-			if (i == m_nowMenuNum) {
-				m_illusionFrame[i]->SetItemActive(true);
-			}
-			else {
-				m_illusionFrame[i]->SetItemActive(false);
+		if (!m_bChange) {
+			for (int i = 0; i < m_menuElement.size(); i++) {
+				if (i == m_nowMenuNum) {
+					m_illusionFrame[i]->SetFrameActive(illusionFrame::Status::Active);
+					m_stringSprite[i]->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
+				}
+				else {
+					m_illusionFrame[i]->SetFrameActive(illusionFrame::Status::Invalid);
+					m_stringSprite[i]->SetColor(Col4(0.0f, 0.0f, 0.0f, 1.0f));
+				}
 			}
 		}
 
-
+		auto element = m_menuElement[m_nowMenuNum];
 		if (pad.wPressedButtons & XINPUT_GAMEPAD_A && !m_bChange) {
 			OnPushButton(element);
 			m_audio->Start(L"DecisionSE", 0, 0.1f);
+			for (int i = 0; i < m_menuElement.size(); i++) {
+				m_illusionFrame[i]->SetFrameActive(illusionFrame::Status::Neutral);
+			}
 		}
 
 		if (m_bChange) {

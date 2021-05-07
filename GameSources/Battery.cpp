@@ -32,7 +32,7 @@ namespace basecross {
 		drawComp->SetMeshResource(L"DEFAULT_CUBE"); // Œ©‚½–Ú‚Æ‚µ‚ÄƒƒbƒVƒ…‚ğİ’è
 		auto col = AddComponent<CollisionObb>();
 		col->SetFixed(true);
-		StageObject::OnCreate();
+		StageObject::ObjectSetUp();
 		AddTag(L"Battery");
 	}
 

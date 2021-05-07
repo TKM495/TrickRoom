@@ -7,6 +7,12 @@
 #include "stdafx.h"
 
 namespace basecross {
+	struct ObjectParam {
+		Vec3 position;
+		Vec3 scale;
+		Vec3 rotation;
+	};
+
 	class StageObject :public GameObject {
 	protected:
 		Vec3 m_position;
@@ -17,9 +23,7 @@ namespace basecross {
 			:GameObject(stage)
 		{}
 
-		virtual void OnCreate()override;
-		//virtual void OnUpdate()override {}
-		//virtual void OnDraw()override {}
+		void ObjectSetUp();
 	};
 }
 //end basecross

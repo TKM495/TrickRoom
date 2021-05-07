@@ -71,7 +71,7 @@ namespace basecross {
 			ptrColl->SetDrawActive(true);
 		}
 
-		StageObject::OnCreate();
+		StageObject::ObjectSetUp();
 
 		AddTag(L"Crystal");
 	}

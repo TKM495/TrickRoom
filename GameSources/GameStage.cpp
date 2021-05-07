@@ -35,11 +35,8 @@ namespace basecross {
 			csvLoad->SpriteDataExtraction(scene->GetImageSpriteData(), SpriteType::Image);
 			csvLoad->PictureDataExtraction(scene->GetPictureData());
 
-			//�Q�[���I�u�W�F�N�g�r���_�[
 			GameObjecttCSVBuilder builder;
-			//�Q�[���I�u�W�F�N�g�̓o�^
 			builder.Register<Player>(L"Player");
-			builder.Register<Goal>(L"Goal");
 			builder.Register<Plane>(L"Plane");
 			builder.Register<Block>(L"Block");
 			builder.Register<Enemy>(L"Enemy");
@@ -52,6 +49,8 @@ namespace basecross {
 			builder.Register<RouteEnemy>(L"RouteEnemy");
 			builder.Register<RouteFloor>(L"RouteFloor");
 			builder.Register<Battery>(L"Battery");
+			builder.Register<FallingArea>(L"FallingArea");
+			builder.Register<Goal>(L"Goal");
 
 			auto dir = app->GetDataDirWString();
 			auto path = dir + L"Csv/Stage/Stage";
@@ -75,7 +74,7 @@ namespace basecross {
 			AddGameObject<Pause>();
 			AddGameObject<ColorOut>(Col4(1.0f), 0.25f, 0.0f, 4.0f);
 			AddGameObject<BGSprite>(L"BackGround");
-			AddGameObject<SceneTransition>()->Play(SceneTransition::TransDir::In);
+			AddGameObject<Fade>()->FadeIn();
 
 			//BGM�̍Đ�
 			auto audio = App::GetApp()->GetXAudio2Manager();
@@ -91,11 +90,11 @@ namespace basecross {
 		const auto& app = App::GetApp();
 		auto delta = app->GetElapsedTime();
 		const auto& pad = app->GetInputDevice().GetControlerVec()[0];
-		auto fade = GetSharedGameObject<SceneTransition>(L"SceneTransition");
+		auto fade = GetSharedGameObject<Fade>(L"Fade");
 		switch (m_state)
 		{
 		case GameState::FADEIN:
-			if (!fade->GetTransitionActive()) {
+			if (!fade->GetFadeActive()) {
 				m_state = GameState::STAY;
 				m_stateDelta = 0.0f;
 				CreateStageNum();
@@ -120,7 +119,7 @@ namespace basecross {
 			}
 			break;
 		case GameState::CLEAR:
-			if (!fade->GetTransitionActive()) {
+			if (!fade->GetFadeActive()) {
 				PostEvent(0.0f, GetThis<ObjectInterface>(), app->GetScene<Scene>(), L"ToResultStage");
 			}
 			break;
@@ -146,11 +145,18 @@ namespace basecross {
 	}
 
 	void GameStage::SetSceneTransition() {
-		GetSharedGameObject<SceneTransition>(L"SceneTransition")->Play(SceneTransition::TransDir::Out);
+		GetSharedGameObject<Fade>(L"Fade")->FadeOut();
 	}
 
 	void GameStage::CreateStageNum() {
 		auto basePos = Vec2(0.0f, 300.0f);
+
+		auto frame = AddGameObject<FrameSprite>(Vec2(440.0f, 160.0f));
+		frame->SetPosition(basePos + Vec2(30.0f, 0.0f));
+		frame->SetSize(0.35f);
+		frame->GetFadeComp()->SetFadeTime(0.1f);
+		frame->GetFadeComp()->FadeIn();
+		frame->Deactive(1.0f);
 
 		auto str = AddGameObject<StringSprite2>(L"Stage",
 			Align::Horizontal::Center,
@@ -177,7 +183,8 @@ namespace basecross {
 		if (deltaTime <= 1.0f) {
 			auto str = AddGameObject<StringSprite2>(L"Start",
 				Align::Horizontal::Center,
-				Align::Vertical::Center);
+				Align::Vertical::Center,
+				Col4(1.0f));
 			str->SetSize(1.5f);
 			str->GetFadeComp()->SetFadeTime(0.1f);
 			str->GetFadeComp()->FadeIn();

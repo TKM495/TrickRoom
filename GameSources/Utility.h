@@ -33,6 +33,8 @@ namespace basecross {
 		//テクスチャの座標をUV座標に変換する関数(複数)
 		void ConvertToUVCoordinates(const vector<Vec2>& coordinates, const Vec2& textureSize, vector<Vec2>& uv);
 		void ConvertToUVCoordinates(const vector<Vec2>& coordinates, const wstring& textureName, vector<Vec2>& uv);
+
+		Vec3 ConvertDegVecToRadVec(const Vec3& deg);
 	}
 }
 //end basecross

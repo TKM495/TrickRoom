@@ -42,12 +42,22 @@ namespace basecross {
 
 	//������
 	void Block::OnCreate() {
-		StageObject::OnCreate();
+		StageObject::ObjectSetUp();
+		const auto& app = App::GetApp();
+		auto scene = app->GetScene<Scene>();
 
 		if (m_trickFlg) {
-			auto trick = AddComponent<TrickArtDraw>();
-			trick->SetMeshResource(L"DEFAULT_CUBE");
-			trick->SetDir(m_activeState);
+			if (scene->GetNowStageName() == L"ToTitleStage") {
+				auto trick = AddComponent<TrickArtDrawTitle>();
+				trick->SetMeshResource(L"DEFAULT_CUBE");
+				SetUpdateActive(false);
+			}
+			else {
+				auto trick = AddComponent<TrickArtDraw>();
+				trick->SetMeshResource(L"DEFAULT_CUBE");
+				trick->SetDir(m_activeState);
+				trick->SetDiffuse(Col4(0.7f, 0.7f, 0.7f, 1.0f));
+			}
 			AddTag(L"TrickArtObj");
 		}
 		else {
@@ -70,7 +80,6 @@ namespace basecross {
 		//OBB�Փ˔����t����
 		auto col = AddComponent<CollisionObb>();
 		col->SetFixed(true);
-		auto scene = App::GetApp()->GetScene<Scene>();
 		if (scene->GetDebugState() == DebugState::Debug) {
 			col->SetDrawActive(true);
 		}

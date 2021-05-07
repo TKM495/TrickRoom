@@ -102,6 +102,26 @@ namespace basecross {
 		drawComp->SetDepthStencilState(DepthStencilState::Read);
 
 		SetAlphaActive(true); //透明をサポートする&両面描画になる
+		auto fade = AddComponent<FadeComponent>();
+		fade->SetFadeColor(m_color);
+		SetUpdateActive(false);
+	}
+
+	void FrameSprite::OnUpdate() {
+		auto delta = App::GetApp()->GetElapsedTime();
+		auto fade = GetComponent<FadeComponent>();
+		if (m_delta > m_deActiveTime && !m_bDeactive) {
+			fade->FadeOut();
+			m_bDeactive = true;
+		}
+
+		if (!fade->IsFadeActive() && m_bDeactive) {
+			m_delta = 0.0f;
+			m_bDeactive = false;
+			SetDrawActive(false);
+			SetUpdateActive(false);
+		}
+		m_delta += delta;
 	}
 
 	void FrameSprite::UpdateVertices() {

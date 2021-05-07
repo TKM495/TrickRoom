@@ -27,11 +27,9 @@ namespace basecross {
 			m_menuItemBasePos[0] + Vec2(1280.0f,0.0f) * 2.0f,
 			m_menuItemBasePos[1] + Vec2(1280.0f,0.0f) * 2.0f,
 			m_menuItemBasePos[2] + Vec2(1280.0f,0.0f) * 2.0f,
-
-			Vec2(1280.0f * 3.0f, 0.0f)
 		};
 
-		for (int i = 1; i < 11; i++) {
+		for (int i = 1; i < 10; i++) {
 			auto frame = stage->AddGameObject<PictureFrame>();
 			frame->SetSize(0.5f);
 			frame->SetPos(m_menuItemPos[i - 1]);
@@ -51,7 +49,7 @@ namespace basecross {
 				offset += Vec2(60.0f, 0.0f);
 			}
 		}
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 3; i++) {
 			m_menuGroupPos.push_back(Vec2(1280.0f * i, 0.0f));
 			auto bg = stage->AddGameObject<BGSprite>(L"BGSelectStage" + to_wstring(i + 1));
 			bg->GetComponent<Transform>()->SetPosition((Vec3)m_menuGroupPos[i]);
@@ -93,9 +91,7 @@ namespace basecross {
 		m_nowMenuGroupNum = m_nowMenuNum / 3;
 
 		auto framePos = m_menuItemBasePos[m_nowMenuNum % 3];
-		if (m_nowMenuNum == 9) {
-			framePos = m_menuItemBasePos[1];
-		}
+
 		auto cursorTrans = m_cursor.lock()->GetComponent<Transform>();
 		auto amount = m_cursorSp * delta;
 		auto pos = Lerp::CalculateLerp(cursorTrans->GetPosition(), (Vec3)framePos, 0.0f, 1.0f, amount, Lerp::rate::Linear);
@@ -144,9 +140,9 @@ namespace basecross {
 	}
 
 	void SelectStageMenu::OnPushButton() {
-		auto fade = GetStage()->GetSharedGameObject<SceneTransition>(L"SceneTransition");
-		SetDelayTime(fade->GetTransitionTime());
-		fade->Play(SceneTransition::TransDir::Out);
+		auto fade = GetStage()->GetSharedGameObject<Fade>(L"Fade");
+		SetDelayTime(fade->GetFadeTime());
+		fade->FadeOut();
 		m_bChange = true;
 	}
 

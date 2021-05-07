@@ -22,9 +22,9 @@ namespace basecross {
 
 	void PauseMenu::OnPushButton(wstring mes) {
 		if (mes != L"Continue") {
-			auto fade = GetStage()->GetSharedGameObject<SceneTransition>(L"SceneTransition");
-			SetDelayTime(fade->GetTransitionTime());
-			fade->Play(SceneTransition::TransDir::Out);
+			auto fade = GetStage()->GetSharedGameObject<Fade>(L"Fade");
+			SetDelayTime(fade->GetFadeTime());
+			fade->FadeOut();
 		}
 		BaseMenu::OnPushButton();
 	}

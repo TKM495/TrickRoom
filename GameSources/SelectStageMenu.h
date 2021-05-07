@@ -7,12 +7,14 @@
 #include "stdafx.h"
 #include "PictureFrame.h"
 #include "BGSprite.h"
+#include "Cursor.h"
 
 namespace basecross {
 	class SelectStageMenu :public GameObject {
         //額
         vector<shared_ptr<PictureFrame>> m_picFrame;
         vector<shared_ptr<BGSprite>> m_bgObj;
+        vector<shared_ptr<ImageSprite>> m_arrowObj;
         //オーディオ取得用
         shared_ptr<XAudio2Manager> m_audio;
         //カーソルオブジェクト
@@ -70,7 +72,9 @@ namespace basecross {
 
         virtual void OnCreate()override;
         virtual void OnUpdate()override;
-
+        int GetMenuGroupNum() {
+            return m_nowMenuGroupNum;
+        }
         //メニューの表示、非表示
         void SetDrawMenu(bool flg);
     };

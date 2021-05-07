@@ -40,15 +40,20 @@ namespace basecross {
 
 		auto parentTrans = m_parent->GetComponent<Transform>();
 		auto parentScale = parentTrans->GetScale();
-		auto parentPos = parentTrans->GetPosition();
 
-		auto scale = Vec3(
+		Vec3 scale(
 			m_scale.x * parentScale.x,
 			m_scale.y * parentScale.y,
 			m_scale.z * parentScale.z
 		);
+		Vec3 offset(
+			m_offset.x * parentScale.x,
+			m_offset.y * parentScale.y,
+			m_offset.z * parentScale.z
+		);
 		auto transComp = GetComponent<Transform>();
-		transComp->SetPosition(parentPos + m_offset);
+		transComp->SetParent(m_parent);
+		transComp->SetPosition(offset);
 		transComp->SetScale(scale);
 		transComp->SetRotation(m_rotation);
 	}
@@ -56,7 +61,13 @@ namespace basecross {
 	void AdvCollision::OnUpdate() {
 		auto myTrans = GetComponent<Transform>();
 		auto parentTrans = m_parent->GetComponent<Transform>();
-		myTrans->SetPosition(parentTrans->GetPosition()+ m_offset);
+		auto parentScale = parentTrans->GetScale();
+		Vec3 offset(
+			m_offset.x * parentScale.x,
+			m_offset.y * parentScale.y,
+			m_offset.z * parentScale.z
+		);
+		myTrans->SetPosition(offset);
 	}
 
 	void AdvCollision::SetActive(bool flg) {

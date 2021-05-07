@@ -62,9 +62,12 @@
 #include "Effect.h"
 //トリックアート
 #include "TrickArtSystem/TrickArtSystem.h"
+#include "illusionModel.h"
 //ステージオブジェクト
 #include "StageObject.h"
 #include "EmptyObject.h"
+#include "FallingArea.h"
+#include "StartPoint.h"
 #include "Picture.h"
 #include "Block.h"
 #include "Plane.h"
@@ -74,6 +77,7 @@
 #include "Pillar.h"
 #include "Pole.h"
 #include "Crystal.h"
+#include "GoalModel.h"
 #include "Goal.h"
 #include "RouteEnemy.h"
 #include "RouteFloor.h"

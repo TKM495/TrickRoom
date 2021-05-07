@@ -83,7 +83,12 @@ namespace basecross {
 
 		shared_ptr<SmBaseDraw> ptrDraw;
 		if (m_bProjActive) {
-			ptrDraw = AddComponent<PNTStaticDraw2>();
+			if (App::GetApp()->GetScene<Scene>()->GetNowStageName() == L"ToTitleStage") {
+				ptrDraw = AddComponent<PNTStaticDraw2Title>();
+			}
+			else {
+				ptrDraw = AddComponent<PNTStaticDraw2>();
+			}
 		}
 		else {
 			ptrDraw = AddComponent<PNTStaticDraw>();
@@ -129,7 +134,7 @@ namespace basecross {
 		ptrDraw->SetSamplerState(SamplerState::AnisotropicWrap);
 		ptrDraw->SetDepthStencilState(DepthStencilState::Read);
 
-		StageObject::OnCreate();
+		StageObject::ObjectSetUp();
 
 		auto collComp = AddComponent<CollisionRect>();
 		collComp->SetFixed(true);

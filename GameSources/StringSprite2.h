@@ -80,6 +80,7 @@ namespace basecross {
 			return GetComponent<FadeComponent>();
 		}
 
+		void SetColor(Col4 color);
 		Col4 GetColor() {
 			return m_color;
 		}

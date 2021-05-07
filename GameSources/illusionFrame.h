@@ -5,32 +5,28 @@
 
 #pragma once
 #include "stdafx.h"
-#include "LineSprite.h"
 
 namespace basecross {
 	class illusionFrame :public GameObject {
-		vector<shared_ptr<LineSprite>> m_baseSprites;
-		vector<shared_ptr<LineSprite>> m_arrowSprites;
-		float m_boxLength;
-		float m_boxHeight;
-		float m_arrowFeathersAngle;
-		float m_arrowFeathersLength;
-		float m_lineThickness;
+	public:
+		enum class Status {
+			Active,
+			Invalid,
+			Neutral
+		};
+	private:
 		bool m_bItemActive;
+		wstring m_texName;
+		vector<VertexPositionColorTexture> vertices;
 	public:
 		illusionFrame(const shared_ptr<Stage>& stage,
-			float boxLength,
-			float boxHeight,
-			float thickness = 5.0f)
-			:GameObject(stage), m_boxLength(boxLength), m_boxHeight(boxHeight),
-			m_lineThickness(thickness),
-			m_bItemActive(false)
+			const wstring& texName)
+			:GameObject(stage), m_bItemActive(false), m_texName(texName)
 		{}
 
 		void OnCreate()override;
 		void SetPosition(Vec2 pos);
-		void SetDrawActive(bool flg);
-		void SetItemActive(bool flg);
+		void SetFrameActive(Status stat);
 	};
 }
 //end basecross

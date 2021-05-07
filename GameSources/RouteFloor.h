@@ -14,6 +14,8 @@ namespace basecross {
 		Vec3 m_now;
 		Vec3 m_move;
 		float m_delta;
+		Vec3 m_respawnPos;
+		bool m_bRespawn;
 		RouteMove::MoveDir m_moveDir;
 	public:
 		RouteFloor(const shared_ptr<Stage>& StagePtr,

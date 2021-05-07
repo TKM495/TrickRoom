@@ -189,5 +189,10 @@ namespace basecross {
 	Vec3 StringSprite2::GetPos() {
 		return GetComponent<Transform>()->GetPosition();
 	}
+
+	void StringSprite2::SetColor(Col4 color) {
+		GetComponent<PCTSpriteDraw>()->SetDiffuse(color);
+	}
+
 }
 //end basecross

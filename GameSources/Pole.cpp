@@ -33,7 +33,7 @@ namespace basecross {
 	void Pole::OnCreate() {
 		auto drawComp = AddComponent<PNTStaticDraw>();
 		drawComp->SetMeshResource(L"Pole");
-		StageObject::OnCreate();
+		StageObject::ObjectSetUp();
 
 		auto coll = GetStage()->AddGameObject<AdvCollision>(GetThis<Pillar>(),
 			Vec3(0.0f, 0.0f, 0.0f),

@@ -41,12 +41,14 @@ namespace basecross {
 		builder.Build(GetThis<Stage>(), path);
 
 		AddGameObject<Result>();
-		//auto frame = AddGameObject<FrameSprite>(Vec2(1270.0f, 100.0f));
-		//frame->SetPosition(Vec2(0.0f, -300.0f));
+		auto frame = AddGameObject<FrameSprite>(Vec2(1275.0f, 170.0f));
+		frame->SetPosition(Vec2(0.0f, -300.0f));
+		frame->SetSize(0.4f);
 		//frame->SetColor(Col4(0.5f, 0.5f, 0.5f, 1.0f));
+
 		AddGameObject<ResultMenu>();
 
-		AddGameObject<SceneTransition>()->Play(SceneTransition::TransDir::In);
+		AddGameObject<Fade>()->FadeIn();
 
 		auto audio = App::GetApp()->GetXAudio2Manager();
 		wstring bgmName = L"";

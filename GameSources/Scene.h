@@ -10,7 +10,8 @@
 namespace basecross{
 	enum class DebugState {
 		None,
-		Debug
+		Debug,
+		CreateStage
 	};
 
 	//--------------------------------------------------------------------------------------
@@ -40,7 +41,7 @@ namespace basecross{
 	public:
 		Scene() :SceneBase(),
 			m_stageNum(1),
-			m_maxStage(10)
+			m_maxStage(9)
 		{}
 		virtual ~Scene() {}
 		virtual void OnCreate() override;

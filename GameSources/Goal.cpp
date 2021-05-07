@@ -2,9 +2,9 @@
 #include "Project.h"
 
 namespace basecross {
-	Goal::Goal(const std::shared_ptr<Stage>& stage,
+	Goal::Goal(const shared_ptr<Stage>& stage,
 		const wstring& line)
-		: StageObject(stage)
+		:StageObject(stage)
 	{
 		vector<wstring> tokens;
 		Util::WStrToTokenVector(tokens, line, L',');
@@ -25,30 +25,26 @@ namespace basecross {
 		);
 	}
 
-	void Goal::OnCreate()
-	{
-		auto drawComp = AddComponent<BcPNTStaticDraw>();
-		drawComp->SetMeshResource(L"DEFAULT_CUBE");
-		drawComp->SetDiffuse(Col4(0.5f, 0.3f, 0.0f, 1.0f));
+	void Goal::OnCreate() {
+		auto stage = GetTypeStage<GameStage>();
+		ObjectParam param = {
+			m_position,
+			m_scale,
+			m_rotation
+		};
+		stage->AddGameObject<GoalModel>(param);
+		m_position.y += 1.0f;
+		m_scale = Vec3(2.0f, 2.0f, 0.2);
+		StageObject::ObjectSetUp();
+		stage->SetGoalX(m_position.x);
 
 		auto collComp = AddComponent<CollisionObb>();
 		collComp->SetFixed(true);
-
 		auto scene = App::GetApp()->GetScene<Scene>();
 		if (scene->GetDebugState() == DebugState::Debug) {
 			collComp->SetDrawActive(true);
 		}
-
-		Vec3 scale(
-			m_scale.x * 1.0f,
-			m_scale.y * 2.0f,
-			m_scale.z * 0.2f
-		);
-
-		m_scale = scale;
-		StageObject::OnCreate();
 		AddTag(L"Goal");
-		auto stage = GetTypeStage<GameStage>();
-		stage->SetGoalX(m_position.x);
 	}
 }
+//end basecross

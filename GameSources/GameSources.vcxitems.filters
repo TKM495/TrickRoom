@@ -13,6 +13,18 @@
     <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\VSTrickArt.hlsl">
       <Filter>TrickArt\HLSL</Filter>
     </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\PSTrickArtTitle.hlsl">
+      <Filter>TrickArt\HLSL\Title</Filter>
+    </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\VSTrickArtTItle.hlsl">
+      <Filter>TrickArt\HLSL\Title</Filter>
+    </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\PSPNTStaticDraw2Title.hlsl">
+      <Filter>TrickArt\HLSL\Title</Filter>
+    </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\VSPNTStaticDraw2Title.hlsl">
+      <Filter>TrickArt\HLSL\Title</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
@@ -67,9 +79,6 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp">
       <Filter>Stage\GameStage</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Goal.cpp">
-      <Filter>StageObject\Goal</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ImageSpriteForCSV.cpp">
       <Filter>Sprite\Image</Filter>
@@ -230,6 +239,27 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)illusionFrame.cpp">
       <Filter>Sprite\illusionFrame</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FallingArea.cpp">
+      <Filter>StageObject\FallingArea</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\PNTStaticDraw2Title.cpp">
+      <Filter>TrickArt\TitleOnly</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtDrawTitle.cpp">
+      <Filter>TrickArt\TitleOnly</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)illusionModel.cpp">
+      <Filter>StageObject\illusionModel</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GoalModel.cpp">
+      <Filter>StageObject\Goal\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Goal.cpp">
+      <Filter>StageObject\Goal</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StartPoint.cpp">
+      <Filter>StageObject\StartPoint</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
@@ -284,9 +314,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h">
       <Filter>Stage\GameStage</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Goal.h">
-      <Filter>StageObject\Goal</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)ImageSpriteForCSV.h">
       <Filter>Sprite\Image</Filter>
@@ -453,6 +480,27 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)illusionFrame.h">
       <Filter>Sprite\illusionFrame</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FallingArea.h">
+      <Filter>StageObject\FallingArea</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\PNTStaticDraw2Title.h">
+      <Filter>TrickArt\TitleOnly</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtDrawTitle.h">
+      <Filter>TrickArt\TitleOnly</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)illusionModel.h">
+      <Filter>StageObject\illusionModel</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GoalModel.h">
+      <Filter>StageObject\Goal\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Goal.h">
+      <Filter>StageObject\Goal</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StartPoint.h">
+      <Filter>StageObject\StartPoint</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\INCPNTStaticDraw2.hlsli">
@@ -460,6 +508,12 @@
     </None>
     <None Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\INCTrickArt.hlsli">
       <Filter>TrickArt\HLSL</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\INCTrickArtTitle.hlsli">
+      <Filter>TrickArt\HLSL\Title</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\INCPNTStaticDraw2Title.hlsli">
+      <Filter>TrickArt\HLSL\Title</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -681,6 +735,24 @@
     </Filter>
     <Filter Include="Sprite\illusionFrame">
       <UniqueIdentifier>{8c43dab1-069c-4446-bc0e-da99afad748a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\FallingArea">
+      <UniqueIdentifier>{56728d0d-ae0b-4c0b-923f-547050fe4694}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TrickArt\TitleOnly">
+      <UniqueIdentifier>{3072fef1-c078-4b20-937b-2068de109430}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TrickArt\HLSL\Title">
+      <UniqueIdentifier>{f03e2f03-0714-4566-9aaa-86361f093cd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\illusionModel">
+      <UniqueIdentifier>{ae675db4-0f99-4dfc-b2df-dbb477635bfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\Goal\Model">
+      <UniqueIdentifier>{ed421192-db59-4fab-ad83-a989e9514ac1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\StartPoint">
+      <UniqueIdentifier>{50690175-fd8e-466b-baba-5bc81e134782}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

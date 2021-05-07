@@ -10,7 +10,7 @@
 namespace basecross {
 	class TitleStage : public Stage {
 		shared_ptr<SoundItem> m_titleBGM;
-		shared_ptr<TADrawRenderTarget> m_TADrawRenderTarget[2];
+		shared_ptr<TADrawRenderTarget> m_TADrawRenderTarget;
 
 	public:
 		// ビューの作成
@@ -19,9 +19,7 @@ namespace basecross {
 		TitleStage()
 			:Stage()
 		{
-			for (int i = 0; i < 2; i++) {
-				m_TADrawRenderTarget[i] = make_shared<TADrawRenderTarget>();
-			}
+			m_TADrawRenderTarget = make_shared<TADrawRenderTarget>();
 		}
 		// スプライトの作成
 		//void CreateSprite();
@@ -33,11 +31,8 @@ namespace basecross {
 		void OnDestroy()override;
 		//void PushB();
 		virtual void RenderStage()override;
-		shared_ptr<TADrawRenderTarget> GetTADraw(state dir) {
-			return m_TADrawRenderTarget[(int)dir];
-		}
-		shared_ptr<TADrawRenderTarget> GetTADraw(int num) {
-			return m_TADrawRenderTarget[num];
+		shared_ptr<TADrawRenderTarget> GetTADraw() {
+			return m_TADrawRenderTarget;
 		}
 	};
 }

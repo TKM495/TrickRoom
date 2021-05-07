@@ -12,69 +12,67 @@ namespace basecross {
 	}
 
 	void illusionFrame::OnCreate() {
-		Col4 color(0.0f, 0.0f, 0.0f, 1.0f);
-		auto halfLength = m_boxLength / 2.0f;
-		auto halfHeight = m_boxHeight / 2.0f;
-		auto halfThickness = m_lineThickness / 2.0f;
-		auto tumourLength = 30.0f;
-		vector<LineSpriteParam> baseParams = {
-			//ボックスの部分
-			{m_boxLength,m_lineThickness,color,Align::Horizontal::Center,Vec2(0.0f,+halfHeight - halfThickness), 0.0f},
-			{m_boxLength,m_lineThickness,color,Align::Horizontal::Center,Vec2(0.0f,-halfHeight + halfThickness), 0.0f},
-			{m_boxHeight,m_lineThickness,color,Align::Horizontal::Center,Vec2(-halfLength + halfThickness,0.0f),90.0f},
-			{m_boxHeight,m_lineThickness,color,Align::Horizontal::Center,Vec2(+halfLength - halfThickness,0.0f),90.0f},
-			//右のやつ
-			{tumourLength,m_lineThickness,color,Align::Horizontal::Left,Vec2(+halfLength,0.0f),0.0f},
-			//左のやつ
-			{tumourLength,m_lineThickness,color,Align::Horizontal::Right,Vec2(-halfLength,0.0f),0.0f}
+		auto texSize = Utility::GetTextureSize(m_texName);
+
+		Col4 color(1.0f);
+		auto halfWidth = texSize.x / 2.0f;
+		auto halfHeight = texSize.y / 8.0f; //このテクスチャは3セットなので半分の半分の半分の半分
+		vertices = {
+			{Vec3(-halfWidth, +halfHeight, 0.0f),color,Vec2(0.0f,0.25f)},  //0
+			{Vec3(+halfWidth, +halfHeight, 0.0f),color,Vec2(1.0f,0.25f)},  //1
+			{Vec3(-halfWidth, -halfHeight, 0.0f),color,Vec2(0.0f,0.5f)},  //2
+			{Vec3(+halfWidth, -halfHeight, 0.0f),color,Vec2(1.0f,0.5f)},  //3
 		};
-		vector<LineSpriteParam> arrowParams = {
-			//右
-			{tumourLength,m_lineThickness,color,Align::Horizontal::Left,Vec2(+halfLength + tumourLength,0.0f),135.0f},
-			{tumourLength,m_lineThickness,color,Align::Horizontal::Left,Vec2(+halfLength + tumourLength,0.0f),-135.0f},
-			//左
-			{tumourLength,m_lineThickness,color,Align::Horizontal::Right,Vec2(-halfLength - tumourLength,0.0f),135.0f},
-			{tumourLength,m_lineThickness,color,Align::Horizontal::Right,Vec2(-halfLength - tumourLength,0.0f),-135.0f}
+		//頂点インデックス
+		vector<uint16_t> indices = {
+			0, 1, 2,
+			2, 1, 3
 		};
 
-		auto stage = GetStage();
-		for (auto& param : baseParams) {
-			auto line = stage->AddGameObject<LineSprite>(param.Horizontal);
-			line->SetStatus(param.Length, param.Thickness, param.Color);
-			line->SetPosition(param.Position);
-			line->SetRotation(param.Rotation);
-			line->GetComponent<Transform>()->SetParent(GetThis<illusionFrame>());
-			m_baseSprites.push_back(line);
-		}
-		for (auto& param : arrowParams) {
-			auto line = stage->AddGameObject<LineSprite>(param.Horizontal);
-			line->SetStatus(param.Length, param.Thickness, param.Color);
-			line->SetPosition(param.Position);
-			line->SetRotation(param.Rotation);
-			line->GetComponent<Transform>()->SetParent(GetThis<illusionFrame>());
-			m_arrowSprites.push_back(line);
-		}
+		auto drawComp = AddComponent<PCTSpriteDraw>(vertices, indices);
+		drawComp->SetTextureResource(m_texName);
+		drawComp->SetSamplerState(SamplerState::AnisotropicWrap); //テクスチャの繰り返し設定(Wrap)
+		drawComp->SetDepthStencilState(DepthStencilState::Read);
+
+		SetAlphaActive(true); //透明をサポートする&両面描画になる
 	}
 
-	void illusionFrame::SetDrawActive(bool flg) {
-		for (auto& base : m_baseSprites) {
-			base->SetDrawActive(flg);
+	void illusionFrame::SetFrameActive(Status stat) {
+		vector<Vec2> uv;
+		switch (stat)
+		{
+		case Status::Active:
+			uv = {
+				Vec2(0.0f,0.0f),
+				Vec2(1.0f,0.0f),
+				Vec2(0.0f,0.25f),
+				Vec2(1.0f,0.25f)
+			};
+			break;
+		case Status::Invalid:
+			uv = {
+				Vec2(0.0f,0.25f),
+				Vec2(1.0f,0.25f),
+				Vec2(0.0f,0.5f),
+				Vec2(1.0f,0.5f)
+			};
+			break;
+		case Status::Neutral:
+			uv = {
+				Vec2(0.0f,0.5f),
+				Vec2(1.0f,0.5f),
+				Vec2(0.0f,0.75f),
+				Vec2(1.0f,0.75f)
+			};
+			break;
+		default:
+			//エラー
+			break;
 		}
-		for (auto& arrow : m_arrowSprites) {
-			arrow->SetDrawActive(flg);
+		for (int i = 0; i < vertices.size(); i++) {
+			vertices[i].textureCoordinate = uv[i];
 		}
+		GetComponent<PCTSpriteDraw>()->UpdateVertices(vertices);
 	}
-	void illusionFrame::SetItemActive(bool flg) {
-		for (int i = 0; i < m_arrowSprites.size(); i++) {
-			int key = i % 2 != 0 ? 1 : -1;
-			if (flg) {
-				m_arrowSprites[i]->SetRotation(45.0f * key);
-			}
-			else {
-				m_arrowSprites[i]->SetRotation(135.0f * key);
-			}
-		}
-	}
-
 }
 //end basecross

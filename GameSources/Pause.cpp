@@ -25,9 +25,18 @@ namespace basecross {
 		m_titleObj.lock()->SetDrawActive(flg);
 		m_menuObj.lock()->SetDrawMenu(flg);
 		m_frameObj.lock()->SetDrawActive(flg);
+
+		wstring seName = L"";
+		//true:•\Ž¦ false:”ñ•\Ž¦
 		if (!flg) {
 			m_menuObj.lock()->Reset();
+			seName = L"PauseMenuCloseSE";
 		}
+		else {
+			seName = L"PauseMenuOpenSE";
+		}
+		auto audio = App::GetApp()->GetXAudio2Manager();
+		audio->Start(seName, 0, 0.1f);
 	}
 }
 //end basecross

@@ -9,6 +9,13 @@
 
 namespace basecross {
 	class FrameSprite :public GameObject {
+		//時間計測用
+		float m_delta;
+		//非アクティブになるまでの時間
+		float m_deActiveTime;
+		//非アクティブかどうか
+		bool m_bDeactive;
+
 		Vec2 m_position;
 		Vec2 m_size;
 		Col4 m_color;
@@ -27,10 +34,23 @@ namespace basecross {
 		{}
 
 		virtual void OnCreate()override;
+		virtual void OnUpdate()override;
 		void SetSize(Vec2 size);
 		void SetSize(float size);
 		void SetPosition(Vec2 pos);
 		void SetColor(Col4 color);
+
+		shared_ptr<FadeComponent> GetFadeComp() {
+			return GetComponent<FadeComponent>();
+		}
+
+		void Deactive(float time) {
+			m_deActiveTime = time;
+			SetUpdateActive(true);
+		}
+		void Deactive() {
+			Deactive(0.0f);
+		}
 	};
 }
 //end basecross

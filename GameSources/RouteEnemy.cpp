@@ -99,7 +99,7 @@ namespace basecross {
 			col->SetDrawActive(true);
 		}
 
-		StageObject::OnCreate();
+		StageObject::ObjectSetUp();
 		GetBehavior<RouteMove>()->SetMoveDir(m_moveDir);
 		AddTag(L"Enemy");
 		AddTag(L"damage");

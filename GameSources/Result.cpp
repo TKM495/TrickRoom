@@ -20,7 +20,7 @@ namespace basecross {
 		auto title = stage->AddGameObject<StringSprite2>(L"StageClear");
 		title->GetComponent<Transform>()->SetPosition(Vec3(0.0f, 320.0f, 0.0f));
 
-		auto image = stage->AddGameObject<ImageSprite>(L"1280x800");
+		auto image = stage->AddGameObject<ImageSprite>(L"Stage" + to_wstring(stageNum) + L"_tmb");
 		image->SetPos(Vec2(0.0f, 80.0f));
 		image->SetSize(0.5f);
 	}

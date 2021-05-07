@@ -1,8 +1,8 @@
 name,originX,originY,SizeX,SizeY
 Title,0,0,1024,200
 Numbers,0,200,60,100
-GameStart,0,300,450,100
-Exit,450,300,160,100
+GameStart,0,300,290,60
+Exit,290,300,105,60
 :,610,300,40,100
 Start,0,400,285,100
 StageClear,0,500,600,100

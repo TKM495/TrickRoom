@@ -30,25 +30,55 @@ namespace basecross {
 			XMConvertToRadians((float)_wtof(tokens[8].c_str())),
 			XMConvertToRadians((float)_wtof(tokens[9].c_str()))
 		);
+		m_bProjActive = tokens[10] == L"TRUE" ? true : false;
+		m_trickFlg = tokens[11] == L"TRUE" ? true : false;
+		m_activeState = tokens[12] == L"Right" ? state::Right : state::Left;
 	}
 
 	void Spikes::OnCreate() {
-		StageObject::OnCreate();
+		StageObject::ObjectSetUp();
+		const auto& app = App::GetApp();
+		auto scene = app->GetScene<Scene>();
+
+		if (m_trickFlg) {
+			if (scene->GetNowStageName() == L"ToTitleStage") {
+				auto trick = AddComponent<TrickArtDrawTitle>();
+				trick->SetMeshResource(L"Spikes");
+				SetUpdateActive(false);
+			}
+			else {
+				auto trick = AddComponent<TrickArtDraw>();
+				trick->SetMeshResource(L"Spikes");
+				trick->SetDir(m_activeState);
+				trick->SetDiffuse(Col4(0.7f, 0.7f, 0.7f, 1.0f));
+			}
+			AddTag(L"TrickArtObj");
+		}
+		else {
+			//auto shadowPtr = AddComponent<Shadowmap>();
+			//shadowPtr->SetMeshResource(L"Spikes");
+			if (m_bProjActive) {
+				auto ptrDraw = AddComponent<PNTStaticDraw2>();
+				ptrDraw->SetMeshResource(L"Spikes");
+				ptrDraw->SetOwnShadowActive(true);
+			}
+			else {
+				auto ptrDraw = AddComponent<PNTStaticDraw>();
+				ptrDraw->SetMeshResource(L"Spikes");
+				ptrDraw->SetOwnShadowActive(true);
+			}
+		}
 		//OBBè’ìÀîªíËÇïtÇØÇÈ
 		auto ptrColl = AddComponent<CollisionObb>();
 		ptrColl->SetFixed(true);
 		ptrColl->SetAfterCollision(AfterCollision::None);
-
-		auto scene = App::GetApp()->GetScene<Scene>();
 		if (scene->GetDebugState() == DebugState::Debug) {
 			ptrColl->SetDrawActive(true);
 		}
-
-		auto ptrDraw = AddComponent<PNTStaticDraw>();
-		ptrDraw->SetMeshResource(L"Spikes");
-
 		AddTag(L"damage");
 	}
-
+	void Spikes::OnUpdate() {
+		UpdateArt<CollisionObb>(OnGetDrawCamera(), GetComponent<CollisionObb>());
+	}
 }
 //end basecross

@@ -21,7 +21,7 @@ namespace basecross {
 
 		SetAlphaActive(true); //透明をサポートする&両面描画になる
 
-		StageObject::OnCreate();
+		StageObject::ObjectSetUp();
 	}
 
 	void TrickArtBaseOld::OnUpdate() {

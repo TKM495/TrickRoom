@@ -6,11 +6,11 @@ Plane,0,2.5,-4,20,5,1,180,0,0,TRUE,,,,,,
 Plane,10,2.5,0,8,5,1,0,90,0,FALSE,,,,,,
 Plane,-10,2.5,0,8,5,1,0,-90,0,FALSE,,,,,,
 ,,,,,,,,,,,,,,,,
-Enemy,3,0.5,0,1,1,1,0,0,0,FALSE,FALSE,null,SinCurve,1,3,0
+Enemy,3,0.5,0,1,1,1,0,0,0,FALSE,TRUE,Right,SinCurve,1,3,0
 Enemy,1,0.5,0,1,1,1,0,0,0,FALSE,TRUE,Right,SinCurve,1,3,3.14
-Block,2,0.5,0,1,1,4,0,0,0,FALSE,FALSE,null,,,,
-Enemy,-1,0.5,0,1,1,1,0,0,0,FALSE,FALSE,null,SinCurve,1,3,0
-Block,0,0.5,0,1,1,4,0,0,0,TRUE,FALSE,null,,,,
+,,,,,,,,,,,,,,,,
+Enemy,-1,0.5,0,1,1,1,0,0,0,FALSE,TRUE,Right,SinCurve,1,3,0
+,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,
 Block,-5,0.5,-2.5,1,1,3,0,0,0,FALSE,FALSE,,,,,
 Block,-5,0.5,2.5,1,1,3,0,0,0,FALSE,FALSE,,,,,
@@ -20,10 +20,7 @@ Block,-9.25,0.5,-2.5,1.5,1,2.9,0,0,0,TRUE,FALSE,,,,,
 Block,-7,0.5,-1.25,3,1,0.25,0,0,0,FALSE,TRUE,Right,,,,
 Block,-7,0.5,1.25,3,1,0.25,0,0,0,FALSE,TRUE,Right,,,,
 ,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,
 RouteEnemy,-7,0.5,-3.5,1,1,1,0,0,0,FALSE,FALSE,null,Right,,2,
 RouteEnemy,-7,0.5,3.5,1,1,1,0,0,0,FALSE,FALSE,null,Left,,2,
 ,,,,,,,,,,,,,,,,
-Goal,-10,1,0.51,1,1,1,0,90,0,,,,,,,
-Goal,-10,1,-0.51,1,1,1,0,90,0,,,,,,,
+Goal,-10,0,0,0.5,0.5,0.5,0,90,0,,,,,,,

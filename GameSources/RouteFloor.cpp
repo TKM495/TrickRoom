@@ -9,7 +9,8 @@
 namespace basecross {
 	RouteFloor::RouteFloor(const shared_ptr<Stage>& StagePtr,
 		const wstring& line)
-		:StageObject(StagePtr)
+		:StageObject(StagePtr),
+		m_bRespawn(false)
 	{
 		vector<wstring> tokens;
 		Util::WStrToTokenVector(tokens, line, L',');
@@ -69,11 +70,12 @@ namespace basecross {
 		}
 
 		m_speed = (float)_wtof(tokens[14].c_str());
+		m_respawnPos = m_position;
 	}
 	RouteFloor::~RouteFloor() {}
 
 	void RouteFloor::OnCreate() {
-		StageObject::OnCreate();
+		StageObject::ObjectSetUp();
 
 		GetStage()->AddGameObject<FloorModel>(GetThis<RouteFloor>());
 
@@ -90,8 +92,18 @@ namespace basecross {
 	void RouteFloor::OnUpdate() {
 		auto state = dynamic_pointer_cast<GameStage>(GetStage())->GetState();
 		auto camera = dynamic_pointer_cast<MainCamera>(GetStage()->GetView()->GetTargetCamera());
+		auto player = GetStage()->GetSharedGameObject<Player>(L"Player");
 		auto delta = App::GetApp()->GetElapsedTime();
 		auto trans = GetComponent<Transform>();
+
+		if (player->GetbRespawn() && player->GetMutekiFlg() && !m_bRespawn) {
+			m_bRespawn = true;
+		}
+		if (!player->GetbRespawn() && player->GetMutekiFlg() && m_bRespawn) {
+			m_bRespawn = false;
+			trans->SetPosition(m_respawnPos);
+		}
+
 		if (camera->GetbLeapFlg()) {
 			return;
 		}

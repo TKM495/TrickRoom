@@ -9,8 +9,8 @@
 namespace basecross {
 	void TitleMenu::OnCreate() {
 		MenuElement titleMenu[]{
-			{Vec2(0.0f,-100.0f),L"GameStart",L"ToSelectStage"},
-			{Vec2(0.0f,-200.0f),L"Exit",L"ToExit"},
+			{Vec2(0.0f,-150.0f),L"GameStart",L"ToSelectStage"},
+			{Vec2(0.0f,-250.0f),L"Exit",L"ToExit"},
 		};
 
 		for (auto element : titleMenu) {
@@ -20,9 +20,9 @@ namespace basecross {
 	}
 
 	void TitleMenu::OnPushButton() {
-		auto fade = GetStage()->GetSharedGameObject<SceneTransition>(L"SceneTransition");
-		SetDelayTime(fade->GetTransitionTime());
-		fade->Play(SceneTransition::TransDir::Out);
+		auto fade = GetStage()->GetSharedGameObject<Fade>(L"Fade");
+		SetDelayTime(fade->GetFadeTime());
+		fade->FadeOut();
 		BaseMenu::OnPushButton();
 	}
 }

@@ -8,16 +8,18 @@
 
 namespace basecross {
 	void TitleModel::OnCreate() {
-		auto drawComp = AddComponent<PNTStaticDraw>();
+		auto drawComp = AddComponent<TrickArtDrawTitle>();
 		drawComp->SetMeshResource(L"Title");
-		//drawComp->SetDir(state::Right);
+		drawComp->SetDefPos(Vec3(0.0f, 1.8f, -5.0f));
 
-		auto shadow = AddComponent<Shadowmap>();
-		shadow->SetMeshResource(L"Title");
+		//AddComponent<PNTStaticDraw>()->SetMeshResource(L"Title");
+
+		//auto shadow = AddComponent<Shadowmap>();
+		//shadow->SetMeshResource(L"Title");
 
 		auto trans = GetComponent<Transform>();
-		trans->SetPosition(0.0f, 3.25f, 4.9f);
-		trans->SetScale(Vec3(1.5f, 1.0f, 1.5f));
+		trans->SetPosition(0.0f, 4.0f, 4.9f);
+		trans->SetScale(Vec3(1.5f, 2.0f, 1.5f));
 		trans->SetRotation(XMConvertToRadians(-90.0f), 0.0f, 0.0f);
 		AddTag(L"TrickArtObj");
 	}

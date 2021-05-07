@@ -10,8 +10,8 @@ namespace basecross
 {
 	void UI_Player::OnCreate()
 	{
-		m_startPosX = 130.0f;
-		m_goalPosX = -130.0f;
+		m_startPosX = 90.0f;
+		m_goalPosX = -90.0f;
 
 		float x = 25.0f;
 		float y = 25.0f;
