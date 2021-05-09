@@ -195,7 +195,7 @@ namespace basecross {
 		//行列の定義
 		auto PtrTrans = GetGameObject()->GetComponent<Transform>();
 		//行列の定義
-		bsm::Mat4x4 World, ViewMat, ProjMat;
+		Mat4x4 World, ViewMat, ProjMat;
 		//ワールド行列の決定
 		if (data.m_UseMeshToTransformMatrix) {
 			World = data.m_MeshToTransformMatrix * GetMeshToTransformMatrix();
@@ -248,7 +248,7 @@ namespace basecross {
 		Mat4x4 TAView, TAProj;
 
 		TAView = XMMatrixLookAtLH(TrickArtBase::GetDirValue(state::Right) + LightAt, LightAt, Vec3(0, 1.0f, 0));
-		TAProj = XMMatrixOrthographicLH(CameraPtr->GetWidth(), CameraPtr->GetHeight(),
+		TAProj = XMMatrixOrthographicLH(CameraPtr->GetWidth() * 1.2f, CameraPtr->GetHeight() * 1.2f,
 			CameraPtr->GetNear(), CameraPtr->GetFar());
 		SmCb.TAViewR = bsm::transpose(TAView);
 		TAView = XMMatrixLookAtLH(TrickArtBase::GetDirValue(state::Left) + LightAt, LightAt, Vec3(0, 1.0f, 0));

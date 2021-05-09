@@ -14,7 +14,7 @@ namespace basecross {
 		@brief	コンストラクタ
 		*/
 		//--------------------------------------------------------------------------------------
-		explicit TADrawRenderTarget(float TADrawDimension = 2048.0f);
+		explicit TADrawRenderTarget(float TADrawDimension = 4096.0f);
 		//--------------------------------------------------------------------------------------
 		/*!
 		@brief	デストラクタ

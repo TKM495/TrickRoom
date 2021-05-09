@@ -42,8 +42,8 @@ namespace basecross {
 			//レンダリング先のテクスチャの作成
 			D3D11_TEXTURE2D_DESC descTexture;
 			ZeroMemory(&descTexture, sizeof(descTexture));
-			descTexture.Width = App::GetApp()->GetGameWidth();
-			descTexture.Height = App::GetApp()->GetGameHeight();
+			descTexture.Width = static_cast<UINT>(pImpl->m_TADrawDimension);
+			descTexture.Height = static_cast<UINT>(pImpl->m_TADrawDimension);
 			descTexture.MipLevels = 1;
 			descTexture.ArraySize = 1;
 			descTexture.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
@@ -71,8 +71,8 @@ namespace basecross {
 			//深度テクスチャの作成
 			D3D11_TEXTURE2D_DESC descDepth;
 			ZeroMemory(&descDepth, sizeof(descDepth));
-			descDepth.Width = App::GetApp()->GetGameWidth();
-			descDepth.Height = App::GetApp()->GetGameHeight();
+			descDepth.Width = static_cast<UINT>(pImpl->m_TADrawDimension);
+			descDepth.Height = static_cast<UINT>(pImpl->m_TADrawDimension);
 			descDepth.MipLevels = 1;
 			descDepth.ArraySize = 1;
 			descDepth.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
@@ -121,12 +121,12 @@ namespace basecross {
 			//デフォルトビューポートのセット
 			D3D11_VIEWPORT ViewPort;
 			ZeroMemory(&ViewPort, sizeof(ViewPort));
-			ViewPort.Width = (float)App::GetApp()->GetGameWidth();
-			ViewPort.Height = (float)App::GetApp()->GetGameHeight();
+			ViewPort.Width = pImpl->m_TADrawDimension;
+			ViewPort.Height = pImpl->m_TADrawDimension;
 			ViewPort.MinDepth = 0.0f;
 			ViewPort.MaxDepth = 1.0f;
-			ViewPort.TopLeftX = 0;
-			ViewPort.TopLeftY = 0;
+			//ViewPort.TopLeftX = 0;
+			//ViewPort.TopLeftY = 0;
 			SetViewport(ViewPort);
 
 		}
