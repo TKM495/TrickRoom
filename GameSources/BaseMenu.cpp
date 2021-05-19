@@ -74,15 +74,19 @@ namespace basecross {
 			m_nowMenuNum = 0;
 		}
 
+
+		auto time = sinf(m_delta);
+		auto alpha = Lerp::CalculateLerp(0.5f, 1.0f, -1.0f, 1.0f, time, Lerp::rate::Linear);
+
 		if (!m_bChange) {
 			for (int i = 0; i < m_menuElement.size(); i++) {
 				if (i == m_nowMenuNum) {
 					m_illusionFrame[i]->SetFrameActive(illusionFrame::Status::Active);
-					m_stringSprite[i]->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
+					m_stringSprite[i]->SetColor(Col4(0.0f, 0.0f, 0.0f, alpha));
 				}
 				else {
 					m_illusionFrame[i]->SetFrameActive(illusionFrame::Status::Invalid);
-					m_stringSprite[i]->SetColor(Col4(0.0f, 0.0f, 0.0f, 1.0f));
+					m_stringSprite[i]->SetColor(Col4(1.0f, 1.0f, 1.0f, 1.0f));
 				}
 			}
 		}
@@ -90,19 +94,24 @@ namespace basecross {
 		auto element = m_menuElement[m_nowMenuNum];
 		if (pad.wPressedButtons & XINPUT_GAMEPAD_A && !m_bChange) {
 			OnPushButton(element);
-			m_audio->Start(L"DecisionSE", 0, 0.1f);
-			for (int i = 0; i < m_menuElement.size(); i++) {
-				m_illusionFrame[i]->SetFrameActive(illusionFrame::Status::Neutral);
-			}
+			PlayDecisionSE(element.sendMsg);
+			//for (int i = 0; i < m_menuElement.size(); i++) {
+			//	m_illusionFrame[i]->SetFrameActive(illusionFrame::Status::Neutral);
+			//}
 		}
 
 		if (m_bChange) {
-			if (m_delta > m_delayTime) {
+			if (m_delayDelta > m_delayTime) {
 				BeforeReset();
 				Reset();
 				SendEvent(element.sendMsg);
 			}
-			m_delta += delta;
+			m_delayDelta += delta;
+		}
+
+		m_delta += delta * m_rate;
+		if (m_delta >= XM_2PI) {
+			m_delta = 0.0f;
 		}
 	}
 
@@ -117,6 +126,12 @@ namespace basecross {
 		OnPushButton(element.sendMsg);
 	}
 
+	void BaseMenu::PlayDecisionSE() {
+		m_audio->Start(L"DecisionSE", 0, 0.1f);
+	}
+	void BaseMenu::PlayDecisionSE(wstring mes) {
+		PlayDecisionSE();
+	}
 
 	void BaseMenu::SendEvent(wstring mes) {
 		//メッセージを送る
@@ -125,7 +140,7 @@ namespace basecross {
 
 	void BaseMenu::Reset() {
 		m_bChange = false;
-		m_delta = 0.0f;
+		m_delayDelta = 0.0f;
 		m_nowMenuNum = 0;
 	}
 

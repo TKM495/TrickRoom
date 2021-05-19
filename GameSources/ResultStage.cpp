@@ -25,9 +25,6 @@ namespace basecross {
 
 	void ResultStage::OnCreate() {
 		CreateViewLight();
-
-		AddGameObject<UI_FPS>();
-
 		auto csvLoad = AddGameObject<CSVLoad>();
 		csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetStringSpriteData(), SpriteType::String);
 		csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetImageSpriteData(), SpriteType::Image);
@@ -44,15 +41,11 @@ namespace basecross {
 		auto frame = AddGameObject<FrameSprite>(Vec2(1275.0f, 170.0f));
 		frame->SetPosition(Vec2(0.0f, -300.0f));
 		frame->SetSize(0.4f);
-		//frame->SetColor(Col4(0.5f, 0.5f, 0.5f, 1.0f));
 
 		AddGameObject<ResultMenu>();
-
 		AddGameObject<Fade>()->FadeIn();
 
 		auto audio = App::GetApp()->GetXAudio2Manager();
-		wstring bgmName = L"";
-
 		audio->Start(L"GameClear", 0, 0.1f);
 	}
 }

@@ -6,6 +6,7 @@
 #pragma once
 #include "stdafx.h"
 #include "TrickArtSystem/TrickArtSystem.h"
+#include "StageObject.h"
 
 namespace basecross {
 	//--------------------------------------------------------------------------------------
@@ -14,20 +15,23 @@ namespace basecross {
 	class GameStage : public Stage {
 	public:
 		enum class GameState {
-			FADEIN,
-			STAY,
-			PLAYING,
-			PAUSE,
-			CLEAR
+			FADEIN,		//フェードイン待機
+			STAY,		//スタート前
+			PLAYING,	//プレイ時
+			PAUSE,		//ポーズ時
+			CLEAR,		//クリア時
+			FADEOUT		//フェードアウト待機
 		};
 	private:
 		shared_ptr<TADrawRenderTarget> m_TADrawRenderTarget[2];
 
 		shared_ptr<SoundItem> m_gameBGM;
+		//UIのオブジェクト格納用
+		vector<shared_ptr<GameObject>> m_uiObjs;
 		//現在のステート
 		GameState m_state;
-		//ゴールのX座標
-		float m_GoalX;
+		//ゴールの位置情報
+		ObjectPositionForward m_GoalPosForWard;
 		//ステージナンバー
 		int m_stageNum;
 		//描画距離
@@ -49,7 +53,6 @@ namespace basecross {
 			m_stateDelta(0.0f),
 			m_renderDis(25.0f),
 			m_beforeValue(0.0f),
-			m_GoalX(0.0f),
 			m_stageNum(stageNum)
 		{
 			for (int i = 0; i < 2; i++) {
@@ -84,10 +87,13 @@ namespace basecross {
 		void SetState(GameState state);
 
 		float GetGoalX() {
-			return m_GoalX;
+			return m_GoalPosForWard.origin.x;
 		}
-		void SetGoalX(float x) {
-			m_GoalX = x;
+		ObjectPositionForward GetGoalPosForward() {
+			return m_GoalPosForWard;
+		}
+		void SetGoalPosForward(ObjectPositionForward opf) {
+			m_GoalPosForWard = opf;
 		}
 
 		void SetSceneTransition();

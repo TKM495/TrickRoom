@@ -33,7 +33,7 @@ namespace basecross {
 		{
 		default:
 			if (!camera->GetbLeapFlg()) {
-				pos += forward * 10.0f * delta; // ‘O•û‚É•b‘¬10.0ˆÚ“®‚·‚é
+				pos += forward * m_speed * delta; // ‘O•û‚É•b‘¬10.0ˆÚ“®‚·‚é
 			}
 			break;
 		case basecross::GameStage::GameState::PAUSE:

@@ -5,10 +5,11 @@ namespace basecross {
 	class Bullet : public GameObject
 	{
 		static int count;
-
+		float m_speed;
 	public:
 		Bullet(const shared_ptr<Stage>& stage)
-			: GameObject(stage)
+			: GameObject(stage),
+			m_speed(7.0f)
 		{
 			count++;
 		}

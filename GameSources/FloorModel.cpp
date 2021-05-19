@@ -8,6 +8,7 @@ namespace basecross {
 
 		auto draw = AddComponent<PNTStaticDraw>();
 		draw->SetMeshResource(L"DEFAULT_CUBE");
+		draw->SetOwnShadowActive(true);
 
 		auto col = AddComponent<CollisionObb>();
 		//col->SetFixed(true);

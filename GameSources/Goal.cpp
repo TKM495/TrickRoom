@@ -27,19 +27,34 @@ namespace basecross {
 
 	void Goal::OnCreate() {
 		auto stage = GetTypeStage<GameStage>();
+		auto goalPos = m_position;
 		ObjectParam param = {
-			m_position,
+			goalPos,
 			m_scale,
 			m_rotation
 		};
-		stage->AddGameObject<GoalModel>(param);
-		m_position.y += 1.0f;
-		m_scale = Vec3(2.0f, 2.0f, 0.2);
+		//ここで回転を適用
 		StageObject::ObjectSetUp();
-		stage->SetGoalX(m_position.x);
+		stage->AddGameObject<GoalModel>(param);
+		m_scale = Vec3(2.0f, 2.0f, 1.5f);
+		auto transComp = GetComponent<Transform>();
+		auto forword = transComp->GetForword();
+		forword *= 0.75f;
+		m_position += Vec3(forword.x, 1.0f, forword.z);
+		stage->AddGameObject<GoalPoint>(param);
+		//ここで全ての変更を適用
+		StageObject::ObjectSetUp();
+
+		forword = transComp->GetForword();
+		ObjectPositionForward opf(goalPos, forword);
+		auto camera = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
+		camera->SetGoalPosForward(opf);
+		stage->SetGoalPosForward(opf);
 
 		auto collComp = AddComponent<CollisionObb>();
 		collComp->SetFixed(true);
+		collComp->SetAfterCollision(AfterCollision::None);
+
 		auto scene = App::GetApp()->GetScene<Scene>();
 		if (scene->GetDebugState() == DebugState::Debug) {
 			collComp->SetDrawActive(true);

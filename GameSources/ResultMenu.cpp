@@ -12,16 +12,17 @@ namespace basecross {
 		m_stageNum = scene->GetStageNum();
 		auto maxStage = scene->GetMaxStage();
 
-		MenuElement element = { Vec2(-400.0f,-300.0f),L"Retry",L"ToGameStage" };
-		PushBackElement(element);
-
-		element = { Vec2(0.0f,-300.0f),L"StageSelect",L"ToSelectStage" };
-		PushBackElement(element);
-
+		MenuElement element;
 		if (m_stageNum < maxStage) {
 			element = { Vec2(400.0f, -300.0f), L"NextStage", L"ToGameStage" };
 			PushBackElement(element);
 		}
+
+		element = { Vec2(-400.0f,-300.0f),L"Retry",L"ToGameStage" };
+		PushBackElement(element);
+
+		element = { Vec2(0.0f,-300.0f),L"StageSelect",L"ToSelectStage" };
+		PushBackElement(element);
 
 		SetUpMenu();
 	}

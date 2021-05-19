@@ -15,7 +15,7 @@ namespace basecross {
 			return Vec2(textureDesc.Width, textureDesc.Height);
 		}
 		const Vec2 ConvertToUVCoordinate(const Vec2& coordinate, const wstring& textureName) {
-			ConvertToUVCoordinate(coordinate, GetTextureSize(textureName));
+			return ConvertToUVCoordinate(coordinate, GetTextureSize(textureName));
 		}
 
 		const Vec2 ConvertToUVCoordinate(const Vec2& coordinate, const Vec2& textureSize) {

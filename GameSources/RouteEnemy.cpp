@@ -119,7 +119,7 @@ namespace basecross {
 		switch (state)
 		{
 		default:
-			GetBehavior<RouteMove>()->Excute();
+			//GetBehavior<RouteMove>()->Excute();
 			if ((m_before - m_now).length() == 0.0f) {
 				//’x‰„‚ð“ü‚ê‚é
 				if (m_delta > 0.05f) {

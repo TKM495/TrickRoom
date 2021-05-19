@@ -29,7 +29,7 @@ namespace basecross{
 
 	void Scene::OnCreate(){
 		try {
-			m_debugState = DebugState::None;
+			m_debugState = DebugState::CreateStage;
 
 			//CSV�t�@�C��
 			auto& app = App::GetApp();
@@ -66,6 +66,7 @@ namespace basecross{
 			app->RegisterTexture(L"LR", path + L"left_right.png");
 			app->RegisterTexture(L"ColorOut", path + L"ColorOut.png");
 			app->RegisterTexture(L"Rank", path + L"Rank.png");
+			app->RegisterTexture(L"Wall0", path + L"Wall0.png");
 			app->RegisterTexture(L"Wall1", path + L"Wall1.png");
 			app->RegisterTexture(L"Wall2", path + L"Wall2.png");
 			app->RegisterTexture(L"Wall3", path + L"Wall3.png");
@@ -91,6 +92,12 @@ namespace basecross{
 			app->RegisterTexture(L"crystal", path + L"crystal.png");
 			app->RegisterTexture(L"point", path + L"point.png");
 			app->RegisterTexture(L"StartPoint", path + L"StartPoint.png");
+			app->RegisterTexture(L"GoalPoint", path + L"GoalPoint.png");
+
+			for (int i = 0; i < 3; i++) {
+				auto num = to_wstring(i + 1);
+				app->RegisterTexture(L"ButtonGuide" + num, path + L"ButtonGuide" + num + L".png");
+			}
 
 			for (int i = 1; i < GetMaxStage() + 1; i++) {
 				auto stageNum = to_wstring(i);
@@ -107,11 +114,13 @@ namespace basecross{
 			app->RegisterResource(L"Stairs", modelMesh);
 			modelMesh = MeshResource::CreateStaticModelMesh(path+L"Crystal/", L"Crystal.bmf");
 			app->RegisterResource(L"Crystal", modelMesh);
+			modelMesh = MeshResource::CreateStaticModelMesh(path+L"Battery/", L"Battery.bmf");
+			app->RegisterResource(L"Battery", modelMesh);
 			modelMesh = MeshResource::CreateStaticModelMesh(path+L"Title/", L"title.bmf");
 			app->RegisterResource(L"Title", modelMesh);
 
-			auto multiModelMesh = MultiMeshResource::CreateBoneModelMultiMesh(path + L"Goal/", L"Goal.bmf");
-			app->RegisterResource(L"Goal", multiModelMesh);
+			auto goalModelMesh = MeshResource::CreateBoneModelMesh(path + L"Goal/", L"door.bmf");
+			app->RegisterResource(L"Goal", goalModelMesh);
 
 			auto trickPath = path + L"illusionModel/";
 			modelMesh = MeshResource::CreateStaticModelMesh(trickPath + L"Triangle/", L"Triangle.bmf");
@@ -143,10 +152,12 @@ namespace basecross{
 			app->RegisterWav(L"CancelSE", path + L"Cancel.wav");
 
 			app->RegisterWav(L"DoorOpenSE", path + L"DoorOpen.wav");
+			app->RegisterWav(L"DoorCloseSE", path + L"DoorClose.wav");
 			app->RegisterWav(L"FallSE", path + L"Fall.wav");
 			app->RegisterWav(L"PauseMenuOpenSE", path + L"PauseMenuOpen.wav");
 			app->RegisterWav(L"PauseMenuCloseSE", path + L"PauseMenuClose.wav");
 			app->RegisterWav(L"WalkSE", path + L"Walk.wav");
+			app->RegisterWav(L"FloorMoveSE", path + L"FloorMove.wav");
 
 			//�N���A����F��ݒ�
 			Col4 Col;
@@ -155,7 +166,7 @@ namespace basecross{
 			m_nowStageName = L"Startup";
 			//�������g�ɃC�x���g�𑗂�
 			//����ɂ��e�X�e�[�W��I�u�W�F�N�g��Create���ɃV�[���ɃA�N�Z�X�ł���
-			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToTitleStage");
+			PostEvent(0.0f, GetThis<ObjectInterface>(), GetThis<Scene>(), L"ToGameStage");
 		}
 		catch (...) {
 			throw;
@@ -179,6 +190,9 @@ namespace basecross{
 		}
 		if (event->m_MsgStr == L"ToResultStage") {
 			ResetActiveStage<ResultStage>();
+		}
+		if (event->m_MsgStr == L"ToGoalStage") {
+			ResetActiveStage<GoalStage>();
 		}
 		//�Q�[���I��
 		if (event->m_MsgStr == L"ToExit") {

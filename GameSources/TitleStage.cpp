@@ -14,9 +14,9 @@ namespace basecross {
 		const Vec3 at(0.0f, 3.0f, 5.0f);
 		auto PtrView = CreateView<SingleView>();
 		//ƒrƒ…[‚ÌƒJƒƒ‰‚Ìİ’è
-		auto PtrCamera = ObjectFactory::Create<Camera>();
+		auto PtrCamera = ObjectFactory::Create<TitleCamera>(eye);
 		PtrView->SetCamera(PtrCamera);
-		PtrCamera->SetEye(eye);
+		PtrCamera->SetBaseEye(eye);
 		PtrCamera->SetAt(at);
 		PtrCamera->SetPers(false);
 		PtrCamera->SetWidth(9.0f);
@@ -71,8 +71,6 @@ namespace basecross {
 		} while (rightObj == leftObj);
 		AddGameObject<illusionModel>(param[1],(illusionModel::Type)rightObj);
 
-
-		AddGameObject<UI_FPS>();
 
 		AddGameObject<Fade>()->FadeIn();
 

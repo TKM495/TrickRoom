@@ -207,7 +207,7 @@ namespace basecross {
 		//“]’u‚·‚é
 		ViewMat.transpose();
 		//“]’u‚·‚é
-		ProjMat = XMMatrixOrthographicLH(CameraPtr->GetWidth() * 1.2f, CameraPtr->GetHeight() * 1.2f,
+		ProjMat = XMMatrixOrthographicLH(CameraPtr->GetWidth() * 1.6f, CameraPtr->GetHeight() * 1.6f,
 			CameraPtr->GetNear(), CameraPtr->GetFar());
 		ProjMat.transpose();
 		SmCb.World = World;

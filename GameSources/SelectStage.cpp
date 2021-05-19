@@ -25,8 +25,6 @@ namespace basecross {
 	void SelectStage::OnCreate() {
 		CreateViewLight();
 
-		AddGameObject<UI_FPS>();
-
 		auto csvLoad = AddGameObject<CSVLoad>();
 		csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetStringSpriteData(), SpriteType::String);
 

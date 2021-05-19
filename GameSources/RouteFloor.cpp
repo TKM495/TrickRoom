@@ -87,6 +87,8 @@ namespace basecross {
 		}
 		GetBehavior<RouteMove>()->SetMoveDir(m_moveDir);
 		SetDrawLayer(-1);
+		m_timer.SetCountTime(0.05f);
+		m_timer.Reset();
 	}
 
 	void RouteFloor::OnUpdate() {
@@ -114,13 +116,12 @@ namespace basecross {
 		default:
 			GetBehavior<RouteMove>()->Excute();
 			m_move = m_before - m_now;
-			if (m_move.length() == 0.0f) {
+			if (m_move.length() <= m_speed * 0.2f) {
 				//’x‰„‚ð“ü‚ê‚é
-				if (m_delta > 0.05f) {
+				if (m_timer.Count()) {
 					GetBehavior<RouteMove>()->Hit();
-					m_delta = 0.0f;
+					m_timer.Reset();
 				}
-				m_delta += delta;
 			}
 			break;
 		case basecross::GameStage::GameState::PAUSE:

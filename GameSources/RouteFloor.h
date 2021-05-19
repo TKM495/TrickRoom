@@ -6,6 +6,7 @@
 #pragma once
 #include "stdafx.h"
 #include "RouteMove.h"
+#include "TimeCounter.h"
 
 namespace basecross {
 	class RouteFloor : public StageObject {
@@ -13,10 +14,10 @@ namespace basecross {
 		Vec3 m_before;
 		Vec3 m_now;
 		Vec3 m_move;
-		float m_delta;
 		Vec3 m_respawnPos;
 		bool m_bRespawn;
 		RouteMove::MoveDir m_moveDir;
+		TimeCounter m_timer;
 	public:
 		RouteFloor(const shared_ptr<Stage>& StagePtr,
 			const wstring& line);

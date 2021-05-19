@@ -39,7 +39,7 @@ float4 main(PSPNTInputShadow input) : SV_TARGET
 	float4 TAColor = TexColorR + TexColorL;
 
 	if (TAColor.w > 0) {
-		return TAColor;
+		RetColor = TAColor;
 	}
 
 	//‰e‚Ì”Z‚³
@@ -86,7 +86,7 @@ float4 main(PSPNTInputShadow input) : SV_TARGET
 
 	float3 shadow = (ambient + DplusS(N, L, NdotL, input.lightView));
 
-	return float4(RetColor.xyz * shadow, RetColor.w);
+	return RetColor;//float4(RetColor.xyz * shadow, RetColor.w);
 }
 
 

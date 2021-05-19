@@ -38,6 +38,7 @@ namespace basecross {
 			GameObjecttCSVBuilder builder;
 			builder.Register<Player>(L"Player");
 			builder.Register<Plane>(L"Plane");
+			builder.Register<VirtualFloor>(L"VFloor");
 			builder.Register<Block>(L"Block");
 			builder.Register<Enemy>(L"Enemy");
 			builder.Register<Spikes>(L"Spikes");
@@ -66,10 +67,12 @@ namespace basecross {
 
 			//AddGameObject<UI_HP>();
 			//AddGameObject<UI_Crystal>();
-			AddGameObject<UI_Goalgauge>();
-			AddGameObject<UI_Player>();
-			AddGameObject<UI_FPS>();
-			AddGameObject<UI_LR>();
+			shared_ptr<GameObject> ui = AddGameObject<UI_Goalgauge>();
+			m_uiObjs.push_back(ui);
+			ui = AddGameObject<UI_Player>();
+			m_uiObjs.push_back(ui);
+			ui = AddGameObject<UI_LR>();
+			m_uiObjs.push_back(ui);
 
 			AddGameObject<Pause>();
 			AddGameObject<ColorOut>(Col4(1.0f), 0.25f, 0.0f, 4.0f);
@@ -113,12 +116,15 @@ namespace basecross {
 			}
 			break;
 		case GameState::PAUSE:
-			if (pad.wPressedButtons & XINPUT_GAMEPAD_START) {
+			if (pad.wPressedButtons & XINPUT_GAMEPAD_START ||
+				pad.wPressedButtons & XINPUT_GAMEPAD_B) {
 				SetState(GameState::PLAYING);
 				GetSharedGameObject<Pause>(L"Pause")->IsActive(false);
 			}
 			break;
 		case GameState::CLEAR:
+			break;
+		case GameState::FADEOUT:
 			if (!fade->GetFadeActive()) {
 				PostEvent(0.0f, GetThis<ObjectInterface>(), app->GetScene<Scene>(), L"ToResultStage");
 			}
@@ -138,8 +144,18 @@ namespace basecross {
 	}
 
 	void GameStage::SetState(GameState state) {
-		if (state == GameState::CLEAR) {
+		switch (state)
+		{
+		case GameState::CLEAR:
+			for (auto& ui : m_uiObjs) {
+				ui->SetDrawActive(false);
+			}
+			break;
+		case GameState::FADEOUT:
 			SetSceneTransition();
+			break;
+		default:
+			break;
 		}
 		m_state = state;
 	}
@@ -149,6 +165,7 @@ namespace basecross {
 	}
 
 	void GameStage::CreateStageNum() {
+		auto displayTime = 2.0f;
 		auto basePos = Vec2(0.0f, 300.0f);
 
 		auto frame = AddGameObject<FrameSprite>(Vec2(440.0f, 160.0f));
@@ -156,7 +173,7 @@ namespace basecross {
 		frame->SetSize(0.35f);
 		frame->GetFadeComp()->SetFadeTime(0.1f);
 		frame->GetFadeComp()->FadeIn();
-		frame->Deactive(1.0f);
+		frame->Deactive(displayTime);
 
 		auto str = AddGameObject<StringSprite2>(L"Stage",
 			Align::Horizontal::Center,
@@ -165,19 +182,19 @@ namespace basecross {
 		str->SetPos(basePos);
 		str->GetFadeComp()->SetFadeTime(0.1f);
 		str->GetFadeComp()->FadeIn();
-		str->Deactive(1.0f);
+		str->Deactive(displayTime);
 		auto stageNum = App::GetApp()->GetScene<Scene>()->GetStageNum();
 		auto obj = AddGameObject<Numbers>(stageNum);
 		obj->SetSize(1.0f);
 		obj->SetPos(basePos + Vec2(180.0f, 0.0f));
 		obj->GetFadeComp()->SetFadeTime(0.1f);
 		obj->GetFadeComp()->FadeIn();
-		obj->Deactive(1.0f);
+		obj->Deactive(displayTime);
 	}
 
 	bool GameStage::StartCountdown() {
 		auto delta = App::GetApp()->GetElapsedTime();
-		auto deltaTime = 2.0f - m_stateDelta;
+		auto deltaTime = 3.0f - m_stateDelta;
 		bool flg = false;
 		//数字の時
 		if (deltaTime <= 1.0f) {

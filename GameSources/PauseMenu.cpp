@@ -40,5 +40,11 @@ namespace basecross {
 			BaseMenu::SendEvent(mes);
 		}
 	}
+
+	void PauseMenu::PlayDecisionSE(wstring mes) {
+		if (mes != L"Continue") {
+			BaseMenu::PlayDecisionSE();
+		}
+	}
 }
 //end basecross

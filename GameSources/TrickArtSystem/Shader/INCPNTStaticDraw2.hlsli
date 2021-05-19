@@ -25,6 +25,13 @@ struct VSPNTInput
 	float2 tex : TEXCOORD;
 };
 
+struct VSPCTInput
+{
+	float4 position : SV_POSITION;
+	float4 color : COLOR;
+	float2 tex : TEXCOORD;
+};
+
 struct PSPNTInputShadow
 {
 	float4 position : SV_Position;
@@ -38,4 +45,15 @@ struct PSPNTInputShadow
 	float4 lightSpacePos : POSITION1;
 	float4 TASpacePosR : POSITION2;
 	float4 TASpacePosL : POSITION3;
+};
+
+struct PSPCTInput
+{
+	float4 position : SV_Position;
+	float3 TARay		: NORMAL1;
+	float3 TAView : NORMAL2;
+	float4 color : COLOR;
+	float2 tex : TEXCOORD;
+	float4 TASpacePosR : POSITION1;
+	float4 TASpacePosL : POSITION2;
 };

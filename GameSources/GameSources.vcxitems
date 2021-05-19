@@ -28,9 +28,13 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Fade.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FallingArea.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Goal.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GoalCamera.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GoalPoint.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GoalStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)illusionFrame.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)illusionModel.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LineSprite.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MainCameraman.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SceneTransition.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FloorModel.h" />
@@ -51,8 +55,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)SelectStageMenu.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FrameSprite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SquareMove.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)StartCameraman.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)StartPoint.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TimeCounter.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Timer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleCamera.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\PCTStaticDraw2.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\PNTStaticDraw2.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\PNTStaticDraw2Title.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\TADrawRenderTarget.h" />
@@ -95,6 +103,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtBaseOld.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)UI_Player.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Utility.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)VirtualFloor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Battery.cpp" />
@@ -111,9 +120,13 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Fade.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FallingArea.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Goal.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GoalCamera.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GoalPoint.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GoalStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)illusionFrame.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)illusionModel.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)LineSprite.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MainCameraman.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SceneTransition.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FloorModel.cpp" />
@@ -134,8 +147,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)SelectStageMenu.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FrameSprite.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SquareMove.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)StartCameraman.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)StartPoint.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TimeCounter.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Timer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleCamera.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\PCTStaticDraw2.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\PNTStaticDraw2.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\PNTStaticDraw2Title.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\TADrawRenderTarget.cpp" />
@@ -175,6 +192,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtBaseOld.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)UI_Player.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Utility.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)VirtualFloor.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +202,11 @@
     <None Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\INCTrickArtTitle.hlsli" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\PSPCTStaticDraw2.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+    </FxCompile>
     <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\PSPNTStaticDraw2.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
@@ -199,6 +222,11 @@
     <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\PSTrickArtTitle.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\VSPCTStaticDraw2.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
     </FxCompile>
     <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\VSPNTStaticDraw2.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>

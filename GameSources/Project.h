@@ -8,6 +8,7 @@
 //メイン
 #include "Scene.h"
 #include "MainCamera.h"
+#include "TitleCamera.h"
 #include "PlayerModel.h"
 #include "Player.h"
 #include "CSVLoad.h"
@@ -15,11 +16,15 @@
 #include "AdvCollision.h"
 #include "MyMath.h"
 #include "Utility.h"
+#include "StartCameraman.h"
+#include "MainCameraman.h"
+#include "GoalCamera.h"
 //ステージ関係
 #include "TitleStage.h"
 #include "SelectStage.h"
 #include "GameStage.h"
 #include "ResultStage.h"
+#include "GoalStage.h"
 //メニュー
 #include "TitleModel.h"
 #include "StringSprite2.h"
@@ -84,6 +89,8 @@
 #include "FloorModel.h"
 #include "Battery.h"
 #include "Bullet.h"
+#include "GoalPoint.h"
+#include "VirtualFloor.h"
 //トリックアートオブジェクト
 #include "TrickArtBaseOld.h"
 #include "SpikesArt.h"

@@ -41,6 +41,9 @@ namespace basecross {
 		wss << FPS;
 		wss << L"PlayerPos:" << pos.x << L"," << pos.y << L"," << pos.z << endl;
 		wss << ViewStr << OBJ_COUNT << endl;
+		auto camera = dynamic_pointer_cast<MainCamera>(OnGetDrawCamera());
+		wss << L"Eye:" << camera->GetEye().x << L"," << camera->GetEye().y << L"," << camera->GetEye().z << endl;
+		wss << L"At:" << camera->GetAt().x << L"," << camera->GetAt().y << L"," << camera->GetAt().z << endl;
 
 		auto ssComp = GetComponent<StringSprite>();
 		ssComp->SetText(wss.str());

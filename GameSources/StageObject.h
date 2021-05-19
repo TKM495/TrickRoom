@@ -13,6 +13,18 @@ namespace basecross {
 		Vec3 rotation;
 	};
 
+	struct Ray {
+		Vec3 origin;
+		Vec3 dir;
+		Ray(Vec3 origin, Vec3 dir) {
+			this->origin = origin;
+			this->dir = dir;
+		}
+		Ray() {}
+	};
+
+	using ObjectPositionForward = Ray;
+
 	class StageObject :public GameObject {
 	protected:
 		Vec3 m_position;

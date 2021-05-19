@@ -15,10 +15,16 @@ namespace basecross {
 		float m_YMin;
 
 		float length; // ƒJƒƒ‰‚Ì’‹“_‚©‚ç‚Ì‹——£
-
+		Vec3 m_baseEye;
+		Vec3 m_eye;
 	public:
-		TitleCamera()
-			: m_angleRadX(XMConvertToRadians(-90)), length(10.0f),m_angleRadY(XMConvertToRadians(-90)),m_Center(90.0f),m_XMax(-120),m_XMin(-60),m_YMax(-120),m_YMin(-60)
+		TitleCamera(const Vec3& baseEye)
+			: m_angleRadX(XMConvertToRadians(-90)), length(10.0f),
+			m_angleRadY(XMConvertToRadians(-90)),
+			m_Center(90.0f),
+			m_XMax(-120),
+			m_XMin(-60), m_YMax(-110), m_YMin(-70),
+			m_baseEye(baseEye)
 		{
 		}
 
@@ -28,6 +34,10 @@ namespace basecross {
 		float GetAngleRadY() const
 		{
 			return m_angleRadY;
+		}
+
+		void SetBaseEye(Vec3 eye) {
+			m_baseEye = eye;
 		}
 	};
 }

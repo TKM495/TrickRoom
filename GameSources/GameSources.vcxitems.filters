@@ -25,6 +25,12 @@
     <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\VSPNTStaticDraw2Title.hlsl">
       <Filter>TrickArt\HLSL\Title</Filter>
     </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\VSPCTStaticDraw2.hlsl">
+      <Filter>TrickArt\HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\PSPCTStaticDraw2.hlsl">
+      <Filter>TrickArt\HLSL</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
@@ -87,7 +93,7 @@
       <Filter>Behavior\LinearMove</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MainCamera.cpp">
-      <Filter>MainCamera</Filter>
+      <Filter>Camera\MainCamera</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MyMath.cpp">
       <Filter>MyMath</Filter>
@@ -260,6 +266,33 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)StartPoint.cpp">
       <Filter>StageObject\StartPoint</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleCamera.cpp">
+      <Filter>Camera\TitleCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)StartCameraman.cpp">
+      <Filter>!Cameraman\Start</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GoalCamera.cpp">
+      <Filter>Camera\!GoalCamera</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GoalStage.cpp">
+      <Filter>Stage\GoalStage</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MainCameraman.cpp">
+      <Filter>!Cameraman\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TimeCounter.cpp">
+      <Filter>TimeCounter</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)GoalPoint.cpp">
+      <Filter>StageObject\GoalPoint</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\PCTStaticDraw2.cpp">
+      <Filter>TrickArt\Comp</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)VirtualFloor.cpp">
+      <Filter>StageObject\VirtualFloor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
@@ -325,7 +358,7 @@
       <Filter>Behavior\LinearMove</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MainCamera.h">
-      <Filter>MainCamera</Filter>
+      <Filter>Camera\MainCamera</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MyMath.h">
       <Filter>MyMath</Filter>
@@ -501,6 +534,33 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)StartPoint.h">
       <Filter>StageObject\StartPoint</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleCamera.h">
+      <Filter>Camera\TitleCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)StartCameraman.h">
+      <Filter>!Cameraman\Start</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GoalCamera.h">
+      <Filter>Camera\!GoalCamera</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GoalStage.h">
+      <Filter>Stage\GoalStage</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MainCameraman.h">
+      <Filter>!Cameraman\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TimeCounter.h">
+      <Filter>TimeCounter</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)GoalPoint.h">
+      <Filter>StageObject\GoalPoint</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\PCTStaticDraw2.h">
+      <Filter>TrickArt\Comp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)VirtualFloor.h">
+      <Filter>StageObject\VirtualFloor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\INCPNTStaticDraw2.hlsli">
@@ -594,9 +654,6 @@
     </Filter>
     <Filter Include="Behavior\LinearMove">
       <UniqueIdentifier>{7d068b42-a5dd-46db-a74c-a1792f8799ea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MainCamera">
-      <UniqueIdentifier>{8fed7338-3e28-41c9-a892-1ca5e6af7478}</UniqueIdentifier>
     </Filter>
     <Filter Include="MyMath">
       <UniqueIdentifier>{baa8f760-006d-4f80-8c2a-3e912521e06f}</UniqueIdentifier>
@@ -753,6 +810,42 @@
     </Filter>
     <Filter Include="StageObject\StartPoint">
       <UniqueIdentifier>{50690175-fd8e-466b-baba-5bc81e134782}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{1387f8bd-4554-4214-92da-a3bf065b9c2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera\TitleCamera">
+      <UniqueIdentifier>{9da4588d-4a9a-4377-af88-679d968bbec2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera\MainCamera">
+      <UniqueIdentifier>{8fed7338-3e28-41c9-a892-1ca5e6af7478}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stage\GoalStage">
+      <UniqueIdentifier>{5f3cc715-d28e-4a19-bce5-534035f16813}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="!Cameraman">
+      <UniqueIdentifier>{40ca4443-00a2-4496-8514-c52fab7db429}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="!Cameraman\Start">
+      <UniqueIdentifier>{d162611c-50b4-4133-8903-115d4f9c6e66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="!Cameraman\Goal">
+      <UniqueIdentifier>{bc8f66f1-b264-4750-b402-909cc5ad1e21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="!Cameraman\Main">
+      <UniqueIdentifier>{105fb5a9-f71c-4154-b8d2-69bc37562079}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera\!GoalCamera">
+      <UniqueIdentifier>{af95b2c4-6417-45a7-b367-f48aff1b0877}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TimeCounter">
+      <UniqueIdentifier>{58e4aad4-75f9-445a-8858-b719f55a229e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\GoalPoint">
+      <UniqueIdentifier>{0c757581-8182-4af4-8c06-90c888cc79df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\VirtualFloor">
+      <UniqueIdentifier>{3e7f92cd-a35a-4fe3-aff8-65e9cf88ec26}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

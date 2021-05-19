@@ -43,8 +43,12 @@ namespace basecross {
         float m_delayTime;
         //遷移フラグ
         bool m_bChange;
-        //時間計測用
+        //遅延時間計測用
+        float m_delayDelta;
+        //点滅の時間計測用
         float m_delta;
+        //点滅のレート
+        float m_rate;
         //カーソルの移動速度
         float m_cursorSp;
         //メニューの現在の状態
@@ -60,6 +64,8 @@ namespace basecross {
         virtual void SendEvent(wstring mes);
         //リセット前の処理
         virtual void BeforeReset() {}
+        virtual void PlayDecisionSE();
+        virtual void PlayDecisionSE(wstring mes);
         //ボタンが押されてから遷移までの時間の設定
         void SetDelayTime(float time) {
             m_delayTime = time;
@@ -88,10 +94,12 @@ namespace basecross {
             m_dir(MenuDirection::Vertical),
             m_delayTime(0.0f),
             m_bChange(false),
+            m_delayDelta(0.0f),
             m_delta(0.0f),
             m_cursorSp(10.0f),
             m_audio(App::GetApp()->GetXAudio2Manager()),
-            m_bActive(true)
+            m_bActive(true),
+            m_rate(4.0f)
         {}
 
         virtual void OnCreate()override {}

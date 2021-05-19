@@ -46,7 +46,6 @@ namespace basecross {
 	}
 
 	void Plane::OnCreate() {
-
 		vector<Vec2> uv;
 		if (m_texName == L"Floor") {
 			uv = {
@@ -123,8 +122,9 @@ namespace basecross {
 				num = L"1";
 				break;
 			}
-			if (scene->GetNowStageName() == L"ToTitleStage") {
-				num = L"1";
+			if (scene->GetNowStageName() == L"ToTitleStage" ||
+				scene->GetNowStageName() == L"ToResultStage") {
+				num = L"0";
 			}
 			if (m_texName == L"Floor") {
 				num = L"";
@@ -142,9 +142,6 @@ namespace basecross {
 		if (scene->GetDebugState() == DebugState::Debug) {
 			collComp->SetDrawActive(true);
 		}
-
-		//drawComp->SetSamplerState(SamplerState::AnisotropicWrap); //テクスチャの繰り返し設定(Wrap)
-		//drawComp->SetDepthStencilState(DepthStencilState::Read);
 	}
 }
 //end basecross

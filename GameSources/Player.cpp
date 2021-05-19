@@ -15,7 +15,8 @@ namespace basecross{
 		m_DrawCount(0), m_BlinkMask(8), rotationSpeed(0.2f),
 		m_bExtrude(false), m_deltaExtrude(0.0f),
 		bDotFlg(false), m_DotCount(0), m_DotMaxCount(2),
-		m_count(0), m_RespawnTime(2), bRespawn(false),m_nowMoveSp(Vec3(0.0f))
+		m_count(0), m_RespawnTime(2), bRespawn(false), m_nowMoveSp(Vec3(0.0f)),
+		m_bClear(false), m_nowPos(Vec3(0.0f)), m_beforePos(Vec3(0.0f))
 	{
 		//トークン（カラム）の配列
 		vector<wstring> tokens;
@@ -55,29 +56,29 @@ namespace basecross{
 
 		AddTag(L"Player");
 
+		auto grav = AddComponent<Gravity>();
+		auto col = AddComponent<CollisionObb>();
 		auto scene = App::GetApp()->GetScene<Scene>();
-		if (!(scene->GetDebugState() == DebugState::CreateStage)) {
-			AddComponent<Gravity>();
-			auto col = AddComponent<CollisionObb>();
-			if (scene->GetDebugState() == DebugState::Debug) {
-				col->SetDrawActive(true);
-			}
-		}
-		else {
-			m_moveSpeed = 10.0f;
+		if (scene->GetDebugState() == DebugState::Debug) {
+			col->SetDrawActive(true);
 		}
 
 		auto transComp = GetComponent<Transform>();
 		transComp->SetPosition(m_position);
 		transComp->SetScale(m_scale);
 		transComp->SetRotation(m_rotation);
+
+		//ステートマシンの構築
+		m_StateMachine.reset(new StateMachine<Player>(GetThis<Player>()));
+		//初期ステートの設定
+		m_StateMachine->ChangeState(PlayerStartState::Instance());
 	}
 
 	Vec3 Player::MoveVec()
 	{
 		auto stage = dynamic_pointer_cast<GameStage>(GetStage());
 
-		auto camera = stage->GetView()->GetTargetCamera();
+		auto camera = OnGetDrawCamera();
 
 		auto transComp = GetComponent<Transform>();
 		auto pos = transComp->GetPosition();
@@ -130,7 +131,28 @@ namespace basecross{
 
 	void Player::OnUpdate()
 	{
+		m_beforePos = m_nowPos;
+		m_StateMachine->Update();
+		m_nowPos = GetComponent<Transform>()->GetPosition();
+	}
 
+	void Player::StartInit() {
+		GetComponent<Gravity>()->SetUpdateActive(false);
+		GetComponent<CollisionObb>()->SetUpdateActive(false);
+	}
+
+	void Player::DefaultInit() {
+		auto scene = App::GetApp()->GetScene<Scene>();
+		if ((scene->GetDebugState() == DebugState::CreateStage)) {
+			m_moveSpeed = 10.0f;
+		}
+		else {
+			GetComponent<Gravity>()->SetUpdateActive(true);
+			GetComponent<CollisionObb>()->SetUpdateActive(true);
+		}
+	}
+
+	void Player::DefaultBehavior(){
 		auto stage = GetStage();
 
 		auto camera = stage->GetView()->GetTargetCamera();
@@ -139,7 +161,7 @@ namespace basecross{
 		if (m_bExtrude) {
 			auto delta = App::GetApp()->GetElapsedTime();
 			auto pos = GetComponent<Transform>()->GetPosition();
-			pos.y = Lerp::CalculateLerp(m_startPos, m_startPos + m_dir, 0.0, 1.0f, m_deltaExtrude, Lerp::rate::Linear);
+			pos.y = Lerp::CalculateLerp(m_basePosY, m_basePosY + m_dir, 0.0, 1.0f, m_deltaExtrude, Lerp::rate::Linear);
 			GetComponent<Transform>()->SetPosition(pos);
 			m_deltaExtrude += delta;
 			if (m_deltaExtrude > 1.0f) {
@@ -165,14 +187,73 @@ namespace basecross{
 			Respawn();
 		}
 
-		//auto myPos = GetComponent<Transform>()->GetPosition();
-
 		//if (m_HP <= 1) {
 		//	auto colorout = stage->GetSharedGameObject<ColorOut>(L"ColorOut");
 		//	colorout->SetColor(Col4(1.0f, 0.0f, 0.0f, 1.0f));
 		//	colorout->SetRange(0.25f, 0.0f);
 		//	colorout->SetActive(true);
 		//}
+	}
+
+	void Player::GoalInit() {
+		auto stage = GetTypeStage<GameStage>();
+		auto goalPosForward = stage->GetGoalPosForward();
+		auto goalPos = goalPosForward.origin;
+		auto goalForward = goalPosForward.dir;
+
+		auto transComp = GetComponent<Transform>();
+		m_startPos = transComp->GetPosition();
+		m_middlePos = goalPos + (goalForward * 1.5f);
+		m_endPos = goalPos;
+
+		m_bClear = true;
+		//m_model->SetDrawActive(false);
+		stage->SetState(GameStage::GameState::CLEAR);
+		m_startToMiddleTime = (m_startPos - m_middlePos).length() / m_moveSpeed;
+		m_middleToEndTime = (m_middlePos - m_endPos).length() / m_moveSpeed;
+		m_appealTime = 2.0f;
+		m_moveTime = m_startToMiddleTime + m_middleToEndTime + m_appealTime;
+		m_timer.SetCountTime(m_moveTime);
+	}
+
+	void Player::GoalBehavior() {
+		if (m_timer.GetTime() < m_startToMiddleTime) {
+			auto pos = Lerp::CalculateLerp(m_startPos, m_middlePos,
+				0.0f, m_startToMiddleTime,
+				m_timer.GetTime(), Lerp::rate::Linear);
+			GetComponent<Transform>()->SetPosition(pos);
+			auto utilPtr = GetBehavior<UtilBehavior>();
+			auto dir = m_startPos - m_middlePos;
+			utilPtr->RotToHead(dir.normalize(), rotationSpeed);
+		}
+		else if (m_timer.GetTime() < m_appealTime + m_startToMiddleTime) {
+			auto pos = GetComponent<Transform>()->GetPosition();
+			auto eye = OnGetDrawCamera()->GetEye();
+			eye.y = pos.x;
+			auto dir = pos - eye;
+			auto utilPtr = GetBehavior<UtilBehavior>();
+			utilPtr->RotToHead(dir.normalize(), rotationSpeed);
+		}
+		else if (m_timer.GetTime() < m_moveTime) {
+			auto pos = Lerp::CalculateLerp(m_middlePos, m_endPos,
+				0.0f, m_middleToEndTime,
+				m_timer.GetTime() - (m_startToMiddleTime + m_appealTime), Lerp::rate::Linear);
+			GetComponent<Transform>()->SetPosition(pos);
+			auto utilPtr = GetBehavior<UtilBehavior>();
+			auto dir = m_middlePos - m_endPos;
+			utilPtr->RotToHead(dir.normalize(), rotationSpeed);
+		}
+
+		if (m_timer.Count(m_middleToEndTime)) {
+			auto stage = GetTypeStage<GameStage>();
+			//以下のstage->SetState(GameStage::GameState::FADEOUT);は
+			//常時実行できないのでここではじく
+			if (stage->GetState() == GameStage::GameState::FADEOUT) {
+				return;
+			}
+			stage->SetState(GameStage::GameState::FADEOUT);
+			stage->GetSharedGameObject<GoalModel>(L"GoalModel")->GetStateMachine()->ChangeState(GoalModelOpen::Instance());
+		}
 	}
 
 	void Player::Move()
@@ -275,12 +356,6 @@ namespace basecross{
 		return m_Crystal;
 	}
 
-	void Player::ToClear() {
-		m_model->SetDrawActive(false);
-		SetUpdateActive(false);
-		dynamic_pointer_cast<GameStage>(GetStage())->SetState(GameStage::GameState::CLEAR);
-	}
-
 	//衝突判定
 	void Player::OnCollisionEnter(std::shared_ptr<GameObject>& other)
 	{
@@ -333,7 +408,7 @@ namespace basecross{
 		}
 
 		if (other->FindTag(L"Goal")) {
-			ToClear();
+			m_StateMachine->ChangeState(PlayerGoalState::Instance());
 		}
 
 		if (other->FindTag(L"TrickArtObj")) {
@@ -350,7 +425,7 @@ namespace basecross{
 					other->GetComponent<Transform>()->GetScale().y / 2.0f;
 				auto myDown = GetComponent<Transform>()->GetPosition().y -
 					GetComponent<Transform>()->GetScale().y / 2.0f;
-				m_startPos = GetComponent<Transform>()->GetPosition().y;
+				m_basePosY = GetComponent<Transform>()->GetPosition().y;
 				m_dir = otherUp - myDown;
 				m_bExtrude = true;
 			}
@@ -385,6 +460,45 @@ namespace basecross{
 			}
 		}
 	}
+
+	shared_ptr<PlayerStartState> PlayerStartState::Instance() {
+		static shared_ptr<PlayerStartState> instance(new PlayerStartState);
+		return instance;
+	}
+	void PlayerStartState::Enter(const shared_ptr<Player>& Obj) {
+		Obj->StartInit();
+	}
+	void PlayerStartState::Execute(const shared_ptr<Player>& Obj) {
+		auto stage = Obj->GetTypeStage<GameStage>();
+		if (stage->GetState() == GameStage::GameState::PLAYING) {
+			Obj->GetStateMachine()->ChangeState(PlayerDefaultState::Instance());
+		}
+	}
+	void PlayerStartState::Exit(const shared_ptr<Player>& Obj) {}
+
+	shared_ptr<PlayerDefaultState> PlayerDefaultState::Instance() {
+		static shared_ptr<PlayerDefaultState> instance(new PlayerDefaultState);
+		return instance;
+	}
+	void PlayerDefaultState::Enter(const shared_ptr<Player>& Obj) {
+		Obj->DefaultInit();
+	}
+	void PlayerDefaultState::Execute(const shared_ptr<Player>& Obj) {
+		Obj->DefaultBehavior();
+	}
+	void PlayerDefaultState::Exit(const shared_ptr<Player>& Obj) {}
+
+	shared_ptr<PlayerGoalState> PlayerGoalState::Instance() {
+		static shared_ptr<PlayerGoalState> instance(new PlayerGoalState);
+		return instance;
+	}
+	void PlayerGoalState::Enter(const shared_ptr<Player>& Obj) {
+		Obj->GoalInit();
+	}
+	void PlayerGoalState::Execute(const shared_ptr<Player>& Obj) {
+		Obj->GoalBehavior();
+	}
+	void PlayerGoalState::Exit(const shared_ptr<Player>& Obj) {}
 }
 //end basecross
 

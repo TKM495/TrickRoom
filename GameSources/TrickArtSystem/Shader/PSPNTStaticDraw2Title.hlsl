@@ -32,7 +32,7 @@ float4 main(PSPNTInputShadow input) : SV_TARGET
 	float4 TexColor = g_TADrawMap.Sample(g_sampler, TATexCoords);
 
 	if (TexColor.w > 0.1f) {
-		RetColor = TexColor;
+		return TexColor;
 	}
 
 	//‰e‚Ì”Z‚³

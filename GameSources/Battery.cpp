@@ -28,8 +28,8 @@ namespace basecross {
 
 	void Battery::OnCreate()
 	{
-		auto drawComp = AddComponent<PNTStaticDraw>(); // ドロー(描画)コンポーネントを追加
-		drawComp->SetMeshResource(L"DEFAULT_CUBE"); // 見た目としてメッシュを設定
+		auto drawComp = AddComponent<PNTStaticModelDraw>(); // ドロー(描画)コンポーネントを追加
+		drawComp->SetMeshResource(L"Battery"); // 見た目としてメッシュを設定
 		auto col = AddComponent<CollisionObb>();
 		col->SetFixed(true);
 		StageObject::ObjectSetUp();

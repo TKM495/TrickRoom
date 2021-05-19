@@ -3,6 +3,7 @@
 #include "TrickArtBase.h"
 #include "TrickArtDraw.h"
 #include "PNTStaticDraw2.h"
+#include "PCTStaticDraw2.h"
 #include "TADrawRenderTarget.h"
 
 #include "TrickArtDrawTitle.h"

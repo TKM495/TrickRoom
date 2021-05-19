@@ -32,7 +32,7 @@ namespace basecross {
 	void FallingArea::OnCreate() {
 		StageObject::ObjectSetUp();
 
-		auto drawComp = AddComponent<PCTStaticDraw>();
+		auto drawComp = AddComponent<PCTStaticDraw2>();
 		drawComp->SetMeshResource(L"DEFAULT_CUBE");
 		drawComp->SetDiffuse(Col4(0.0f, 0.0f, 0.0f, 1.0f));
 
