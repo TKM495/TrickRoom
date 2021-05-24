@@ -39,6 +39,7 @@ namespace basecross
 		fade->SetFadeTime(0.1f);
 		fade->SetFadeColor(color);
 		SetDrawActive(false);
+		SetDrawLayer(2);
 	}
 
 	void UI_Goalgauge::OnUpdate()

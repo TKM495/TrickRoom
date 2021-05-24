@@ -11,6 +11,7 @@ namespace basecross {
 	{
 		GetStage()->SetSharedGameObject(L"GoalModel", GetThis<GoalModel>());
 		auto transComp = GetComponent<Transform>();
+		m_param.rotation += Utility::ConvertDegVecToRadVec(Vec3(0.0f, 180.0f, 0.0f));
 		transComp->SetPosition(m_param.position);
 		transComp->SetScale(Vec3(0.6f));
 		transComp->SetRotation(m_param.rotation);
@@ -22,9 +23,17 @@ namespace basecross {
 		auto drawComp = AddComponent<PNTBoneModelDraw>();
 		drawComp->SetMeshResource(L"Goal");
 		//本来は0～30だが扉がめり込むステージがあったため制限した
-		drawComp->AddAnimation(L"Open", 0, 27, false, 60.0f);
+		//追記(05/24):扉を奥側に空けるようにしたので制限を解除
+		drawComp->AddAnimation(L"Open", 0, 30, false, 30.0f);
 		drawComp->AddAnimation(L"Close", 30, 60, false, 60.0f);
 
+		ObjectParam param = {
+			m_param.position + Vec3(0.0f,1.2f,0.0f),
+			Vec3(2.5f,2.4f,1.0f),
+			m_param.rotation
+		};
+		GetStage()->AddGameObject<StaticPlatePolygon>(L"White1x1", param);
+		SetDrawLayer(1);
 		//ステートマシンの構築
 		m_stateMachine.reset(new StateMachine<GoalModel>(GetThis<GoalModel>()));
 		//初期ステートの設定

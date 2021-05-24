@@ -45,5 +45,70 @@ namespace basecross {
 			);
 			return rad;
 		}
+		Vec3 ConvertRadVecToDegVec(const Vec3& rad) {
+			Vec3 deg(
+				XMConvertToDegrees(rad.x),
+				XMConvertToDegrees(rad.y),
+				XMConvertToDegrees(rad.z)
+			);
+			return deg;
+		}
+
+		bool MatchAngle(float deg1, float deg2) {
+			if (ClampAngle(0.0f, 360.0f, deg1) == ClampAngle(0.0f, 360.0f, deg2)) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+
+		float ClampAngle(float min, float max, float angle) {
+			if (min >= max) {
+				throw BaseException(
+					L"引数が逆です。",
+					L"min:" + to_wstring(min) + L" ,max:" + to_wstring(max),
+					L"Utility::ClampAngle(float min, float max, float angle);"
+				);
+			}
+			if (max - min != 360) {
+				throw BaseException(
+					L"maxとminの差が360ではありません",
+					L"max - min != 360",
+					L"Utility::ClampAngle(float min, float max, float angle);"
+				);
+			}
+
+			if (angle > max) {
+				angle -= max;
+				angle += min;
+			}
+			else if (angle < min) {
+				angle += max;
+				angle -= min;
+			}
+
+			return angle;
+		}
+
+
+		bool WStrToBool(wstring str) {
+			if (str == L"TRUE" || str == L"True" || str == L"true") {
+				return true;
+			}
+			else if (str == L"FALSE" || str == L"False" || str == L"false") {
+				return false;
+			}
+			else {
+				//TrickRoomの場合空白をfalseとして扱っているためコメントアウト
+				//throw BaseException(
+				//	L"不正な文字列です。",
+				//	L"str : " + str,
+				//	L"Utility::WStrToBool(wstring str)"
+				//);
+				return false;
+			}
+		}
+
 	}
 }

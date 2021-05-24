@@ -46,7 +46,7 @@ namespace basecross {
 			builder.Register<Stairs>(L"Stairs");
 			builder.Register<PoleArt>(L"PoleArt");
 			builder.Register<Crystal>(L"Crystal");
-			builder.Register<Picture>(L"Picture");
+			builder.Register<StaticPlatePolygon>(L"StaticPlatePolygon");
 			builder.Register<RouteEnemy>(L"RouteEnemy");
 			builder.Register<RouteFloor>(L"RouteFloor");
 			builder.Register<Battery>(L"Battery");
@@ -161,7 +161,9 @@ namespace basecross {
 	}
 
 	void GameStage::SetSceneTransition() {
-		GetSharedGameObject<Fade>(L"Fade")->FadeOut();
+		auto fade = GetSharedGameObject<Fade>(L"Fade");
+		fade->SetFadeColor(Col4(1.0f));
+		fade->FadeOut();
 	}
 
 	void GameStage::CreateStageNum() {

@@ -36,6 +36,7 @@ namespace basecross {
 		{}
 
 		void ObjectSetUp();
+		shared_ptr<Transform> GetTransform();
 	};
 }
 //end basecross

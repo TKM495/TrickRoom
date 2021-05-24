@@ -43,10 +43,21 @@ namespace basecross {
 		frame->SetSize(0.4f);
 
 		AddGameObject<ResultMenu>();
-		AddGameObject<Fade>()->FadeIn();
+		auto fade = AddGameObject<Fade>();
+		fade->SetFadeColor(Col4(1.0f));
+		fade->FadeIn();
 
 		auto audio = App::GetApp()->GetXAudio2Manager();
 		audio->Start(L"GameClear", 0, 0.1f);
+	}
+
+	void ResultStage::OnUpdate() {
+		auto fade = GetSharedGameObject<Fade>(L"Fade");
+		if (!fade->GetFadeActive()) {
+			fade->SetFadeColor(Col4(0.0f, 0.0f, 0.0f, 1.0f));
+			//èàóùåyå∏ÅHÇÃÇΩÇﬂÇ…í‚é~
+			SetUpdateActive(false);
+		}
 	}
 }
 //end basecross

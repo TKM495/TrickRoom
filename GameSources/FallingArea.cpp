@@ -28,11 +28,18 @@ namespace basecross {
 			XMConvertToRadians((float)_wtof(tokens[8].c_str())),
 			XMConvertToRadians((float)_wtof(tokens[9].c_str()))
 		);
+		m_bProjActive = Utility::WStrToBool(tokens[10]);
 	}
 	void FallingArea::OnCreate() {
 		StageObject::ObjectSetUp();
 
-		auto drawComp = AddComponent<PCTStaticDraw2>();
+		shared_ptr<SmBaseDraw> drawComp;
+		if (m_bProjActive) {
+			drawComp = AddComponent<PCTStaticDraw2>();
+		}
+		else {
+			drawComp = AddComponent<PCTStaticDraw>();
+		}
 		drawComp->SetMeshResource(L"DEFAULT_CUBE");
 		drawComp->SetDiffuse(Col4(0.0f, 0.0f, 0.0f, 1.0f));
 

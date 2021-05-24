@@ -29,47 +29,28 @@ namespace basecross {
 			XMConvertToRadians((float)_wtof(tokens[8].c_str())),
 			XMConvertToRadians((float)_wtof(tokens[9].c_str()))
 		);
-		//m_bProjActive = tokens[10] == L"TRUE" ? true : false;
-		//m_trickFlg = tokens[11] == L"TRUE" ? true : false;
-		//if (tokens[12] == L"Right") {
-		//	m_activeState = state::Right;
-		//}
-		//else if (tokens[12] == L"Left") {
-		//	m_activeState = state::Left;
-		//}
-		//else if (!m_trickFlg && tokens[12] == L"null") {
-		//	//ðŒŽ®‚ð”½“]‚·‚ê‚Î‰º‚Ìelse‚Æˆê‚É‚Å‚«‚é‚¯‚Ç
-		//	//‚Æ‚è‚ ‚¦‚¸¡‚Í‚±‚Ì‚Ü‚Ü
-		//}
-		//else {
-		//	throw BaseException(
-		//		L"•s–¾‚È•¶Žš—ñ‚Å‚·B",
-		//		L"m_activeState : " + tokens[12],
-		//		L"RouteEnemy::RouteEnemy()"
-		//	);
-		//}
 
-		if (tokens[13] == L"Up") {
+		if (tokens[10] == L"Up") {
 			m_moveDir = RouteMove::MoveDir::Up;
 		}
-		else if (tokens[13] == L"Left") {
+		else if (tokens[10] == L"Left") {
 			m_moveDir = RouteMove::MoveDir::Left;
 		}
-		else if (tokens[13] == L"Down") {
+		else if (tokens[10] == L"Down") {
 			m_moveDir = RouteMove::MoveDir::Down;
 		}
-		else if (tokens[13] == L"Right") {
+		else if (tokens[10] == L"Right") {
 			m_moveDir = RouteMove::MoveDir::Right;
 		}
 		else {
 			throw BaseException(
 				L"•s–¾‚È•¶Žš—ñ‚Å‚·B",
-				L"m_activeState : " + tokens[13],
+				L"m_activeState : " + tokens[10],
 				L"RouteEnemy::RouteEnemy()"
 			);
 		}
 
-		m_speed = (float)_wtof(tokens[14].c_str());
+		m_speed = (float)_wtof(tokens[11].c_str());
 		m_respawnPos = m_position;
 	}
 	RouteFloor::~RouteFloor() {}
@@ -85,7 +66,9 @@ namespace basecross {
 		if (scene->GetDebugState() == DebugState::Debug) {
 			col->SetDrawActive(true);
 		}
-		GetBehavior<RouteMove>()->SetMoveDir(m_moveDir);
+		auto route = GetBehavior<RouteMove>();
+		route->SetMoveDir(m_moveDir);
+		route->SetSpeed(m_speed);
 		SetDrawLayer(-1);
 		m_timer.SetCountTime(0.05f);
 		m_timer.Reset();
@@ -116,7 +99,7 @@ namespace basecross {
 		default:
 			GetBehavior<RouteMove>()->Excute();
 			m_move = m_before - m_now;
-			if (m_move.length() <= m_speed * 0.2f) {
+			if (m_move.length() <= m_speed * 0.01f) {
 				//’x‰„‚ð“ü‚ê‚é
 				if (m_timer.Count()) {
 					GetBehavior<RouteMove>()->Hit();

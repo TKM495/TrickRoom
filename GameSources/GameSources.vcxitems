@@ -44,7 +44,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)LinearMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Pause.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PauseMenu.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Picture.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)StaticPlatePolygon.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PictureFrame.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerModel.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Pole.h" />
@@ -136,7 +136,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)LinearMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Pause.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PauseMenu.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Picture.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)StaticPlatePolygon.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PictureFrame.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerModel.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Pole.cpp" />

@@ -9,6 +9,7 @@
 
 namespace basecross {
 	class FallingArea :public StageObject {
+		bool m_bProjActive;
 	public:
 		FallingArea(const shared_ptr<Stage>& stage,
 			const wstring& line);

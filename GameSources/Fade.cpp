@@ -44,7 +44,8 @@ namespace basecross {
 			m_delta += delta * m_key;
 			if (m_delta >= 0 && m_delta <= m_fadeTime) {
 				auto alpha = (m_delta / m_fadeTime);
-				pcSprite->SetDiffuse(Col4(0.0f, 0.0f, 0.0f, alpha));
+				m_color.w = alpha;
+				pcSprite->SetDiffuse(m_color);
 			}
 			else
 			{

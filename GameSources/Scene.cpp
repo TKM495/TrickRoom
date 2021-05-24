@@ -29,7 +29,7 @@ namespace basecross{
 
 	void Scene::OnCreate(){
 		try {
-			m_debugState = DebugState::CreateStage;
+			m_debugState = DebugState::None;
 
 			//CSV�t�@�C��
 			auto& app = App::GetApp();
@@ -93,6 +93,7 @@ namespace basecross{
 			app->RegisterTexture(L"point", path + L"point.png");
 			app->RegisterTexture(L"StartPoint", path + L"StartPoint.png");
 			app->RegisterTexture(L"GoalPoint", path + L"GoalPoint.png");
+			app->RegisterTexture(L"White1x1", path + L"white.png");
 
 			for (int i = 0; i < 3; i++) {
 				auto num = to_wstring(i + 1);
@@ -158,6 +159,7 @@ namespace basecross{
 			app->RegisterWav(L"PauseMenuCloseSE", path + L"PauseMenuClose.wav");
 			app->RegisterWav(L"WalkSE", path + L"Walk.wav");
 			app->RegisterWav(L"FloorMoveSE", path + L"FloorMove.wav");
+			app->RegisterWav(L"IncorrectSE", path + L"Incorrect.wav");
 
 			//�N���A����F��ݒ�
 			Col4 Col;

@@ -14,5 +14,9 @@ namespace basecross {
 		transComp->SetRotation(m_rotation);
 		AddTag(L"StageObject");
 	}
+
+	shared_ptr<Transform> StageObject::GetTransform() {
+		return GetComponent<Transform>();
+	}
 }
 //end basecross

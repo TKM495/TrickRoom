@@ -28,6 +28,8 @@ namespace basecross {
 		drawComp->SetDepthStencilState(DepthStencilState::Read);
 		SetAlphaActive(true);
 
+		m_position.y += 0.01f;
+
 		auto transComp = GetComponent<Transform>();
 		transComp->SetPosition(m_position);
 		transComp->SetScale(Vec3(1.0f));

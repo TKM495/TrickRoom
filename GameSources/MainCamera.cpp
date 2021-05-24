@@ -128,32 +128,45 @@ namespace basecross {
 			break;
 		}
 
-
 		if (!bLeapFlg)
 		{
 			SetEye(at + m_LeapOffset);
-			if (pad.wPressedButtons & XINPUT_GAMEPAD_RIGHT_SHOULDER && m_CameraState != state::Right)//RB
+			if (pad.wPressedButtons & XINPUT_GAMEPAD_RIGHT_SHOULDER)
 			{
-				m_CameraState = state::Right;
-				bLeapFlg = true;
-				m_Eye = GetEye();
-				m_LeapOffset = m_offset;
+				if (m_CameraState != state::Right)//RB
+				{
+					m_CameraState = state::Right;
+					bLeapFlg = true;
+					m_Eye = GetEye();
+					m_LeapOffset = m_offset;
 
-				m_CameraCount++;
+					m_CameraCount++;
 
-				//SetEye(at + m_offset);
+					//SetEye(at + m_offset);
+				}
+				else {
+					auto audio = App::GetApp()->GetXAudio2Manager();
+					audio->Start(L"IncorrectSE", 0, 0.1f);
+				}
 			}
 
-			if (pad.wPressedButtons & XINPUT_GAMEPAD_LEFT_SHOULDER && m_CameraState != state::Left)//LB
+			if (pad.wPressedButtons & XINPUT_GAMEPAD_LEFT_SHOULDER)
 			{
-				m_CameraState = state::Left;
-				bLeapFlg = true;
-				m_Eye = GetEye();
-				m_LeapOffset = m_Angle;
+				if (m_CameraState != state::Left)//LB
+				{
+					m_CameraState = state::Left;
+					bLeapFlg = true;
+					m_Eye = GetEye();
+					m_LeapOffset = m_Angle;
 
-				m_CameraCount++;
+					m_CameraCount++;
 
-				//SetEye(at + m_Angle);
+					//SetEye(at + m_Angle);
+				}
+				else {
+					auto audio = App::GetApp()->GetXAudio2Manager();
+					audio->Start(L"IncorrectSE", 0, 0.1f);
+				}
 			}
 		}
 

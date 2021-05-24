@@ -1,5 +1,5 @@
 /*!
-@file Picture.cpp
+@file StaticPlatePolygon.cpp
 @brief 雰囲気を出すための絵実体
 */
 
@@ -7,7 +7,7 @@
 #include "Project.h"
 
 namespace basecross {
-	Picture::Picture(const shared_ptr<Stage>& stage,
+	StaticPlatePolygon::StaticPlatePolygon(const shared_ptr<Stage>& stage,
 		const wstring& line)
 		:StageObject(stage)
 	{
@@ -31,22 +31,18 @@ namespace basecross {
 		m_texName = tokens[10];
 	}
 
-	void Picture::OnCreate() {
-		//CSVLoadを取得しデータをもらう
-		auto csvLoad = dynamic_pointer_cast<CSVLoad>(GetStage()->GetSharedObject(L"CSVLoad"));
-		auto& data = csvLoad->GetPictureData();
-		//目標のデータを探す
-		int index = Utility::SearchDataIndex(data, m_texName);
-		if (index == -1) {
-			throw BaseException(
-				L"目標のデータが見つかりません",
-				L"texName : " + m_texName,
-				L"Picture::OnCreate()"
-			);
-		}
-		auto dat = data[index];
+	StaticPlatePolygon::StaticPlatePolygon(const shared_ptr<Stage>& stage,
+		const wstring& texName, const ObjectParam& param)
+		: StageObject(stage), m_texName(texName)
+	{
+		m_position = param.position;
+		m_scale = param.scale;
+		m_rotation = param.rotation;
+	}
+
+	void StaticPlatePolygon::OnCreate() {
 		Vec2 origin(0.0f);
-		auto size = dat.size;
+		auto size = Utility::GetTextureSize(m_texName);
 		auto rate = size.y / size.x;
 		size.y = rate;
 		size.x = 1.0f;

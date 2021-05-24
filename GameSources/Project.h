@@ -73,7 +73,7 @@
 #include "EmptyObject.h"
 #include "FallingArea.h"
 #include "StartPoint.h"
-#include "Picture.h"
+#include "StaticPlatePolygon.h"
 #include "Block.h"
 #include "Plane.h"
 #include "Spikes.h"

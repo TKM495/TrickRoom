@@ -30,8 +30,8 @@ namespace basecross {
 			XMConvertToRadians((float)_wtof(tokens[8].c_str())),
 			XMConvertToRadians((float)_wtof(tokens[9].c_str()))
 		);
-		m_bProjActive = tokens[10] == L"TRUE" ? true : false;
-		m_trickFlg = tokens[11] == L"TRUE" ? true : false;
+		m_bProjActive = Utility::WStrToBool(tokens[10]);
+		m_trickFlg = Utility::WStrToBool(tokens[11]);
 		m_activeState = tokens[12] == L"Right" ? state::Right : state::Left;
 	}
 

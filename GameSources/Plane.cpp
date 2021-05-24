@@ -30,12 +30,12 @@ namespace basecross {
 			XMConvertToRadians((float)_wtof(tokens[8].c_str())),
 			XMConvertToRadians((float)_wtof(tokens[9].c_str()))
 		);
-		m_bProjActive = tokens[10] == L"TRUE" ? true : false;
+		m_bProjActive = Utility::WStrToBool(tokens[10]);
 
-		m_bNotTexture = tokens[11] == L"TRUE" ? true : false;
+		m_bNotTexture = Utility::WStrToBool(tokens[11]);
 
 		//è∞ÇÃéû(è∞ÇÕïKÇ∏90ÅãÇ…Ç»ÇÈÇÃÇ≈)
-		if ((float)_wtof(tokens[7].c_str()) == 90.0f) {
+		if (Utility::MatchAngle((float)_wtof(tokens[7].c_str()), 90.0f)) {
 			AddTag(L"Floor");
 			m_texName = L"Floor";
 		}

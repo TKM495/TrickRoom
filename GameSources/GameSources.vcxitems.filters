@@ -104,7 +104,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Pause.cpp">
       <Filter>Sprite\Pause</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Picture.cpp">
+    <ClCompile Include="$(MSBuildThisFileDirectory)StaticPlatePolygon.cpp">
       <Filter>StageObject\Picture</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PictureFrame.cpp">
@@ -369,7 +369,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Pause.h">
       <Filter>Sprite\Pause</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Picture.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)StaticPlatePolygon.h">
       <Filter>StageObject\Picture</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PictureFrame.h">
