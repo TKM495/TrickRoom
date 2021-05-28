@@ -29,6 +29,8 @@ namespace basecross {
 			XMConvertToRadians((float)_wtof(tokens[9].c_str()))
 		);
 		m_texName = tokens[10];
+		m_trickFlg = Utility::WStrToBool(tokens[11]);
+		m_activeState = tokens[12] == L"Right" ? state::Right : state::Left;
 	}
 
 	StaticPlatePolygon::StaticPlatePolygon(const shared_ptr<Stage>& stage,
@@ -38,6 +40,7 @@ namespace basecross {
 		m_position = param.position;
 		m_scale = param.scale;
 		m_rotation = param.rotation;
+		m_trickFlg = false;
 	}
 
 	void StaticPlatePolygon::OnCreate() {
@@ -66,7 +69,17 @@ namespace basecross {
 		};
 
 		//PNTだとテクスチャが反映されないのでPCTにしている
-		auto drawComp = AddComponent<PCTStaticDraw>();
+		shared_ptr<SmBaseDraw> drawComp;
+		if (m_trickFlg) {
+			drawComp = AddComponent<TrickArtDraw>();
+			auto TAD = dynamic_pointer_cast<TrickArtDraw>(drawComp);
+			TAD->SetDir(m_activeState);
+			TAD->IsPCTModel(true);
+		}
+		else {
+			drawComp = AddComponent<PCTStaticDraw>();
+			drawComp->SetOwnShadowActive(true);
+		}
 		//頂点データと頂点インデックスをもとにメッシュ(ポリゴン)を生成する
 		drawComp->CreateOriginalMesh(vertices, indices);
 		//自作したメッシュを使用する

@@ -30,6 +30,7 @@ namespace basecross {
 	{
 		auto drawComp = AddComponent<PNTStaticModelDraw>(); // ドロー(描画)コンポーネントを追加
 		drawComp->SetMeshResource(L"Battery"); // 見た目としてメッシュを設定
+		drawComp->SetOwnShadowActive(true);
 		auto col = AddComponent<CollisionObb>();
 		col->SetFixed(true);
 		StageObject::ObjectSetUp();

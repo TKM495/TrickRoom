@@ -53,6 +53,12 @@ namespace basecross {
         float m_cursorSp;
         //メニューの現在の状態
         bool m_bActive;
+        //カーソルアクティブ時の色
+        Col4 m_activeCol;
+        //メニューの描画レイヤー
+        int m_drawLayer;
+
+        void ResetDrawLayer(int layer);
     protected:
         //メニュー構築
         void SetUpMenu();
@@ -99,7 +105,9 @@ namespace basecross {
             m_cursorSp(10.0f),
             m_audio(App::GetApp()->GetXAudio2Manager()),
             m_bActive(true),
-            m_rate(4.0f)
+            m_rate(4.0f),
+            m_activeCol(Col4(255.0f, 168.0f, 0.0f, 1.0f) / 255.0f),
+            m_drawLayer(0)
         {}
 
         virtual void OnCreate()override {}
@@ -110,6 +118,10 @@ namespace basecross {
         //リセット
         virtual void Reset();
 
+        void SetMenuDrawLayer(int layer) {
+            m_drawLayer = layer;
+            ResetDrawLayer(m_drawLayer);
+        }
     };
 }
 //end basecross

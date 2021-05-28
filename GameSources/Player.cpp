@@ -16,7 +16,7 @@ namespace basecross{
 		m_bExtrude(false), m_deltaExtrude(0.0f),
 		bDotFlg(false), m_DotCount(0), m_DotMaxCount(2),
 		m_count(0), m_RespawnTime(2), bRespawn(false), m_nowMoveSp(Vec3(0.0f)),
-		m_bClear(false), m_nowPos(Vec3(0.0f)), m_beforePos(Vec3(0.0f))
+		m_bClear(false), m_nowPos(Vec3(0.0f)), m_beforePos(Vec3(0.0f)), m_bFalling(false)
 	{
 		//トークン（カラム）の配列
 		vector<wstring> tokens;
@@ -179,12 +179,17 @@ namespace basecross{
 			Move();
 			if (bDotFlg)
 			{
-				Draw();
 				Muteki();
 			}
 		}
 		else {
 			Respawn();
+		}
+
+		//点滅フラグ == true && 落下死ではないとき
+		if (bDotFlg && !m_bFalling)
+		{
+			Draw();
 		}
 
 		//if (m_HP <= 1) {
@@ -285,11 +290,8 @@ namespace basecross{
 
 		if (m_count > m_RespawnTime)
 		{
-			m_model->SetDrawActive(true);
 			bRespawn = false;
-
-			bDotFlg = true;
-
+			m_bFalling = false;
 			auto transComponent = GetComponent<Transform>();
 			transComponent->SetPosition(m_respawnPos);
 			GetComponent<Collision>()->SetUpdateActive(true);
@@ -307,12 +309,6 @@ namespace basecross{
 		float ElapsedTime = app->GetElapsedTime();
 
 		m_DotCount += ElapsedTime;
-		if (m_DotCount > m_DotMaxCount)
-		{
-			bDotFlg = false;
-			m_model->SetDrawActive(true);
-			return;
-		}
 
 		if (m_DrawCount & m_BlinkMask)
 		{
@@ -336,6 +332,8 @@ namespace basecross{
 
 		if (m_Mcount > m_MTime)
 		{
+			bDotFlg = false;
+			m_model->SetDrawActive(true);
 			bMutekiFlg = false;
 			m_Mcount = 0;
 		}
@@ -387,8 +385,8 @@ namespace basecross{
 			{
 				//m_HP += -1;
 				bRespawn = true;
-				m_model->SetDrawActive(false);
 				bMutekiFlg = true;
+				bDotFlg = true;
 
 				m_DotCount = 0;
 
@@ -397,6 +395,8 @@ namespace basecross{
 				if (other->FindTag(L"FallingArea")) {
 					auto audio = App::GetApp()->GetXAudio2Manager();
 					audio->Start(L"FallSE", 0, 0.1f);
+					m_bFalling = true;
+					m_model->SetDrawActive(false);
 				}
 				else {
 					auto effect = GetStage()->GetSharedGameObject<Effect>(L"Effect");
@@ -440,8 +440,8 @@ namespace basecross{
 			{
 				//m_HP += -1;
 				bRespawn = true;
-				m_model->SetDrawActive(false);
 				bMutekiFlg = true;
+				bDotFlg = true;
 
 				m_DotCount = 0;
 
@@ -449,7 +449,9 @@ namespace basecross{
 				GetComponent<Gravity>()->SetUpdateActive(false);
 				if (other->FindTag(L"FallingArea")) {
 					auto audio = App::GetApp()->GetXAudio2Manager();
-					//audio->Start(L"DamageSE", 0, 0.1f);
+					audio->Start(L"FallSE", 0, 0.1f);
+					m_bFalling = true;
+					m_model->SetDrawActive(false);
 				}
 				else {
 					auto effect = GetStage()->GetSharedGameObject<Effect>(L"Effect");

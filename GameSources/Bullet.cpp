@@ -13,7 +13,8 @@ namespace basecross {
 		float scale = 0.5f;
 		transComp->SetScale(scale, scale, scale);
 
-		AddComponent<CollisionSphere>();
+		auto col = AddComponent<CollisionSphere>();
+		col->AddExcludeCollisionTag(L"Enemy");
 		AddTag(L"damage");
 		AddTag(L"Bullet");
 	}

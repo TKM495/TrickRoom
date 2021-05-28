@@ -51,6 +51,7 @@ namespace basecross {
 			builder.Register<RouteFloor>(L"RouteFloor");
 			builder.Register<Battery>(L"Battery");
 			builder.Register<FallingArea>(L"FallingArea");
+			builder.Register<MovingFloor>(L"MovingFloor");
 			builder.Register<Goal>(L"Goal");
 
 			auto dir = app->GetDataDirWString();
@@ -134,7 +135,7 @@ namespace basecross {
 		}
 
 		m_stateDelta += delta;
-		ObjDraw(0.1f);
+		//ObjDraw(0.1f);
 	}
 
 	void GameStage::OnDestroy(){
@@ -208,6 +209,7 @@ namespace basecross {
 			str->GetFadeComp()->SetFadeTime(0.1f);
 			str->GetFadeComp()->FadeIn();
 			str->Deactive(1.0f);
+			str->SetDrawLayer(1);
 			flg = true;
 		}
 		m_beforeValue = (int)deltaTime;

@@ -6,6 +6,7 @@
 namespace basecross {
 	class PlayerModel :public GameObject {
 		shared_ptr<Player> m_player;
+		Col4 col1, col2;
 		TimeCounter m_timer;
 	public:
 		PlayerModel(const shared_ptr<Stage>& stage,

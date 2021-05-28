@@ -29,3 +29,17 @@ struct PSPNTInput
 	float4 specular : COLOR;
 	float2 tex : TEXCOORD;
 };
+
+struct VSPCTInput
+{
+	float4 position : SV_POSITION;
+	float4 color : COLOR;
+	float2 tex : TEXCOORD;
+};
+
+struct PSPCTInput
+{
+	float4 position : SV_Position;
+	float4 color : COLOR;
+	float2 tex : TEXCOORD;
+};

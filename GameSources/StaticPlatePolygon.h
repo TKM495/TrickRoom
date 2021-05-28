@@ -8,7 +8,7 @@
 #include "StageObject.h"
 
 namespace basecross {
-	class StaticPlatePolygon :public StageObject {
+	class StaticPlatePolygon :public StageObject, public TrickArtBase {
 		//テクスチャタグ
 		wstring m_texName;
 	public:
@@ -18,7 +18,6 @@ namespace basecross {
 			const wstring& texName, const ObjectParam& param);
 
 		void OnCreate()override;
-
 	};
 }
 //end basecross

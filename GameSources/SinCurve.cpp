@@ -21,7 +21,7 @@ namespace basecross {
 		}
 
 		auto ptrTrans = GetGameObject()->GetComponent<Transform>();
-		float posZ = sin(m_TotalTime * cycle + m_offset) * speed + m_Position.z;
+		float posZ = sin(m_TotalTime * speed + m_offset) * cycle + m_Position.z;
 		auto pos = ptrTrans->GetPosition();
 		pos.z = posZ;
 		ptrTrans->SetPosition(pos);

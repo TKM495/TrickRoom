@@ -4,7 +4,7 @@
 */
 
 
-#include "INCTrickArtTitle.hlsli"
+#include "INCTrickArt.hlsli"
 
 PSPNTInput main(VSPNTInput input)
 {

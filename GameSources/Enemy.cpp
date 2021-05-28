@@ -34,9 +34,25 @@ namespace basecross {
 		m_activeState = tokens[12] == L"Right" ? state::Right : state::Left;
 
 		m_behavior = tokens[13];
-		m_cycle = (float)_wtof(tokens[14].c_str());
-		m_speed = (float)_wtof(tokens[15].c_str());
-		m_offset = (float)_wtof(tokens[16].c_str());
+		if (m_behavior == L"LinerMove") {
+			m_stertPos = Vec3(
+				(float)_wtof(tokens[14].c_str()),
+				(float)_wtof(tokens[15].c_str()),
+				(float)_wtof(tokens[16].c_str())
+			);
+			m_endPos = Vec3(
+				(float)_wtof(tokens[17].c_str()),
+				(float)_wtof(tokens[18].c_str()),
+				(float)_wtof(tokens[19].c_str())
+			);
+			m_speed = (float)_wtof(tokens[20].c_str());
+			m_offset = (float)_wtof(tokens[21].c_str());
+		}
+		else {
+			m_cycle = (float)_wtof(tokens[14].c_str());
+			m_speed = (float)_wtof(tokens[15].c_str());
+			m_offset = (float)_wtof(tokens[16].c_str());
+		}
 	}
 	void Enemy::OnCreate() {
 		if (m_trickFlg) {
@@ -84,6 +100,12 @@ namespace basecross {
 			beha->SetRadius(m_cycle);
 			beha->SetOffset(m_offset);
 		}
+		else if (m_behavior == L"LinerMove") {
+			auto beha = GetBehavior<LinerMove>();
+			beha->SetMovePositions(m_stertPos, m_endPos);
+			beha->SetSpeed(m_speed);
+			beha->SetOffset(m_offset);
+		}
 		else {
 
 		}
@@ -109,6 +131,9 @@ namespace basecross {
 			}
 			else if (m_behavior == L"CircularMove") {
 				GetBehavior<CircularMove>()->Excute();
+			}
+			else if (m_behavior == L"LinerMove") {
+				GetBehavior<LinerMove>()->Excute();
 			}
 			else {
 

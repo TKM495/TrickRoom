@@ -8,8 +8,11 @@
 
 namespace basecross {
 	IMPLEMENT_DX11_CONSTANT_BUFFER(CBTrickArt)
-	IMPLEMENT_DX11_VERTEX_SHADER(VSTrickArt, App::GetApp()->GetShadersPath() + L"VSTrickArt.cso")
-	IMPLEMENT_DX11_PIXEL_SHADER(PSTrickArt, App::GetApp()->GetShadersPath() + L"PSTrickArt.cso")
+	IMPLEMENT_DX11_VERTEX_SHADER(VSPNTTrickArt, App::GetApp()->GetShadersPath() + L"VSPNTTrickArt.cso")
+	IMPLEMENT_DX11_PIXEL_SHADER(PSPNTTrickArt, App::GetApp()->GetShadersPath() + L"PSPNTTrickArt.cso")
+
+	IMPLEMENT_DX11_VERTEX_SHADER(VSPCTTrickArt, App::GetApp()->GetShadersPath() + L"VSPCTTrickArt.cso")
+	IMPLEMENT_DX11_PIXEL_SHADER(PSPCTTrickArt, App::GetApp()->GetShadersPath() + L"PSPCTTrickArt.cso")
 
 	struct TrickArtDraw::Impl :public DrawObjectBase {
 		//頂点変更する場合のメッシュ（オリジナル）
@@ -56,7 +59,7 @@ namespace basecross {
 	};
 
 	TrickArtDraw::TrickArtDraw(const shared_ptr<GameObject>& GameObjectPtr)
-		:SmBaseDraw(GameObjectPtr), pImpl(new Impl()), m_flg(false)
+		:SmBaseDraw(GameObjectPtr), pImpl(new Impl()), m_flg(false), m_isPCT(false)
 	{
 		SetDir(state::Right);
 	}
@@ -103,12 +106,23 @@ namespace basecross {
 		ID3D11SamplerState* pNullSR[D3D11_COMMONSHADER_SAMPLER_SLOT_COUNT] = { nullptr };
 		//各オブジェクト共通処理
 		//シェーダの設定
-		//頂点シェーダ
-		pD3D11DeviceContext->VSSetShader(VSTrickArt::GetPtr()->GetShader(), nullptr, 0);
-		//インプットレイアウトの設定
-		pD3D11DeviceContext->IASetInputLayout(VSTrickArt::GetPtr()->GetInputLayout());
-		//ピクセルシェーダ
-		pD3D11DeviceContext->PSSetShader(PSTrickArt::GetPtr()->GetShader(), nullptr, 0);
+		if (m_isPCT) {
+			//頂点シェーダ
+			pD3D11DeviceContext->VSSetShader(VSPCTTrickArt::GetPtr()->GetShader(), nullptr, 0);
+			//インプットレイアウトの設定
+			pD3D11DeviceContext->IASetInputLayout(VSPCTTrickArt::GetPtr()->GetInputLayout());
+			//ピクセルシェーダ
+			pD3D11DeviceContext->PSSetShader(PSPCTTrickArt::GetPtr()->GetShader(), nullptr, 0);
+
+		}
+		else {
+			//頂点シェーダ
+			pD3D11DeviceContext->VSSetShader(VSPNTTrickArt::GetPtr()->GetShader(), nullptr, 0);
+			//インプットレイアウトの設定
+			pD3D11DeviceContext->IASetInputLayout(VSPNTTrickArt::GetPtr()->GetInputLayout());
+			//ピクセルシェーダ
+			pD3D11DeviceContext->PSSetShader(PSPNTTrickArt::GetPtr()->GetShader(), nullptr, 0);
+		}
 		//個別処理
 		SimpleConstants SmCb;
 		//コンスタントバッファの作成

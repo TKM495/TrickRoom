@@ -16,6 +16,8 @@ cbuffer ParametersBuffer : register(b0)
 	float4x4 TALightViewR:packoffset(c27);
 	float4x4 TALightViewL:packoffset(c31);
 	float4x4 TALightProjection:packoffset(c35);
+
+	uint4 ActiveShadow : packoffset(c39);
 };
 
 struct VSPNTInput

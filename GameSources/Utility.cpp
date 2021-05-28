@@ -110,5 +110,8 @@ namespace basecross {
 			}
 		}
 
+		Col4 ConvertColorZeroToOne(Col4 color) {
+			return color / 255;
+		}
 	}
 }

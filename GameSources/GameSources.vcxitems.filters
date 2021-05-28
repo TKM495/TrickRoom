@@ -4,13 +4,13 @@
     <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\PSPNTStaticDraw2.hlsl">
       <Filter>TrickArt\HLSL</Filter>
     </FxCompile>
-    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\PSTrickArt.hlsl">
+    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\PSPNTTrickArt.hlsl">
       <Filter>TrickArt\HLSL</Filter>
     </FxCompile>
     <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\VSPNTStaticDraw2.hlsl">
       <Filter>TrickArt\HLSL</Filter>
     </FxCompile>
-    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\VSTrickArt.hlsl">
+    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\VSPNTTrickArt.hlsl">
       <Filter>TrickArt\HLSL</Filter>
     </FxCompile>
     <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\PSTrickArtTitle.hlsl">
@@ -29,6 +29,12 @@
       <Filter>TrickArt\HLSL</Filter>
     </FxCompile>
     <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\PSPCTStaticDraw2.hlsl">
+      <Filter>TrickArt\HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\PSPCTTrickArt.hlsl">
+      <Filter>TrickArt\HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\VSPCTTrickArt.hlsl">
       <Filter>TrickArt\HLSL</Filter>
     </FxCompile>
   </ItemGroup>
@@ -105,7 +111,7 @@
       <Filter>Sprite\Pause</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)StaticPlatePolygon.cpp">
-      <Filter>StageObject\Picture</Filter>
+      <Filter>StageObject\StaticPlatePolygon</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PictureFrame.cpp">
       <Filter>Sprite\PictureFrame</Filter>
@@ -293,6 +299,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)VirtualFloor.cpp">
       <Filter>StageObject\VirtualFloor</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MovingFloor.cpp">
+      <Filter>StageObject\MovingFloor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
@@ -370,7 +379,7 @@
       <Filter>Sprite\Pause</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)StaticPlatePolygon.h">
-      <Filter>StageObject\Picture</Filter>
+      <Filter>StageObject\StaticPlatePolygon</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PictureFrame.h">
       <Filter>Sprite\PictureFrame</Filter>
@@ -561,6 +570,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)VirtualFloor.h">
       <Filter>StageObject\VirtualFloor</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MovingFloor.h">
+      <Filter>StageObject\MovingFloor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)TrickArtSystem\Shader\INCPNTStaticDraw2.hlsli">
@@ -666,9 +678,6 @@
     </Filter>
     <Filter Include="Sprite\Pause">
       <UniqueIdentifier>{22fee416-664c-4d4f-bdce-71542471a6de}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="StageObject\Picture">
-      <UniqueIdentifier>{43eccea1-6852-4a24-b510-997720f642fb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Sprite\PictureFrame">
       <UniqueIdentifier>{4ae2d553-1ea1-48c7-a499-b94f108c51cd}</UniqueIdentifier>
@@ -846,6 +855,12 @@
     </Filter>
     <Filter Include="StageObject\VirtualFloor">
       <UniqueIdentifier>{3e7f92cd-a35a-4fe3-aff8-65e9cf88ec26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\MovingFloor">
+      <UniqueIdentifier>{fab823e6-a7ba-410f-9511-f97bb45a8330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StageObject\StaticPlatePolygon">
+      <UniqueIdentifier>{43eccea1-6852-4a24-b510-997720f642fb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

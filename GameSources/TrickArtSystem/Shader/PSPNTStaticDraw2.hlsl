@@ -28,65 +28,123 @@ float4 main(PSPNTInputShadow input) : SV_TARGET
 	float2 TATexCoordsR;
 	TATexCoordsR.x = 0.5f + (input.TASpacePosR.x / input.TASpacePosR.w * 0.5f);
 	TATexCoordsR.y = 0.5f - (input.TASpacePosR.y / input.TASpacePosR.w * 0.5f);
+	float pixelDepthR = input.TASpacePosR.z / input.TASpacePosR.w;
 
 	float2 TATexCoordsL;
 	TATexCoordsL.x = 0.5f + (input.TASpacePosL.x / input.TASpacePosL.w * 0.5f);
 	TATexCoordsL.y = 0.5f - (input.TASpacePosL.y / input.TASpacePosL.w * 0.5f);
+	float pixelDepthL = input.TASpacePosL.z / input.TASpacePosL.w;
 
-	//@ƒeƒNƒXƒ`ƒƒƒJƒ‰[
 	float4 TexColorR = g_TADrawMapR.Sample(g_sampler, TATexCoordsR);
 	float4 TexColorL = g_TADrawMapL.Sample(g_sampler, TATexCoordsL);
-	float4 TAColor = TexColorR + TexColorL;
 
-	if (TAColor.w > 0) {
-		RetColor = TAColor;
-	}
+	//@ƒeƒNƒXƒ`ƒƒƒJƒ‰[
+	//float4 TAColor = TexColorR + TexColorL;
 
-	//‰e‚Ì”Z‚³
-	const float3 ambient = float3(0.7f, 0.7f, 0.7f);
-	float3 N = normalize(input.norm);
-	float3 L = normalize(input.lightRay);
-	float NdotL = dot(N, L);
+	//if (TAColor.w > 0) {
+	//	RetColor = TAColor;
+	//}
 
-	float2 shadowTexCoords;
-	shadowTexCoords.x = 0.5f + (input.lightSpacePos.x / input.lightSpacePos.w * 0.5f);
-	shadowTexCoords.y = 0.5f - (input.lightSpacePos.y / input.lightSpacePos.w * 0.5f);
-	float pixelDepth = input.lightSpacePos.z / input.lightSpacePos.w;
-
-	float lighting = 1;
-
-	if ((saturate(shadowTexCoords.x) == shadowTexCoords.x) &&
-		(saturate(shadowTexCoords.y) == shadowTexCoords.y) &&
-		(pixelDepth > 0))
+	if ((saturate(TATexCoordsR.x) == TATexCoordsR.x) &&
+		(saturate(TATexCoordsR.y) == TATexCoordsR.y) &&
+		(pixelDepthR > 0))
 	{
-		float margin = acos(saturate(NdotL));
-		float epsilon = 0.0001 / margin;
-
-		epsilon = clamp(epsilon, 0, 0.1);
-
-		lighting = float(g_DepthMap.SampleCmpLevelZero(
+		float lighting = float(g_TADrawMapR.SampleCmpLevelZero(
 			g_SamplerDepthMap,
-			shadowTexCoords,
-			pixelDepth + epsilon
-			)
+			TATexCoordsR,
+			pixelDepthR
+		)
 			);
 		if (lighting == 0.f)
 		{
-			//‰e‚Ì’†
-			return float4(RetColor.xyz * ambient, RetColor.w);
+			//‚È‚µ
 		}
 		else if (lighting < 1.0f)
 		{
 			//‰e‚Æ‰eˆÈŠO‚Ì‹«ŠEü
-			float3 light = lighting * (ambient + DplusS(N, L, NdotL, input.lightView));
-			float3 shadow = (1.0f - lighting) * ambient;
-			return float4(RetColor.xyz * (light + shadow), RetColor.w);
+			float3 light = lighting;
+			float3 shadow = (1.0f - lighting);
+			if (TexColorR.w > 0) {
+				RetColor = (TexColorR + RetColor) / 2.0f;
+			}
+		}
+		else {
+			RetColor = TexColorR;
 		}
 	}
 
-	float3 shadow = (ambient + DplusS(N, L, NdotL, input.lightView));
+	if ((saturate(TATexCoordsL.x) == TATexCoordsL.x) &&
+		(saturate(TATexCoordsL.y) == TATexCoordsL.y) &&
+		(pixelDepthL > 0))
+	{
+		float lighting = float(g_TADrawMapL.SampleCmpLevelZero(
+			g_SamplerDepthMap,
+			TATexCoordsL,
+			pixelDepthL
+		)
+			);
+		if (lighting == 0.f)
+		{
+			//‚È‚µ
+		}
+		else if (lighting < 1.0f)
+		{
+			//‰e‚Æ‰eˆÈŠO‚Ì‹«ŠEü
+			float3 light = lighting;
+			float3 shadow = (1.0f - lighting);
+			if (TexColorL.w > 0) {
+				RetColor = (TexColorL + RetColor) / 2.0f;
+			}
+		}
+		else {
+			RetColor = TexColorL;
+		}
+	}
 
-	return RetColor;//float4(RetColor.xyz * shadow, RetColor.w);
+	if (ActiveShadow.x) {
+		//‰e‚Ì”Z‚³
+		const float3 ambient = float3(0.7f, 0.7f, 0.7f);
+		float3 N = normalize(input.norm);
+		float3 L = normalize(input.lightRay);
+		float NdotL = dot(N, L);
+
+		float2 shadowTexCoords;
+		shadowTexCoords.x = 0.5f + (input.lightSpacePos.x / input.lightSpacePos.w * 0.5f);
+		shadowTexCoords.y = 0.5f - (input.lightSpacePos.y / input.lightSpacePos.w * 0.5f);
+		float pixelDepth = input.lightSpacePos.z / input.lightSpacePos.w;
+
+		float lighting = 1;
+
+		if ((saturate(shadowTexCoords.x) == shadowTexCoords.x) &&
+			(saturate(shadowTexCoords.y) == shadowTexCoords.y) &&
+			(pixelDepth > 0))
+		{
+			float margin = acos(saturate(NdotL));
+			float epsilon = 0.0001 / margin;
+
+			epsilon = clamp(epsilon, 0, 0.1);
+
+			lighting = float(g_DepthMap.SampleCmpLevelZero(
+				g_SamplerDepthMap,
+				shadowTexCoords,
+				pixelDepth + epsilon
+			)
+				);
+			if (lighting == 0.f)
+			{
+				//‰e‚Ì’†
+				return float4(RetColor.xyz * ambient, RetColor.w);
+			}
+			else if (lighting < 1.0f)
+			{
+				//‰e‚Æ‰eˆÈŠO‚Ì‹«ŠEü
+				float3 light = lighting * (ambient + DplusS(N, L, NdotL, input.lightView));
+				float3 shadow = (1.0f - lighting) * ambient;
+				return float4(RetColor.xyz * (light + shadow), RetColor.w);
+			}
+		}
+	}
+	return RetColor;
 }
 
 

@@ -17,10 +17,15 @@ namespace basecross {
 
 		void OnCreate()override;
 		void Excute();
-
+		void SetSpeed(float _speed) {
+			speed = _speed;
+		}
 		void SetMovePositions(Vec3 _start, Vec3 _end) {
 			start = _start;
 			end = _end;
+		}
+		void SetOffset(float offset) {
+			A = offset;
 		}
 	};
 }

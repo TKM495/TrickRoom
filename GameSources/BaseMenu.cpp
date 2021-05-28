@@ -18,6 +18,7 @@ namespace basecross {
 				Col4(1.0f));
 			str->SetPos(element.pos);
 			str->SetSize(0.9f);
+			str->SetDrawLayer(m_drawLayer);
 			m_stringSprite.push_back(str);
 
 			wstring texName = L"";
@@ -32,6 +33,7 @@ namespace basecross {
 			}
 			auto frame = stage->AddGameObject<illusionFrame>(texName);
 			frame->SetPosition(element.pos);
+			frame->SetDrawLayer(m_drawLayer);
 			m_illusionFrame.push_back(frame);
 		}
 	}
@@ -82,7 +84,8 @@ namespace basecross {
 			for (int i = 0; i < m_menuElement.size(); i++) {
 				if (i == m_nowMenuNum) {
 					m_illusionFrame[i]->SetFrameActive(illusionFrame::Status::Active);
-					m_stringSprite[i]->SetColor(Col4(0.0f, 0.0f, 0.0f, alpha));
+					m_activeCol.w = alpha;
+					m_stringSprite[i]->SetColor(m_activeCol);
 				}
 				else {
 					m_illusionFrame[i]->SetFrameActive(illusionFrame::Status::Invalid);
@@ -152,6 +155,15 @@ namespace basecross {
 			frame->SetDrawActive(flg);
 		}
 		m_bActive = flg;
+	}
+
+	void BaseMenu::ResetDrawLayer(int layer) {
+		for (auto& string : m_stringSprite) {
+			string->SetDrawLayer(layer);
+		}
+		for (auto& frame : m_illusionFrame) {
+			frame->SetDrawLayer(layer);
+		}
 	}
 }
 //end basecross

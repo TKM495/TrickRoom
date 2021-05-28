@@ -122,6 +122,12 @@ namespace basecross {
 				SmCb.ActiveFlg.x = 0;
 			}
 		}
+		if (GetOwnShadowActive()) {
+			SmCb.ActiveShadow.x = 1;
+		}
+		else {
+			SmCb.ActiveShadow.x = 0;
+		}
 		//コンスタントバッファの更新
 		pD3D11DeviceContext->UpdateSubresource(CBPNTStaticDraw2::GetPtr()->GetBuffer(), 0, nullptr, &SmCb, 0, 0);
 		//コンスタントバッファの設定

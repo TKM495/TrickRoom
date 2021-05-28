@@ -13,12 +13,10 @@ namespace basecross {
 	//�\�z�Ɣj��
 	Block::Block(const shared_ptr<Stage>& StagePtr,
 		const wstring& line)
-		:StageObject(StagePtr)
+		:StageObject(StagePtr), m_bShadow(true)
 	{
-		//�g�[�N���i�J�����j�̔z��
 		vector<wstring> tokens;
 		Util::WStrToTokenVector(tokens, line, L',');
-		//�e�g�[�N���i�J�����j���X�P�[���A��]�A�ʒu�ɓǂݍ���
 		m_position = Vec3(
 			(float)_wtof(tokens[1].c_str()),
 			(float)_wtof(tokens[2].c_str()),
@@ -37,6 +35,12 @@ namespace basecross {
 		m_bProjActive = Utility::WStrToBool(tokens[10]);
 		m_trickFlg = Utility::WStrToBool(tokens[11]);
 		m_activeState = tokens[12] == L"Right" ? state::Right : state::Left;
+
+		if (tokens.size() > 13) {
+			if (tokens[13] != L"") {
+				m_bShadow = Utility::WStrToBool(tokens[13]);
+			}
+		}
 	}
 	Block::~Block() {}
 
@@ -61,19 +65,24 @@ namespace basecross {
 			AddTag(L"TrickArtObj");
 		}
 		else {
-			//�e������i�V���h�E�}�b�v��`�悷��j
-			auto shadowPtr = AddComponent<Shadowmap>();
-			//�e�̌`�i���b�V���j��ݒ�
-			shadowPtr->SetMeshResource(L"DEFAULT_CUBE");
+			if (m_bShadow) {
+				//�e������i�V���h�E�}�b�v��`�悷��j
+				auto shadowPtr = AddComponent<Shadowmap>();
+				//�e�̌`�i���b�V���j��ݒ�
+				shadowPtr->SetMeshResource(L"DEFAULT_CUBE");
+			}
+
 			if (m_bProjActive) {
 				auto ptrDraw = AddComponent<PNTStaticDraw2>();
 				ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
-				ptrDraw->SetOwnShadowActive(true);
+				if (m_bShadow)
+					ptrDraw->SetOwnShadowActive(true);
 			}
 			else {
 				auto ptrDraw = AddComponent<PNTStaticDraw>();
 				ptrDraw->SetMeshResource(L"DEFAULT_CUBE");
-				ptrDraw->SetOwnShadowActive(true);
+				if (m_bShadow)
+					ptrDraw->SetOwnShadowActive(true);
 			}
 		}
 

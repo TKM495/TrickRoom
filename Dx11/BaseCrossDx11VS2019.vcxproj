@@ -129,6 +129,14 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <FxCompile Update="D:\media\ドキュメント\日本ゲーム大賞\TrickRoom\GameSources\TrickArtSystem\Shader\PSPNTTrickArt.hlsl">
+      <FileType>Document</FileType>
+    </FxCompile>
+    <FxCompile Update="D:\media\ドキュメント\日本ゲーム大賞\TrickRoom\GameSources\TrickArtSystem\Shader\VSPNTTrickArt.hlsl">
+      <FileType>Document</FileType>
+    </FxCompile>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

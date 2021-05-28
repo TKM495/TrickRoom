@@ -47,6 +47,8 @@ namespace basecross {
 		//プレイヤーモデルに通知するための変数
 		bool m_bClear;
 		float rotationSpeed;
+		//落下判定
+		bool m_bFalling;
 
 		//トリックアート押し出し用
 		float m_basePosY;

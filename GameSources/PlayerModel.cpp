@@ -5,11 +5,16 @@ namespace basecross {
 	void PlayerModel::OnCreate() {
 		auto drawComp = AddComponent<PNTBoneModelDraw>();
 		drawComp->SetMeshResource(L"PlayerModel");
+		drawComp->SetDiffuse(Col4(0.2f));
+		drawComp->SetEmissive(Col4(0.7f));
 		drawComp->AddAnimation(L"Run", 0, 25, true, 40.0f);
 		//drawComp->ChangeCurrentAnimation(L"Run");
 
 		auto shadow = AddComponent<Shadowmap>();
 		shadow->SetMeshResource(L"PlayerModel");
+
+		auto transComp = GetComponent<Transform>();
+		transComp->SetScale(Vec3(2.0f));
 
 		m_timer.SetCountTime(0.28f);
 		m_timer.Reset();

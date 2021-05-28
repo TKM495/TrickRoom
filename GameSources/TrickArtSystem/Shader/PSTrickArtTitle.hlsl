@@ -1,5 +1,5 @@
 /*!
-@file PSTrickArt.hlsl
+@file PSPNTTrickArt.hlsl
 @brief トリックアートの見た目を決めるシェーダー
 */
 #include "INCTrickArtTitle.hlsli"

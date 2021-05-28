@@ -42,7 +42,11 @@ namespace basecross {
 		//Šp“x(deg)‚ğmin`max‚ÌŠÔ‚Éû‚ß‚é
 		//(min‚Æmax‚Ì·‚Í360‚Å‚ ‚é•K—v‚ª‚ ‚é)
 		float ClampAngle(float min, float max, float angle);
+		//wstring‚ğbool‚É•ÏŠ·
 		bool WStrToBool(wstring str);
+
+		//Col4‚Ì0`255‚ğ0`1‚Éû‚ß‚é
+		Col4 ConvertColorZeroToOne(Col4 color);
 	}
 }
 //end basecross

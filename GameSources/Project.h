@@ -91,6 +91,7 @@
 #include "Bullet.h"
 #include "GoalPoint.h"
 #include "VirtualFloor.h"
+#include "MovingFloor.h"
 //トリックアートオブジェクト
 #include "TrickArtBaseOld.h"
 #include "SpikesArt.h"

@@ -19,6 +19,10 @@ namespace basecross {
 		m_titleObj.lock()->SetDrawActive(false);
 		m_menuObj.lock()->SetDrawMenu(false);
 		m_frameObj.lock()->SetDrawActive(false);
+
+		m_titleObj.lock()->SetDrawLayer(3);
+		m_menuObj.lock()->SetMenuDrawLayer(3);
+		m_frameObj.lock()->SetDrawLayer(2);
 	}
 
 	void Pause::IsActive(bool flg) {

@@ -12,6 +12,8 @@ namespace basecross {
 		float m_cycle;
 		float m_speed;
 		float m_offset;
+		Vec3 m_stertPos;
+		Vec3 m_endPos;
 	public:
 		Enemy(const shared_ptr<Stage>& stage,
 			const wstring& line);

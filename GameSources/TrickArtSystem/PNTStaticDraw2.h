@@ -43,6 +43,9 @@ namespace basecross {
 		/// TAË‰es—ñ
 		Mat4x4 TAProjection;
 
+		//‰e‚Ì—LŒø–³Œø
+		XMUINT4 ActiveShadow;
+
 		SimpleConstantsEX() {
 			memset(this, 0, sizeof(SimpleConstantsEX));
 			Diffuse = Col4(1.0f, 1.0f, 1.0f, 1.0f);
