@@ -21,8 +21,7 @@ namespace basecross {
 		}
 		//配列のサイズを返す関数
 		template<typename TYPE,size_t SIZE>
-		size_t GetArrayLength(const TYPE(&)[SIZE])
-		{
+		size_t GetArrayLength(const TYPE(&)[SIZE]) {
 			return SIZE;
 		}
 		//テクスチャのサイズを返す関数

@@ -57,7 +57,7 @@ namespace basecross {
 		case TurnDir::Right:
 			m_moveIndex--;
 			if (m_moveIndex < 0) {
-				m_moveIndex = Utility::GetArrayLength(m_moveDir);
+				m_moveIndex = (int)Utility::GetArrayLength(m_moveDir);
 			}
 			break;
 		default:

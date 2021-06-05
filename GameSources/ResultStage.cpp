@@ -27,7 +27,6 @@ namespace basecross {
 		CreateViewLight();
 		auto csvLoad = AddGameObject<CSVLoad>();
 		csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetStringSpriteData(), SpriteType::String);
-		csvLoad->SpriteDataExtraction(App::GetApp()->GetScene<Scene>()->GetImageSpriteData(), SpriteType::Image);
 
 		GameObjecttCSVBuilder builder;
 		builder.Register<Player>(L"Player");
@@ -55,8 +54,6 @@ namespace basecross {
 		auto fade = GetSharedGameObject<Fade>(L"Fade");
 		if (!fade->GetFadeActive()) {
 			fade->SetFadeColor(Col4(0.0f, 0.0f, 0.0f, 1.0f));
-			//èàóùåyå∏ÅHÇÃÇΩÇﬂÇ…í‚é~
-			SetUpdateActive(false);
 		}
 	}
 }

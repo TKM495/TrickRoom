@@ -1,4 +1,4 @@
-﻿/*!
+/*!
 @file pursuer.cpp
 @brief
 */

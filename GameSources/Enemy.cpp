@@ -62,9 +62,9 @@ namespace basecross {
 			AddTag(L"TrickArtObj");
 		}
 		else {
-			//å½±ã‚’ã¤ã‘ã‚‹ï¼ˆã‚·ãƒ£ãƒ‰ã‚¦ãƒãƒƒãƒ—ã‚’æç”»ã™ã‚‹ï¼‰
+			//‰e‚ğ‚Â‚¯‚éiƒVƒƒƒhƒEƒ}ƒbƒv‚ğ•`‰æ‚·‚éj
 			auto shadowPtr = AddComponent<Shadowmap>();
-			//å½±ã®å½¢ï¼ˆãƒ¡ãƒƒã‚·ãƒ¥ï¼‰ã‚’è¨­å®š
+			//‰e‚ÌŒ`iƒƒbƒVƒ…j‚ğİ’è
 			shadowPtr->SetMeshResource(L"Enemy");
 			if (m_bProjActive) {
 				auto ptrDraw = AddComponent<PNTStaticDraw2>();
@@ -79,7 +79,7 @@ namespace basecross {
 		}
 
 		auto col = AddComponent<CollisionSphere>();
-		//ã“ã‚Œã‚’ã¤ã‘ã‚‹ã¨OnCollisionEnterãŒå‘¼ã°ã‚Œãªã„ã®ã§ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆ
+		//‚±‚ê‚ğ‚Â‚¯‚é‚ÆOnCollisionEnter‚ªŒÄ‚Î‚ê‚È‚¢‚Ì‚ÅƒRƒƒ“ƒgƒAƒEƒg
 		col->SetFixed(true);
 		auto scene = App::GetApp()->GetScene<Scene>();
 		if (scene->GetDebugState() == DebugState::Debug) {
@@ -146,7 +146,7 @@ namespace basecross {
 	}
 
 	void Enemy::OnCollisionEnter(shared_ptr<GameObject>& other) {
-		//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’æ¶ˆã—ã¦ã‚‚ã„ã„ã¨æ€ã£ãŸãŒã€å¿µã®ãŸã‚
+		//ƒIƒuƒWƒFƒNƒg‚ğÁ‚µ‚Ä‚à‚¢‚¢‚Æv‚Á‚½‚ªA”O‚Ì‚½‚ß
 		if (other->FindTag(L"damage")) {
 			SetDrawActive(false);
 			SetUpdateActive(false);

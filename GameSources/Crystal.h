@@ -1,6 +1,6 @@
 /*!
 @file Crystal.h
-@brief �N���X�^��
+@brief ?N???X?^??
 */
 
 #pragma once

@@ -56,12 +56,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)CircularMove.cpp">
       <Filter>Behavior\CircularMove</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ColorOut.cpp">
-      <Filter>Sprite\ColorOut</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Crystal.cpp">
-      <Filter>StageObject\Crystal</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)CSVLoad.cpp">
       <Filter>CSVLoad</Filter>
     </ClCompile>
@@ -73,9 +67,6 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Effect.cpp">
       <Filter>Effect</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)EmptyObject.cpp">
-      <Filter>EmptyObject</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Enemy.cpp">
       <Filter>StageObject\Enemy</Filter>
@@ -91,9 +82,6 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)GameStage.cpp">
       <Filter>Stage\GameStage</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)ImageSpriteForCSV.cpp">
-      <Filter>Sprite\Image</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)LinearMove.cpp">
       <Filter>Behavior\LinearMove</Filter>
@@ -122,12 +110,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Player.cpp">
       <Filter>StageObject\Player</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Pole.cpp">
-      <Filter>StageObject\Pole</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)PoleArt.cpp">
-      <Filter>StageObject\Pole</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Result.cpp">
       <Filter>Sprite\Result</Filter>
     </ClCompile>
@@ -150,9 +132,6 @@
       <Filter>Behavior\SinCurve</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Spikes.cpp">
-      <Filter>StageObject\Spikes</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)SpikesArt.cpp">
       <Filter>StageObject\Spikes</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)SquareMove.cpp">
@@ -179,32 +158,17 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtBase.cpp">
       <Filter>TrickArt</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtBaseOld.cpp">
-      <Filter>TrickArt</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Utility.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)UI_Crystal.cpp">
-      <Filter>UI\UI_Crystal</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)UI_FPS.cpp">
-      <Filter>UI\UI_FPS</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)UI_Goalgauge.cpp">
       <Filter>UI\Goalgauge</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)UI_HP.cpp">
-      <Filter>UI\UI_HP</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)UI_LR.cpp">
       <Filter>UI\UI_LR</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)UI_Player.cpp">
       <Filter>UI\UI_Player</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)UI_Rank.cpp">
-      <Filter>UI\UI_Rank</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtDraw.cpp">
       <Filter>TrickArt\Comp</Filter>
@@ -220,9 +184,6 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerModel.cpp">
       <Filter>StageObject\Player\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Timer.cpp">
-      <Filter>UI\Timer</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)RouteEnemy.cpp">
       <Filter>StageObject\RouteObject\Enemy</Filter>
@@ -244,9 +205,6 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Fade.cpp">
       <Filter>Sprite\Fade</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)LineSprite.cpp">
-      <Filter>Sprite\Line</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)illusionFrame.cpp">
       <Filter>Sprite\illusionFrame</Filter>
@@ -274,18 +232,6 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleCamera.cpp">
       <Filter>Camera\TitleCamera</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)StartCameraman.cpp">
-      <Filter>!Cameraman\Start</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)GoalCamera.cpp">
-      <Filter>Camera\!GoalCamera</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)GoalStage.cpp">
-      <Filter>Stage\GoalStage</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MainCameraman.cpp">
-      <Filter>!Cameraman\Main</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TimeCounter.cpp">
       <Filter>TimeCounter</Filter>
@@ -321,12 +267,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CircularMove.h">
       <Filter>Behavior\CircularMove</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ColorOut.h">
-      <Filter>Sprite\ColorOut</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Crystal.h">
-      <Filter>StageObject\Crystal</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)CSVLoad.h">
       <Filter>CSVLoad</Filter>
     </ClInclude>
@@ -338,9 +278,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Effect.h">
       <Filter>Effect</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)EmptyObject.h">
-      <Filter>EmptyObject</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Enemy.h">
       <Filter>StageObject\Enemy</Filter>
@@ -356,12 +293,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)GameStage.h">
       <Filter>Stage\GameStage</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)ImageSpriteForCSV.h">
-      <Filter>Sprite\Image</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)InputHandler.h">
-      <Filter>Other</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)LinearMove.h">
       <Filter>Behavior\LinearMove</Filter>
@@ -390,12 +321,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Player.h">
       <Filter>StageObject\Player</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Pole.h">
-      <Filter>StageObject\Pole</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)PoleArt.h">
-      <Filter>StageObject\Pole</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Result.h">
       <Filter>Sprite\Result</Filter>
     </ClInclude>
@@ -418,9 +343,6 @@
       <Filter>Behavior\SinCurve</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Spikes.h">
-      <Filter>StageObject\Spikes</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)SpikesArt.h">
       <Filter>StageObject\Spikes</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)SquareMove.h">
@@ -447,35 +369,20 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtBase.h">
       <Filter>TrickArt</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtBaseOld.h">
-      <Filter>TrickArt</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtSystem.h">
       <Filter>TrickArt</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Utility.h">
       <Filter>Utility</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)UI_Crystal.h">
-      <Filter>UI\UI_Crystal</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)UI_FPS.h">
-      <Filter>UI\UI_FPS</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)UI_Goalgauge.h">
       <Filter>UI\Goalgauge</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)UI_HP.h">
-      <Filter>UI\UI_HP</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)UI_LR.h">
       <Filter>UI\UI_LR</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)UI_Player.h">
       <Filter>UI\UI_Player</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)UI_Rank.h">
-      <Filter>UI\UI_Rank</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TrickArtSystem\TrickArtDraw.h">
       <Filter>TrickArt\Comp</Filter>
@@ -491,9 +398,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerModel.h">
       <Filter>StageObject\Player\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Timer.h">
-      <Filter>UI\Timer</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)RouteEnemy.h">
       <Filter>StageObject\RouteObject\Enemy</Filter>
@@ -515,9 +419,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Fade.h">
       <Filter>Sprite\Fade</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)LineSprite.h">
-      <Filter>Sprite\Line</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)illusionFrame.h">
       <Filter>Sprite\illusionFrame</Filter>
@@ -545,18 +446,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleCamera.h">
       <Filter>Camera\TitleCamera</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)StartCameraman.h">
-      <Filter>!Cameraman\Start</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)GoalCamera.h">
-      <Filter>Camera\!GoalCamera</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)GoalStage.h">
-      <Filter>Stage\GoalStage</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MainCameraman.h">
-      <Filter>!Cameraman\Main</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)TimeCounter.h">
       <Filter>TimeCounter</Filter>
@@ -610,9 +499,6 @@
     <Filter Include="Behavior\CircularMove">
       <UniqueIdentifier>{b3da718f-2ac5-4240-9fca-285bbbd7e39b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="StageObject\Crystal">
-      <UniqueIdentifier>{6b6d1f7a-54e8-4bb7-a353-0baeb90abe37}</UniqueIdentifier>
-    </Filter>
     <Filter Include="CSVLoad">
       <UniqueIdentifier>{f24ee87f-1903-48be-8be1-2589e4691b56}</UniqueIdentifier>
     </Filter>
@@ -621,9 +507,6 @@
     </Filter>
     <Filter Include="Effect">
       <UniqueIdentifier>{61a84e10-6fb1-4247-a879-3777860eb918}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="EmptyObject">
-      <UniqueIdentifier>{96b51550-60ca-4246-bd43-4df33c65a75b}</UniqueIdentifier>
     </Filter>
     <Filter Include="StageObject\Enemy">
       <UniqueIdentifier>{76d1eaf9-ac7c-449b-8f75-fa0517d4e0e4}</UniqueIdentifier>
@@ -639,9 +522,6 @@
     </Filter>
     <Filter Include="Sprite\Cursor">
       <UniqueIdentifier>{a4cd803d-19fe-497b-8f42-683474b9850e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sprite\ColorOut">
-      <UniqueIdentifier>{4fbebea4-e2e6-4fa4-a0de-eaf6ae1e8865}</UniqueIdentifier>
     </Filter>
     <Filter Include="Sprite\BGSprite">
       <UniqueIdentifier>{984e75c6-f9dc-4924-b5d5-b76150b3fb2a}</UniqueIdentifier>
@@ -660,9 +540,6 @@
     </Filter>
     <Filter Include="Sprite\Image">
       <UniqueIdentifier>{bca21695-cea7-4364-bb77-549e43a9aa89}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Other">
-      <UniqueIdentifier>{a03b5c3c-4e85-4303-974c-37c3c2f2713f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Behavior\LinearMove">
       <UniqueIdentifier>{7d068b42-a5dd-46db-a74c-a1792f8799ea}</UniqueIdentifier>
@@ -693,9 +570,6 @@
     </Filter>
     <Filter Include="TrickArt\HLSL">
       <UniqueIdentifier>{a5699d14-ec98-4f7d-b643-a92074a5a23a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="StageObject\Pole">
-      <UniqueIdentifier>{7b8cb7dc-1a9d-461c-bc66-4e87cf3c6246}</UniqueIdentifier>
     </Filter>
     <Filter Include="Sprite\Result">
       <UniqueIdentifier>{b60002f3-7386-4ffe-9378-3d28dde15824}</UniqueIdentifier>
@@ -745,26 +619,14 @@
     <Filter Include="Utility">
       <UniqueIdentifier>{f49822be-9ec6-4bdf-b564-8ab14378b480}</UniqueIdentifier>
     </Filter>
-    <Filter Include="UI\UI_Crystal">
-      <UniqueIdentifier>{30108abe-5d24-4a8c-a081-c9bfa9803c1f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="UI\UI_FPS">
-      <UniqueIdentifier>{cc219563-8d90-496f-8378-7a031f6059f0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="UI\Goalgauge">
       <UniqueIdentifier>{c9bcc78c-0ae8-4c1b-831c-e020d503e2dd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="UI\UI_HP">
-      <UniqueIdentifier>{9014a8cf-bbb3-43ed-a473-e7714b7496c7}</UniqueIdentifier>
     </Filter>
     <Filter Include="UI\UI_LR">
       <UniqueIdentifier>{e77024e3-e09b-459e-ac60-ca2ac9834f98}</UniqueIdentifier>
     </Filter>
     <Filter Include="UI\UI_Player">
       <UniqueIdentifier>{b278b776-f344-40a4-8325-f3cd53b07f4d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="UI\UI_Rank">
-      <UniqueIdentifier>{2b011de3-3031-43d2-a991-439f49dd478a}</UniqueIdentifier>
     </Filter>
     <Filter Include="TrickArt\Comp">
       <UniqueIdentifier>{f684f8df-ca7e-4819-aa32-f969feb237a2}</UniqueIdentifier>
@@ -790,14 +652,8 @@
     <Filter Include="StageObject\Battery\Bullet">
       <UniqueIdentifier>{9701ddf6-add7-4a15-b8d3-69db2d0d2702}</UniqueIdentifier>
     </Filter>
-    <Filter Include="UI\Timer">
-      <UniqueIdentifier>{3b54dc9f-abc1-4af2-aed5-6673e0671fdc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="StageObject\RouteObject\Floor\FloorModel">
       <UniqueIdentifier>{10490aa6-b97b-4fbc-aff2-4d2587424e80}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sprite\Line">
-      <UniqueIdentifier>{a5d2eb22-bd55-4ee2-8fc3-7a52f9acadc6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Sprite\illusionFrame">
       <UniqueIdentifier>{8c43dab1-069c-4446-bc0e-da99afad748a}</UniqueIdentifier>
@@ -828,24 +684,6 @@
     </Filter>
     <Filter Include="Camera\MainCamera">
       <UniqueIdentifier>{8fed7338-3e28-41c9-a892-1ca5e6af7478}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Stage\GoalStage">
-      <UniqueIdentifier>{5f3cc715-d28e-4a19-bce5-534035f16813}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="!Cameraman">
-      <UniqueIdentifier>{40ca4443-00a2-4496-8514-c52fab7db429}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="!Cameraman\Start">
-      <UniqueIdentifier>{d162611c-50b4-4133-8903-115d4f9c6e66}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="!Cameraman\Goal">
-      <UniqueIdentifier>{bc8f66f1-b264-4750-b402-909cc5ad1e21}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="!Cameraman\Main">
-      <UniqueIdentifier>{105fb5a9-f71c-4154-b8d2-69bc37562079}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Camera\!GoalCamera">
-      <UniqueIdentifier>{af95b2c4-6417-45a7-b367-f48aff1b0877}</UniqueIdentifier>
     </Filter>
     <Filter Include="TimeCounter">
       <UniqueIdentifier>{58e4aad4-75f9-445a-8858-b719f55a229e}</UniqueIdentifier>

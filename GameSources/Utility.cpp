@@ -11,8 +11,9 @@ namespace basecross {
 			D3D11_TEXTURE2D_DESC textureDesc;
 			auto texture = static_cast<ID3D11Texture2D*>(id3d11resource);
 			texture->GetDesc(&textureDesc);
-
-			return Vec2(textureDesc.Width, textureDesc.Height);
+			float width = (float)textureDesc.Width;
+			float height = (float)textureDesc.Height;
+			return Vec2(width, height);
 		}
 		const Vec2 ConvertToUVCoordinate(const Vec2& coordinate, const wstring& textureName) {
 			return ConvertToUVCoordinate(coordinate, GetTextureSize(textureName));

@@ -1,6 +1,6 @@
 /*!
 @file Effect.h
-@brief ï¿½Gï¿½tï¿½Fï¿½Nï¿½gï¿½È‚ï¿½
+@brief ƒGƒtƒFƒNƒg
 */
 
 #pragma once

@@ -106,7 +106,7 @@ namespace basecross {
             m_audio(App::GetApp()->GetXAudio2Manager()),
             m_bActive(true),
             m_rate(4.0f),
-            m_activeCol(Col4(255.0f, 168.0f, 0.0f, 1.0f) / 255.0f),
+            m_activeCol(Col4(240.0f, 168.0f, 0.0f, 1.0f) / 255.0f),
             m_drawLayer(0)
         {}
 

@@ -1,6 +1,6 @@
-/*!
-@file Block2.h
-@brief ï¿½uï¿½ï¿½ï¿½bï¿½N
+/*
+@file Block.h
+@brief ƒuƒƒbƒN
 */
 
 #pragma once
@@ -9,19 +9,13 @@
 #include "TrickArtSystem/TrickArtSystem.h"
 
 namespace basecross {
-	//--------------------------------------------------------------------------------------
-	//	class Block : public GameObject;
-	//--------------------------------------------------------------------------------------
 	class Block : public StageObject, public TrickArtBase {
 		bool m_bShadow;
 	public:
-		//ï¿½\ï¿½zï¿½Æ”jï¿½ï¿½
 		Block(const shared_ptr<Stage>& StagePtr,
 			const wstring& line);
 		virtual ~Block();
-		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		virtual void OnCreate() override;
-		//ï¿½ï¿½ï¿½ï¿½
 		virtual void OnUpdate() override;
 	};
 }

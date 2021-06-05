@@ -1,16 +1,12 @@
 /*!
 @file Block2.cpp
-@brief ï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½ï¿½ï¿½ï¿½
+@brief ƒuƒƒbƒNÀ‘Ì
 */
 
 #include "stdafx.h"
 #include "Project.h"
 
 namespace basecross {
-	//--------------------------------------------------------------------------------------
-	//	class Block : public GameObject;
-	//--------------------------------------------------------------------------------------
-	//ï¿½\ï¿½zï¿½Æ”jï¿½ï¿½
 	Block::Block(const shared_ptr<Stage>& StagePtr,
 		const wstring& line)
 		:StageObject(StagePtr), m_bShadow(true)
@@ -44,7 +40,6 @@ namespace basecross {
 	}
 	Block::~Block() {}
 
-	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	void Block::OnCreate() {
 		StageObject::ObjectSetUp();
 		const auto& app = App::GetApp();
@@ -66,9 +61,7 @@ namespace basecross {
 		}
 		else {
 			if (m_bShadow) {
-				//ï¿½eï¿½ï¿½ï¿½Â‚ï¿½ï¿½ï¿½iï¿½Vï¿½ï¿½ï¿½hï¿½Eï¿½}ï¿½bï¿½vï¿½ï¿½`ï¿½æ‚·ï¿½ï¿½j
 				auto shadowPtr = AddComponent<Shadowmap>();
-				//ï¿½eï¿½ÌŒ`ï¿½iï¿½ï¿½ï¿½bï¿½Vï¿½ï¿½ï¿½jï¿½ï¿½İ’ï¿½
 				shadowPtr->SetMeshResource(L"DEFAULT_CUBE");
 			}
 
@@ -86,7 +79,6 @@ namespace basecross {
 			}
 		}
 
-		//OBBï¿½Õ“Ë”ï¿½ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½ï¿½
 		auto col = AddComponent<CollisionObb>();
 		col->SetFixed(true);
 		if (scene->GetDebugState() == DebugState::Debug) {

@@ -18,7 +18,7 @@ namespace basecross {
 				Col4(1.0f));
 			str->SetPos(element.pos);
 			str->SetSize(0.9f);
-			str->SetDrawLayer(m_drawLayer);
+			str->SetDrawLayer(m_drawLayer + 1);
 			m_stringSprite.push_back(str);
 
 			wstring texName = L"";
@@ -159,7 +159,7 @@ namespace basecross {
 
 	void BaseMenu::ResetDrawLayer(int layer) {
 		for (auto& string : m_stringSprite) {
-			string->SetDrawLayer(layer);
+			string->SetDrawLayer(layer + 1);
 		}
 		for (auto& frame : m_illusionFrame) {
 			frame->SetDrawLayer(layer);

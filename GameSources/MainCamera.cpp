@@ -18,9 +18,9 @@ namespace basecross {
 
 	void MainCamera::OnCreate()
 	{
-		//ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚·ãƒ³ã®æ§‹ç¯‰
+		//ƒXƒe[ƒgƒ}ƒVƒ“‚Ì\’z
 		m_StateMachine.reset(new StateMachine<MainCamera>(GetThis<MainCamera>()));
-		//åˆæœŸã‚¹ãƒ†ãƒ¼ãƒˆã®è¨­å®š
+		//‰ŠúƒXƒe[ƒg‚Ìİ’è
 		m_StateMachine->ChangeState(MainCameraInitState::Instance());
 	}
 
@@ -48,7 +48,7 @@ namespace basecross {
 
 		SetAt(m_goalPosForward.origin);
 		SetEye(GetAt() + m_offset);
-		//å¿µã®ãŸã‚åˆæœŸåŒ–
+		//”O‚Ì‚½‚ß‰Šú‰»
 		m_timer.Reset();
 		m_timer.SetCountTime(3.0f);
 	}
@@ -90,7 +90,7 @@ namespace basecross {
 			}
 		}
 
-		//ã‚«ãƒ¡ãƒ©å‡¦ç†
+		//ƒJƒƒ‰ˆ—
 		auto TransComp = player->GetComponent<Transform>();
 		auto at = TransComp->GetPosition();
 		auto gameStage = dynamic_pointer_cast<GameStage>(stage);
@@ -187,7 +187,7 @@ namespace basecross {
 			}
 		}
 
-		//é€”ä¸­ã®å‡¦ç†ã®å½±éŸ¿ã‚’é¿ã‘ã‚‹ãŸã‚ã«æœ€å¾Œã«ãŠã„ã¦ã„ã‚‹
+		//“r’†‚Ìˆ—‚Ì‰e‹¿‚ğ”ğ‚¯‚é‚½‚ß‚ÉÅŒã‚É‚¨‚¢‚Ä‚¢‚é
 		if (m_bClear) {
 			m_StateMachine->ChangeState(MainCameraGoalState::Instance());
 		}

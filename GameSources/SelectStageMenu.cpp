@@ -56,7 +56,7 @@ namespace basecross {
 			m_bgObj.push_back(bg);
 		}
 
-		m_menuNum = m_picFrame.size() - 1; //vector‚Í1`‚È‚Ì‚Å
+		m_menuNum = (int)m_picFrame.size() - 1; //vector‚Í1`‚È‚Ì‚Å
 		m_cursor = stage->AddGameObject<Cursor>(L"SelectCursor");
 		m_cursor.lock()->SetValue(1.0f, 0.5f);
 		auto trans = m_cursor.lock()->GetComponent<Transform>();

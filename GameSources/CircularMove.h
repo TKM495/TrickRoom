@@ -36,7 +36,7 @@ namespace basecross {
 		void OnCreate()override;
 		void Excute();
 
-		void SetSpeed(int Speed)
+		void SetSpeed(float Speed)
 		{
 			m_RotationSpeed = Speed;
 		}
@@ -46,7 +46,7 @@ namespace basecross {
 		void SetOffset(float offset) {
 			m_Angle = offset;
 		}
-		int GetSpeed()
+		float GetSpeed()
 		{
 			return m_RotationSpeed;
 		}

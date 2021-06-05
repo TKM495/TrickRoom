@@ -52,7 +52,7 @@ namespace basecross {
 			m_drawDelta(0.0f),
 			m_stateDelta(0.0f),
 			m_renderDis(25.0f),
-			m_beforeValue(0.0f),
+			m_beforeValue(0),
 			m_stageNum(stageNum)
 		{
 			for (int i = 0; i < 2; i++) {

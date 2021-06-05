@@ -1,11 +1,10 @@
 /*!
 @file Project.h
-@brief ã‚³ãƒ³ãƒ†ãƒ³ãƒ„ç”¨ã®ãƒ˜ãƒƒãƒ€ã‚’ã¾ã¨ã‚ã‚‹
+@brief ƒRƒ“ƒeƒ“ƒc—p‚Ìƒwƒbƒ_‚ğ‚Ü‚Æ‚ß‚é
 */
 
 #pragma once
-
-//ãƒ¡ã‚¤ãƒ³
+//ƒƒCƒ“
 #include "Scene.h"
 #include "MainCamera.h"
 #include "TitleCamera.h"
@@ -16,16 +15,12 @@
 #include "AdvCollision.h"
 #include "MyMath.h"
 #include "Utility.h"
-#include "StartCameraman.h"
-#include "MainCameraman.h"
-#include "GoalCamera.h"
-//ã‚¹ãƒ†ãƒ¼ã‚¸é–¢ä¿‚
+//ƒXƒe[ƒWŠÖŒW
 #include "TitleStage.h"
 #include "SelectStage.h"
 #include "GameStage.h"
 #include "ResultStage.h"
-#include "GoalStage.h"
-//ãƒ¡ãƒ‹ãƒ¥ãƒ¼
+//ƒƒjƒ…[
 #include "TitleModel.h"
 #include "StringSprite2.h"
 #include "BaseMenu.h"
@@ -34,43 +29,34 @@
 #include "ResultMenu.h"
 #include "SelectStageMenu.h"
 #include "Cursor.h"
-//UIé–¢ä¿‚
+//UIŠÖŒW
 #include "Numbers.h"
 #include "FrameSprite.h"
-#include "LineSprite.h"
 #include "illusionFrame.h"
 #include "BGSprite.h"
-#include "ColorOut.h"
-#include "ImageSpriteForCSV.h"
 #include "ImageSprite.h"
 #include "PictureFrame.h"
-#include "UI_HP.h"
-#include "UI_Crystal.h"
 #include "SceneTransition.h"
 #include "Fade.h"
 #include "Result.h"
 #include "UI_Player.h"
 #include "UI_Goalgauge.h"
-#include "UI_FPS.h"
-#include "UI_Rank.h"
 #include "UI_LR.h"
-#include "Timer.h"
 #include "Pause.h"
-//è¡Œå‹•ã‚„ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ
+//s“®‚âƒRƒ“ƒ|[ƒlƒ“ƒg
 #include "SinCurve.h"
 #include "SquareMove.h"
 #include "CircularMove.h"
 #include "LinearMove.h"
 #include "RouteMove.h"
 #include "FadeComponent.h"
-//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
+//ƒGƒtƒFƒNƒg
 #include "Effect.h"
-//ãƒˆãƒªãƒƒã‚¯ã‚¢ãƒ¼ãƒˆ
+//ƒgƒŠƒbƒNƒA[ƒg
 #include "TrickArtSystem/TrickArtSystem.h"
 #include "illusionModel.h"
-//ã‚¹ãƒ†ãƒ¼ã‚¸ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+//ƒXƒe[ƒWƒIƒuƒWƒFƒNƒg
 #include "StageObject.h"
-#include "EmptyObject.h"
 #include "FallingArea.h"
 #include "StartPoint.h"
 #include "StaticPlatePolygon.h"
@@ -79,9 +65,6 @@
 #include "Spikes.h"
 #include "Enemy.h"
 #include "Stairs.h"
-#include "Pillar.h"
-#include "Pole.h"
-#include "Crystal.h"
 #include "GoalModel.h"
 #include "Goal.h"
 #include "RouteEnemy.h"
@@ -92,8 +75,3 @@
 #include "GoalPoint.h"
 #include "VirtualFloor.h"
 #include "MovingFloor.h"
-//ãƒˆãƒªãƒƒã‚¯ã‚¢ãƒ¼ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
-#include "TrickArtBaseOld.h"
-#include "SpikesArt.h"
-#include "FloorArt.h"
-#include "PoleArt.h"

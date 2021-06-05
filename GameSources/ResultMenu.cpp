@@ -31,6 +31,7 @@ namespace basecross {
 		auto fade = GetStage()->GetSharedGameObject<Fade>(L"Fade");
 		SetDelayTime(fade->GetFadeTime());
 		fade->FadeOut();
+		fade->SetFadeColor(Col4(0.0f, 0.0f, 0.0f, 1.0f));
 		if (element.name == L"NextStage") {
 			m_stageNum++;
 		}

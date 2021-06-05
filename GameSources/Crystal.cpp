@@ -1,6 +1,6 @@
 /*!
 @file Crystal.cpp
-@brief �N���X�^������
+@brief ?N???X?^??????
 */
 
 #include "stdafx.h"

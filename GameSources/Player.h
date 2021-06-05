@@ -1,6 +1,6 @@
 /*!
 @file Player.h
-@brief
+@brief ƒvƒŒƒCƒ„[
 */
 
 #pragma once
@@ -10,12 +10,12 @@
 
 namespace basecross {
 	class Player : public StageObject {
-		//ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚·ãƒ¼ãƒ³
+		//ƒXƒe[ƒgƒ}ƒV[ƒ“
 		unique_ptr< StateMachine<Player> >  m_StateMachine;
 		wstringstream wss;
 		shared_ptr<GameObject> m_model;
 		TimeCounter m_timer;
-		//Goalæ™‚ã®å‹•ãç”¨
+		//Goal‚Ì“®‚«—p
 		float m_startToMiddleTime;
 		float m_appealTime;
 		float m_middleToEndTime;
@@ -33,7 +33,7 @@ namespace basecross {
 		Vec3 m_nowPos;
 		Vec3 m_beforePos;
 		int m_Crystal;
-		int m_HP;//HP(ï¿½ï¿½ï¿½ï¿½ï¿½lï¿½T)
+		int m_HP;
 		float m_count;//Respawn
 		float m_RespawnTime;
 		bool bRespawn;
@@ -44,18 +44,20 @@ namespace basecross {
 		bool bMutekiFlg;
 		float m_Mcount;
 		float m_MTime;
-		//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ¢ãƒ‡ãƒ«ã«é€šçŸ¥ã™ã‚‹ãŸã‚ã®å¤‰æ•°
+		//ƒvƒŒƒCƒ„[ƒ‚ƒfƒ‹‚É’Ê’m‚·‚é‚½‚ß‚Ì•Ï”
 		bool m_bClear;
 		float rotationSpeed;
-		//è½ä¸‹åˆ¤å®š
+		//—‰º”»’è
 		bool m_bFalling;
+		//ƒS[ƒ‹ƒ‚[ƒVƒ‡ƒ“
+		bool m_bOnce;
 
-		//ãƒˆãƒªãƒƒã‚¯ã‚¢ãƒ¼ãƒˆæŠ¼ã—å‡ºã—ç”¨
+		//ƒgƒŠƒbƒNƒA[ƒg‰Ÿ‚µo‚µ—p
 		float m_basePosY;
 		float m_dir;
 		bool m_bExtrude;
 		float m_deltaExtrude;
-		//ï¿½_ï¿½ï¿½
+		//“_–Å
 		int m_DrawCount;
 		uint8_t m_BlinkMask;
 
@@ -85,6 +87,10 @@ namespace basecross {
 			auto diff = m_nowPos - m_beforePos;
 			return diff;
 		}
+		float GetAppealTime() {
+			return m_appealTime;
+		}
+
 		void Draw();
 		const unique_ptr<StateMachine<Player>>& GetStateMachine() {
 			return m_StateMachine;
@@ -107,8 +113,8 @@ namespace basecross {
 		void OnCollisionExcute(std::shared_ptr<GameObject>& other) override;
 	};
 
-	//ã‚¨ãƒ©ãƒ¼é˜²æ­¢ã®ãŸã‚ã€å®Ÿéš›ã«å‹•ã‹ã›ã‚‹ã‚ˆã†ã«ãªã‚‹ã¾ã§ã¯
-	//ã“ã“ã§é‡åŠ›ã‚„ã‚³ãƒªã‚¸ãƒ§ãƒ³ã‚’åœæ­¢ã•ã›ã‚‹
+	//ƒGƒ‰[–h~‚Ì‚½‚ßAÀÛ‚É“®‚©‚¹‚é‚æ‚¤‚É‚È‚é‚Ü‚Å‚Í
+	//‚±‚±‚Åd—Í‚âƒRƒŠƒWƒ‡ƒ“‚ğ’â~‚³‚¹‚é
 	class PlayerStartState : public ObjState<Player> {
 		PlayerStartState() {}
 	public:
@@ -137,4 +143,3 @@ namespace basecross {
 	};
 }
 //end basecross
-

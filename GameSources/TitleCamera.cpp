@@ -1,4 +1,4 @@
-ï»¿#include "stdafx.h"
+#include "stdafx.h"
 #include "Project.h"
 
 namespace basecross {
@@ -33,7 +33,7 @@ namespace basecross {
 
 		float h = pad.fThumbRX;
 		float v = pad.fThumbRY;
-		float stickRad = atan2f(v, h); // ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã®å‚¾ãã‚’ãƒ©ã‚¸ã‚¢ãƒ³è§’ã«å¤‰æ›
+		float stickRad = atan2f(v, h); // ƒXƒeƒBƒbƒN‚ÌŒX‚«‚ğƒ‰ƒWƒAƒ“Šp‚É•ÏŠ·
 
 		auto delta = app->GetElapsedTime();
 		//auto at = block->GetComponent<Transform>()->GetPosition();
@@ -80,6 +80,6 @@ namespace basecross {
 		}
 		auto eye = Lerp::CalculateLerp(GetEye(), m_eye, 0.0f, 1.0f, 0.15f, Lerp::rate::Linear);
 		SetEye(eye);
-		//ã‚«ãƒ¡ãƒ©ã®ç§»å‹•åˆ¶é™ãŒå¿…è¦
+		//ƒJƒƒ‰‚ÌˆÚ“®§ŒÀ‚ª•K—v
 	}
 }

@@ -1,24 +1,19 @@
 /*!
 @file GameStage.cpp
-@brief ï¿½Qï¿½[ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½
+@brief ƒQ[ƒ€ƒXƒe[ƒW‚ÌÀ‘Ì
 */
 
 #include "stdafx.h"
 #include "Project.h"
 
 namespace basecross {
-
-	//--------------------------------------------------------------------------------------
-	//	ï¿½Qï¿½[ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½Wï¿½Nï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½
-	//--------------------------------------------------------------------------------------
 	void GameStage::CreateViewLight() {
 		auto PtrView = CreateView<SingleView>();
-		//ï¿½rï¿½ï¿½ï¿½[ï¿½ÌƒJï¿½ï¿½ï¿½ï¿½ï¿½Ìİ’ï¿½
+		//ƒJƒƒ‰‚Ìì¬
 		auto PtrCamera = ObjectFactory::Create<MainCamera>();
 		PtrView->SetCamera(PtrCamera);
-		//ï¿½}ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½Cï¿½gï¿½Ìì¬
+		//ƒ‰ƒCƒg‚Ìì¬
 		auto PtrMultiLight = CreateLight<MultiLight>();
-		//ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½Ìƒï¿½ï¿½Cï¿½eï¿½Bï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½wï¿½ï¿½
 		PtrMultiLight->SetDefaultLighting();
 	}
 
@@ -32,8 +27,6 @@ namespace basecross {
 			auto scene = app->GetScene<Scene>();
 			auto csvLoad = AddGameObject<CSVLoad>();
 			csvLoad->SpriteDataExtraction(scene->GetStringSpriteData(), SpriteType::String);
-			csvLoad->SpriteDataExtraction(scene->GetImageSpriteData(), SpriteType::Image);
-			csvLoad->PictureDataExtraction(scene->GetPictureData());
 
 			GameObjecttCSVBuilder builder;
 			builder.Register<Player>(L"Player");
@@ -42,10 +35,7 @@ namespace basecross {
 			builder.Register<Block>(L"Block");
 			builder.Register<Enemy>(L"Enemy");
 			builder.Register<Spikes>(L"Spikes");
-			builder.Register<SpikesArt>(L"SpikesArt");
 			builder.Register<Stairs>(L"Stairs");
-			builder.Register<PoleArt>(L"PoleArt");
-			builder.Register<Crystal>(L"Crystal");
 			builder.Register<StaticPlatePolygon>(L"StaticPlatePolygon");
 			builder.Register<RouteEnemy>(L"RouteEnemy");
 			builder.Register<RouteFloor>(L"RouteFloor");
@@ -66,8 +56,6 @@ namespace basecross {
 			auto C_effect = AddGameObject<Effect>();
 			SetSharedGameObject(L"C_Effect", C_effect);
 
-			//AddGameObject<UI_HP>();
-			//AddGameObject<UI_Crystal>();
 			shared_ptr<GameObject> ui = AddGameObject<UI_Goalgauge>();
 			m_uiObjs.push_back(ui);
 			ui = AddGameObject<UI_Player>();
@@ -76,11 +64,10 @@ namespace basecross {
 			m_uiObjs.push_back(ui);
 
 			AddGameObject<Pause>();
-			AddGameObject<ColorOut>(Col4(1.0f), 0.25f, 0.0f, 4.0f);
 			AddGameObject<BGSprite>(L"BackGround");
 			AddGameObject<Fade>()->FadeIn();
 
-			//BGMï¿½ÌÄï¿½
+			//BGM
 			auto audio = App::GetApp()->GetXAudio2Manager();
 			m_gameBGM = audio->Start(L"GameBGM", XAUDIO2_LOOP_INFINITE, 0.1f);
 
@@ -135,11 +122,9 @@ namespace basecross {
 		}
 
 		m_stateDelta += delta;
-		//ObjDraw(0.1f);
 	}
 
 	void GameStage::OnDestroy(){
-		//BGMï¿½Ì’ï¿½~
 		auto audio = App::GetApp()->GetXAudio2Manager();
 		audio->Stop(m_gameBGM);
 	}
@@ -177,6 +162,7 @@ namespace basecross {
 		frame->GetFadeComp()->SetFadeTime(0.1f);
 		frame->GetFadeComp()->FadeIn();
 		frame->Deactive(displayTime);
+		frame->SetDrawLayer(2);
 
 		auto str = AddGameObject<StringSprite2>(L"Stage",
 			Align::Horizontal::Center,
@@ -186,6 +172,7 @@ namespace basecross {
 		str->GetFadeComp()->SetFadeTime(0.1f);
 		str->GetFadeComp()->FadeIn();
 		str->Deactive(displayTime);
+		str->SetDrawLayer(3);
 		auto stageNum = App::GetApp()->GetScene<Scene>()->GetStageNum();
 		auto obj = AddGameObject<Numbers>(stageNum);
 		obj->SetSize(1.0f);
@@ -193,13 +180,14 @@ namespace basecross {
 		obj->GetFadeComp()->SetFadeTime(0.1f);
 		obj->GetFadeComp()->FadeIn();
 		obj->Deactive(displayTime);
+		obj->SetDrawLayer(3);
 	}
 
 	bool GameStage::StartCountdown() {
 		auto delta = App::GetApp()->GetElapsedTime();
 		auto deltaTime = 3.0f - m_stateDelta;
 		bool flg = false;
-		//æ•°å­—ã®æ™‚
+		//”š‚Ì
 		if (deltaTime <= 1.0f) {
 			auto str = AddGameObject<StringSprite2>(L"Start",
 				Align::Horizontal::Center,
@@ -216,40 +204,10 @@ namespace basecross {
 		return flg;
 	}
 
-	void GameStage::ObjDraw(float time) {
-		auto delta = App::GetApp()->GetElapsedTime();
-		m_drawDelta += delta;
-		if (m_drawDelta <= time) {
-			return;
-		}
-		m_drawDelta = 0.0f;
-
-		vector<shared_ptr<GameObject>> stageObjs;
-		GetUsedTagObjectVec(L"StageObject", stageObjs);
-		auto camera = dynamic_pointer_cast<MainCamera>(GetView()->GetTargetCamera());
-		auto playerPos = camera->GetAt();
-		for (auto& obj : stageObjs) {
-			if (obj->FindTag(L"Plane") || obj->FindNumTag(-1)) {
-				continue;
-			}
-
-			auto pos = obj->GetComponent<Transform>()->GetPosition();
-			auto dir = playerPos - pos;
-			if (dir.lengthSqr() > m_renderDis * m_renderDis) {
-				obj->SetDrawActive(false);
-				obj->SetUpdateActive(false);
-			}
-			else {
-				obj->SetDrawActive(true);
-				obj->SetUpdateActive(true);
-			}
-		}
-	}
-
 	void GameStage::RenderStage() {
-		//æç”»ãƒ‡ãƒã‚¤ã‚¹ã®å–å¾—
+		//•`‰æƒfƒoƒCƒX‚Ìæ“¾
 		auto Dev = App::GetApp()->GetDeviceResources();
-		//ãƒãƒ«ãƒãƒ“ãƒ¥ãƒ¼æœªå¯¾å¿œ
+		//ƒ}ƒ‹ƒ`ƒrƒ…[–¢‘Î‰
 		for (int i = 0; i < 2; i++) {
 			m_TADrawRenderTarget[i]->ClearViews();
 			m_TADrawRenderTarget[i]->StartRenderTarget();
@@ -258,7 +216,7 @@ namespace basecross {
 				if (ptr->IsDrawActive()) {
 					auto TADraw = ptr->GetComponent<TrickArtDraw>(false);
 					if (TADraw) {
-						//æ–¹å‘ãŒåŒã˜ãªã‚‰
+						//•ûŒü‚ª“¯‚¶‚È‚ç
 						if ((int)TADraw->GetDir() == i) {
 							TADraw->Active();
 							TADraw->OnDraw();

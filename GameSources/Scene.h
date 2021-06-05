@@ -41,7 +41,8 @@ namespace basecross{
 	public:
 		Scene() :SceneBase(),
 			m_stageNum(1),
-			m_maxStage(9)
+			m_maxStage(9),
+			m_debugState(DebugState::None)
 		{}
 		virtual ~Scene() {}
 		virtual void OnCreate() override;

@@ -16,12 +16,13 @@ namespace basecross{
 		m_bExtrude(false), m_deltaExtrude(0.0f),
 		bDotFlg(false), m_DotCount(0), m_DotMaxCount(2),
 		m_count(0), m_RespawnTime(2), bRespawn(false), m_nowMoveSp(Vec3(0.0f)),
-		m_bClear(false), m_nowPos(Vec3(0.0f)), m_beforePos(Vec3(0.0f)), m_bFalling(false)
+		m_bClear(false), m_nowPos(Vec3(0.0f)), m_beforePos(Vec3(0.0f)), m_bFalling(false),
+		m_appealTime(2.0f), m_bOnce(false)
 	{
-		//ãƒˆãƒ¼ã‚¯ãƒ³ï¼ˆã‚«ãƒ©ãƒ ï¼‰ã®é…åˆ—
+		//ƒg[ƒNƒ“iƒJƒ‰ƒ€j‚Ì”z—ñ
 		vector<wstring> tokens;
 		Util::WStrToTokenVector(tokens, line, L',');
-		//å„ãƒˆãƒ¼ã‚¯ãƒ³ï¼ˆã‚«ãƒ©ãƒ ï¼‰ã‚’ã‚¹ã‚±ãƒ¼ãƒ«ã€å›è»¢ã€ä½ç½®ã«èª­ã¿è¾¼ã‚€
+		//Šeƒg[ƒNƒ“iƒJƒ‰ƒ€j‚ğƒXƒP[ƒ‹A‰ñ“]AˆÊ’u‚É“Ç‚İ‚Ş
 		m_position = Vec3(
 			(float)_wtof(tokens[1].c_str()),
 			(float)_wtof(tokens[2].c_str()),
@@ -68,9 +69,9 @@ namespace basecross{
 		transComp->SetScale(m_scale);
 		transComp->SetRotation(m_rotation);
 
-		//ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚·ãƒ³ã®æ§‹ç¯‰
+		//ƒXƒe[ƒgƒ}ƒVƒ“‚Ì\’z
 		m_StateMachine.reset(new StateMachine<Player>(GetThis<Player>()));
-		//åˆæœŸã‚¹ãƒ†ãƒ¼ãƒˆã®è¨­å®š
+		//‰ŠúƒXƒe[ƒg‚Ìİ’è
 		m_StateMachine->ChangeState(PlayerStartState::Instance());
 	}
 
@@ -186,7 +187,7 @@ namespace basecross{
 			Respawn();
 		}
 
-		//ç‚¹æ»…ãƒ•ãƒ©ã‚° == true && è½ä¸‹æ­»ã§ã¯ãªã„ã¨ã
+		//“_–Åƒtƒ‰ƒO == true && —‰º€‚Å‚Í‚È‚¢‚Æ‚«
 		if (bDotFlg && !m_bFalling)
 		{
 			Draw();
@@ -216,7 +217,7 @@ namespace basecross{
 		stage->SetState(GameStage::GameState::CLEAR);
 		m_startToMiddleTime = (m_startPos - m_middlePos).length() / m_moveSpeed;
 		m_middleToEndTime = (m_middlePos - m_endPos).length() / m_moveSpeed;
-		m_appealTime = 2.0f;
+		//ƒAƒs[ƒ‹ƒ^ƒCƒ€
 		m_moveTime = m_startToMiddleTime + m_middleToEndTime + m_appealTime;
 		m_timer.SetCountTime(m_moveTime);
 	}
@@ -232,6 +233,11 @@ namespace basecross{
 			utilPtr->RotToHead(dir.normalize(), rotationSpeed);
 		}
 		else if (m_timer.GetTime() < m_appealTime + m_startToMiddleTime) {
+			if (!m_bOnce) {
+				auto model = dynamic_pointer_cast<PlayerModel>(m_model);
+				model->GetStateMachine()->ChangeState(PlayerModelNormal::Instance());
+				m_bOnce = true;
+			}
 			auto pos = GetComponent<Transform>()->GetPosition();
 			auto eye = OnGetDrawCamera()->GetEye();
 			eye.y = pos.x;
@@ -251,8 +257,8 @@ namespace basecross{
 
 		if (m_timer.Count(m_middleToEndTime)) {
 			auto stage = GetTypeStage<GameStage>();
-			//ä»¥ä¸‹ã®stage->SetState(GameStage::GameState::FADEOUT);ã¯
-			//å¸¸æ™‚å®Ÿè¡Œã§ããªã„ã®ã§ã“ã“ã§ã¯ã˜ã
+			//ˆÈ‰º‚Ìstage->SetState(GameStage::GameState::FADEOUT);‚Í
+			//íÀs‚Å‚«‚È‚¢‚Ì‚Å‚±‚±‚Å‚Í‚¶‚­
 			if (stage->GetState() == GameStage::GameState::FADEOUT) {
 				return;
 			}
@@ -274,7 +280,7 @@ namespace basecross{
 		if (MoveVec().length() > 0.0f)
 		{
 			auto utilPtr = GetBehavior<UtilBehavior>();
-			//3Dãƒ¢ãƒ‡ãƒ«ã®æ­£é¢ãŒé€†ãªã®ã§ãƒã‚¤ãƒŠã‚¹
+			//3Dƒ‚ƒfƒ‹‚Ì³–Ê‚ª‹t‚È‚Ì‚Åƒ}ƒCƒiƒX
 			utilPtr->RotToHead(-MoveVec(), rotationSpeed);
 		}
 
@@ -298,11 +304,13 @@ namespace basecross{
 			GetComponent<Gravity>()->SetUpdateActive(true);
 
 			m_count = 0;
+			auto model = dynamic_pointer_cast<PlayerModel>(m_model);
+			model->GetStateMachine()->ChangeState(PlayerModelRun::Instance());
 		}
 
 	}
 
-	//ç‚¹æ»…
+	//“_–Å
 	void Player::Draw()
 	{
 		auto& app = App::GetApp();
@@ -354,7 +362,7 @@ namespace basecross{
 		return m_Crystal;
 	}
 
-	//è¡çªåˆ¤å®š
+	//Õ“Ë”»’è
 	void Player::OnCollisionEnter(std::shared_ptr<GameObject>& other)
 	{
 		//auto bCrystalTag = other->FindTag(L"Crystal");
@@ -376,8 +384,8 @@ namespace basecross{
 		//	audio->Start(L"CrystalSE", 0, 0.1f);
 		//}
 
-		//OnCollisionExcute()ã®ã»ã†ã«ã‚‚å…¥ã‚Œã¦ã„ã‚‹ãŒå¼¾ã®åˆ¤å®šãŒå–ã‚Œãªã„ãŸã‚
-		//ã“ã¡ã‚‰ã«ã‚‚å…¥ã‚Œã‚‹
+		//OnCollisionExcute()‚Ì‚Ù‚¤‚É‚à“ü‚ê‚Ä‚¢‚é‚ª’e‚Ì”»’è‚ªæ‚ê‚È‚¢‚½‚ß
+		//‚±‚¿‚ç‚É‚à“ü‚ê‚é
 		if (!bRespawn && !bMutekiFlg)
 		{
 			auto bDamegeTag = other->FindTag(L"damage");
@@ -403,6 +411,8 @@ namespace basecross{
 					effect->InsertEffect(other->GetComponent<Transform>()->GetPosition());
 					auto audio = App::GetApp()->GetXAudio2Manager();
 					audio->Start(L"DamageSE", 0, 0.1f);
+					auto model = dynamic_pointer_cast<PlayerModel>(m_model);
+					model->GetStateMachine()->ChangeState(PlayerModelDamage::Instance());
 				}
 			}
 		}
@@ -458,6 +468,9 @@ namespace basecross{
 					effect->InsertEffect(other->GetComponent<Transform>()->GetPosition());
 					auto audio = App::GetApp()->GetXAudio2Manager();
 					audio->Start(L"DamageSE", 0, 0.1f);
+
+					auto model = dynamic_pointer_cast<PlayerModel>(m_model);
+					model->GetStateMachine()->ChangeState(PlayerModelDamage::Instance());
 				}
 			}
 		}
