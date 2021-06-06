@@ -248,6 +248,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MovingFloor.cpp">
       <Filter>StageObject\MovingFloor</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)LoadStage.cpp">
+      <Filter>Stage\LoadStage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Project.h" />
@@ -461,6 +464,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MovingFloor.h">
       <Filter>StageObject\MovingFloor</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)LoadStage.h">
+      <Filter>Stage\LoadStage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -699,6 +705,9 @@
     </Filter>
     <Filter Include="StageObject\StaticPlatePolygon">
       <UniqueIdentifier>{43eccea1-6852-4a24-b510-997720f642fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Stage\LoadStage">
+      <UniqueIdentifier>{93f30b82-987e-4d98-ad90-933a0d2f3f40}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

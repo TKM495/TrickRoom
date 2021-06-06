@@ -28,6 +28,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GoalPoint.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)illusionFrame.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)illusionModel.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)LoadStage.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MovingFloor.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SceneTransition.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeComponent.h" />
@@ -102,6 +103,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GoalPoint.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)illusionFrame.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)illusionModel.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)LoadStage.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MovingFloor.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SceneTransition.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeComponent.cpp" />

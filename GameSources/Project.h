@@ -20,6 +20,7 @@
 #include "SelectStage.h"
 #include "GameStage.h"
 #include "ResultStage.h"
+#include "LoadStage.h"
 //ƒƒjƒ…[
 #include "TitleModel.h"
 #include "StringSprite2.h"
