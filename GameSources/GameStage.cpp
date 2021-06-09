@@ -37,11 +37,9 @@ namespace basecross {
 			builder.Register<Spikes>(L"Spikes");
 			builder.Register<Stairs>(L"Stairs");
 			builder.Register<StaticPlatePolygon>(L"StaticPlatePolygon");
-			builder.Register<RouteEnemy>(L"RouteEnemy");
 			builder.Register<RouteFloor>(L"RouteFloor");
 			builder.Register<Battery>(L"Battery");
 			builder.Register<FallingArea>(L"FallingArea");
-			builder.Register<MovingFloor>(L"MovingFloor");
 			builder.Register<Goal>(L"Goal");
 
 			auto dir = app->GetDataDirWString();

@@ -38,13 +38,7 @@ namespace basecross {
 				auto playerTrans = other->GetComponent<Transform>();
 				auto pos = playerTrans->GetPosition();
 				auto obj = dynamic_pointer_cast<RouteFloor>(m_floor);
-				if (obj) {
-					pos += -obj->GetMove();
-				}
-				else {
-					auto obj2 = dynamic_pointer_cast<MovingFloor>(m_floor);
-					pos += -obj2->GetMove();
-				}
+				pos += -obj->GetMove();
 				playerTrans->SetPosition(pos);
 			}
 			break;
@@ -64,13 +58,7 @@ namespace basecross {
 				auto playerTrans = other->GetComponent<Transform>();
 				auto pos = playerTrans->GetPosition();
 				auto obj = dynamic_pointer_cast<RouteFloor>(m_floor);
-				if (obj) {
-					pos += -obj->GetMove();
-				}
-				else {
-					auto obj2 = dynamic_pointer_cast<MovingFloor>(m_floor);
-					pos += -obj2->GetMove();
-				}
+				pos += -obj->GetMove();
 				playerTrans->SetPosition(pos);
 			}
 			break;

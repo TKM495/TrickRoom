@@ -7,7 +7,6 @@
 #include "stdafx.h"
 #include "StringSprite2.h"
 #include "GameStage.h"
-#include "SpriteManager.h"
 
 namespace basecross {
 	class Result :public GameObject {

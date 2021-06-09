@@ -29,8 +29,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)illusionFrame.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)illusionModel.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LoadStage.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)MovingFloor.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)SceneTransition.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FadeComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)FloorModel.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GoalModel.h" />
@@ -41,7 +39,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)StaticPlatePolygon.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PictureFrame.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayerModel.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)RouteEnemy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)RouteFloor.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)RouteMove.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SelectStageMenu.h" />
@@ -104,8 +101,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)illusionFrame.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)illusionModel.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)LoadStage.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)MovingFloor.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)SceneTransition.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FadeComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)FloorModel.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GoalModel.cpp" />
@@ -116,7 +111,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)StaticPlatePolygon.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PictureFrame.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayerModel.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)RouteEnemy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)RouteFloor.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)RouteMove.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SelectStageMenu.cpp" />
